@@ -1,0 +1,443 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Minikurs HTML5 i CSS3 — naucz się budować strony internetowe od zera. Darmowy kurs online.">
+  <title>Minikurs HTML5 i CSS3</title>
+
+  <!-- Favicon SVG inline -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0f'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-weight='700' font-size='13' fill='%237c3aed'%3EH5%3C/text%3E%3C/svg%3E">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="landing-nav" id="landing-nav">
+    <a href="/" class="landing-nav-brand">
+      <span class="landing-nav-logo">⟨H5⟩</span>
+      <span class="landing-nav-name">Minikurs HTML5 i CSS3</span>
+    </a>
+    <div class="landing-nav-spacer"></div>
+    <div class="landing-nav-links">
+      <a href="#program">Program</a>
+      <a href="{% url 'minikurs:glowna' %}">Kurs</a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'minikurs:dashboard' %}" class="btn btn-outline btn-sm">Dashboard</a>
+      {% else %}
+        <a href="{% url 'minikurs:login' %}" class="btn btn-outline btn-sm">Zaloguj się</a>
+        <a href="{% url 'minikurs:register' %}" class="btn btn-primary btn-sm">Zarejestruj się</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="hero-content">
+      <!-- Lewa kolumna — tekst -->
+      <div class="hero-left">
+        <div class="hero-badge">
+          ✦ W 100% DARMOWY KURS ✦
+        </div>
+
+        <h1 class="hero-title" id="typing-title">
+          <span id="typed-text"></span><span class="typing-cursor"></span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Minikurs HTML5 i CSS3 — od zera do własnej strony.<br>
+          Bez opłat. Bez rejestracji. Tylko wiedza.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="{% url 'minikurs:glowna' %}" class="btn btn-primary btn-lg">
+            Zacznij naukę →
+          </a>
+          <a href="#program" class="btn btn-outline btn-lg">
+            Zobacz program
+          </a>
+        </div>
+      </div>
+
+      <!-- Prawa kolumna — grafiki stockowe -->
+      <div class="hero-right">
+        <!-- GRAFIKA STOCKOWA: laptop z kodem -->
+        <img
+          class="hero-img-main"
+          src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600"
+          alt="Laptop z kodem HTML"
+          loading="eager"
+        >
+        <!-- GRAFIKA STOCKOWA: kod na ekranie -->
+        <img
+          class="hero-img-secondary"
+          src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400"
+          alt="Kod na ekranie monitora"
+          loading="eager"
+        >
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll">
+      <span>Przewiń</span>
+      <div class="hero-scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEKCJA 2 — CO ZYSKASZ (id="program")
+       ============================================================ -->
+  <section class="features-section" id="program">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Co wyniesiesz z tego kursu?</h2>
+        <p>Sześć obszarów wiedzy, które otworzą Ci drzwi do świata web developmentu.</p>
+      </div>
+
+      <div class="features-grid">
+
+        <div class="feature-card fade-in fade-in-delay-1">
+          <span class="feature-icon">🏗️</span>
+          <h3>Struktura HTML5</h3>
+          <p>Poznasz semantyczne znaczniki, nauczysz się budować szkielet każdej
+             nowoczesnej strony internetowej.</p>
+        </div>
+
+        <div class="feature-card fade-in fade-in-delay-2">
+          <span class="feature-icon">🎨</span>
+          <h3>Stylowanie CSS3</h3>
+          <p>Flexbox, Grid, animacje, zmienne CSS — opanujesz narzędzia,
+             których używają profesjonalni developerzy.</p>
+        </div>
+
+        <div class="feature-card fade-in fade-in-delay-3">
+          <span class="feature-icon">📝</span>
+          <h3>Formularze i Tabele</h3>
+          <p>Tworzenie interaktywnych formularzy, tabel danych i list —
+             fundamenty każdej aplikacji webowej.</p>
+        </div>
+
+        <div class="feature-card fade-in fade-in-delay-1">
+          <span class="feature-icon">🖼️</span>
+          <h3>Multimedia w HTML</h3>
+          <p>Osadzanie obrazów, wideo i audio. Nauczysz się jak działają
+             mapy, odtwarzacze i galerie.</p>
+        </div>
+
+        <div class="feature-card fade-in fade-in-delay-2">
+          <span class="feature-icon">🔗</span>
+          <h3>Hiperlącza i Nawigacja</h3>
+          <p>Wewnętrzne i zewnętrzne linki, anchory, nawigacja —
+             podstawa każdej strony WWW.</p>
+        </div>
+
+        <div class="feature-card fade-in fade-in-delay-3">
+          <span class="feature-icon">🏆</span>
+          <h3>Projekt Końcowy</h3>
+          <p>Zbudujesz własną stronę od zera i otrzymasz certyfikat
+             ukończenia kursu.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEKCJA 3 — STATYSTYKI
+       ============================================================ -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+
+        <div class="stat-item fade-in">
+          <span class="stat-number" data-target="7" data-suffix="">7</span>
+          <span class="stat-label">Projektów praktycznych</span>
+        </div>
+
+        <div class="stat-item fade-in fade-in-delay-1">
+          <span class="stat-number" data-target="13" data-suffix="">13</span>
+          <span class="stat-label">Rozdziałów kursu</span>
+        </div>
+
+        <div class="stat-item fade-in fade-in-delay-2">
+          <span class="stat-number" data-target="100" data-suffix="%">100%</span>
+          <span class="stat-label">Darmowy dostęp</span>
+        </div>
+
+        <div class="stat-item fade-in fade-in-delay-3">
+          <span class="stat-number" data-target="0" data-suffix="">0</span>
+          <span class="stat-label">Wymagań wstępnych</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEKCJA 4 — FULL-WIDTH IMAGE
+       ============================================================ -->
+  <section class="fullwidth-image-section">
+    <!-- GRAFIKA STOCKOWA: laptop z kodem, ciepłe światło -->
+    <img
+      src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1400"
+      alt="Laptop z kodem — zacznij kodować"
+      loading="lazy"
+    >
+    <div class="fullwidth-image-overlay">
+      <p class="fullwidth-quote">
+        „Każdy może nauczyć się kodować.<br>
+        <strong>Pytanie brzmi: kiedy zaczniesz?</strong>"
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEKCJA 5 — PROGRAM KURSU (accordion)
+       ============================================================ -->
+  <section class="program-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Program kursu</h2>
+        <p>Pięć bloków tematycznych — od podstaw HTML po projekty praktyczne.</p>
+      </div>
+
+      <div class="accordion" id="accordion">
+
+        <!-- Rozdział 1 -->
+        <div class="accordion-item" data-index="0">
+          <div class="accordion-header">
+            <div class="accordion-header-left">
+              <div class="accordion-number">01</div>
+              <div>
+                <div class="accordion-title">Poradnik HTML</div>
+                <div class="accordion-subtitle">11 tematów · Podstawy języka znaczników</div>
+              </div>
+            </div>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <div class="accordion-tags">
+                <span class="accordion-tag">Wstęp</span>
+                <span class="accordion-tag">Tekst</span>
+                <span class="accordion-tag">Znaki specjalne</span>
+                <span class="accordion-tag">Listy</span>
+                <span class="accordion-tag">Tabele</span>
+                <span class="accordion-tag">Hiperłącza</span>
+                <span class="accordion-tag">Grafika</span>
+                <span class="accordion-tag">Multimedia</span>
+                <span class="accordion-tag">Inputy</span>
+                <span class="accordion-tag">Formularze</span>
+                <span class="accordion-tag">Atrybuty</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rozdział 2 -->
+        <div class="accordion-item" data-index="1">
+          <div class="accordion-header">
+            <div class="accordion-header-left">
+              <div class="accordion-number">02</div>
+              <div>
+                <div class="accordion-title">Poradnik CSS</div>
+                <div class="accordion-subtitle">7 tematów · Stylowanie i layout</div>
+              </div>
+            </div>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <div class="accordion-tags">
+                <span class="accordion-tag">Selektory</span>
+                <span class="accordion-tag">Box Model</span>
+                <span class="accordion-tag">Flexbox</span>
+                <span class="accordion-tag">Grid</span>
+                <span class="accordion-tag">Animacje</span>
+                <span class="accordion-tag">Zmienne CSS</span>
+                <span class="accordion-tag">Responsywność</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rozdział 3 -->
+        <div class="accordion-item" data-index="2">
+          <div class="accordion-header">
+            <div class="accordion-header-left">
+              <div class="accordion-number">03</div>
+              <div>
+                <div class="accordion-title">Projekty praktyczne</div>
+                <div class="accordion-subtitle">5 projektów · Buduj, nie tylko czytaj</div>
+              </div>
+            </div>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <div class="accordion-tags">
+                <span class="accordion-tag">Lista</span>
+                <span class="accordion-tag">Tabela kolorów</span>
+                <span class="accordion-tag">Tabele + Listy + Łącza</span>
+                <span class="accordion-tag">Multimedia</span>
+                <span class="accordion-tag">Resumo</span>
+                <span class="accordion-tag">Kwestionariusz</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rozdział 4 -->
+        <div class="accordion-item" data-index="3">
+          <div class="accordion-header">
+            <div class="accordion-header-left">
+              <div class="accordion-number">04</div>
+              <div>
+                <div class="accordion-title">Sprawdzian praktyczny</div>
+                <div class="accordion-subtitle">Praca z początku roku — podstawy HTML</div>
+              </div>
+            </div>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <div class="accordion-tags">
+                <span class="accordion-tag">Nagłówki h1–h6</span>
+                <span class="accordion-tag">Akapity</span>
+                <span class="accordion-tag">Formatowanie tekstu</span>
+                <span class="accordion-tag">Znaczniki semantyczne</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rozdział 5 -->
+        <div class="accordion-item" data-index="4">
+          <div class="accordion-header">
+            <div class="accordion-header-left">
+              <div class="accordion-number">05</div>
+              <div>
+                <div class="accordion-title">O mnie</div>
+                <div class="accordion-subtitle">Strona prezentacyjna autora kursu</div>
+              </div>
+            </div>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <div class="accordion-tags">
+                <span class="accordion-tag">Grafiki JPG/PNG/GIF</span>
+                <span class="accordion-tag">Tabela 5×6</span>
+                <span class="accordion-tag">Audio/Video</span>
+                <span class="accordion-tag">Linki zewnętrzne</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.accordion -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEKCJA 6 — CTA
+       ============================================================ -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="fade-in">Gotowy, żeby zacząć?</h2>
+      <p class="fade-in fade-in-delay-1">Dołącz do kursu już teraz — za darmo, bez rejestracji.</p>
+      <a href="{% url 'minikurs:glowna' %}" class="btn btn-primary btn-lg fade-in fade-in-delay-2">
+        Przejdź do kursu →
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="landing-footer">
+    <div class="footer-grid">
+
+      <!-- Lewa: brand -->
+      <div class="footer-col">
+        <div class="footer-brand-logo">⟨H5⟩</div>
+        <div class="footer-brand-name">Minikurs HTML5 i CSS3</div>
+        <p class="footer-brand-desc">
+          Darmowy kurs online dla każdego, kto chce nauczyć się
+          tworzyć strony internetowe od absolutnych podstaw.
+        </p>
+      </div>
+
+      <!-- Środek: szybkie linki -->
+      <div class="footer-col">
+        <h4>Szybkie linki</h4>
+        <ul class="footer-links">
+          <li><a href="/">Strona główna</a></li>
+          <li><a href="{% url 'minikurs:html' %}">Poradnik HTML</a></li>
+          <li><a href="{% url 'minikurs:css' %}">Poradnik CSS</a></li>
+          <li><a href="{% url 'minikurs:kontakt' %}">Kontakt</a></li>
+          <li><a href="{% url 'minikurs:o_mnie' %}">O mnie</a></li>
+        </ul>
+      </div>
+
+      <!-- Prawa: autor -->
+      <div class="footer-col">
+        <h4>Autor</h4>
+        <!-- ZASTĄP własnymi danymi -->
+        <p class="footer-author-name">[IMIĘ NAZWISKO]</p>
+        <p class="footer-author-info">
+          Technikum im. Kasprzaka<br>
+          w Warszawie<br>
+          Klasa [KLASA]
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Footer bottom -->
+    <div class="footer-bottom">
+      <p class="footer-bottom-text">
+        <!-- ZASTĄP własnymi danymi -->
+        <span>[IMIĘ NAZWISKO]</span>
+        &nbsp;·&nbsp;
+        <span>[KLASA]</span>
+        &nbsp;·&nbsp;
+        © 2025
+        &nbsp;·&nbsp;
+        <span>[KLASA]</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/landing.js' %}"></script>
+</body>
+</html>
+

@@ -1,0 +1,235 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{% block meta_description %}Minikurs HTML5 i CSS3{% endblock %}">
+  <title>{% block title %}Minikurs HTML5 i CSS3{% endblock %}</title>
+
+  <!-- Favicon SVG inline -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0f'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-weight='700' font-size='13' fill='%237c3aed'%3EH5%3C/text%3E%3C/svg%3E">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/kurs.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  <!-- ============================================================
+       TOP NAVBAR
+       ============================================================ -->
+  <nav class="navbar">
+    <!-- Hamburger (mobile) -->
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Brand -->
+    <a href="{% url 'minikurs:glowna' %}" class="navbar-brand">
+      <span class="navbar-logo">⟨H5⟩</span>
+      <span class="navbar-title">Minikurs HTML5 i CSS3</span>
+    </a>
+
+    <div class="navbar-spacer"></div>
+
+    <!-- Akcje użytkownika -->
+    <div class="navbar-actions">
+      {% if user.is_authenticated %}
+        <div class="navbar-user">
+          <div class="navbar-avatar" title="{{ user.username }}">
+            {{ user.username|first|upper }}
+          </div>
+          <span class="navbar-username">{{ user.username }}</span>
+        </div>
+        <a href="{% url 'minikurs:dashboard' %}" class="btn btn-outline btn-sm">Dashboard</a>
+        <a href="{% url 'minikurs:logout' %}" class="btn btn-sm" style="color: var(--text-muted);">Wyloguj</a>
+      {% else %}
+        <a href="{% url 'minikurs:login' %}" class="btn btn-outline btn-sm">Zaloguj się</a>
+        <a href="{% url 'minikurs:register' %}" class="btn btn-primary btn-sm">Zarejestruj się</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- Overlay dla mobile sidebar -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- ============================================================
+       GŁÓWNY LAYOUT
+       ============================================================ -->
+  <div class="kurs-layout {% block layout_class %}{% endblock %}" id="kurs-layout">
+
+    <!-- ==================== LEWY SIDEBAR ==================== -->
+    <aside class="sidebar" id="sidebar">
+
+      <!-- NAWIGACJA -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Nawigacja</div>
+        <ul class="sidebar-nav">
+          <li>
+            <a href="{% url 'minikurs:glowna' %}"
+               class="{% if request.resolver_match.url_name == 'glowna' %}active{% endif %}">
+              <span class="nav-icon">🏠</span> Strona główna
+            </a>
+          </li>
+          {% if user.is_authenticated %}
+          <li>
+            <a href="{% url 'minikurs:dashboard' %}"
+               class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+              <span class="nav-icon">📊</span> Dashboard
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <!-- KURS HTML -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Kurs HTML</div>
+        <ul class="sidebar-nav">
+          <li>
+            <a href="{% url 'minikurs:html' %}"
+               class="{% if request.resolver_match.url_name == 'html' %}active{% endif %}">
+              <span class="nav-icon">📖</span> Poradnik HTML
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'minikurs:css' %}"
+               class="{% if request.resolver_match.url_name == 'css' %}active{% endif %}">
+              <span class="nav-icon">🎨</span> Poradnik CSS
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- PROJEKTY -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Projekty</div>
+        <ul class="sidebar-nav">
+          <li>
+            <a href="{% url 'minikurs:sprawdzian' %}"
+               class="{% if request.resolver_match.url_name == 'sprawdzian' %}active{% endif %}">
+              <span class="nav-icon">✏️</span> Sprawdzian
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'minikurs:lista' %}"
+               class="{% if request.resolver_match.url_name == 'lista' %}active{% endif %}">
+              <span class="nav-icon">📋</span> Lista
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'minikurs:tabela_kolorow' %}"
+               class="{% if request.resolver_match.url_name == 'tabela_kolorow' %}active{% endif %}">
+              <span class="nav-icon">🎨</span> Tabela kolorów
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'minikurs:tabele_listy_lacza' %}"
+               class="{% if request.resolver_match.url_name == 'tabele_listy_lacza' %}active{% endif %}">
+              <span class="nav-icon">🔗</span> Tabele, Listy, Łącza
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'minikurs:multimedia' %}"
+               class="{% if request.resolver_match.url_name == 'multimedia' %}active{% endif %}">
+              <span class="nav-icon">🎬</span> Multimedia
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'minikurs:formularze_resumo' %}"
+               class="{% if request.resolver_match.url_name == 'formularze_resumo' %}active{% endif %}">
+              <span class="nav-icon">📝</span> Resumo
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'minikurs:formularze_kwestionariusz' %}"
+               class="{% if request.resolver_match.url_name == 'formularze_kwestionariusz' %}active{% endif %}">
+              <span class="nav-icon">📋</span> Kwestionariusz
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- INNE -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Inne</div>
+        <ul class="sidebar-nav">
+          <li>
+            <a href="{% url 'minikurs:o_mnie' %}"
+               class="{% if request.resolver_match.url_name == 'o_mnie' %}active{% endif %}">
+              <span class="nav-icon">👤</span> O mnie
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'minikurs:linki' %}"
+               class="{% if request.resolver_match.url_name == 'linki' %}active{% endif %}">
+              <span class="nav-icon">🔗</span> Linki
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'minikurs:kontakt' %}"
+               class="{% if request.resolver_match.url_name == 'kontakt' %}active{% endif %}">
+              <span class="nav-icon">📞</span> Kontakt
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Progress bar (tylko dla zalogowanych) -->
+      {% if user.is_authenticated %}
+      <div class="sidebar-progress">
+        <div class="sidebar-progress-title">Twój postęp</div>
+        <div class="sidebar-progress-text">
+          {{ progress_count|default:"0" }}/13 rozdziałów
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill"
+               id="sidebar-progress-fill"
+               style="width: {{ progress_percent|default:'0' }}%">
+          </div>
+        </div>
+        <div style="text-align:right; font-size: var(--text-xs); color: var(--text-muted); margin-top:4px;">
+          {{ progress_percent|default:"0" }}%
+        </div>
+      </div>
+      {% endif %}
+
+    </aside><!-- /.sidebar -->
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="main-content" id="main-content">
+
+      <!-- Django messages -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{% if message.tags == 'error' %}error{% elif message.tags == 'success' %}success{% else %}info{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% block content %}{% endblock %}
+
+    </main>
+
+    <!-- ==================== PRAWY PANEL (TOC) ==================== -->
+    {% block toc %}{% endblock %}
+
+  </div><!-- /.kurs-layout -->
+
+  <!-- JS -->
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/progress.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
+

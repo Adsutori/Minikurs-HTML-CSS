@@ -1,0 +1,352 @@
+{% extends 'kurs/base.html' %}
+{% load static %}
+
+{% block title %}Linki | Minikurs HTML5 i CSS3{% endblock %}
+
+{% block content %}
+<meta name="chapter" content="linki">
+
+<div class="page-header">
+  <h1>🔗 Linki</h1>
+  <p>Starannie dobrane zasoby dla każdego, kto chce pogłębiać wiedzę o HTML i CSS.</p>
+</div>
+
+<!-- ZASOBY DO NAUKI -->
+<div class="content-section fade-in">
+  <div class="content-section-header">
+    <span class="section-icon">📚</span>
+    <h2>Zasoby do nauki HTML/CSS</h2>
+  </div>
+
+  <div class="links-grid">
+
+    <a href="https://developer.mozilla.org/pl/" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🦊</span>
+        <span class="badge badge-accent">Dokumentacja</span>
+      </div>
+      <h3>MDN Web Docs</h3>
+      <p>Oficjalna dokumentacja Mozilla — najlepsza referencja HTML, CSS i JS. Dostępna po polsku.</p>
+      <span class="link-url">developer.mozilla.org</span>
+    </a>
+
+    <a href="https://www.w3schools.com" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🏫</span>
+        <span class="badge badge-success">Tutorial</span>
+      </div>
+      <h3>W3Schools</h3>
+      <p>Interaktywne tutoriale z edytorem online. Idealne dla początkujących — wypróbuj kod od razu.</p>
+      <span class="link-url">w3schools.com</span>
+    </a>
+
+    <a href="https://css-tricks.com" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🎨</span>
+        <span class="badge badge-accent">Artykuły</span>
+      </div>
+      <h3>CSS-Tricks</h3>
+      <p>Najlepsze artykuły o CSS — Flexbox, Grid, animacje, wskazówki i triki od ekspertów.</p>
+      <span class="link-url">css-tricks.com</span>
+    </a>
+
+    <a href="https://www.freecodecamp.org" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🔥</span>
+        <span class="badge badge-success">Kurs</span>
+      </div>
+      <h3>freeCodeCamp</h3>
+      <p>Darmowy, certyfikowany kurs programowania webowego. Setki godzin materiałów i projektów.</p>
+      <span class="link-url">freecodecamp.org</span>
+    </a>
+
+    <a href="https://web.dev" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🌐</span>
+        <span class="badge badge-accent">Google</span>
+      </div>
+      <h3>web.dev</h3>
+      <p>Przewodniki Google dotyczące wydajności, dostępności i nowoczesnych standardów webowych.</p>
+      <span class="link-url">web.dev</span>
+    </a>
+
+    <a href="https://htmlreference.io" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">📋</span>
+        <span class="badge badge-accent">Referencja</span>
+      </div>
+      <h3>HTML Reference</h3>
+      <p>Wizualna referencja wszystkich elementów HTML5 z przykładami i opisami atrybutów.</p>
+      <span class="link-url">htmlreference.io</span>
+    </a>
+
+    <a href="https://cssreference.io" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🎯</span>
+        <span class="badge badge-accent">Referencja</span>
+      </div>
+      <h3>CSS Reference</h3>
+      <p>Wizualna referencja właściwości CSS z interaktywnymi przykładami dla każdej właściwości.</p>
+      <span class="link-url">cssreference.io</span>
+    </a>
+
+    <a href="https://flexboxfroggy.com/#pl" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🐸</span>
+        <span class="badge badge-success">Gra</span>
+      </div>
+      <h3>Flexbox Froggy</h3>
+      <p>Naucz się Flexboxa przez grę! 24 poziomy trudności — od podstaw po zaawansowane układy.</p>
+      <span class="link-url">flexboxfroggy.com</span>
+    </a>
+
+    <a href="https://cssgridgarden.com/#pl" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🌱</span>
+        <span class="badge badge-success">Gra</span>
+      </div>
+      <h3>CSS Grid Garden</h3>
+      <p>Gra do nauki CSS Grid — 28 poziomów uczących wszystkich właściwości siatki CSS.</p>
+      <span class="link-url">cssgridgarden.com</span>
+    </a>
+
+    <a href="https://validator.w3.org" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">✅</span>
+        <span class="badge badge-warning">Narzędzie</span>
+      </div>
+      <h3>W3C Validator</h3>
+      <p>Oficjalny walidator HTML W3C — sprawdź czy Twój kod jest poprawny i zgodny ze standardami.</p>
+      <span class="link-url">validator.w3.org</span>
+    </a>
+
+  </div>
+</div>
+
+<!-- NARZĘDZIA WEBDEVELOPERA -->
+<div class="content-section fade-in">
+  <div class="content-section-header">
+    <span class="section-icon">🛠️</span>
+    <h2>Narzędzia webdevelopera</h2>
+  </div>
+
+  <div class="links-grid">
+
+    <a href="https://code.visualstudio.com" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">💙</span>
+        <span class="badge badge-accent">Edytor</span>
+      </div>
+      <h3>Visual Studio Code</h3>
+      <p>Najpopularniejszy darmowy edytor kodu. Rozszerzenia, IntelliSense, Git — wszystko w jednym.</p>
+      <span class="link-url">code.visualstudio.com</span>
+    </a>
+
+    <a href="https://codepen.io" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🖊️</span>
+        <span class="badge badge-success">Playground</span>
+      </div>
+      <h3>CodePen</h3>
+      <p>Edytor online HTML/CSS/JS w przeglądarce. Testuj kod, dziel się projektami, inspiruj się.</p>
+      <span class="link-url">codepen.io</span>
+    </a>
+
+    <a href="https://coolors.co" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🎨</span>
+        <span class="badge badge-accent">Kolory</span>
+      </div>
+      <h3>Coolors</h3>
+      <p>Generator palet kolorów — twórz harmonijne zestawy kolorów do swoich projektów.</p>
+      <span class="link-url">coolors.co</span>
+    </a>
+
+    <a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🔤</span>
+        <span class="badge badge-success">Fonty</span>
+      </div>
+      <h3>Google Fonts</h3>
+      <p>Ponad 1400 darmowych fontów gotowych do użycia na stronie. Szybkie ładowanie przez CDN.</p>
+      <span class="link-url">fonts.google.com</span>
+    </a>
+
+  </div>
+</div>
+
+<!-- INSPIRACJE DESIGNERSKIE -->
+<div class="content-section fade-in">
+  <div class="content-section-header">
+    <span class="section-icon">✨</span>
+    <h2>Inspiracje designerskie</h2>
+  </div>
+
+  <div class="links-grid">
+
+    <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🏀</span>
+        <span class="badge badge-accent">Design</span>
+      </div>
+      <h3>Dribbble</h3>
+      <p>Platforma dla designerów — tysiące inspirujących projektów UI/UX, ikon i ilustracji.</p>
+      <span class="link-url">dribbble.com</span>
+    </a>
+
+    <a href="https://www.behance.net" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🎭</span>
+        <span class="badge badge-accent">Portfolio</span>
+      </div>
+      <h3>Behance</h3>
+      <p>Portfolio designerów z całego świata — projekty graficzne, webowe, brandingowe i więcej.</p>
+      <span class="link-url">behance.net</span>
+    </a>
+
+    <a href="https://www.awwwards.com" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🏆</span>
+        <span class="badge badge-warning">Nagrody</span>
+      </div>
+      <h3>Awwwards</h3>
+      <p>Najlepsze strony internetowe świata — nagradzane za design, kreatywność i innowacyjność.</p>
+      <span class="link-url">awwwards.com</span>
+    </a>
+
+  </div>
+</div>
+
+<!-- KANAŁY YOUTUBE -->
+<div class="content-section fade-in">
+  <div class="content-section-header">
+    <span class="section-icon">▶️</span>
+    <h2>Kanały YouTube</h2>
+  </div>
+
+  <div class="links-grid">
+
+    <a href="https://www.youtube.com/@Pasja-informatyki" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🎓</span>
+        <span class="badge badge-success">PL</span>
+      </div>
+      <h3>Pasja Informatyki</h3>
+      <p>Mirosław Zelent — najlepszy polski kanał o programowaniu. HTML, CSS, PHP, Python i wiele więcej.</p>
+      <span class="link-url">youtube.com/@Pasja-informatyki</span>
+    </a>
+
+    <a href="https://www.youtube.com/@TraversyMedia" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🚀</span>
+        <span class="badge badge-accent">EN</span>
+      </div>
+      <h3>Traversy Media</h3>
+      <p>Brad Traversy — crash courses z HTML, CSS, JavaScript i frameworków. Zwięźle i na temat.</p>
+      <span class="link-url">youtube.com/@TraversyMedia</span>
+    </a>
+
+    <a href="https://www.youtube.com/@KevinPowell" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">🎨</span>
+        <span class="badge badge-accent">EN</span>
+      </div>
+      <h3>Kevin Powell</h3>
+      <p>Król CSS — głęboka wiedza o CSS, responsywności, nowoczesnych technikach i best practices.</p>
+      <span class="link-url">youtube.com/@KevinPowell</span>
+    </a>
+
+    <a href="https://www.youtube.com/@Fireship" target="_blank" rel="noopener noreferrer"
+       class="link-card">
+      <div class="link-card-header">
+        <span class="link-icon">⚡</span>
+        <span class="badge badge-accent">EN</span>
+      </div>
+      <h3>Fireship</h3>
+      <p>Szybkie, gęste w treść filmy o technologiach webowych. Seria "X in 100 seconds" — kultowa.</p>
+      <span class="link-url">youtube.com/@Fireship</span>
+    </a>
+
+  </div>
+</div>
+
+<style>
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.link-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background: rgba(22,22,31,0.8);
+  border: 1px solid rgba(124,58,237,0.15);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: var(--transition);
+  backdrop-filter: blur(20px);
+}
+
+.link-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.link-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.link-icon { font-size: 1.5rem; }
+
+.link-card h3 {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.link-card p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex: 1;
+  margin: 0;
+}
+
+.link-url {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+@media (max-width: 1024px) { .links-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 640px)  { .links-grid { grid-template-columns: 1fr; } }
+</style>
+{% endblock %}

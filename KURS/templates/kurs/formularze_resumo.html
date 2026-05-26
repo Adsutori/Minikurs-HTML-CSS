@@ -1,0 +1,205 @@
+{% extends 'kurs/base.html' %}
+{% load static %}
+
+{% block title %}Resumo — Formularz CV | Minikurs HTML5 i CSS3{% endblock %}
+
+{% block content %}
+<meta name="chapter" content="formularze_resumo">
+
+<div class="page-header">
+  <h1>📝 Resumo — Formularz CV</h1>
+  <p>Kompletny formularz HTML z wszystkimi typami pól wejściowych.</p>
+</div>
+
+<div class="content-card fade-in" style="max-width:720px; margin:0 auto;">
+
+  <form method="GET" action="#" novalidate>
+
+    <!-- DANE OSOBOWE -->
+    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
+                     padding: 24px; margin-bottom: 28px;">
+      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
+                     font-size:var(--text-sm);">👤 Dane osobowe</legend>
+
+      <div class="grid-2" style="gap:16px;">
+        <div class="form-group">
+          <label for="imie">Imię</label>
+          <input type="text" id="imie" name="imie" class="form-control"
+                 placeholder="Jan" required minlength="2">
+        </div>
+        <div class="form-group">
+          <label for="nazwisko">Nazwisko</label>
+          <input type="text" id="nazwisko" name="nazwisko" class="form-control"
+                 placeholder="Kowalski" required minlength="2">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="data_urodzenia">Data urodzenia</label>
+        <input type="date" id="data_urodzenia" name="data_urodzenia" class="form-control">
+      </div>
+    </fieldset>
+
+    <!-- ADRES -->
+    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
+                     padding: 24px; margin-bottom: 28px;">
+      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
+                     font-size:var(--text-sm);">📍 Adres</legend>
+
+      <div class="form-group">
+        <label for="ulica">Ulica i numer</label>
+        <input type="text" id="ulica" name="ulica" class="form-control"
+               placeholder="ul. Przykładowa 1/2">
+      </div>
+      <div class="grid-2" style="gap:16px;">
+        <div class="form-group">
+          <label for="miasto">Miasto</label>
+          <input type="text" id="miasto" name="miasto" class="form-control"
+                 placeholder="Warszawa">
+        </div>
+        <div class="form-group">
+          <label for="kod">Kod pocztowy</label>
+          <input type="text" id="kod" name="kod" class="form-control"
+                 placeholder="00-000" pattern="\d{2}-\d{3}">
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- KONTAKT -->
+    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
+                     padding: 24px; margin-bottom: 28px;">
+      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
+                     font-size:var(--text-sm);">📞 Kontakt</legend>
+
+      <div class="form-group">
+        <label for="email_cv">Adres e-mail</label>
+        <input type="email" id="email_cv" name="email" class="form-control"
+               placeholder="jan.kowalski@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="telefon">Numer telefonu</label>
+        <input type="tel" id="telefon" name="telefon" class="form-control"
+               placeholder="+48 123 456 789">
+      </div>
+    </fieldset>
+
+    <!-- WYKSZTAŁCENIE I DOŚWIADCZENIE -->
+    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
+                     padding: 24px; margin-bottom: 28px;">
+      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
+                     font-size:var(--text-sm);">🎓 Wykształcenie i doświadczenie</legend>
+
+      <div class="form-group">
+        <label for="wyksztalcenie">Wykształcenie</label>
+        <select id="wyksztalcenie" name="wyksztalcenie" class="form-control">
+          <option value="">-- Wybierz --</option>
+          <option value="podstawowe">Podstawowe</option>
+          <option value="srednie">Średnie</option>
+          <option value="wyzsze_lic">Wyższe — licencjat</option>
+          <option value="wyzsze_mgr">Wyższe — magister</option>
+          <option value="doktorat">Doktorat</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="doswiadczenie">Doświadczenie zawodowe</label>
+        <textarea id="doswiadczenie" name="doswiadczenie" class="form-control"
+                  rows="5"
+                  placeholder="Opisz swoje dotychczasowe doświadczenie zawodowe..."></textarea>
+      </div>
+    </fieldset>
+
+    <!-- UMIEJĘTNOŚCI -->
+    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
+                     padding: 24px; margin-bottom: 28px;">
+      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
+                     font-size:var(--text-sm);">💻 Umiejętności techniczne</legend>
+
+      <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom:20px;">
+        <label class="form-check">
+          <input type="checkbox" name="umiejetnosci" value="html"> HTML5
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="umiejetnosci" value="css"> CSS3
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="umiejetnosci" value="js"> JavaScript
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="umiejetnosci" value="python"> Python
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="umiejetnosci" value="django"> Django
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="umiejetnosci" value="git"> Git / GitHub
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="umiejetnosci" value="sql"> SQL
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="umiejetnosci" value="inne"> Inne
+        </label>
+      </div>
+
+      <div class="form-group" style="margin-bottom:0;">
+        <label style="display:block; margin-bottom:8px; font-size:var(--text-sm); color:var(--text-secondary);">
+          Poziom zaawansowania
+        </label>
+        <div style="display:flex; gap:24px; flex-wrap:wrap;">
+          <label class="form-check">
+            <input type="radio" name="poziom" value="junior"> Junior
+          </label>
+          <label class="form-check">
+            <input type="radio" name="poziom" value="mid"> Mid
+          </label>
+          <label class="form-check">
+            <input type="radio" name="poziom" value="senior"> Senior
+          </label>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- ZDJĘCIE -->
+    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
+                     padding: 24px; margin-bottom: 28px;">
+      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
+                     font-size:var(--text-sm);">🖼️ Zdjęcie profilowe</legend>
+
+      <div class="form-group" style="margin-bottom:0;">
+        <label for="zdjecie">Wybierz zdjęcie (JPG, PNG, WebP)</label>
+        <input type="file" id="zdjecie" name="zdjecie" class="form-control"
+               accept="image/*">
+        <p style="font-size:var(--text-xs); color:var(--text-muted); margin-top:6px;">
+          Maksymalny rozmiar: 5 MB. Zalecany format: JPG lub PNG.
+        </p>
+      </div>
+    </fieldset>
+
+    <!-- ZGODA RODO -->
+    <div style="background: rgba(124,58,237,0.05); border: 1px solid rgba(124,58,237,0.2);
+                border-radius: var(--radius-md); padding: 20px; margin-bottom: 28px;">
+      <label class="form-check" style="align-items:flex-start; gap:12px;">
+        <input type="checkbox" name="rodo" required
+               style="margin-top:3px; flex-shrink:0;">
+        <span style="font-size:var(--text-sm); color:var(--text-secondary); line-height:1.6;">
+          Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w niniejszym
+          formularzu CV w celu rekrutacji, zgodnie z Rozporządzeniem Parlamentu
+          Europejskiego i Rady (UE) 2016/679 (RODO). <strong style="color:var(--text-primary)">*</strong>
+        </span>
+      </label>
+    </div>
+
+    <!-- PRZYCISKI -->
+    <div style="display:flex; gap:16px; flex-wrap:wrap;">
+      <button type="submit" class="btn btn-primary btn-lg">
+        📤 Wyślij CV
+      </button>
+      <button type="reset" class="btn btn-outline btn-lg">
+        🗑️ Wyczyść formularz
+      </button>
+    </div>
+
+  </form>
+</div>
+{% endblock %}

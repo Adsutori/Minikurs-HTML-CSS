@@ -1,0 +1,707 @@
+{% extends 'kurs/base.html' %}
+{% load static %}
+
+{% block title %}Poradnik HTML | Minikurs HTML5 i CSS3{% endblock %}
+{% block layout_class %}with-toc{% endblock %}
+
+{% block toc %}
+<aside class="toc-panel">
+  <div class="toc-title">📑 Spis treści</div>
+  <ul class="toc-list">
+    <li><a href="#wstep">🏗️ Wstęp do HTML</a></li>
+    <li><a href="#tekst">📝 Tekst</a></li>
+    <li><a href="#znaki">✦ Znaki specjalne</a></li>
+    <li><a href="#listy">📋 Listy</a></li>
+    <li><a href="#tabele">📊 Tabele</a></li>
+    <li><a href="#hiperlacza">🔗 Hiperłącza</a></li>
+    <li><a href="#grafika">🖼️ Grafika</a></li>
+    <li><a href="#multimedia">🎬 Multimedia</a></li>
+    <li><a href="#inputy">⌨️ Inputy</a></li>
+    <li><a href="#formularze">📝 Formularze</a></li>
+    <li><a href="#atrybuty">⚙️ Atrybuty</a></li>
+  </ul>
+</aside>
+{% endblock %}
+
+{% block content %}
+<meta name="chapter" content="html">
+
+<div class="page-header">
+  <h1>📖 Poradnik HTML</h1>
+  <p>Kompletny przewodnik po HTML5 — od szkieletu dokumentu po zaawansowane formularze.</p>
+</div>
+
+<!-- ============================================================
+     1. WSTĘP DO HTML
+     ============================================================ -->
+<section class="content-section" id="wstep">
+  <div class="content-section-header">
+    <span class="section-icon">🏗️</span>
+    <h2>Wstęp do HTML</h2>
+  </div>
+
+  <div class="content-card">
+    <p><strong style="color:var(--text-primary)">HTML</strong> (HyperText Markup Language)
+    to język znaczników używany do tworzenia struktury stron internetowych.
+    Nie jest językiem programowania — to język opisu treści. Przeglądarka czyta plik HTML
+    i na jego podstawie wyświetla tekst, obrazy, linki i inne elementy.</p>
+
+    <p style="margin-top:12px">
+    <strong style="color:var(--text-primary)">HTML5</strong> to piąta i aktualna wersja standardu,
+    wprowadzona w 2014 roku. Dodała semantyczne znaczniki (<code>&lt;header&gt;</code>,
+    <code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code>), natywne multimedia
+    (<code>&lt;video&gt;</code>, <code>&lt;audio&gt;</code>) oraz nowe typy formularzy.</p>
+
+    <h3 style="margin-top:24px; margin-bottom:12px">Szkielet dokumentu HTML5</h3>
+    <pre class="code-block" data-lang="HTML"><code><span class="comment">&lt;!-- Deklaracja typu dokumentu — ZAWSZE pierwsza linia --&gt;</span>
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+
+<span class="comment">&lt;!-- Korzeń dokumentu, atrybut lang określa język --&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="val">"pl"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;head&gt;</span>
+  <span class="comment">&lt;!-- Kodowanie znaków — zawsze UTF-8 --&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="val">"UTF-8"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- Responsywność na urządzeniach mobilnych --&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"viewport"</span> <span class="attr">content</span>=<span class="val">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- Tytuł widoczny w zakładce przeglądarki --&gt;</span>
+  <span class="tag">&lt;title&gt;</span>Moja pierwsza strona<span class="tag">&lt;/title&gt;</span>
+
+  <span class="comment">&lt;!-- Podłączenie arkusza CSS --&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span> <span class="attr">href</span>=<span class="val">"style.css"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+
+<span class="tag">&lt;body&gt;</span>
+  <span class="comment">&lt;!-- Cała widoczna treść strony --&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>Witaj, świecie!<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;p&gt;</span>To jest moja pierwsza strona HTML.<span class="tag">&lt;/p&gt;</span>
+
+  <span class="comment">&lt;!-- Skrypty JS na końcu body --&gt;</span>
+  <span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="val">"script.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></code></pre>
+
+    <!-- Infografika drzewa DOM -->
+    <h3 style="margin-top:28px; margin-bottom:16px">Drzewo DOM</h3>
+    <div class="dom-tree">
+      <div class="dom-node dom-root">html</div>
+      <div class="dom-children">
+        <div class="dom-branch">
+          <div class="dom-connector"></div>
+          <div class="dom-node">head</div>
+          <div class="dom-children dom-children-sm">
+            <div class="dom-branch"><div class="dom-connector"></div><div class="dom-node dom-leaf">meta</div></div>
+            <div class="dom-branch"><div class="dom-connector"></div><div class="dom-node dom-leaf">title</div></div>
+            <div class="dom-branch"><div class="dom-connector"></div><div class="dom-node dom-leaf">link</div></div>
+          </div>
+        </div>
+        <div class="dom-branch">
+          <div class="dom-connector"></div>
+          <div class="dom-node">body</div>
+          <div class="dom-children dom-children-sm">
+            <div class="dom-branch"><div class="dom-connector"></div><div class="dom-node dom-leaf">header</div></div>
+            <div class="dom-branch"><div class="dom-connector"></div><div class="dom-node dom-leaf">main</div></div>
+            <div class="dom-branch"><div class="dom-connector"></div><div class="dom-node dom-leaf">footer</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     2. TEKST
+     ============================================================ -->
+<section class="content-section" id="tekst">
+  <div class="content-section-header">
+    <span class="section-icon">📝</span>
+    <h2>Tekst</h2>
+  </div>
+
+  <div class="content-card">
+    <p>Znaczniki tekstowe pozwalają nadawać treści strukturę i znaczenie semantyczne.</p>
+
+    <pre class="code-block" data-lang="HTML" style="margin-top:16px"><code><span class="comment">&lt;!-- Nagłówki — h1 najważniejszy, h6 najmniej ważny --&gt;</span>
+<span class="tag">&lt;h1&gt;</span>Nagłówek pierwszego poziomu<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h2&gt;</span>Nagłówek drugiego poziomu<span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;h3&gt;</span>Nagłówek trzeciego poziomu<span class="tag">&lt;/h3&gt;</span>
+
+<span class="comment">&lt;!-- Akapit --&gt;</span>
+<span class="tag">&lt;p&gt;</span>To jest zwykły akapit tekstu.<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- Formatowanie inline --&gt;</span>
+<span class="tag">&lt;p&gt;</span>
+  <span class="tag">&lt;strong&gt;</span>Pogrubienie (ważne)<span class="tag">&lt;/strong&gt;</span>,
+  <span class="tag">&lt;em&gt;</span>kursywa (nacisk)<span class="tag">&lt;/em&gt;</span>,
+  <span class="tag">&lt;mark&gt;</span>zaznaczenie<span class="tag">&lt;/mark&gt;</span>,
+  <span class="tag">&lt;del&gt;</span>przekreślenie<span class="tag">&lt;/del&gt;</span>,
+  <span class="tag">&lt;ins&gt;</span>wstawienie<span class="tag">&lt;/ins&gt;</span>,
+  <span class="tag">&lt;code&gt;</span>kod inline<span class="tag">&lt;/code&gt;</span>
+<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- Łamanie linii i linia pozioma --&gt;</span>
+Pierwsza linia<span class="tag">&lt;br&gt;</span>
+Druga linia
+<span class="tag">&lt;hr&gt;</span>
+
+<span class="comment">&lt;!-- Cytat blokowy --&gt;</span>
+<span class="tag">&lt;blockquote</span> <span class="attr">cite</span>=<span class="val">"https://example.com"</span><span class="tag">&gt;</span>
+  Każdy może nauczyć się kodować.
+<span class="tag">&lt;/blockquote&gt;</span>
+
+<span class="comment">&lt;!-- Preformatowany tekst --&gt;</span>
+<span class="tag">&lt;pre&gt;</span>
+  Ten tekst zachowuje
+    spacje i wcięcia
+<span class="tag">&lt;/pre&gt;</span></code></pre>
+
+    <div class="rendered-example">
+      <div class="rendered-example-label">Efekt w przeglądarce:</div>
+      <h4 style="color:var(--text-primary); margin-bottom:8px">Przykładowy nagłówek h4</h4>
+      <p style="margin-bottom:8px">Akapit z <strong>pogrubieniem</strong>, <em>kursywą</em>,
+        <mark style="background:rgba(124,58,237,0.3); color:var(--accent-secondary); padding:1px 4px; border-radius:3px">zaznaczeniem</mark>
+        i <del>przekreśleniem</del>.</p>
+      <hr style="border-color: var(--border); margin: 12px 0;">
+      <blockquote style="border-left:3px solid var(--accent-primary); padding-left:12px; color:var(--text-muted); font-style:italic;">
+        Każdy może nauczyć się kodować.
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. ZNAKI SPECJALNE
+     ============================================================ -->
+<section class="content-section" id="znaki">
+  <div class="content-section-header">
+    <span class="section-icon">✦</span>
+    <h2>Znaki specjalne (HTML Entities)</h2>
+  </div>
+
+  <div class="content-card">
+    <p>Znaki specjalne w HTML zapisuje się jako encje, żeby uniknąć konfliktu ze składnią języka.</p>
+    <div class="table-wrapper" style="margin-top:16px">
+      <table>
+        <thead>
+          <tr>
+            <th>Encja</th>
+            <th>Efekt</th>
+            <th>Opis</th>
+            <th>Encja</th>
+            <th>Efekt</th>
+            <th>Opis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>&amp;amp;</code></td><td>&amp;</td><td>Ampersand</td>
+              <td><code>&amp;copy;</code></td><td>&copy;</td><td>Copyright</td></tr>
+          <tr><td><code>&amp;lt;</code></td><td>&lt;</td><td>Mniejszy niż</td>
+              <td><code>&amp;reg;</code></td><td>&reg;</td><td>Zastrzeżony znak</td></tr>
+          <tr><td><code>&amp;gt;</code></td><td>&gt;</td><td>Większy niż</td>
+              <td><code>&amp;trade;</code></td><td>&trade;</td><td>Znak handlowy</td></tr>
+          <tr><td><code>&amp;nbsp;</code></td><td>&nbsp;(spacja)</td><td>Twarda spacja</td>
+              <td><code>&amp;euro;</code></td><td>&euro;</td><td>Euro</td></tr>
+          <tr><td><code>&amp;quot;</code></td><td>&quot;</td><td>Cudzysłów</td>
+              <td><code>&amp;hearts;</code></td><td>&hearts;</td><td>Serce</td></tr>
+          <tr><td><code>&amp;apos;</code></td><td>&apos;</td><td>Apostrof</td>
+              <td><code>&amp;spades;</code></td><td>&spades;</td><td>Pik</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     4. LISTY
+     ============================================================ -->
+<section class="content-section" id="listy">
+  <div class="content-section-header">
+    <span class="section-icon">📋</span>
+    <h2>Listy</h2>
+  </div>
+
+  <div class="content-card">
+    <pre class="code-block" data-lang="HTML"><code><span class="comment">&lt;!-- Lista nieuporządkowana (ul) --&gt;</span>
+<span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li&gt;</span>HTML<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>CSS<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>JavaScript<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span>
+
+<span class="comment">&lt;!-- Lista uporządkowana (ol) z różnymi typami --&gt;</span>
+<span class="tag">&lt;ol</span> <span class="attr">type</span>=<span class="val">"1"</span><span class="tag">&gt;</span><span class="comment">&lt;!-- 1, 2, 3... --&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Pierwszy krok<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Drugi krok<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span>
+
+<span class="tag">&lt;ol</span> <span class="attr">type</span>=<span class="val">"A"</span><span class="tag">&gt;</span><span class="comment">&lt;!-- A, B, C... --&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Opcja A<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Opcja B<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span>
+
+<span class="tag">&lt;ol</span> <span class="attr">type</span>=<span class="val">"I"</span><span class="tag">&gt;</span><span class="comment">&lt;!-- I, II, III... --&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Rozdział I<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Rozdział II<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span>
+
+<span class="comment">&lt;!-- Lista definicji (dl) --&gt;</span>
+<span class="tag">&lt;dl&gt;</span>
+  <span class="tag">&lt;dt&gt;</span>HTML<span class="tag">&lt;/dt&gt;</span>
+  <span class="tag">&lt;dd&gt;</span>HyperText Markup Language — język znaczników stron WWW<span class="tag">&lt;/dd&gt;</span>
+  <span class="tag">&lt;dt&gt;</span>CSS<span class="tag">&lt;/dt&gt;</span>
+  <span class="tag">&lt;dd&gt;</span>Cascading Style Sheets — arkusze stylów<span class="tag">&lt;/dd&gt;</span>
+<span class="tag">&lt;/dl&gt;</span>
+
+<span class="comment">&lt;!-- Lista zagnieżdżona (3 poziomy) --&gt;</span>
+<span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Frontend
+    <span class="tag">&lt;ul&gt;</span>
+      <span class="tag">&lt;li&gt;</span>HTML
+        <span class="tag">&lt;ul&gt;</span>
+          <span class="tag">&lt;li&gt;</span>Znaczniki semantyczne<span class="tag">&lt;/li&gt;</span>
+          <span class="tag">&lt;li&gt;</span>Formularze<span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;/ul&gt;</span>
+      <span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;li&gt;</span>CSS<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;/ul&gt;</span>
+  <span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Backend<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span></code></pre>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. TABELE
+     ============================================================ -->
+<section class="content-section" id="tabele">
+  <div class="content-section-header">
+    <span class="section-icon">📊</span>
+    <h2>Tabele</h2>
+  </div>
+
+  <div class="content-card">
+    <pre class="code-block" data-lang="HTML"><code><span class="tag">&lt;table</span> <span class="attr">border</span>=<span class="val">"1"</span> <span class="attr">cellpadding</span>=<span class="val">"8"</span> <span class="attr">cellspacing</span>=<span class="val">"0"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;caption&gt;</span>Plan tygodnia<span class="tag">&lt;/caption&gt;</span>
+
+  <span class="tag">&lt;thead&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;th&gt;</span>Dzień<span class="tag">&lt;/th&gt;</span>
+      <span class="tag">&lt;th&gt;</span>Przedmiot<span class="tag">&lt;/th&gt;</span>
+      <span class="tag">&lt;th&gt;</span>Sala<span class="tag">&lt;/th&gt;</span>
+      <span class="tag">&lt;th&gt;</span>Godzina<span class="tag">&lt;/th&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;/thead&gt;</span>
+
+  <span class="tag">&lt;tbody&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="comment">&lt;!-- rowspan łączy 2 wiersze w kolumnie --&gt;</span>
+      <span class="tag">&lt;td</span> <span class="attr">rowspan</span>=<span class="val">"2"</span><span class="tag">&gt;</span>Poniedziałek<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span>Matematyka<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span>101<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span>8:00<span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;td&gt;</span>Fizyka<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span>203<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span>9:45<span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;td&gt;</span>Wtorek<span class="tag">&lt;/td&gt;</span>
+      <span class="comment">&lt;!-- colspan łączy 3 kolumny --&gt;</span>
+      <span class="tag">&lt;td</span> <span class="attr">colspan</span>=<span class="val">"3"</span><span class="tag">&gt;</span>Wycieczka szkolna<span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;/tbody&gt;</span>
+
+  <span class="tag">&lt;tfoot&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;td</span> <span class="attr">colspan</span>=<span class="val">"4"</span><span class="tag">&gt;</span>Razem: 3 zajęcia<span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;/tfoot&gt;</span>
+<span class="tag">&lt;/table&gt;</span></code></pre>
+  </div>
+</section>
+
+<!-- ============================================================
+     6. HIPERŁĄCZA
+     ============================================================ -->
+<section class="content-section" id="hiperlacza">
+  <div class="content-section-header">
+    <span class="section-icon">🔗</span>
+    <h2>Hiperłącza</h2>
+  </div>
+
+  <div class="content-card">
+    <pre class="code-block" data-lang="HTML"><code><span class="comment">&lt;!-- Link zewnętrzny — otwiera w nowej karcie --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"https://developer.mozilla.org"</span>
+   <span class="attr">target</span>=<span class="val">"_blank"</span>
+   <span class="attr">rel</span>=<span class="val">"noopener noreferrer"</span><span class="tag">&gt;</span>
+  MDN Web Docs
+<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Link wewnętrzny do sekcji na tej samej stronie --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#wstep"</span><span class="tag">&gt;</span>Przejdź do wstępu<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Link do e-maila --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"mailto:kontakt@example.com"</span><span class="tag">&gt;</span>Napisz do mnie<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Link do telefonu --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"tel:+48123456789"</span><span class="tag">&gt;</span>+48 123 456 789<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Link do pobrania pliku --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"plik.pdf"</span> <span class="attr">download</span>=<span class="val">"moj-plik.pdf"</span><span class="tag">&gt;</span>
+  Pobierz PDF
+<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Link z obrazem --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"https://example.com"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"logo.png"</span> <span class="attr">alt</span>=<span class="val">"Logo firmy"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/a&gt;</span></code></pre>
+  </div>
+</section>
+
+<!-- ============================================================
+     7. GRAFIKA
+     ============================================================ -->
+<section class="content-section" id="grafika">
+  <div class="content-section-header">
+    <span class="section-icon">🖼️</span>
+    <h2>Grafika</h2>
+  </div>
+
+  <div class="content-card">
+    <pre class="code-block" data-lang="HTML"><code><span class="comment">&lt;!-- Podstawowy obraz --&gt;</span>
+<span class="tag">&lt;img</span>
+  <span class="attr">src</span>=<span class="val">"https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600"</span>
+  <span class="attr">alt</span>=<span class="val">"Laptop z kodem — opis dla czytników ekranu"</span>
+  <span class="attr">width</span>=<span class="val">"600"</span>
+  <span class="attr">height</span>=<span class="val">"400"</span>
+  <span class="attr">loading</span>=<span class="val">"lazy"</span>
+<span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Figure z podpisem --&gt;</span>
+<span class="tag">&lt;figure&gt;</span>
+  <span class="tag">&lt;img</span>
+    <span class="attr">src</span>=<span class="val">"zdjecie.jpg"</span>
+    <span class="attr">alt</span>=<span class="val">"Opis zdjęcia"</span>
+    <span class="attr">style</span>=<span class="val">"width:100%; border-radius:8px"</span>
+  <span class="tag">&gt;</span>
+  <span class="tag">&lt;figcaption&gt;</span>Podpis pod zdjęciem<span class="tag">&lt;/figcaption&gt;</span>
+<span class="tag">&lt;/figure&gt;</span>
+
+<span class="comment">&lt;!-- Obsługiwane formaty --&gt;</span>
+<span class="comment">&lt;!-- JPG  — zdjęcia, fotografie --&gt;</span>
+<span class="comment">&lt;!-- PNG  — grafiki z przezroczystością --&gt;</span>
+<span class="comment">&lt;!-- GIF  — animacje --&gt;</span>
+<span class="comment">&lt;!-- WebP — nowoczesny format, mniejszy rozmiar --&gt;</span>
+<span class="comment">&lt;!-- SVG  — grafiki wektorowe, skalowalne --&gt;</span></code></pre>
+
+    <div class="rendered-example" style="margin-top:16px">
+      <div class="rendered-example-label">Przykładowy obraz z Unsplash:</div>
+      <figure style="margin:0">
+        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600"
+             alt="Laptop z kodem"
+             style="width:100%; max-height:200px; object-fit:cover; border-radius:var(--radius-md);"
+             loading="lazy">
+        <figcaption style="font-size:var(--text-xs); color:var(--text-muted); margin-top:8px; text-align:center;">
+          Źródło: Unsplash — laptop z kodem
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     8. MULTIMEDIA
+     ============================================================ -->
+<section class="content-section" id="multimedia">
+  <div class="content-section-header">
+    <span class="section-icon">🎬</span>
+    <h2>Multimedia</h2>
+  </div>
+
+  <div class="content-card">
+    <pre class="code-block" data-lang="HTML"><code><span class="comment">&lt;!-- Wideo HTML5 --&gt;</span>
+<span class="tag">&lt;video</span>
+  <span class="attr">controls</span>
+  <span class="attr">width</span>=<span class="val">"100%"</span>
+  <span class="attr">poster</span>=<span class="val">"miniatura.jpg"</span>
+  <span class="attr">muted</span>
+  <span class="attr">loop</span>
+<span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="val">"film.mp4"</span>  <span class="attr">type</span>=<span class="val">"video/mp4"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="val">"film.webm"</span> <span class="attr">type</span>=<span class="val">"video/webm"</span><span class="tag">&gt;</span>
+  Twoja przeglądarka nie obsługuje wideo.
+<span class="tag">&lt;/video&gt;</span>
+
+<span class="comment">&lt;!-- Audio HTML5 --&gt;</span>
+<span class="tag">&lt;audio</span> <span class="attr">controls</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="val">"muzyka.mp3"</span> <span class="attr">type</span>=<span class="val">"audio/mpeg"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="val">"muzyka.ogg"</span> <span class="attr">type</span>=<span class="val">"audio/ogg"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;    <pre class="code-block" data-lang="HTML"><code><span class="comment">&lt;!-- YouTube przez iframe --&gt;</span>
+<span class="tag">&lt;iframe</span>
+  <span class="attr">src</span>=<span class="val">"https://www.youtube.com/embed/VIDEO_ID"</span>
+  <span class="attr">width</span>=<span class="val">"100%"</span>
+  <span class="attr">height</span>=<span class="val">"450"</span>
+  <span class="attr">title</span>=<span class="val">"Film YouTube"</span>
+  <span class="attr">allow</span>=<span class="val">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"</span>
+  <span class="attr">allowfullscreen</span>
+  <span class="attr">loading</span>=<span class="val">"lazy"</span>
+<span class="tag">&gt;&lt;/iframe&gt;</span>
+
+<span class="comment">&lt;!-- Google Maps przez iframe --&gt;</span>
+<span class="tag">&lt;iframe</span>
+  <span class="attr">src</span>=<span class="val">"https://www.google.com/maps/embed?pb=!1m18..."</span>
+  <span class="attr">width</span>=<span class="val">"100%"</span>
+  <span class="attr">height</span>=<span class="val">"450"</span>
+  <span class="attr">style</span>=<span class="val">"border:0; border-radius:12px;"</span>
+  <span class="attr">allowfullscreen</span>
+  <span class="attr">loading</span>=<span class="val">"lazy"</span>
+<span class="tag">&gt;&lt;/iframe&gt;</span></code></pre>
+  </div>
+</section>
+
+<!-- ============================================================
+     9. INPUTY
+     ============================================================ -->
+<section class="content-section" id="inputy">
+  <div class="content-section-header">
+    <span class="section-icon">⌨️</span>
+    <h2>Inputy</h2>
+  </div>
+
+  <div class="content-card">
+    <p>Element <code>&lt;input&gt;</code> jest najbardziej wszechstronnym elementem formularzy.
+       Jego zachowanie zmienia się całkowicie w zależności od atrybutu <code>type</code>.</p>
+
+    <div class="table-wrapper" style="margin: 16px 0 24px;">
+      <table>
+        <thead>
+          <tr>
+            <th>type=</th>
+            <th>Opis</th>
+            <th>Przykład użycia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>"text"</code></td><td>Zwykłe pole tekstowe</td><td>Imię, nazwisko</td></tr>
+          <tr><td><code>"password"</code></td><td>Hasło (znaki ukryte)</td><td>Logowanie</td></tr>
+          <tr><td><code>"email"</code></td><td>Adres e-mail (walidacja)</td><td>Formularz kontaktowy</td></tr>
+          <tr><td><code>"number"</code></td><td>Liczba (min/max/step)</td><td>Wiek, ilość</td></tr>
+          <tr><td><code>"date"</code></td><td>Data (kalendarz)</td><td>Data urodzenia</td></tr>
+          <tr><td><code>"time"</code></td><td>Godzina</td><td>Rezerwacja</td></tr>
+          <tr><td><code>"color"</code></td><td>Wybór koloru</td><td>Ustawienia wyglądu</td></tr>
+          <tr><td><code>"range"</code></td><td>Suwak (min/max)</td><td>Głośność, ocena</td></tr>
+          <tr><td><code>"checkbox"</code></td><td>Pole wyboru (wielokrotny)</td><td>Zgody, umiejętności</td></tr>
+          <tr><td><code>"radio"</code></td><td>Przycisk opcji (jeden z grupy)</td><td>Płeć, poziom</td></tr>
+          <tr><td><code>"file"</code></td><td>Wybór pliku</td><td>Upload zdjęcia</td></tr>
+          <tr><td><code>"submit"</code></td><td>Przycisk wysyłania</td><td>Wyślij formularz</td></tr>
+          <tr><td><code>"reset"</code></td><td>Przycisk resetowania</td><td>Wyczyść formularz</td></tr>
+          <tr><td><code>"hidden"</code></td><td>Ukryte pole (niewidoczne)</td><td>CSRF token, ID</td></tr>
+          <tr><td><code>"tel"</code></td><td>Numer telefonu</td><td>Kontakt</td></tr>
+          <tr><td><code>"url"</code></td><td>Adres URL (walidacja)</td><td>Strona WWW</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <pre class="code-block" data-lang="HTML"><code><span class="comment">&lt;!-- Przykłady atrybutów inputów --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"text"</span>
+       <span class="attr">placeholder</span>=<span class="val">"Wpisz imię..."</span>
+       <span class="attr">required</span>
+       <span class="attr">minlength</span>=<span class="val">"2"</span>
+       <span class="attr">maxlength</span>=<span class="val">"50"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"number"</span>
+       <span class="attr">min</span>=<span class="val">"0"</span>
+       <span class="attr">max</span>=<span class="val">"100"</span>
+       <span class="attr">step</span>=<span class="val">"5"</span>
+       <span class="attr">value</span>=<span class="val">"50"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"email"</span>
+       <span class="attr">pattern</span>=<span class="val">"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"</span>
+       <span class="attr">required</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"range"</span>
+       <span class="attr">min</span>=<span class="val">"1"</span>
+       <span class="attr">max</span>=<span class="val">"10"</span>
+       <span class="attr">value</span>=<span class="val">"5"</span>
+       <span class="attr">data-output</span>=<span class="val">"range-val"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;span</span> <span class="attr">id</span>=<span class="val">"range-val"</span><span class="tag">&gt;</span>5<span class="tag">&lt;/span&gt;</span>
+
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"text"</span> <span class="attr">disabled</span>  <span class="attr">value</span>=<span class="val">"Pole wyłączone"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"text"</span> <span class="attr">readonly</span> <span class="attr">value</span>=<span class="val">"Tylko do odczytu"</span><span class="tag">&gt;</span></code></pre>
+  </div>
+</section>
+
+<!-- ============================================================
+     10. FORMULARZE
+     ============================================================ -->
+<section class="content-section" id="formularze">
+  <div class="content-section-header">
+    <span class="section-icon">📝</span>
+    <h2>Formularze</h2>
+  </div>
+
+  <div class="content-card">
+    <p>Formularz to kontener zbierający dane od użytkownika i wysyłający je na serwer.</p>
+
+    <pre class="code-block" data-lang="HTML" style="margin-top:16px"><code><span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="val">"/wyslij"</span> <span class="attr">method</span>=<span class="val">"POST"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- Fieldset grupuje powiązane pola --&gt;</span>
+  <span class="tag">&lt;fieldset&gt;</span>
+    <span class="tag">&lt;legend&gt;</span>Dane kontaktowe<span class="tag">&lt;/legend&gt;</span>
+
+    <span class="comment">&lt;!-- Label powiązany z inputem przez for/id --&gt;</span>
+    <span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="val">"imie"</span><span class="tag">&gt;</span>Imię:<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"text"</span> <span class="attr">id</span>=<span class="val">"imie"</span> <span class="attr">name</span>=<span class="val">"imie"</span> <span class="attr">required</span><span class="tag">&gt;</span>
+
+    <span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="val">"email"</span><span class="tag">&gt;</span>E-mail:<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"email"</span> <span class="attr">id</span>=<span class="val">"email"</span> <span class="attr">name</span>=<span class="val">"email"</span> <span class="attr">required</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;/fieldset&gt;</span>
+
+  <span class="comment">&lt;!-- Select — lista rozwijana --&gt;</span>
+  <span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="val">"kraj"</span><span class="tag">&gt;</span>Kraj:<span class="tag">&lt;/label&gt;</span>
+  <span class="tag">&lt;select</span> <span class="attr">id</span>=<span class="val">"kraj"</span> <span class="attr">name</span>=<span class="val">"kraj"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;optgroup</span> <span class="attr">label</span>=<span class="val">"Europa"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="val">"pl"</span><span class="tag">&gt;</span>Polska<span class="tag">&lt;/option&gt;</span>
+      <span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="val">"de"</span><span class="tag">&gt;</span>Niemcy<span class="tag">&lt;/option&gt;</span>
+    <span class="tag">&lt;/optgroup&gt;</span>
+  <span class="tag">&lt;/select&gt;</span>
+
+  <span class="comment">&lt;!-- Textarea — wieloliniowe pole tekstowe --&gt;</span>
+  <span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="val">"wiad"</span><span class="tag">&gt;</span>Wiadomość:<span class="tag">&lt;/label&gt;</span>
+  <span class="tag">&lt;textarea</span> <span class="attr">id</span>=<span class="val">"wiad"</span> <span class="attr">name</span>=<span class="val">"wiadomosc"</span>
+             <span class="attr">rows</span>=<span class="val">"5"</span> <span class="attr">cols</span>=<span class="val">"40"</span>
+             <span class="attr">placeholder</span>=<span class="val">"Wpisz wiadomość..."</span><span class="tag">&gt;&lt;/textarea&gt;</span>
+
+  <span class="comment">&lt;!-- Przyciski --&gt;</span>
+  <span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="val">"submit"</span><span class="tag">&gt;</span>Wyślij<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="val">"reset"</span><span class="tag">&gt;</span>Wyczyść<span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;/form&gt;</span></code></pre>
+
+    <div class="content-card" style="margin-top:16px; background: rgba(124,58,237,0.05);">
+      <h3>GET vs POST</h3>
+      <div class="table-wrapper" style="margin-top:12px">
+        <table>
+          <thead><tr><th>Cecha</th><th>GET</th><th>POST</th></tr></thead>
+          <tbody>
+            <tr><td>Dane widoczne w URL</td><td>✅ Tak</td><td>❌ Nie</td></tr>
+            <tr><td>Limit danych</td><td>~2000 znaków</td><td>Brak limitu</td></tr>
+            <tr><td>Bezpieczeństwo</td><td>Niższe</td><td>Wyższe</td></tr>
+            <tr><td>Użycie</td><td>Wyszukiwanie, filtry</td><td>Logowanie, upload</td></tr>
+            <tr><td>Cachowanie</td><td>✅ Tak</td><td>❌ Nie</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     11. ATRYBUTY
+     ============================================================ -->
+<section class="content-section" id="atrybuty">
+  <div class="content-section-header">
+    <span class="section-icon">⚙️</span>
+    <h2>Atrybuty globalne</h2>
+  </div>
+
+  <div class="content-card">
+    <p>Atrybuty globalne można stosować na <em>każdym</em> elemencie HTML.</p>
+
+    <div class="table-wrapper" style="margin: 16px 0 24px;">
+      <table>
+        <thead>
+          <tr><th>Atrybut</th><th>Opis</th><th>Przykład</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>Unikalny identyfikator elementu</td><td><code>id="naglowek"</code></td></tr>
+          <tr><td><code>class</code></td><td>Klasa CSS (może być wiele)</td><td><code>class="btn btn-primary"</code></td></tr>
+          <tr><td><code>style</code></td><td>Style inline CSS</td><td><code>style="color:red"</code></td></tr>
+          <tr><td><code>title</code></td><td>Tooltip przy najechaniu myszą</td><td><code>title="Więcej info"</code></td></tr>
+          <tr><td><code>lang</code></td><td>Język zawartości elementu</td><td><code>lang="pl"</code></td></tr>
+          <tr><td><code>dir</code></td><td>Kierunek tekstu (ltr/rtl)</td><td><code>dir="rtl"</code></td></tr>
+          <tr><td><code>hidden</code></td><td>Ukrywa element</td><td><code>hidden</code></td></tr>
+          <tr><td><code>tabindex</code></td><td>Kolejność fokusa klawiszem Tab</td><td><code>tabindex="1"</code></td></tr>
+          <tr><td><code>data-*</code></td><td>Własne atrybuty danych</td><td><code>data-id="42"</code></td></tr>
+          <tr><td><code>aria-*</code></td><td>Dostępność (czytniki ekranu)</td><td><code>aria-label="Zamknij"</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <pre class="code-block" data-lang="HTML"><code><span class="comment">&lt;!-- data-* — własne atrybuty danych, dostępne przez JS --&gt;</span>
+<span class="tag">&lt;button</span>
+  <span class="attr">id</span>=<span class="val">"btn-kurs"</span>
+  <span class="attr">class</span>=<span class="val">"btn btn-primary"</span>
+  <span class="attr">data-kurs-id</span>=<span class="val">"42"</span>
+  <span class="attr">data-poziom</span>=<span class="val">"podstawowy"</span>
+  <span class="attr">aria-label</span>=<span class="val">"Rozpocznij kurs HTML"</span>
+  <span class="attr">title</span>=<span class="val">"Kliknij, aby zacząć"</span>
+<span class="tag">&gt;</span>
+  Rozpocznij kurs
+<span class="tag">&lt;/button&gt;</span>
+
+<span class="comment">&lt;!-- Odczyt data-* przez JavaScript --&gt;</span>
+<span class="comment">&lt;!-- const btn = document.getElementById('btn-kurs');
+     console.log(btn.dataset.kursId);  // "42"
+     console.log(btn.dataset.poziom);  // "podstawowy" --&gt;</span></code></pre>
+  </div>
+</section>
+
+<!-- Style DOM tree -->
+<style>
+.dom-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: rgba(13,13,20,0.6);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+.dom-node {
+  background: rgba(124,58,237,0.2);
+  border: 1px solid rgba(124,58,237,0.4);
+  border-radius: var(--radius-sm);
+  padding: 6px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--text-xs);
+  color: var(--accent-secondary);
+  white-space: nowrap;
+}
+.dom-root { font-size: var(--text-sm); font-weight: 700; margin-bottom: 8px; }
+.dom-leaf { background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.3); color: var(--text-secondary); }
+.dom-children {
+  display: flex;
+  gap: 32px;
+  position: relative;
+  padding-top: 8px;
+}
+.dom-children::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 2px; height: 8px;
+  background: rgba(124,58,237,0.4);
+}
+.dom-children-sm { gap: 12px; }
+.dom-branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.dom-connector {
+  width: 2px;
+  height: 12px;
+  background: rgba(124,58,237,0.4);
+}
+</style>
+
+{% endblock %}
+
+

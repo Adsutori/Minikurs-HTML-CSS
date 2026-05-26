@@ -1,0 +1,264 @@
+﻿{% extends 'kurs/base.html' %}
+{% load static %}
+
+{% block title %}Tabele, Listy i Łącza | Minikurs HTML5 i CSS3{% endblock %}
+
+{% block content %}
+<meta name="chapter" content="tabele_listy_lacza">
+
+<div class="page-header">
+  <h1>🔗 Tabele, Listy i Łącza</h1>
+  <p>Trzy filary HTML w jednym projekcie — nawigacja kotwicowa, tabela danych i linki.</p>
+</div>
+
+<!-- Nawigacja kotwicowa do sekcji na tej stronie -->
+<div class="content-card fade-in" style="margin-bottom:24px;">
+  <h2 style="color:var(--accent-secondary); margin-bottom:12px;">🧭 Nawigacja po tej stronie</h2>
+  <div style="display:flex; gap:12px; flex-wrap:wrap;">
+    <a href="#sekcja-tabela" class="btn btn-outline btn-sm">📊 Tabela danych</a>
+    <a href="#sekcja-lista"  class="btn btn-outline btn-sm">📋 Lista z linkami</a>
+    <a href="#sekcja-lacza"  class="btn btn-outline btn-sm">🔗 Typy hiperłączy</a>
+  </div>
+</div>
+
+<!-- TABELA DANYCH -->
+<div class="content-card fade-in" style="margin-bottom:32px;" id="sekcja-tabela">
+  <h2 style="color:var(--accent-secondary); margin-bottom:16px;">📊 Plan lekcji — Tabela danych</h2>
+
+  <div class="table-wrapper">
+    <table>
+      <caption style="caption-side:top; padding:12px; color:var(--text-muted);
+                      font-size:var(--text-sm); text-align:left; margin-bottom:8px;">
+        Przykładowy tygodniowy plan lekcji klasy technikum
+      </caption>
+      <thead>
+        <tr>
+          <th>Godzina</th>
+          <th>Poniedziałek</th>
+          <th>Wtorek</th>
+          <th>Środa</th>
+          <th>Czwartek</th>
+          <th>Piątek</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--accent-secondary); font-weight:600; font-family:monospace;">8:00</td>
+          <td>Matematyka</td>
+          <td>Fizyka</td>
+          <td>Język angielski</td>
+          <td>Informatyka</td>
+          <td>Matematyka</td>
+        </tr>
+        <tr>
+          <td style="color:var(--accent-secondary); font-weight:600; font-family:monospace;">9:45</td>
+          <td>Język polski</td>
+          <td>Matematyka</td>
+          <td>Fizyka</td>
+          <td>Język polski</td>
+          <td>WF</td>
+        </tr>
+        <tr>
+          <td style="color:var(--accent-secondary); font-weight:600; font-family:monospace;">11:30</td>
+          <td>Informatyka</td>
+          <td>Język angielski</td>
+          <td>Matematyka</td>
+          <td>Chemia</td>
+          <td>Informatyka</td>
+        </tr>
+        <tr>
+          <td style="color:var(--accent-secondary); font-weight:600; font-family:monospace;">13:15</td>
+          <td>WF</td>
+          <td>Historia</td>
+          <td>Biologia</td>
+          <td>WF</td>
+          <td>Godzina wychowawcza</td>
+        </tr>
+        <tr>
+          <td style="color:var(--accent-secondary); font-weight:600; font-family:monospace;">15:00</td>
+          <td style="color:var(--text-muted); font-style:italic;">—</td>
+          <td>Zajęcia dodatkowe</td>
+          <td style="color:var(--text-muted); font-style:italic;">—</td>
+          <td>Koło informatyczne</td>
+          <td style="color:var(--text-muted); font-style:italic;">—</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6" style="text-align:center; color:var(--text-muted); font-size:var(--text-xs);">
+            Plan obowiązuje od września 2025 · Technikum im. Kasprzaka w Warszawie
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+<!-- LISTA Z LINKAMI -->
+<div class="content-card fade-in" style="margin-bottom:32px;" id="sekcja-lista">
+  <h2 style="color:var(--accent-secondary); margin-bottom:16px;">📋 Lista zasobów z linkami</h2>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+
+    <div>
+      <h3 style="font-size:var(--text-sm); color:var(--text-muted); text-transform:uppercase;
+                 letter-spacing:0.08em; margin-bottom:12px;">Linki wewnętrzne (ta strona)</h3>
+      <ul style="list-style:none;">
+        <li style="padding:8px 0; border-bottom:1px solid var(--border);">
+          <a href="#sekcja-tabela" style="color:var(--accent-secondary); display:flex; gap:8px; align-items:center;">
+            <span>📊</span> Przejdź do tabeli
+          </a>
+        </li>
+        <li style="padding:8px 0; border-bottom:1px solid var(--border);">
+          <a href="#sekcja-lacza" style="color:var(--accent-secondary); display:flex; gap:8px; align-items:center;">
+            <span>🔗</span> Przejdź do łączy
+          </a>
+        </li>
+        <li style="padding:8px 0;">
+          <a href="{% url 'minikurs:glowna' %}" style="color:var(--accent-secondary); display:flex; gap:8px; align-items:center;">
+            <span>🏠</span> Strona główna kursu
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 style="font-size:var(--text-sm); color:var(--text-muted); text-transform:uppercase;
+                 letter-spacing:0.08em; margin-bottom:12px;">Linki zewnętrzne (nowa karta)</h3>
+      <ul style="list-style:none;">
+        <li style="padding:8px 0; border-bottom:1px solid var(--border);">
+          <a href="https://developer.mozilla.org/pl/"
+             target="_blank" rel="noopener noreferrer"
+             style="color:var(--accent-secondary); display:flex; gap:8px; align-items:center;">
+            <span>🦊</span> MDN Web Docs
+          </a>
+        </li>
+        <li style="padding:8px 0; border-bottom:1px solid var(--border);">
+          <a href="https://www.w3schools.com"
+             target="_blank" rel="noopener noreferrer"
+             style="color:var(--accent-secondary); display:flex; gap:8px; align-items:center;">
+            <span>🏫</span> W3Schools
+          </a>
+        </li>
+        <li style="padding:8px 0; border-bottom:1px solid var(--border);">
+          <a href="https://css-tricks.com"
+             target="_blank" rel="noopener noreferrer"
+             style="color:var(--accent-secondary); display:flex; gap:8px; align-items:center;">
+            <span>🎨</span> CSS-Tricks
+          </a>
+        </li>
+        <li style="padding:8px 0;">
+          <a href="https://github.com"
+             target="_blank" rel="noopener noreferrer"
+             style="color:var(--accent-secondary); display:flex; gap:8px; align-items:center;">
+            <span>🐙</span> GitHub
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div><!-- /.grid -->
+</div>
+
+<!-- TYPY HIPERŁĄCZY -->
+<div class="content-card fade-in" id="sekcja-lacza">
+  <h2 style="color:var(--accent-secondary); margin-bottom:20px;">🔗 Wszystkie typy hiperłączy</h2>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Typ łącza</th>
+          <th>Przykład kodu</th>
+          <th>Działanie</th>
+          <th>Demo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--text-primary); font-weight:600;">Zewnętrzny</td>
+          <td><code>&lt;a href="https://..."&gt;</code></td>
+          <td style="color:var(--text-secondary);">Otwiera zewnętrzną stronę</td>
+          <td>
+            <a href="https://developer.mozilla.org" target="_blank" rel="noopener noreferrer"
+               class="btn btn-outline btn-sm">MDN →</a>
+          </td>
+        </tr>
+        <tr>
+          <td style="color:var(--text-primary); font-weight:600;">Wewnętrzny</td>
+          <td><code>&lt;a href="/kurs/"&gt;</code></td>
+          <td style="color:var(--text-secondary);">Nawigacja w obrębie serwisu</td>
+          <td>
+            <a href="{% url 'minikurs:glowna' %}" class="btn btn-outline btn-sm">Kurs →</a>
+          </td>
+        </tr>
+        <tr>
+          <td style="color:var(--text-primary); font-weight:600;">Kotwica (anchor)</td>
+          <td><code>&lt;a href="#sekcja"&gt;</code></td>
+          <td style="color:var(--text-secondary);">Skroluje do sekcji na stronie</td>
+          <td>
+            <a href="#sekcja-tabela" class="btn btn-outline btn-sm">↑ Do tabeli</a>
+          </td>
+        </tr>
+        <tr>
+          <td style="color:var(--text-primary); font-weight:600;">E-mail (mailto)</td>
+          <td><code>&lt;a href="mailto:..."&gt;</code></td>
+          <td style="color:var(--text-secondary);">Otwiera klienta poczty</td>
+          <td>
+            <!-- ZASTĄP własnymi danymi -->
+            <a href="mailto:kontakt@example.com" class="btn btn-outline btn-sm">✉️ Email</a>
+          </td>
+        </tr>
+        <tr>
+          <td style="color:var(--text-primary); font-weight:600;">Telefon (tel)</td>
+          <td><code>&lt;a href="tel:+48..."&gt;</code></td>
+          <td style="color:var(--text-secondary);">Inicjuje połączenie telefoniczne</td>
+          <td>
+            <!-- ZASTĄP własnymi danymi -->
+            <a href="tel:+48000000000" class="btn btn-outline btn-sm">📱 Zadzwoń</a>
+          </td>
+        </tr>
+        <tr>
+          <td style="color:var(--text-primary); font-weight:600;">Pobieranie (download)</td>
+          <td><code>&lt;a href="plik.pdf" download&gt;</code></td>
+          <td style="color:var(--text-secondary);">Pobiera plik na dysk</td>
+          <td>
+            <a href="#" download class="btn btn-outline btn-sm">⬇️ Pobierz</a>
+          </td>
+        </tr>
+        <tr>
+          <td style="color:var(--text-primary); font-weight:600;">Nowa karta</td>
+          <td><code>target="_blank" rel="noopener"</code></td>
+          <td style="color:var(--text-secondary);">Otwiera w nowej karcie przeglądarki</td>
+          <td>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+               class="btn btn-outline btn-sm">🐙 GitHub ↗</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Kod przykładowy -->
+  <pre class="code-block" data-lang="HTML" style="margin-top:20px"><code><span class="comment">&lt;!-- Zewnętrzny, nowa karta, bezpieczny --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"https://developer.mozilla.org"</span>
+   <span class="attr">target</span>=<span class="val">"_blank"</span>
+   <span class="attr">rel</span>=<span class="val">"noopener noreferrer"</span><span class="tag">&gt;</span>MDN<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Kotwica do sekcji --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#sekcja-tabela"</span><span class="tag">&gt;</span>Przejdź do tabeli<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- E-mail --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"mailto:kontakt@example.com"</span><span class="tag">&gt;</span>Napisz do mnie<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Telefon --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"tel:+48123456789"</span><span class="tag">&gt;</span>+48 123 456 789<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Pobieranie pliku --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"dokument.pdf"</span> <span class="attr">download</span>=<span class="val">"moj-dokument.pdf"</span><span class="tag">&gt;</span>
+  Pobierz PDF
+<span class="tag">&lt;/a&gt;</span></code></pre>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,147 @@
+{% extends 'kurs/base.html' %}
+{% load static %}
+
+{% block title %}Multimedia | Minikurs HTML5 i CSS3{% endblock %}
+
+{% block content %}
+<meta name="chapter" content="multimedia">
+
+<div class="page-header">
+  <h1>🎬 Multimedia</h1>
+  <p>Wideo, audio i mapy Google — elementy multimedialne w HTML5.</p>
+</div>
+
+<!-- WIDEO -->
+<div class="content-card fade-in" style="margin-bottom:32px;">
+  <h2 style="color:var(--accent-secondary); margin-bottom:16px;">🎥 Odtwarzacz wideo HTML5</h2>
+  <p style="margin-bottom:20px;">
+    Element <code>&lt;video&gt;</code> pozwala osadzać filmy bezpośrednio na stronie
+    bez potrzeby zewnętrznych wtyczek.
+  </p>
+
+  <video controls width="100%"
+         style="border-radius: var(--radius-lg); border: 1px solid var(--border);
+                box-shadow: var(--shadow-glow-sm); max-width:800px; display:block; margin:0 auto 16px;">
+    <!-- ZASTĄP własnym plikiem wideo -->
+    <source src="{% static 'media/video.mp4' %}" type="video/mp4">
+    <source src="{% static 'media/video.webm' %}" type="video/webm">
+    <p style="color:var(--text-muted); text-align:center; padding:20px;">
+      Twoja przeglądarka nie obsługuje elementu wideo.
+      <!-- ZASTĄP własnym plikiem MP4 -->
+    </p>
+  </video>
+
+  <pre class="code-block" data-lang="HTML"><code><span class="tag">&lt;video</span>
+  <span class="attr">controls</span>
+  <span class="attr">width</span>=<span class="val">"100%"</span>
+  <span class="attr">poster</span>=<span class="val">"miniatura.jpg"</span>
+  <span class="attr">muted</span>
+  <span class="attr">loop</span>
+  <span class="attr">preload</span>=<span class="val">"metadata"</span>
+<span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="val">"film.mp4"</span>  <span class="attr">type</span>=<span class="val">"video/mp4"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="val">"film.webm"</span> <span class="attr">type</span>=<span class="val">"video/webm"</span><span class="tag">&gt;</span>
+  Przeglądarka nie obsługuje wideo.
+<span class="tag">&lt;/video&gt;</span></code></pre>
+</div>
+
+<!-- AUDIO -->
+<div class="content-card fade-in" style="margin-bottom:32px;">
+  <h2 style="color:var(--accent-secondary); margin-bottom:16px;">🎵 Odtwarzacz audio HTML5</h2>
+  <p style="margin-bottom:20px;">
+    Element <code>&lt;audio&gt;</code> umożliwia odtwarzanie muzyki i dźwięków.
+  </p>
+
+  <div style="background: rgba(124,58,237,0.05); border: 1px solid var(--border);
+              border-radius: var(--radius-md); padding: 24px; margin-bottom:16px;">
+    <!-- ZASTĄP własnym plikiem audio -->
+    <audio controls style="width:100%;">
+      <source src="{% static 'media/audio.mp3' %}" type="audio/mpeg">
+      <source src="{% static 'media/audio.ogg' %}" type="audio/ogg">
+      Twoja przeglądarka nie obsługuje elementu audio.
+      <!-- ZASTĄP własnym plikiem MP3 -->
+    </audio>
+  </div>
+
+  <pre class="code-block" data-lang="HTML"><code><span class="tag">&lt;audio</span>
+  <span class="attr">controls</span>
+  <span class="attr">autoplay</span>
+  <span class="attr">loop</span>
+  <span class="attr">muted</span>
+  <span class="attr">preload</span>=<span class="val">"auto"</span>
+<span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="val">"muzyka.mp3"</span> <span class="attr">type</span>=<span class="val">"audio/mpeg"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="val">"muzyka.ogg"</span> <span class="attr">type</span>=<span class="val">"audio/ogg"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/audio&gt;</span></code></pre>
+</div>
+
+<!-- MAPA GOOGLE MAPS — KASPRZAK -->
+<div class="content-card fade-in" style="margin-bottom:32px;">
+  <h2 style="color:var(--accent-secondary); margin-bottom:16px;">🗺️ Mapa Google Maps — Technikum Kasprzaka</h2>
+  <p style="margin-bottom:20px;">
+    Technikum Elektryczne im. Kasprzaka, ul. Wawelska 60, Warszawa.
+  </p>
+
+  <!-- WAŻNE: id="mapa-kasprzaka" — wymagane przez kontakt.html -->
+  <div id="mapa-kasprzaka">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2444.0!2d20.9897!3d52.2297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc8c92692e49%3A0xc2e97552b8af7e8b!2sTechnikum%20Elektryczne%20im.%20Kasprzaka!5e0!3m2!1spl!2spl!4v1"
+      width="100%"
+      height="450"
+      style="border:0; border-radius: var(--radius-lg);
+             box-shadow: var(--shadow-card); display:block;"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Technikum im. Kasprzaka w Warszawie">
+    </iframe>
+  </div>
+
+  <pre class="code-block" data-lang="HTML" style="margin-top:16px"><code><span class="comment">&lt;!-- Mapa Google Maps przez iframe --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="val">"mapa-kasprzaka"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;iframe</span>
+    <span class="attr">src</span>=<span class="val">"https://www.google.com/maps/embed?pb=..."</span>
+    <span class="attr">width</span>=<span class="val">"100%"</span>
+    <span class="attr">height</span>=<span class="val">"450"</span>
+    <span class="attr">style</span>=<span class="val">"border:0; border-radius:12px;"</span>
+    <span class="attr">allowfullscreen</span>
+    <span class="attr">loading</span>=<span class="val">"lazy"</span>
+  <span class="tag">&gt;&lt;/iframe&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+
+<!-- TRASA ROWEROWA -->
+<div class="content-card fade-in" style="margin-bottom:32px;">
+  <h2 style="color:var(--accent-secondary); margin-bottom:16px;">🚴 Trasa rowerowa do szkoły</h2>
+  <p style="margin-bottom:20px;">
+    Trasa rowerowa z miejsca zamieszkania do Technikum im. Kasprzaka.
+  </p>
+
+  <!-- WAŻNE: id="trasa-rowerowa" — wymagane przez kontakt.html -->
+  <div id="trasa-rowerowa">
+    <!-- ZASTĄP src trasą rowerową z Twojego miejsca zamieszkania do Kasprzaka -->
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d19553.0!2d20.9897!3d52.2297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e1!4m5!1s0x471ecd8c5f0b5555%3A0x0!2sWarszawa!3m2!1d52.2297!2d20.9897!4m5!1s0x471ecc8c92692e49%3A0xc2e97552b8af7e8b!2sTechnikum%20Kasprzaka%2C%20Wawelska%2060!3m2!1d52.2197!2d20.9797!5e0!3m2!1spl!2spl!4v1"
+      width="100%"
+      height="450"
+      style="border:0; border-radius: var(--radius-lg);
+             box-shadow: var(--shadow-card); display:block;"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Trasa rowerowa do Technikum Kasprzaka">
+    </iframe>
+    <!-- ZASTĄP src trasą rowerową z Twojego miejsca zamieszkania do Kasprzaka -->
+  </div>
+</div>
+
+<!-- NAPIS "STRONA KONTAKT" — OBOWIĄZKOWY -->
+<p id="strona-kontakt"
+   style="text-align:center; font-size:1.5rem;
+          color: var(--accent-secondary); margin-top: 60px;
+          padding: 32px; border: 2px dashed rgba(124,58,237,0.4);
+          border-radius: var(--radius-lg);">
+  STRONA KONTAKT
+</p>
+
+{% endblock %}

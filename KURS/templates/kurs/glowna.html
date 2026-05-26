@@ -1,0 +1,310 @@
+﻿{% extends 'kurs/base.html' %}
+{% load static %}
+
+{% block title %}Strona główna | Minikurs HTML5 i CSS3{% endblock %}
+{% block meta_description %}Witaj w Minikursie HTML5 i CSS3 — naucz się budować strony internetowe od zera.{% endblock %}
+
+{% block content %}
+<meta name="chapter" content="glowna">
+
+<!-- ============================================================
+     NAGŁÓWEK STRONY
+     ============================================================ -->
+<div class="page-header">
+  <h1>🏠 Strona główna kursu</h1>
+  <p>Twoje centrum dowodzenia — wszystko, czego potrzebujesz, żeby zacząć.</p>
+</div>
+
+<!-- ============================================================
+     SEKCJA WSTĘPU
+     ============================================================ -->
+<div class="content-card fade-in" style="text-align:center; max-width:700px; margin:0 auto 48px;">
+  <p style="font-size: var(--text-lg); color: var(--text-secondary); line-height: 1.8;">
+    Witaj w <strong style="color: var(--accent-secondary);">Minikursie HTML5 i CSS3</strong> —
+    miejscu, gdzie nauka tworzenia stron internetowych jest prosta, darmowa i dostępna dla każdego.
+    Przez cały kurs będziesz budować prawdziwe projekty, które możesz pokazać w swoim portfolio.
+    Nie potrzebujesz żadnego wcześniejszego doświadczenia — zaczynamy od absolutnych podstaw.
+    Gotowy? Zacznijmy od pierwszego pytania: czym właściwie jest HTML?
+  </p>
+</div>
+
+<!-- ============================================================
+     SEKCJA WIDEO
+     ============================================================ -->
+<div class="content-section fade-in">
+  <div class="content-section-header">
+    <span class="section-icon">🎬</span>
+    <h2>Zanim zaczniesz — obejrzyj to wideo</h2>
+  </div>
+
+  <div class="content-card">
+    <p style="margin-bottom: 20px; color: var(--text-secondary);">
+      Mirosław Zelent w kilku minutach wyjaśnia czym jest HTML i jak działa przeglądarka.
+      Idealne wprowadzenie przed pierwszą lekcją.
+    </p>
+    <!-- ZASTĄP src właściwym ID filmu Zelenta z YouTube -->
+    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius: var(--radius-lg);">
+      <iframe
+        src="https://www.youtube.com/embed/mfMkVzmGQOI"
+        title="Czym jest HTML? — Mirosław Zelent"
+        style="position:absolute; top:0; left:0; width:100%; height:100%;
+               border:0; border-radius: var(--radius-lg);
+               box-shadow: var(--shadow-glow-sm);"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+    <p style="margin-top:12px; font-size: var(--text-xs); color: var(--text-muted); text-align:center;">
+      <!-- ZASTĄP src właściwym ID filmu Zelenta -->
+      Źródło: YouTube · Mirosław Zelent · „Czym jest HTML?"
+    </p>
+  </div>
+</div>
+
+<!-- ============================================================
+     SEKCJA PROJEKTÓW
+     ============================================================ -->
+<div class="content-section fade-in">
+  <div class="content-section-header">
+    <span class="section-icon">👀</span>
+    <h2>Sprawdź czego możesz się nauczyć</h2>
+  </div>
+  <p style="margin-bottom: 32px; color: var(--text-secondary);">
+    Oto <strong style="color: var(--text-primary);">7 projektów</strong>, które zbudujesz podczas kursu:
+  </p>
+
+  <div class="projects-grid">
+
+    <!-- Karta 1 — Sprawdzian -->
+    <div class="project-card fade-in fade-in-delay-1">
+      <div class="project-card-img">
+        <!-- ZASTĄP src własnym screenshotem projektu -->
+        <img src="{% static 'img/preview_sprawdzian.jpg' %}"
+             alt="Sprawdzian praktyczny"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="project-card-placeholder" style="display:none;">
+          <span>✏️</span>
+        </div>
+      </div>
+      <div class="project-card-body">
+        <h3>Sprawdzian praktyczny</h3>
+        <p>Pierwsza praca z HTML — podstawowe znaczniki, struktura dokumentu,
+           nagłówki i akapity. Takie elementy znajdziesz na każdej stronie WWW.</p>
+        <a href="{% url 'minikurs:sprawdzian' %}" class="btn btn-outline btn-sm">
+          Zobacz projekt →
+        </a>
+      </div>
+    </div>
+
+    <!-- Karta 2 — Lista -->
+    <div class="project-card fade-in fade-in-delay-2">
+      <div class="project-card-img">
+        <!-- ZASTĄP src własnym screenshotem projektu -->
+        <img src="{% static 'img/preview_lista.jpg' %}"
+             alt="Lista HTML"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="project-card-placeholder" style="display:none;">
+          <span>📋</span>
+        </div>
+      </div>
+      <div class="project-card-body">
+        <h3>Lista</h3>
+        <p>Listy nieuporządkowane i uporządkowane — fundamenty nawigacji,
+           menu i wyliczeń na stronach internetowych.</p>
+        <a href="{% url 'minikurs:lista' %}" class="btn btn-outline btn-sm">
+          Zobacz projekt →
+        </a>
+      </div>
+    </div>
+
+    <!-- Karta 3 — Tabela kolorów -->
+    <div class="project-card fade-in fade-in-delay-3">
+      <div class="project-card-img">
+        <!-- ZASTĄP src własnym screenshotem projektu -->
+        <img src="{% static 'img/preview_tabela_kolorow.jpg' %}"
+             alt="Tabela kolorów"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="project-card-placeholder" style="display:none;">
+          <span>🎨</span>
+        </div>
+      </div>
+      <div class="project-card-body">
+        <h3>Tabela kolorów</h3>
+        <p>Tabele HTML z kolorowymi komórkami — nauka atrybutów bgcolor,
+           colspan, rowspan używanych w layoutach i danych.</p>
+        <a href="{% url 'minikurs:tabela_kolorow' %}" class="btn btn-outline btn-sm">
+          Zobacz projekt →
+        </a>
+      </div>
+    </div>
+
+    <!-- Karta 4 — Tabele, Listy, Łącza -->
+    <div class="project-card fade-in fade-in-delay-1">
+      <div class="project-card-img">
+        <!-- ZASTĄP src własnym screenshotem projektu -->
+        <img src="{% static 'img/preview_tabele_listy.jpg' %}"
+             alt="Tabele, Listy i Łącza"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="project-card-placeholder" style="display:none;">
+          <span>🔗</span>
+        </div>
+      </div>
+      <div class="project-card-body">
+        <h3>Tabele, Listy i Łącza</h3>
+        <p>Połączenie tabel, list i hiperłączy — trzy filary każdej
+           strony internetowej w jednym projekcie.</p>
+        <a href="{% url 'minikurs:tabele_listy_lacza' %}" class="btn btn-outline btn-sm">
+          Zobacz projekt →
+        </a>
+      </div>
+    </div>
+
+    <!-- Karta 5 — Multimedia -->
+    <div class="project-card fade-in fade-in-delay-2">
+      <div class="project-card-img">
+        <!-- ZASTĄP src własnym screenshotem projektu -->
+        <img src="{% static 'img/preview_multimedia.jpg' %}"
+             alt="Multimedia"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="project-card-placeholder" style="display:none;">
+          <span>🎬</span>
+        </div>
+      </div>
+      <div class="project-card-body">
+        <h3>Multimedia</h3>
+        <p>Osadzanie wideo, audio i map Google — elementy multimedialne
+           które znajdziesz na każdym nowoczesnym portalu.</p>
+        <a href="{% url 'minikurs:multimedia' %}" class="btn btn-outline btn-sm">
+          Zobacz projekt →
+        </a>
+      </div>
+    </div>
+
+    <!-- Karta 6 — Resumo -->
+    <div class="project-card fade-in fade-in-delay-3">
+      <div class="project-card-img">
+        <!-- ZASTĄP src własnym screenshotem projektu -->
+        <img src="{% static 'img/preview_resumo.jpg' %}"
+             alt="Resumo — Formularz CV"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="project-card-placeholder" style="display:none;">
+          <span>📝</span>
+        </div>
+      </div>
+      <div class="project-card-body">
+        <h3>Resumo — Formularz CV</h3>
+        <p>Formularz HTML z polami tekstowymi, radio, checkbox i select —
+           podstawa każdego formularza kontaktowego lub rejestracyjnego.</p>
+        <a href="{% url 'minikurs:formularze_resumo' %}" class="btn btn-outline btn-sm">
+          Zobacz projekt →
+        </a>
+      </div>
+    </div>
+
+    <!-- Karta 7 — Kwestionariusz -->
+    <div class="project-card fade-in fade-in-delay-1">
+      <div class="project-card-img">
+        <!-- ZASTĄP src własnym screenshotem projektu -->
+        <img src="{% static 'img/preview_kwestionariusz.jpg' %}"
+             alt="Kwestionariusz Osobowy"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="project-card-placeholder" style="display:none;">
+          <span>📋</span>
+        </div>
+      </div>
+      <div class="project-card-body">
+        <h3>Kwestionariusz Osobowy</h3>
+        <p>Rozbudowany formularz HTML — walidacja, różne typy inputów,
+           textarea. Wzorzec każdego formularza rejestracyjnego w sieci.</p>
+        <a href="{% url 'minikurs:formularze_kwestionariusz' %}" class="btn btn-outline btn-sm">
+          Zobacz projekt →
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /.projects-grid -->
+</div>
+
+<!-- ============================================================
+     STYLE LOKALNE — siatka projektów
+     ============================================================ -->
+<style>
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.project-card {
+  background: rgba(22, 22, 31, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.project-card:hover {
+  transform: scale(1.02);
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.project-card-img {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.project-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-card-img img {
+  transform: scale(1.05);
+}
+
+.project-card-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  background: var(--gradient-card);
+}
+
+.project-card-body {
+  padding: 20px;
+}
+
+.project-card-body h3 {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.project-card-body p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 1024px) {
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .projects-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+{% endblock %}
+

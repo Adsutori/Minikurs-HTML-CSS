@@ -1,0 +1,195 @@
+{% extends 'kurs/base.html' %}
+{% load static %}
+
+{% block title %}Tabela kolorów | Minikurs HTML5 i CSS3{% endblock %}
+
+{% block content %}
+<meta name="chapter" content="tabela_kolorow">
+
+<div class="page-header">
+  <h1>🎨 Tabela kolorów</h1>
+  <p>Tabela HTML z kolorowymi komórkami — colspan, rowspan i kolory CSS.</p>
+</div>
+
+<div class="content-card fade-in" style="margin-bottom:24px;">
+  <p>Tabele HTML mogą zawierać kolorowe komórki, łączone wiersze i kolumny.
+     Poniżej demonstracja atrybutów <code>colspan</code>, <code>rowspan</code>
+     oraz kolorowania komórek przez CSS.</p>
+</div>
+
+<!-- TABELA KOLORÓW 8×6 -->
+<div class="content-card fade-in" style="margin-bottom:32px; overflow-x:auto;">
+  <h2 style="color:var(--accent-secondary); margin-bottom:20px;">🌈 Paleta kolorów CSS</h2>
+
+  <table style="width:100%; border-collapse:collapse; font-size:var(--text-xs);
+                font-family:'JetBrains Mono',monospace;">
+    <thead>
+      <tr>
+        <th style="padding:10px; background:rgba(124,58,237,0.2);
+                   color:var(--accent-secondary); border:1px solid var(--border);">
+          Nazwa koloru
+        </th>
+        <th style="padding:10px; background:rgba(124,58,237,0.2);
+                   color:var(--accent-secondary); border:1px solid var(--border);">
+          Podgląd
+        </th>
+        <th style="padding:10px; background:rgba(124,58,237,0.2);
+                   color:var(--accent-secondary); border:1px solid var(--border);">
+          HEX
+        </th>
+        <th style="padding:10px; background:rgba(124,58,237,0.2);
+                   color:var(--accent-secondary); border:1px solid var(--border);">
+          RGB
+        </th>
+        <th style="padding:10px; background:rgba(124,58,237,0.2);
+                   color:var(--accent-secondary); border:1px solid var(--border);">
+          HSL
+        </th>
+        <!-- colspan: łączy 2 kolumny "Zastosowanie" -->
+        <th colspan="2"
+            style="padding:10px; background:rgba(124,58,237,0.2);
+                   color:var(--accent-secondary); border:1px solid var(--border);
+                   text-align:center;">
+          Zastosowanie (colspan=2)
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Wiersz 1 — Fiolet -->
+      <tr>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">
+          Violet / Purple
+        </td>
+        <td style="padding:10px; border:1px solid var(--border); text-align:center;">
+          <div style="width:48px; height:28px; background:#7c3aed;
+                      border-radius:4px; margin:0 auto; display:inline-block;"></div>
+        </td>
+        <td style="padding:10px; border:1px solid var(--border); color:#a855f7;">#7c3aed</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">rgb(124,58,237)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">hsl(263,83%,58%)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Akcenty</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Przyciski</td>
+      </tr>
+      <!-- Wiersz 2 — Czerwony, rowspan łączy 2 wiersze w kolumnie "Podgląd" -->
+      <tr>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">
+          Crimson Red
+        </td>
+        <!-- rowspan: łączy 2 wiersze -->
+        <td rowspan="2"
+            style="padding:10px; border:1px solid var(--border); text-align:center;
+                   vertical-align:middle; background:rgba(239,68,68,0.1);">
+          <div style="font-size:var(--text-xs); color:#ef4444; font-weight:700;">
+            rowspan=2<br>Czerwone
+          </div>
+        </td>
+        <td style="padding:10px; border:1px solid var(--border); color:#ef4444;">#ef4444</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">rgb(239,68,68)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">hsl(0,84%,60%)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Błędy</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Alerty</td>
+      </tr>
+      <!-- Wiersz 3 — Różowy (używa rowspan z wiersza 2) -->
+      <tr>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">
+          Hot Pink
+        </td>
+        <td style="padding:10px; border:1px solid var(--border); color:#f472b6;">#f472b6</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">rgb(244,114,182)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">hsl(330,86%,70%)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Dekoracje</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Ikony</td>
+      </tr>
+      <!-- Wiersz 4 — Zielony -->
+      <tr>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">
+          Emerald Green
+        </td>
+        <td style="padding:10px; border:1px solid var(--border); text-align:center;">
+          <div style="width:48px; height:28px; background:#22c55e;
+                      border-radius:4px; margin:0 auto;"></div>
+        </td>
+        <td style="padding:10px; border:1px solid var(--border); color:#22c55e;">#22c55e</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">rgb(34,197,94)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">hsl(142,71%,45%)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Sukces</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Potwierdzenia</td>
+      </tr>
+      <!-- Wiersz 5 — Niebieski -->
+      <tr>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">
+          Sky Blue
+        </td>
+        <td style="padding:10px; border:1px solid var(--border); text-align:center;">
+          <div style="width:48px; height:28px; background:#38bdf8;
+                      border-radius:4px; margin:0 auto;"></div>
+        </td>
+        <td style="padding:10px; border:1px solid var(--border); color:#38bdf8;">#38bdf8</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">rgb(56,189,248)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">hsl(199,89%,60%)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Linki</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Info</td>
+      </tr>
+      <!-- Wiersz 6 — Pomarańczowy -->
+      <tr>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">
+          Amber Orange
+        </td>
+        <td style="padding:10px; border:1px solid var(--border); text-align:center;">
+          <div style="width:48px; height:28px; background:#f59e0b;
+                      border-radius:4px; margin:0 auto;"></div>
+        </td>
+        <td style="padding:10px; border:1px solid var(--border); color:#f59e0b;">#f59e0b</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">rgb(245,158,11)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">hsl(38,92%,50%)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Ostrzeżenia</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Uwagi</td>
+      </tr>
+      <!-- Wiersz 7 — Szary -->
+      <tr>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">
+          Slate Gray
+        </td>
+        <td style="padding:10px; border:1px solid var(--border); text-align:center;">
+          <div style="width:48px; height:28px; background:#94a3b8;
+                      border-radius:4px; margin:0 auto;"></div>
+        </td>
+        <td style="padding:10px; border:1px solid var(--border); color:#94a3b8;">#94a3b8</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">rgb(148,163,184)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">hsl(215,20%,65%)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Tekst pomocniczy</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Placeholdery</td>
+      </tr>
+      <!-- Wiersz 8 — Biały/Ciemny -->
+      <tr>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">
+          Near White
+        </td>
+        <td style="padding:10px; border:1px solid var(--border); text-align:center;">
+          <div style="width:48px; height:28px; background:#f1f5f9;
+                      border-radius:4px; margin:0 auto;
+                      border:1px solid rgba(255,255,255,0.2);"></div>
+        </td>
+        <td style="padding:10px; border:1px solid var(--border); color:#f1f5f9;">#f1f5f9</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">rgb(241,245,249)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-muted);">hsl(210,40%,96%)</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Tekst główny</td>
+        <td style="padding:10px; border:1px solid var(--border); color:var(--text-secondary);">Nagłówki</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <!-- colspan łączy wszystkie 7 kolumn w stopce -->
+        <td colspan="7"
+            style="padding:12px 10px; border:1px solid var(--border);
+                   color:var(--text-muted); font-size:var(--text-xs);
+                   text-align:center; background:rgba(124,58,237,0.05);">
+          Tabela 8 wierszy × 7 kolumn · Użyto: <code>colspan="2"</code>,
+          <code>rowspan="2"</code>, <code>colspan="7"</code> (tfoot)
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,211 @@
+{% extends 'kurs/base.html' %}
+{% load static %}
+
+{% block title %}Kwestionariusz Osobowy | Minikurs HTML5 i CSS3{% endblock %}
+
+{% block content %}
+<meta name="chapter" content="formularze_kwestionariusz">
+
+<div class="page-header">
+  <h1>📋 Kwestionariusz Osobowy</h1>
+  <p>Rozbudowany formularz HTML z walidacją i różnymi typami pól.</p>
+</div>
+
+<div class="content-card fade-in" style="max-width:720px; margin:0 auto;">
+
+  <form method="GET" action="#" novalidate>
+
+    <!-- DANE PODSTAWOWE -->
+    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
+                     padding: 24px; margin-bottom: 28px;">
+      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
+                     font-size:var(--text-sm);">👤 Dane podstawowe</legend>
+
+      <div class="grid-2" style="gap:16px;">
+        <div class="form-group">
+          <label for="kw_imie">Imię</label>
+          <input type="text" id="kw_imie" name="imie" class="form-control"
+                 placeholder="Twoje imię" required>
+        </div>
+        <div class="form-group">
+          <label for="kw_nazwisko">Nazwisko</label>
+          <input type="text" id="kw_nazwisko" name="nazwisko" class="form-control"
+                 placeholder="Twoje nazwisko" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="kw_wiek">Wiek</label>
+        <input type="number" id="kw_wiek" name="wiek" class="form-control"
+               min="10" max="100" placeholder="np. 17">
+      </div>
+    </fieldset>
+
+    <!-- PŁEĆ -->
+    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
+                     padding: 24px; margin-bottom: 28px;">
+      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
+                     font-size:var(--text-sm);">⚧ Płeć</legend>
+
+      <div style="display:flex; gap:24px; flex-wrap:wrap;">
+        <label class="form-check">
+          <input type="radio" name="plec" value="kobieta"> Kobieta
+        </label>
+        <label class="form-check">
+          <input type="radio" name="plec" value="mezczyzna"> Mężczyzna
+        </label>
+        <label class="form-check">
+          <input type="radio" name="plec" value="inne"> Inne
+        </label>
+        <label class="form-check">
+          <input type="radio" name="plec" value="brak"> Wolę nie podawać
+        </label>
+      </div>
+    </fieldset>
+
+    <!-- ZAINTERESOWANIA -->
+    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
+                     padding: 24px; margin-bottom: 28px;">
+      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
+                     font-size:var(--text-sm);">🎯 Zainteresowania</legend>
+
+      <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+        <label class="form-check">
+          <input type="checkbox" name="zainteresowania" value="programowanie"> 💻 Programowanie
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="zainteresowania" value="muzyka"> 🎵 Muzyka
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="zainteresowania" value="sport"> ⚽ Sport
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="zainteresowania" value="gry"> 🎮 Gry komputerowe
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="zainteresowania" value="filmy"> 🎬 Filmy i seriale
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="zainteresowania" value="ksiazki"> 📚 Książki
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="zainteresowania" value="podroze"> ✈️ Podróże
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="zainteresowania" value="gotowanie"> 🍳 Gotowanie
+        </label>
+      </div>
+    </fieldset>
+
+    <!-- ULUBIONY KOLOR + OCENA KURSU -->
+    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
+                     padding: 24px; margin-bottom: 28px;">
+      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
+                     font-size:var(--text-sm);">🎨 Preferencje</legend>
+
+      <div class="form-group">
+        <label for="kolor">Ulubiony kolor</label>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <input type="color" id="kolor" name="kolor"
+                 value="#7c3aed"
+                 style="width:60px; height:40px; border:none; border-radius:var(--radius-sm);
+                        background:none; cursor:pointer; padding:0;">
+          <span style="font-size:var(--text-sm); color:var(--text-secondary);"
+                id="kolor-label">Wybrany: #7c3aed</span>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-bottom:0;">
+        <label for="ocena_kursu">
+          Ocena kursu: <strong style="color:var(--accent-secondary);"
+                               id="ocena-display">5</strong>/10
+        </label>
+        <div style="display:flex; align-items:center; gap:16px; margin-top:8px;">
+          <span style="font-size:var(--text-xs); color:var(--text-muted);">1</span>
+          <input type="range" id="ocena_kursu" name="ocena_kursu"
+                 min="1" max="10" value="5"
+                 data-output="ocena-display"
+                 style="flex:1; accent-color: var(--accent-primary);">
+          <span style="font-size:var(--text-xs); color:var(--text-muted);">10</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-top:4px;
+                    font-size:var(--text-xs); color:var(--text-muted);">
+          <span>Słaby</span>
+          <span>Świetny!</span>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- KOMENTARZ -->
+    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
+                     padding: 24px; margin-bottom: 28px;">
+      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
+                     font-size:var(--text-sm);">💬 Komentarz</legend>
+
+      <div class="form-group" style="margin-bottom:0;">
+        <label for="komentarz">Twój komentarz do kursu</label>
+        <textarea id="komentarz" name="komentarz" class="form-control"
+                  rows="4"
+                  placeholder="Co sądzisz o kursie? Co można poprawić?"></textarea>
+      </div>
+    </fieldset>
+
+    <!-- SKĄD DOWIEDZIAŁEŚ SIĘ + NEWSLETTER -->
+    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
+                     padding: 24px; margin-bottom: 28px;">
+      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
+                     font-size:var(--text-sm);">📢 Informacje dodatkowe</legend>
+
+      <div class="form-group">
+        <label for="skad">Skąd dowiedziałeś się o kursie?</label>
+        <select id="skad" name="skad" class="form-control">
+          <option value="">-- Wybierz --</option>
+          <option value="szkola">Ze szkoły / od nauczyciela</option>
+          <option value="znajomy">Od znajomego</option>
+          <option value="google">Wyszukiwarka Google</option>
+          <option value="youtube">YouTube</option>
+          <option value="facebook">Facebook / Instagram</option>
+          <option value="inne">Inne</option>
+        </select>
+      </div>
+
+      <div class="form-group" style="margin-bottom:0;">
+        <label style="display:block; margin-bottom:10px; font-size:var(--text-sm);
+                      color:var(--text-secondary);">
+          Czy chcesz otrzymywać newsletter z nowościami?
+        </label>
+        <div style="display:flex; gap:24px;">
+          <label class="form-check">
+            <input type="radio" name="newsletter" value="tak"> ✅ Tak, chcę
+          </label>
+          <label class="form-check">
+            <input type="radio" name="newsletter" value="nie" checked> ❌ Nie, dziękuję
+          </label>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- PRZYCISKI -->
+    <div style="display:flex; gap:16px; flex-wrap:wrap;">
+      <button type="submit" class="btn btn-primary btn-lg">
+        ✅ Wyślij kwestionariusz
+      </button>
+      <button type="reset" class="btn btn-outline btn-lg">
+        🔄 Resetuj
+      </button>
+    </div>
+
+  </form>
+</div>
+
+<script>
+  // Aktualizacja etykiety koloru
+  const kolorInput = document.getElementById('kolor');
+  const kolorLabel = document.getElementById('kolor-label');
+  if (kolorInput && kolorLabel) {
+    kolorInput.addEventListener('input', function () {
+      kolorLabel.textContent = 'Wybrany: ' + this.value;
+    });
+  }
+</script>
+{% endblock %}

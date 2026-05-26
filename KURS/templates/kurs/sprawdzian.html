@@ -1,0 +1,135 @@
+{% extends 'kurs/base.html' %}
+{% load static %}
+
+{% block title %}Sprawdzian praktyczny | Minikurs HTML5 i CSS3{% endblock %}
+
+{% block content %}
+<meta name="chapter" content="sprawdzian">
+
+<div class="page-header">
+  <h1>✏️ Sprawdzian praktyczny</h1>
+  <p>Praca z początku roku — demonstracja podstawowych znaczników HTML5.</p>
+</div>
+
+<div class="content-card fade-in" style="margin-bottom:32px;">
+  <p>Ta strona prezentuje podstawowe znaczniki HTML5 używane w każdym dokumencie webowym.
+     Każdy element jest opisany i pokazany w działaniu — dokładnie tak, jak na sprawdzianie
+     z początku roku szkolnego.</p>
+</div>
+
+<!-- DEMONSTRACJA — renderowany HTML -->
+<div class="content-card fade-in" style="margin-bottom:24px;">
+  <h2 style="color:var(--accent-secondary); margin-bottom:20px;">📄 Demonstracja elementów</h2>
+
+  <!-- Nagłówki h1–h6 -->
+  <div class="demo-section">
+    <div class="demo-label">Nagłówki h1–h6</div>
+    <div class="demo-output">
+      <h1 style="color:var(--text-primary); font-size:2rem; margin:4px 0;">Nagłówek H1 — najważniejszy</h1>
+      <h2 style="color:var(--text-primary); font-size:1.6rem; margin:4px 0;">Nagłówek H2</h2>
+      <h3 style="color:var(--text-primary); font-size:1.3rem; margin:4px 0;">Nagłówek H3</h3>
+      <h4 style="color:var(--text-primary); font-size:1.1rem; margin:4px 0;">Nagłówek H4</h4>
+      <h5 style="color:var(--text-primary); font-size:0.95rem; margin:4px 0;">Nagłówek H5</h5>
+      <h6 style="color:var(--text-primary); font-size:0.85rem; margin:4px 0;">Nagłówek H6 — najmniej ważny</h6>
+    </div>
+    <pre class="code-block" data-lang="HTML"><code><span class="tag">&lt;h1&gt;</span>Nagłówek H1 — najważniejszy<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h2&gt;</span>Nagłówek H2<span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;h3&gt;</span>Nagłówek H3<span class="tag">&lt;/h3&gt;</span>
+<span class="tag">&lt;h4&gt;</span>Nagłówek H4<span class="tag">&lt;/h4&gt;</span>
+<span class="tag">&lt;h5&gt;</span>Nagłówek H5<span class="tag">&lt;/h5&gt;</span>
+<span class="tag">&lt;h6&gt;</span>Nagłówek H6 — najmniej ważny<span class="tag">&lt;/h6&gt;</span></code></pre>
+  </div>
+
+  <!-- Akapity i formatowanie -->
+  <div class="demo-section">
+    <div class="demo-label">Akapity i formatowanie tekstu</div>
+    <div class="demo-output">
+      <p style="color:var(--text-secondary); margin-bottom:8px;">
+        To jest zwykły akapit. Zawiera <strong>pogrubiony tekst</strong>,
+        <em>tekst kursywą</em>, <u>podkreślenie</u> oraz
+        <del>przekreślenie</del>.
+      </p>
+      <p style="color:var(--text-secondary);">
+        Można też użyć <mark style="background:rgba(124,58,237,0.3);color:var(--accent-secondary);padding:1px 4px;border-radius:3px;">zaznaczenia</mark>,
+        <small>małego tekstu</small> oraz <code>kodu inline</code>.
+      </p>
+    </div>
+    <pre class="code-block" data-lang="HTML"><code><span class="tag">&lt;p&gt;</span>
+  Zwykły akapit z <span class="tag">&lt;strong&gt;</span>pogrubieniem<span class="tag">&lt;/strong&gt;</span>,
+  <span class="tag">&lt;em&gt;</span>kursywą<span class="tag">&lt;/em&gt;</span>, <span class="tag">&lt;u&gt;</span>podkreśleniem<span class="tag">&lt;/u&gt;</span>
+  i <span class="tag">&lt;del&gt;</span>przekreśleniem<span class="tag">&lt;/del&gt;</span>.
+<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>
+  <span class="tag">&lt;mark&gt;</span>zaznaczenie<span class="tag">&lt;/mark&gt;</span>,
+  <span class="tag">&lt;small&gt;</span>mały tekst<span class="tag">&lt;/small&gt;</span>,
+  <span class="tag">&lt;code&gt;</span>kod inline<span class="tag">&lt;/code&gt;</span>
+<span class="tag">&lt;/p&gt;</span></code></pre>
+  </div>
+
+  <!-- Znaczniki semantyczne -->
+  <div class="demo-section">
+    <div class="demo-label">Znaczniki semantyczne HTML5</div>
+    <div class="demo-output" style="font-size:var(--text-sm); color:var(--text-secondary);">
+      <div style="border:1px dashed rgba(124,58,237,0.4); border-radius:6px; padding:8px; margin-bottom:6px;">
+        <span style="color:var(--accent-secondary); font-family:monospace; font-size:11px;">&lt;header&gt;</span>
+        — nagłówek strony lub sekcji
+      </div>
+      <div style="border:1px dashed rgba(124,58,237,0.4); border-radius:6px; padding:8px; margin-bottom:6px;">
+        <span style="color:var(--accent-secondary); font-family:monospace; font-size:11px;">&lt;nav&gt;</span>
+        — nawigacja
+      </div>
+      <div style="border:1px dashed rgba(124,58,237,0.4); border-radius:6px; padding:8px; margin-bottom:6px;">
+        <span style="color:var(--accent-secondary); font-family:monospace; font-size:11px;">&lt;main&gt;</span>
+        — główna treść strony (tylko jeden na stronę)
+      </div>
+      <div style="border:1px dashed rgba(124,58,237,0.4); border-radius:6px; padding:8px; margin-bottom:6px;">
+        <span style="color:var(--accent-secondary); font-family:monospace; font-size:11px;">&lt;article&gt;</span>
+        — samodzielny artykuł (np. post blogowy)
+      </div>
+      <div style="border:1px dashed rgba(124,58,237,0.4); border-radius:6px; padding:8px; margin-bottom:6px;">
+        <span style="color:var(--accent-secondary); font-family:monospace; font-size:11px;">&lt;section&gt;</span>
+        — sekcja tematyczna
+      </div>
+      <div style="border:1px dashed rgba(124,58,237,0.4); border-radius:6px; padding:8px; margin-bottom:6px;">
+        <span style="color:var(--accent-secondary); font-family:monospace; font-size:11px;">&lt;aside&gt;</span>
+        — treść poboczna (sidebar, reklamy)
+      </div>
+      <div style="border:1px dashed rgba(124,58,237,0.4); border-radius:6px; padding:8px;">
+        <span style="color:var(--accent-secondary); font-family:monospace; font-size:11px;">&lt;footer&gt;</span>
+        — stopka strony lub sekcji
+      </div>
+    </div>
+    <pre class="code-block" data-lang="HTML"><code><span class="tag">&lt;header&gt;</span>
+  <span class="tag">&lt;nav&gt;</span>Menu nawigacyjne<span class="tag">&lt;/nav&gt;</span>
+<span class="tag">&lt;/header&gt;</span>
+
+<span class="tag">&lt;main&gt;</span>
+  <span class="tag">&lt;article&gt;</span>
+    <span class="tag">&lt;section&gt;</span>Sekcja artykułu<span class="tag">&lt;/section&gt;</span>
+  <span class="tag">&lt;/article&gt;</span>
+  <span class="tag">&lt;aside&gt;</span>Sidebar<span class="tag">&lt;/aside&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+
+<span class="tag">&lt;footer&gt;</span>Stopka<span class="tag">&lt;/footer&gt;</span></code></pre>
+  </div>
+</div>
+
+<style>
+.demo-section { margin-bottom: 28px; }
+.demo-section:last-child { margin-bottom: 0; }
+.demo-label {
+  font-size: var(--text-xs); font-weight: 700; color: var(--accent-secondary);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 10px; padding: 4px 10px;
+  background: rgba(124,58,237,0.1); border-radius: 999px;
+  display: inline-block;
+}
+.demo-output {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 12px;
+}
+</style>
+{% endblock %}

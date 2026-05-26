@@ -1,0 +1,439 @@
+﻿{% extends 'kurs/base.html' %}
+{% load static %}
+
+{% block title %}O mnie | Minikurs HTML5 i CSS3{% endblock %}
+
+{% block content %}
+<meta name="chapter" content="o_mnie">
+
+<div class="page-header">
+  <h1>👤 O mnie</h1>
+  <p>Poznaj autora kursu — ucznia Technikum im. Kasprzaka w Warszawie.</p>
+</div>
+
+<!-- ============================================================
+     1. PRZEDSTAWIENIE
+     ============================================================ -->
+<div class="content-card fade-in" style="margin-bottom:32px;">
+  <h2 style="color:var(--accent-secondary); margin-bottom:20px;">👋 Przedstawienie</h2>
+
+  <div style="display:grid; grid-template-columns: auto 1fr; gap:32px; align-items:start;">
+
+    <!-- Zdjęcie JPG -->
+    <div style="text-align:center;">
+      <!-- ZASTĄP własnym zdjęciem JPG -->
+      <img src="{% static 'img/o_mnie_zdjecie.jpg' %}"
+           alt="Moje zdjęcie"
+           width="160" height="160"
+           style="border-radius:50%; object-fit:cover;
+                  border: 3px solid var(--accent-primary);
+                  box-shadow: var(--shadow-glow-sm);"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <!-- Fallback gdy brak zdjęcia -->
+      <div style="display:none; width:160px; height:160px; border-radius:50%;
+                  background: var(--gradient-btn); align-items:center;
+                  justify-content:center; font-size:4rem;
+                  border: 3px solid var(--accent-primary);">
+        👤
+      </div>
+      <p style="font-size:var(--text-xs); color:var(--text-muted); margin-top:8px;">
+        Format: JPG
+      </p>
+    </div>
+
+    <!-- Tekst przedstawienia -->
+    <div>
+      <p style="font-size:var(--text-lg); color:var(--text-secondary); line-height:1.8; margin-bottom:16px;">
+        Cześć! Jestem <strong style="color:var(--text-primary);">[IMIĘ]</strong> 👋,
+        uczeń klasy <strong style="color:var(--accent-secondary);">[KLASA]</strong>
+        w Technikum im. Kasprzaka w Warszawie.
+        <!-- ZASTĄP własnymi danymi -->
+      </p>
+      <p style="font-size:var(--text-base); color:var(--text-secondary); line-height:1.8; margin-bottom:16px;">
+        Interesuję się 💻 programowaniem, 🎮 grami komputerowymi, 🎵 muzyką i ⚽ sportem.
+        <!-- ZASTĄP własnymi zainteresowaniami -->
+        Ten kurs stworzyłem jako projekt szkolny, ale mam nadzieję,
+        że pomoże innym w nauce HTML i CSS.
+      </p>
+      <p style="font-size:var(--text-base); color:var(--text-secondary); line-height:1.8;">
+        Na co dzień używam 🖥️ VS Code, lubię 🎧 słuchać muzyki podczas kodowania
+        i wierzę, że każdy może nauczyć się programować — wystarczy zacząć!
+        <!-- ZASTĄP własnymi informacjami -->
+      </p>
+    </div>
+  </div>
+
+  <!-- Logo PNG -->
+  <div style="margin-top:24px; display:flex; align-items:center; gap:16px;">
+    <!-- ZASTĄP własnym plikiem PNG -->
+    <img src="{% static 'img/o_mnie_logo.png' %}"
+         alt="Logo"
+         height="48"
+         style="border-radius:var(--radius-sm);"
+         onerror="this.style.display='none'">
+    <!-- ZASTĄP własnym plikiem PNG -->
+    <span style="font-size:var(--text-xs); color:var(--text-muted);">Format: PNG</span>
+  </div>
+
+  <!-- GIF animacja -->
+  <div style="margin-top:20px;">
+    <p style="font-size:var(--text-sm); color:var(--text-muted); margin-bottom:8px;">
+      Animacja GIF:
+    </p>
+    <!-- ZASTĄP własnym GIF-em lub użyj poniższego -->
+    <img src="{% static 'img/o_mnie_animacja.gif' %}"
+         alt="Animacja — kodowanie"
+         width="200"
+         style="border-radius:var(--radius-md); border: 1px solid var(--border);"
+         onerror="this.src='https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif'">
+    <!-- ZASTĄP własnym GIF-em -->
+    <p style="font-size:var(--text-xs); color:var(--text-muted); margin-top:4px;">
+      Format: GIF (animowany)
+    </p>
+  </div>
+</div>
+
+<!-- ============================================================
+     2. LISTA ULUBIONYCH TECHNOLOGII
+     ============================================================ -->
+<div class="content-card fade-in" style="margin-bottom:32px;">
+  <h2 style="color:var(--accent-secondary); margin-bottom:16px;">💡 Moje ulubione technologie</h2>
+
+  <ul style="list-style:none; display:grid; grid-template-columns: repeat(2,1fr); gap:10px;">
+    <li style="display:flex; align-items:center; gap:10px; padding:10px 14px;
+               background:rgba(124,58,237,0.08); border-radius:var(--radius-md);
+               border:1px solid rgba(124,58,237,0.2);">
+      <span>🌐</span>
+      <span style="color:var(--text-secondary); font-size:var(--text-sm);">HTML5 — struktura stron</span>
+    </li>
+    <li style="display:flex; align-items:center; gap:10px; padding:10px 14px;
+               background:rgba(124,58,237,0.08); border-radius:var(--radius-md);
+               border:1px solid rgba(124,58,237,0.2);">
+      <span>🎨</span>
+      <span style="color:var(--text-secondary); font-size:var(--text-sm);">CSS3 — stylowanie</span>
+    </li>
+    <li style="display:flex; align-items:center; gap:10px; padding:10px 14px;
+               background:rgba(124,58,237,0.08); border-radius:var(--radius-md);
+               border:1px solid rgba(124,58,237,0.2);">
+      <span>⚡</span>
+      <span style="color:var(--text-secondary); font-size:var(--text-sm);">JavaScript — interaktywność</span>
+    </li>
+    <li style="display:flex; align-items:center; gap:10px; padding:10px 14px;
+               background:rgba(124,58,237,0.08); border-radius:var(--radius-md);
+               border:1px solid rgba(124,58,237,0.2);">
+      <span>🐍</span>
+      <span style="color:var(--text-secondary); font-size:var(--text-sm);">Python — backend</span>
+    </li>
+    <li style="display:flex; align-items:center; gap:10px; padding:10px 14px;
+               background:rgba(124,58,237,0.08); border-radius:var(--radius-md);
+               border:1px solid rgba(124,58,237,0.2);">
+      <span>🦄</span>
+      <span style="color:var(--text-secondary); font-size:var(--text-sm);">Django — framework webowy</span>
+    </li>
+    <li style="display:flex; align-items:center; gap:10px; padding:10px 14px;
+               background:rgba(124,58,237,0.08); border-radius:var(--radius-md);
+               border:1px solid rgba(124,58,237,0.2);">
+      <span>🐙</span>
+      <span style="color:var(--text-secondary); font-size:var(--text-sm);">Git — kontrola wersji</span>
+    </li>
+  </ul>
+</div>
+
+<!-- ============================================================
+     3. ODTWARZACZ WIDEO
+     ============================================================ -->
+<div class="content-card fade-in" style="margin-bottom:32px;">
+  <h2 style="color:var(--accent-secondary); margin-bottom:16px;">🎬 Moje wideo</h2>
+  <p style="margin-bottom:16px; color:var(--text-secondary);">
+    Krótki filmik nagrany przeze mnie — prezentacja projektu lub cokolwiek chcesz pokazać.
+  </p>
+
+  <!-- ZASTĄP własnym plikiem MP4 -->
+  <video controls width="100%"
+         style="border-radius: var(--radius-lg); max-width:600px; display:block;
+                border: 1px solid var(--border); box-shadow: var(--shadow-glow-sm);">
+    <source src="{% static 'media/o_mnie_video.mp4' %}" type="video/mp4">
+    Twoja przeglądarka nie obsługuje elementu wideo.
+    <!-- ZASTĄP własnym plikiem MP4 -->
+  </video>
+  <p style="font-size:var(--text-xs); color:var(--text-muted); margin-top:8px;">
+    <!-- ZASTĄP własnym plikiem MP4 -->
+    Format: MP4 · Plik: <code>static/media/o_mnie_video.mp4</code>
+  </p>
+</div>
+
+<!-- ============================================================
+     4. ODTWARZACZE AUDIO W TABELI
+     ============================================================ -->
+<div class="content-card fade-in" style="margin-bottom:32px;">
+  <h2 style="color:var(--accent-secondary); margin-bottom:16px;">🎵 Moja playlista</h2>
+  <p style="margin-bottom:16px; color:var(--text-secondary);">
+    Muzyka, której słucham podczas kodowania:
+  </p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Utwór</th>
+          <th>Wykonawca</th>
+          <th>Odtwarzacz</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--text-muted);">1</td>
+          <!-- ZASTĄP własnymi danymi -->
+          <td style="color:var(--text-primary); font-weight:500;">[Nazwa utworu 1]</td>
+          <td style="color:var(--text-secondary);">[Wykonawca 1]</td>
+          <td>
+            <!-- ZASTĄP własnym plikiem audio -->
+            <audio controls style="height:32px; min-width:200px;">
+              <source src="{% static 'media/audio1.mp3' %}" type="audio/mpeg">
+              <!-- ZASTĄP własnym plikiem MP3 -->
+            </audio>
+          </td>
+        </tr>
+        <tr>
+          <td style="color:var(--text-muted);">2</td>
+          <!-- ZASTĄP własnymi danymi -->
+          <td style="color:var(--text-primary); font-weight:500;">[Nazwa utworu 2]</td>
+          <td style="color:var(--text-secondary);">[Wykonawca 2]</td>
+          <td>
+            <!-- ZASTĄP własnym plikiem audio -->
+            <audio controls style="height:32px; min-width:200px;">
+              <source src="{% static 'media/audio2.mp3' %}" type="audio/mpeg">
+              <!-- ZASTĄP własnym plikiem MP3 -->
+            </audio>
+          </td>
+        </tr>
+        <tr>
+          <td style="color:var(--text-muted);">3</td>
+          <!-- ZASTĄP własnymi danymi -->
+          <td style="color:var(--text-primary); font-weight:500;">[Nazwa utworu 3]</td>
+          <td style="color:var(--text-secondary);">[Wykonawca 3]</td>
+          <td>
+            <!-- ZASTĄP własnym plikiem audio -->
+            <audio controls style="height:32px; min-width:200px;">
+              <source src="{% static 'media/audio3.mp3' %}" type="audio/mpeg">
+              <!-- ZASTĄP własnym plikiem MP3 -->
+            </audio>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================
+     5. TABELA 5×6 z abbr, img, link
+     ============================================================ -->
+<div class="content-card fade-in" style="margin-bottom:32px;" id="tabela">
+  <h2 style="color:var(--accent-secondary); margin-bottom:8px;">📊 Moje projekty i zasoby</h2>
+  <!-- Odsyłacz wewnętrzny do tej sekcji -->
+  <p style="font-size:var(--text-xs); color:var(--text-muted); margin-bottom:16px;">
+    <a href="#tabela" style="color:var(--accent-secondary);">🔗 Link do tej tabeli</a>
+  </p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <!-- Kolumna Lp. z abbr -->
+          <th><abbr title="Liczba porządkowa">Lp.</abbr></th>
+          <th>Grafika</th>
+          <th>Link</th>
+          <th>Opis</th>
+          <th>Kategoria</th>
+          <th>Ocena</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--text-muted); font-family:monospace;">
+            <abbr title="Liczba porządkowa: 1">1</abbr>
+          </td>
+          <td>
+            <!-- ZASTĄP własnym obrazem (thumbnail 60×60) -->
+            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=60"
+                 alt="Projekt HTML"
+                 width="60" height="60"
+                 style="object-fit:cover; border-radius:var(--radius-sm);
+                        border:1px solid var(--border);">
+          </td>
+          <td>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+               style="color:var(--accent-secondary);">
+              🔗 GitHub
+            </a>
+          </td>
+          <td style="color:var(--text-secondary);">Mój projekt HTML5</td>
+          <td><span class="badge badge-accent">HTML</span></td>
+          <td style="color:#fbbf24;">⭐⭐⭐⭐⭐</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text-muted); font-family:monospace;">
+            <abbr title="Liczba porządkowa: 2">2</abbr>
+          </td>
+          <td>
+            <!-- ZASTĄP własnym obrazem (thumbnail 60×60) -->
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=60"
+                 alt="Tutorial CSS"
+                 width="60" height="60"
+                 style="object-fit:cover; border-radius:var(--radius-sm);
+                        border:1px solid var(--border);">
+          </td>
+          <td>
+            <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer"
+               style="color:var(--accent-secondary);">
+              🔗 YouTube
+            </a>
+          </td>
+          <td style="color:var(--text-secondary);">Tutorial CSS3 Flexbox</td>
+          <td><span class="badge badge-accent">CSS</span></td>
+          <td style="color:#fbbf24;">⭐⭐⭐⭐</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text-muted); font-family:monospace;">
+            <abbr title="Liczba porządkowa: 3">3</abbr>
+          </td>
+          <td>
+            <!-- ZASTĄP własnym obrazem (thumbnail 60×60) -->
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=60"
+                 alt="MDN Docs"
+                 width="60" height="60"
+                 style="object-fit:cover; border-radius:var(--radius-sm);
+                        border:1px solid var(--border);">
+          </td>
+          <td>
+            <a href="https://developer.mozilla.org/pl/" target="_blank" rel="noopener noreferrer"
+               style="color:var(--accent-secondary);">
+              🔗 MDN
+            </a>
+          </td>
+          <td style="color:var(--text-secondary);">Dokumentacja MDN Web Docs</td>
+          <td><span class="badge badge-success">Docs</span></td>
+          <td style="color:#fbbf24;">⭐⭐⭐⭐⭐</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text-muted); font-family:monospace;">
+            <abbr title="Liczba porządkowa: 4">4</abbr>
+          </td>
+          <td>
+            <!-- ZASTĄP własnym obrazem (thumbnail 60×60) -->
+            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=60"
+                 alt="Stack Overflow"
+                 width="60" height="60"
+                 style="object-fit:cover; border-radius:var(--radius-sm);
+                        border:1px solid var(--border);">
+          </td>
+          <td>
+            <a href="https://stackoverflow.com" target="_blank" rel="noopener noreferrer"
+               style="color:var(--accent-secondary);">
+              🔗 Stack Overflow
+            </a>
+          </td>
+          <td style="color:var(--text-secondary);">Forum dla programistów</td>
+          <td><span class="badge badge-warning">Forum</span></td>
+          <td style="color:#fbbf24;">⭐⭐⭐⭐</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text-muted); font-family:monospace;">
+            <abbr title="Liczba porządkowa: 5">5</abbr>
+          </td>
+          <td>
+            <!-- ZASTĄP własnym obrazem (thumbnail 60×60) -->
+            <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=60"
+                 alt="CSS Tricks"
+                 width="60" height="60"
+                 style="object-fit:cover; border-radius:var(--radius-sm);
+                        border:1px solid var(--border);">
+          </td>
+          <td>
+            <a href="https://css-tricks.com" target="_blank" rel="noopener noreferrer"
+               style="color:var(--accent-secondary);">
+              🔗 CSS-Tricks
+            </a>
+          </td>
+          <td style="color:var(--text-secondary);">Artykuły i porady CSS</td>
+          <td><span class="badge badge-accent">CSS</span></td>
+          <td style="color:#fbbf24;">⭐⭐⭐⭐⭐</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================
+     6. ODSYŁACZE ZEWNĘTRZNE (min. 5)
+     ============================================================ -->
+<div class="content-card fade-in" style="margin-bottom:32px;">
+  <h2 style="color:var(--accent-secondary); margin-bottom:16px;">🔗 Przydatne linki zewnętrzne</h2>
+
+  <div style="display:flex; flex-wrap:wrap; gap:12px;">
+
+    <a href="https://developer.mozilla.org/pl/"
+       target="_blank" rel="noopener noreferrer"
+       class="btn btn-outline btn-sm">
+      🔗 MDN Web Docs
+    </a>
+
+    <a href="https://www.w3schools.com"
+       target="_blank" rel="noopener noreferrer"
+       class="btn btn-outline btn-sm">
+      🔗 W3Schools
+    </a>
+
+    <a href="https://css-tricks.com"
+       target="_blank" rel="noopener noreferrer"
+       class="btn btn-outline btn-sm">
+      🔗 CSS-Tricks
+    </a>
+
+    <a href="https://github.com"
+       target="_blank" rel="noopener noreferrer"
+       class="btn btn-outline btn-sm">
+      🔗 GitHub
+    </a>
+
+    <a href="https://stackoverflow.com"
+       target="_blank" rel="noopener noreferrer"
+       class="btn btn-outline btn-sm">
+      🔗 Stack Overflow
+    </a>
+
+    <a href="https://codepen.io"
+       target="_blank" rel="noopener noreferrer"
+       class="btn btn-outline btn-sm">
+      🔗 CodePen
+    </a>
+
+  </div>
+</div>
+
+<!-- ============================================================
+     7. ODSYŁACZE WEWNĘTRZNE (min. 2)
+     ============================================================ -->
+<div class="content-card fade-in">
+  <h2 style="color:var(--accent-secondary); margin-bottom:16px;">🧭 Nawigacja wewnętrzna</h2>
+
+  <div style="display:flex; gap:12px; flex-wrap:wrap;">
+    <!-- Odsyłacz do sekcji na tej samej stronie -->
+    <a href="#tabela" class="btn btn-outline btn-sm">
+      📊 Przejdź do tabeli projektów
+    </a>
+
+    <!-- Odsyłacz do innej podstrony kursu -->
+    <a href="{% url 'minikurs:kontakt' %}" class="btn btn-outline btn-sm">
+      📞 Przejdź do Kontaktu
+    </a>
+
+    <a href="{% url 'minikurs:html' %}" class="btn btn-outline btn-sm">
+      📖 Poradnik HTML
+    </a>
+  </div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,361 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certyfikat — {{ cert.user.get_full_name|default:cert.user.username }}</title>
+
+  <!-- Favicon SVG inline -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0f'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-weight='700' font-size='13' fill='%237c3aed'%3EH5%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+  <style>
+    /* ============================================================
+       CERTYFIKAT — style
+       ============================================================ */
+    body {
+      background: var(--bg-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .cert-actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    /* Certyfikat A4-like */
+    .certificate {
+      width: 100%;
+      max-width: 860px;
+      background: linear-gradient(135deg, #0d0d1a 0%, #1a0533 40%, #0d0d1a 100%);
+      border: 2px solid rgba(124, 58, 237, 0.5);
+      border-radius: 24px;
+      padding: 64px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(124, 58, 237, 0.3), 0 32px 80px rgba(0,0,0,0.6);
+    }
+
+    /* Dekoracyjne narożniki */
+    .cert-corner {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-color: rgba(124, 58, 237, 0.4);
+      border-style: solid;
+    }
+    .cert-corner-tl { top: 20px; left: 20px; border-width: 3px 0 0 3px; border-radius: 8px 0 0 0; }
+    .cert-corner-tr { top: 20px; right: 20px; border-width: 3px 3px 0 0; border-radius: 0 8px 0 0; }
+    .cert-corner-bl { bottom: 20px; left: 20px; border-width: 0 0 3px 3px; border-radius: 0 0 0 8px; }
+    .cert-corner-br { bottom: 20px; right: 20px; border-width: 0 3px 3px 0; border-radius: 0 0 8px 0; }
+
+    /* Glow tło */
+    .cert-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cert-header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Badge SVG inline */
+    .cert-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .cert-badge svg {
+      filter: drop-shadow(0 0 16px rgba(124,58,237,0.6));
+    }
+
+    .cert-title {
+      font-size: 2.8rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #f1f5f9, #a855f7, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      line-height: 1.1;
+    }
+
+    .cert-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .cert-divider {
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+      margin: 24px auto;
+    }
+
+    .cert-body {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 40px;
+    }
+
+    .cert-confirms {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .cert-name {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #f1f5f9, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+
+    .cert-text {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 560px;
+      margin: 0 auto 24px;
+    }
+
+    .cert-course-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      background: rgba(124,58,237,0.2);
+      border: 1px solid rgba(124,58,237,0.4);
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent-secondary);
+      margin-bottom: 32px;
+    }
+
+    .cert-footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+      padding-top: 32px;
+      border-top: 1px solid rgba(124,58,237,0.2);
+    }
+
+    .cert-footer-col {
+      text-align: center;
+    }
+
+    .cert-footer-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+
+    .cert-footer-value {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .cert-uuid {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .cert-signature-line {
+      width: 140px;
+      height: 1px;
+      background: rgba(124,58,237,0.4);
+      margin: 8px auto 4px;
+    }
+
+    /* ============================================================
+       PRINT STYLES
+       ============================================================ */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .cert-actions { display: none; }
+
+      .certificate {
+        background: white;
+        border-color: #7c3aed;
+        box-shadow: none;
+        border-radius: 0;
+        max-width: 100%;
+        padding: 40px;
+      }
+
+      .cert-title,
+      .cert-name {
+        -webkit-text-fill-color: #7c3aed;
+        color: #7c3aed;
+      }
+
+      .cert-subtitle,
+      .cert-confirms,
+      .cert-text,
+      .cert-footer-value {
+        color: #333;
+      }
+
+      .cert-course-badge {
+        border-color: #7c3aed;
+        color: #7c3aed;
+      }
+
+      .cert-glow { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Przyciski akcji (ukryte przy druku) -->
+  <div class="cert-actions">
+    <a href="{% url 'minikurs:dashboard' %}" class="btn btn-outline">
+      ← Powrót do Dashboard
+    </a>
+    <button onclick="window.print()" class="btn btn-primary">
+      🖨️ Pobierz / Drukuj PDF
+    </button>
+  </div>
+
+  <!-- CERTYFIKAT -->
+  <div class="certificate" id="certificate">
+
+    <!-- Dekoracyjne narożniki -->
+    <div class="cert-corner cert-corner-tl"></div>
+    <div class="cert-corner cert-corner-tr"></div>
+    <div class="cert-corner cert-corner-bl"></div>
+    <div class="cert-corner cert-corner-br"></div>
+
+    <!-- Glow tło -->
+    <div class="cert-glow"></div>
+
+    <!-- NAGŁÓWEK -->
+    <div class="cert-header">
+
+      <!-- Badge SVG inline -->
+      <div class="cert-badge">
+        <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#7c3aed"/>
+              <stop offset="100%" style="stop-color:#a855f7"/>
+            </linearGradient>
+          </defs>
+          <!-- Tarcza -->
+          <path d="M40 8 L68 20 L68 44 C68 58 55 70 40 74 C25 70 12 58 12 44 L12 20 Z"
+                fill="url(#badgeGrad)" opacity="0.9"/>
+          <path d="M40 14 L62 24 L62 44 C62 55 52 65 40 68 C28 65 18 55 18 44 L18 24 Z"
+                fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+          <!-- Gwiazdka -->
+          <text x="40" y="46" text-anchor="middle" dominant-baseline="central"
+                font-size="24" fill="white" font-weight="700">🏆</text>
+        </svg>
+      </div>
+
+      <h1 class="cert-title">Certyfikat Ukończenia</h1>
+      <p class="cert-subtitle">Minikurs HTML5 i CSS3</p>
+      <div class="cert-divider"></div>
+    </div>
+
+    <!-- TREŚĆ -->
+    <div class="cert-body">
+      <p class="cert-confirms">Niniejszym potwierdzamy, że</p>
+
+      <div class="cert-name">
+        {{ cert.user.get_full_name|default:cert.user.username }}
+      </div>
+
+      <div class="cert-course-badge">
+        🎓 {{ cert.enrollment.get_course_display }}
+      </div>
+
+      <p class="cert-text">
+        ukończył(a) z sukcesem kurs <strong>HTML5 i CSS3</strong>,
+        obejmujący strukturę dokumentów HTML, stylowanie CSS3, Flexbox, Grid,
+        animacje, formularze, multimedia oraz budowę kompletnych projektów webowych.
+      </p>
+
+      <p style="font-size:0.875rem; color:var(--text-muted);">
+        Data ukończenia:
+        <strong style="color:var(--text-secondary);">
+          {{ cert.issued_at|date:"d F Y" }}
+        </strong>
+      </p>
+    </div>
+
+    <!-- STOPKA -->
+    <div class="cert-footer">
+
+      <div class="cert-footer-col">
+        <div class="cert-footer-label">Wystawiony przez</div>
+        <div class="cert-signature-line"></div>
+        <div class="cert-footer-value">Minikurs HTML5 i CSS3</div>
+        <div class="cert-footer-value" style="font-size:0.75rem; color:var(--text-muted);">
+          Technikum im. Kasprzaka, Warszawa
+        </div>
+      </div>
+
+      <div class="cert-footer-col">
+        <div class="cert-footer-label">Numer certyfikatu</div>
+        <div class="cert-uuid">{{ cert.certificate_id }}</div>
+        <div style="margin-top:8px;">
+          <span class="badge badge-success">✅ Zweryfikowany</span>
+        </div>
+      </div>
+
+      <div class="cert-footer-col">
+        <div class="cert-footer-label">Data wystawienia</div>
+        <div class="cert-signature-line"></div>
+        <div class="cert-footer-value">{{ cert.issued_at|date:"d.m.Y" }}</div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
+

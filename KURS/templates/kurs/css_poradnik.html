@@ -1,0 +1,703 @@
+{% extends 'kurs/base.html' %}
+{% load static %}
+
+{% block title %}Poradnik CSS | Minikurs HTML5 i CSS3{% endblock %}
+{% block layout_class %}with-toc{% endblock %}
+
+{% block toc %}
+<aside class="toc-panel">
+  <div class="toc-title">📑 Spis treści</div>
+  <ul class="toc-list">
+    <li><a href="#css-wstep">🎨 Wstęp do CSS</a></li>
+    <li><a href="#css-selektory">🎯 Selektory</a></li>
+    <li><a href="#css-box-model">📦 Box Model</a></li>
+    <li><a href="#css-kolory">🌈 Kolory i tła</a></li>
+    <li><a href="#css-typografia">🔤 Typografia</a></li>
+    <li><a href="#css-flexbox">↔️ Flexbox</a></li>
+    <li><a href="#css-grid">🔲 Grid</a></li>
+    <li><a href="#css-pozycjonowanie">📌 Pozycjonowanie</a></li>
+    <li><a href="#css-animacje">✨ Animacje</a></li>
+    <li><a href="#css-zmienne">🔧 Zmienne CSS</a></li>
+    <li><a href="#css-responsywnosc">📱 Responsywność</a></li>
+  </ul>
+</aside>
+{% endblock %}
+
+{% block content %}
+<meta name="chapter" content="css">
+
+<div class="page-header">
+  <h1>🎨 Poradnik CSS</h1>
+  <p>Kompletny przewodnik po CSS3 — od selektorów po animacje i responsywność.</p>
+</div>
+
+<!-- ============================================================
+     1. WSTĘP DO CSS
+     ============================================================ -->
+<section class="content-section" id="css-wstep">
+  <div class="content-section-header">
+    <span class="section-icon">🎨</span>
+    <h2>Wstęp do CSS</h2>
+  </div>
+  <div class="content-card">
+    <p><strong style="color:var(--text-primary)">CSS</strong> (Cascading Style Sheets)
+    to język opisu wyglądu dokumentów HTML. Słowo „kaskadowy" oznacza, że style
+    nakładają się na siebie według określonych reguł pierwszeństwa.</p>
+
+    <h3 style="margin:20px 0 12px">Trzy sposoby dodawania CSS</h3>
+    <pre class="code-block" data-lang="CSS"><code><span class="comment">/* 1. Zewnętrzny plik CSS (zalecane) */</span>
+<span class="comment">/* W &lt;head&gt;: &lt;link rel="stylesheet" href="style.css"&gt; */</span>
+
+<span class="comment">/* 2. Wewnętrzny blok &lt;style&gt; w &lt;head&gt; */</span>
+<span class="tag">&lt;style&gt;</span>
+  <span class="selector">p</span> { <span class="property">color</span>: <span class="val">red</span>; }
+<span class="tag">&lt;/style&gt;</span>
+
+<span class="comment">/* 3. Inline style (unikać — trudne w utrzymaniu) */</span>
+<span class="tag">&lt;p</span> <span class="attr">style</span>=<span class="val">"color: red;"</span><span class="tag">&gt;</span>Tekst<span class="tag">&lt;/p&gt;</span></code></pre>
+
+    <h3 style="margin:20px 0 12px">Specyficzność (kaskada)</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead><tr><th>Selektor</th><th>Specyficzność</th><th>Przykład</th></tr></thead>
+        <tbody>
+          <tr><td>Inline style</td><td>1000</td><td><code>style="color:red"</code></td></tr>
+          <tr><td>ID</td><td>100</td><td><code>#naglowek</code></td></tr>
+          <tr><td>Klasa / pseudo-klasa / atrybut</td><td>10</td><td><code>.btn</code>, <code>:hover</code></td></tr>
+          <tr><td>Element / pseudo-element</td><td>1</td><td><code>p</code>, <code>::before</code></td></tr>
+          <tr><td><code>!important</code></td><td>Nadpisuje wszystko</td><td>Używać ostrożnie!</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     2. SELEKTORY
+     ============================================================ -->
+<section class="content-section" id="css-selektory">
+  <div class="content-section-header">
+    <span class="section-icon">🎯</span>
+    <h2>Selektory</h2>
+  </div>
+  <div class="content-card">
+    <pre class="code-block" data-lang="CSS"><code><span class="comment">/* Selektor elementu */</span>
+<span class="selector">p</span> { <span class="property">color</span>: <span class="val">#94a3b8</span>; }
+
+<span class="comment">/* Selektor klasy */</span>
+<span class="selector">.btn</span> { <span class="property">padding</span>: <span class="val">12px 24px</span>; }
+
+<span class="comment">/* Selektor ID */</span>
+<span class="selector">#naglowek</span> { <span class="property">font-size</span>: <span class="val">2rem</span>; }
+
+<span class="comment">/* Selektor atrybutu */</span>
+<span class="selector">input[type="email"]</span> { <span class="property">border-color</span>: <span class="val">#7c3aed</span>; }
+<span class="selector">a[href^="https"]</span>    { <span class="property">color</span>: <span class="val">green</span>; }   <span class="comment">/* href zaczyna się od https */</span>
+<span class="selector">a[href$=".pdf"]</span>     { <span class="property">color</span>: <span class="val">red</span>; }     <span class="comment">/* href kończy się na .pdf */</span>
+
+<span class="comment">/* Kombinatory */</span>
+<span class="selector">div p</span>       { <span class="property">color</span>: <span class="val">white</span>; }    <span class="comment">/* potomek (dowolny poziom) */</span>
+<span class="selector">div > p</span>     { <span class="property">color</span>: <span class="val">white</span>; }    <span class="comment">/* bezpośrednie dziecko */</span>
+<span class="selector">h2 + p</span>      { <span class="property">color</span>: <span class="val">white</span>; }    <span class="comment">/* sąsiad (następny element) */</span>
+<span class="selector">h2 ~ p</span>      { <span class="property">color</span>: <span class="val">white</span>; }    <span class="comment">/* wszyscy następni sąsiedzi */</span>
+
+<span class="comment">/* Pseudo-klasy */</span>
+<span class="selector">a:hover</span>          { <span class="property">color</span>: <span class="val">#a855f7</span>; }
+<span class="selector">button:focus</span>     { <span class="property">outline</span>: <span class="val">2px solid #7c3aed</span>; }
+<span class="selector">li:first-child</span>   { <span class="property">font-weight</span>: <span class="val">bold</span>; }
+<span class="selector">li:last-child</span>    { <span class="property">border-bottom</span>: <span class="val">none</span>; }
+<span class="selector">li:nth-child(2n)</span> { <span class="property">background</span>: <span class="val">rgba(255,255,255,0.05)</span>; } <span class="comment">/* parzyste */</span>
+<span class="selector">input:valid</span>      { <span class="property">border-color</span>: <span class="val">green</span>; }
+<span class="selector">input:invalid</span>    { <span class="property">border-color</span>: <span class="val">red</span>; }
+<span class="selector">p:not(.wyjątek)</span> { <span class="property">color</span>: <span class="val">#94a3b8</span>; }
+
+<span class="comment">/* Pseudo-elementy */</span>
+<span class="selector">p::first-line</span>   { <span class="property">font-weight</span>: <span class="val">bold</span>; }
+<span class="selector">p::first-letter</span> { <span class="property">font-size</span>: <span class="val">2em</span>; <span class="property">float</span>: <span class="val">left</span>; }
+<span class="selector">.btn::before</span>    { <span class="property">content</span>: <span class="val">"→ "</span>; }
+<span class="selector">.btn::after</span>     { <span class="property">content</span>: <span class="val">""</span>; <span class="property">display</span>: <span class="val">block</span>; }</code></pre>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. BOX MODEL
+     ============================================================ -->
+<section class="content-section" id="css-box-model">
+  <div class="content-section-header">
+    <span class="section-icon">📦</span>
+    <h2>Box Model</h2>
+  </div>
+  <div class="content-card">
+    <p>Każdy element HTML jest prostokątem składającym się z czterech warstw.</p>
+
+    <!-- Wizualizacja Box Model -->
+    <div class="box-model-viz">
+      <div class="bm-margin">
+        <span class="bm-label">margin</span>
+        <div class="bm-border">
+          <span class="bm-label">border</span>
+          <div class="bm-padding">
+            <span class="bm-label">padding</span>
+            <div class="bm-content">content</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <pre class="code-block" data-lang="CSS" style="margin-top:20px"><code><span class="selector">.element</span> {
+  <span class="comment">/* Wymiary treści */</span>
+  <span class="property">width</span>:  <span class="val">300px</span>;
+  <span class="property">height</span>: <span class="val">200px</span>;
+
+  <span class="comment">/* Wewnętrzny odstęp (od treści do border) */</span>
+  <span class="property">padding</span>: <span class="val">16px</span>;              <span class="comment">/* wszystkie strony */</span>
+  <span class="property">padding</span>: <span class="val">8px 16px</span>;         <span class="comment">/* góra/dół  lewo/prawo */</span>
+  <span class="property">padding</span>: <span class="val">4px 8px 12px 16px</span>; <span class="comment">/* góra prawo dół lewo */</span>
+
+  <span class="comment">/* Obramowanie */</span>
+  <span class="property">border</span>: <span class="val">2px solid #7c3aed</span>;
+  <span class="property">border-radius</span>: <span class="val">12px</span>;
+
+  <span class="comment">/* Zewnętrzny odstęp (od border do sąsiednich elementów) */</span>
+  <span class="property">margin</span>: <span class="val">24px auto</span>; <span class="comment">/* auto centruje poziomo */</span>
+
+  <span class="comment">/* WAŻNE: box-sizing zmienia jak liczyć szerokość */</span>
+  <span class="property">box-sizing</span>: <span class="val">border-box</span>;  <span class="comment">/* width = treść + padding + border */</span>
+  <span class="property">box-sizing</span>: <span class="val">content-box</span>; <span class="comment">/* width = tylko treść (domyślne) */</span>
+}</code></pre>
+  </div>
+</section>
+
+<!-- ============================================================
+     4. KOLORY I TŁA
+     ============================================================ -->
+<section class="content-section" id="css-kolory">
+  <div class="content-section-header">
+    <span class="section-icon">🌈</span>
+    <h2>Kolory i tła</h2>
+  </div>
+  <div class="content-card">
+    <pre class="code-block" data-lang="CSS"><code><span class="selector">.element</span> {
+  <span class="comment">/* Formaty kolorów */</span>
+  <span class="property">color</span>: <span class="val">red</span>;                        <span class="comment">/* nazwa */</span>
+  <span class="property">color</span>: <span class="val">#7c3aed</span>;                    <span class="comment">/* hex */</span>
+  <span class="property">color</span>: <span class="val">#7c3</span>;                       <span class="comment">/* hex skrócony */</span>
+  <span class="property">color</span>: <span class="val">rgb(124, 58, 237)</span>;          <span class="comment">/* RGB */</span>
+  <span class="property">color</span>: <span class="val">rgba(124, 58, 237, 0.8)</span>;   <span class="comment">/* RGB + przezroczystość */</span>
+  <span class="property">color</span>: <span class="val">hsl(263, 83%, 58%)</span>;        <span class="comment">/* HSL (barwa, nasycenie, jasność) */</span>
+  <span class="property">color</span>: <span class="val">hsla(263, 83%, 58%, 0.5)</span>; <span class="comment">/* HSL + przezroczystość */</span>
+
+  <span class="comment">/* Tło */</span>
+  <span class="property">background-color</span>: <span class="val">#0a0a0f</span>;
+  <span class="property">background-image</span>: <span class="val">url('obraz.jpg')</span>;
+  <span class="property">background-size</span>:  <span class="val">cover</span>;          <span class="comment">/* cover | contain | 100% */</span>
+  <span class="property">background-position</span>: <span class="val">center</span>;
+  <span class="property">background-repeat</span>: <span class="val">no-repeat</span>;
+  <span class="property">background-attachment</span>: <span class="val">fixed</span>;    <span class="comment">/* parallax efekt */</span>
+
+  <span class="comment">/* Gradient liniowy */</span>
+  <span class="property">background</span>: <span class="val">linear-gradient(135deg, #7c3aed, #a855f7)</span>;
+
+  <span class="comment">/* Gradient radialny */</span>
+  <span class="property">background</span>: <span class="val">radial-gradient(circle, #7c3aed 0%, #0a0a0f 70%)</span>;
+
+  <span class="comment">/* Przezroczystość całego elementu */</span>
+  <span class="property">opacity</span>: <span class="val">0.8</span>;
+}</code></pre>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. TYPOGRAFIA
+     ============================================================ -->
+<section class="content-section" id="css-typografia">
+  <div class="content-section-header">
+    <span class="section-icon">🔤</span>
+    <h2>Typografia</h2>
+  </div>
+  <div class="content-card">
+    <pre class="code-block" data-lang="CSS"><code><span class="selector">body</span> {
+  <span class="comment">/* Rodzina fontów — fallback chain */</span>
+  <span class="property">font-family</span>: <span class="val">'Inter', -apple-system, BlinkMacSystemFont, sans-serif</span>;
+
+  <span class="comment">/* Rozmiar */</span>
+  <span class="property">font-size</span>: <span class="val">1rem</span>;          <span class="comment">/* 16px domyślnie */</span>
+  <span class="property">font-size</span>: <span class="val">clamp(1rem, 2.5vw, 1.5rem)</span>; <span class="comment">/* responsywny rozmiar */</span>
+
+  <span class="comment">/* Grubość */</span>
+  <span class="property">font-weight</span>: <span class="val">400</span>;   <span class="comment">/* 100–900, lub: thin/normal/bold */</span>
+
+  <span class="comment">/* Styl */</span>
+  <span class="property">font-style</span>: <span class="val">italic</span>; <span class="comment">/* normal | italic | oblique */</span>
+
+  <span class="comment">/* Wysokość linii */</span>
+  <span class="property">line-height</span>: <span class="val">1.6</span>;   <span class="comment">/* bezjednostkowe — 1.6 × font-size */</span>
+
+  <span class="comment">/* Odstęp między literami */</span>
+  <span class="property">letter-spacing</span>: <span class="val">0.05em</span>;
+
+  <span class="comment">/* Odstęp między wyrazami */</span>
+  <span class="property">word-spacing</span>: <span class="val">4px</span>;
+}
+
+<span class="selector">h1</span> {
+  <span class="comment">/* Wyrównanie tekstu */</span>
+  <span class="property">text-align</span>: <span class="val">center</span>;      <span class="comment">/* left | right | center | justify */</span>
+
+  <span class="comment">/* Dekoracja */</span>
+  <span class="property">text-decoration</span>: <span class="val">underline</span>; <span class="comment">/* none | underline | line-through */</span>
+
+  <span class="comment">/* Transformacja */</span>
+  <span class="property">text-transform</span>: <span class="val">uppercase</span>; <span class="comment">/* none | uppercase | lowercase | capitalize */</span>
+
+  <span class="comment">/* Cień tekstu */</span>
+  <span class="property">text-shadow</span>: <span class="val">0 0 20px rgba(124, 58, 237, 0.5)</span>;
+
+  <span class="comment">/* Gradient tekstu */</span>
+  <span class="property">background</span>: <span class="val">linear-gradient(135deg, #7c3aed, #a855f7)</span>;
+  <span class="property">-webkit-background-clip</span>: <span class="val">text</span>;
+  <span class="property">-webkit-text-fill-color</span>: <span class="val">transparent</span>;
+  <span class="property">background-clip</span>: <span class="val">text</span>;
+}</code></pre>
+  </div>
+</section>
+
+<!-- ============================================================
+     6. FLEXBOX
+     ============================================================ -->
+<section class="content-section" id="css-flexbox">
+  <div class="content-section-header">
+    <span class="section-icon">↔️</span>
+    <h2>Flexbox</h2>
+  </div>
+  <div class="content-card">
+    <p>Flexbox to jednowymiarowy system layoutu — układa elementy w wierszu lub kolumnie.</p>
+
+    <!-- Wizualizacja Flexbox -->
+    <div class="flex-viz">
+      <div class="flex-container-demo">
+        <div class="flex-item-demo">1</div>
+        <div class="flex-item-demo">2</div>
+        <div class="flex-item-demo flex-item-grow">3 (flex-grow:2)</div>
+        <div class="flex-item-demo">4</div>
+      </div>
+    </div>
+
+    <pre class="code-block" data-lang="CSS" style="margin-top:20px"><code><span class="comment">/* KONTENER (rodzic) */</span>
+<span class="selector">.container</span> {
+  <span class="property">display</span>: <span class="val">flex</span>;
+
+  <span class="comment">/* Kierunek głównej osi */</span>
+  <span class="property">flex-direction</span>: <span class="val">row</span>;            <span class="comment">/* row | row-reverse | column | column-reverse */</span>
+
+  <span class="comment">/* Zawijanie elementów */</span>
+  <span class="property">flex-wrap</span>: <span class="val">wrap</span>;               <span class="comment">/* nowrap | wrap | wrap-reverse */</span>
+
+  <span class="comment">/* Wyrównanie na osi głównej (poziomej dla row) */</span>
+  <span class="property">justify-content</span>: <span class="val">space-between</span>; <span class="comment">/* flex-start | flex-end | center | space-around | space-evenly */</span>
+
+  <span class="comment">/* Wyrównanie na osi poprzecznej (pionowej dla row) */</span>
+  <span class="property">align-items</span>: <span class="val">center</span>;           <span class="comment">/* stretch | flex-start | flex-end | center | baseline */</span>
+
+  <span class="comment">/* Wyrównanie wielu wierszy */</span>
+  <span class="property">align-content</span>: <span class="val">flex-start</span>;
+
+  <span class="comment">/* Odstępy */</span>
+  <span class="property">gap</span>: <span class="val">16px</span>;
+  <span class="property">gap</span>: <span class="val">16px 24px</span>; <span class="comment">/* row-gap column-gap */</span>
+}
+
+<span class="comment">/* ELEMENTY (dzieci) */</span>
+<span class="selector">.item</span> {
+  <span class="comment">/* Wzrost — jak bardzo element może się rozciągnąć */</span>
+  <span class="property">flex-grow</span>:   <span class="val">1</span>;   <span class="comment">/* 0 = nie rośnie, 1+ = rośnie proporcjonalnie */</span>
+
+  <span class="comment">/* Kurczenie — jak bardzo element może się skurczyć */</span>
+  <span class="property">flex-shrink</span>: <span class="val">1</span>;   <span class="comment">/* 0 = nie kurczy się */</span>
+
+  <span class="comment">/* Bazowy rozmiar przed podziałem przestrzeni */</span>
+  <span class="property">flex-basis</span>:  <span class="val">200px</span>;
+
+  <span class="comment">/* Skrót: grow shrink basis */</span>
+  <span class="property">flex</span>: <span class="val">1 1 200px</span>;
+  <span class="property">flex</span>: <span class="val">1</span>;          <span class="comment">/* = flex: 1 1 0% */</span>
+
+  <span class="comment">/* Kolejność wyświetlania */</span>
+  <span class="property">order</span>: <span class="val">2</span>;
+
+  <span class="comment">/* Nadpisanie align-items dla jednego elementu */</span>
+  <span class="property">align-self</span>: <span class="val">flex-end</span>;
+}</code></pre>
+  </div>
+</section>
+
+<!-- ============================================================
+     7. GRID
+     ============================================================ -->
+<section class="content-section" id="css-grid">
+  <div class="content-section-header">
+    <span class="section-icon">🔲</span>
+    <h2>CSS Grid</h2>
+  </div>
+  <div class="content-card">
+    <p>Grid to dwuwymiarowy system layoutu — kontroluje jednocześnie wiersze i kolumny.</p>
+
+    <!-- Wizualizacja Grid -->
+    <div class="grid-viz">
+      <div class="grid-demo">
+        <div class="grid-item-demo gi-header">header</div>
+        <div class="grid-item-demo gi-sidebar">sidebar</div>
+        <div class="grid-item-demo gi-main">main</div>
+        <div class="grid-item-demo gi-footer">footer</div>
+      </div>
+    </div>
+
+    <pre class="code-block" data-lang="CSS" style="margin-top:20px"><code><span class="comment">/* KONTENER */</span>
+<span class="selector">.grid</span> {
+  <span class="property">display</span>: <span class="val">grid</span>;
+
+  <span class="comment">/* Definicja kolumn */</span>
+  <span class="property">grid-template-columns</span>: <span class="val">repeat(3, 1fr)</span>;        <span class="comment">/* 3 równe kolumny */</span>
+  <span class="property">grid-template-columns</span>: <span class="val">260px 1fr 220px</span>;       <span class="comment">/* fixed auto fixed */</span>
+  <span class="property">grid-template-columns</span>: <span class="val">repeat(auto-fit, minmax(250px, 1fr))</span>; <span class="comment">/* responsywne */</span>
+
+  <span class="comment">/* Definicja wierszy */</span>
+  <span class="property">grid-template-rows</span>: <span class="val">auto 1fr auto</span>;  <span class="comment">/* header content footer */</span>
+
+  <span class="comment">/* Obszary nazwane */</span>
+  <span class="property">grid-template-areas</span>:
+    <span class="val">"header  header  header"</span>
+    <span class="val">"sidebar main    main"</span>
+    <span class="val">"footer  footer  footer"</span>;
+
+  <span class="comment">/* Odstępy */</span>
+  <span class="property">gap</span>: <span class="val">24px</span>;
+  <span class="property">row-gap</span>: <span class="val">16px</span>;
+  <span class="property">column-gap</span>: <span class="val">24px</span>;
+}
+
+<span class="comment">/* ELEMENTY */</span>
+<span class="selector">.header</span>  { <span class="property">grid-area</span>: <span class="val">header</span>; }
+<span class="selector">.sidebar</span> { <span class="property">grid-area</span>: <span class="val">sidebar</span>; }
+<span class="selector">.main</span>    { <span class="property">grid-area</span>: <span class="val">main</span>; }
+<span class="selector">.footer</span>  { <span class="property">grid-area</span>: <span class="val">footer</span>; }
+
+<span class="comment">/* Ręczne pozycjonowanie */</span>
+<span class="selector">.item</span> {
+  <span class="property">grid-column</span>: <span class="val">1 / 3</span>;   <span class="comment">/* od linii 1 do linii 3 */</span>
+  <span class="property">grid-column</span>: <span class="val">span 2</span>;  <span class="comment">/* zajmuje 2 kolumny */</span>
+  <span class="property">grid-row</span>:    <span class="val">1 / 3</span>;
+}</code></pre>
+  </div>
+</section>
+
+<!-- ============================================================
+     8. POZYCJONOWANIE
+     ============================================================ -->
+<section class="content-section" id="css-pozycjonowanie">
+  <div class="content-section-header">
+    <span class="section-icon">📌</span>
+    <h2>Pozycjonowanie</h2>
+  </div>
+  <div class="content-card">
+    <pre class="code-block" data-lang="CSS"><code><span class="comment">/* static — domyślne, w normalnym przepływie dokumentu */</span>
+<span class="selector">.static</span>   { <span class="property">position</span>: <span class="val">static</span>; }
+
+<span class="comment">/* relative — przesunięty względem swojego normalnego miejsca */</span>
+<span class="selector">.relative</span> {
+  <span class="property">position</span>: <span class="val">relative</span>;
+  <span class="property">top</span>: <span class="val">10px</span>;   <span class="comment">/* przesuwa w dół o 10px */</span>
+  <span class="property">left</span>: <span class="val">20px</span>;  <span class="comment">/* przesuwa w prawo o 20px */</span>
+}
+
+<span class="comment">/* absolute — wyrwany z przepływu, pozycja względem rodzica z position != static */</span>
+<span class="selector">.absolute</span> {
+  <span class="property">position</span>: <span class="val">absolute</span>;
+  <span class="property">top</span>: <span class="val">0</span>; <span class="property">right</span>: <span class="val">0</span>;
+  <span class="property">bottom</span>: <span class="val">0</span>; <span class="property">left</span>: <span class="val">0</span>;  <span class="comment">/* rozciąga na cały rodzic */</span>
+}
+
+<span class="comment">/* fixed — względem okna przeglądarki, nie scrolluje */</span>
+<span class="selector">.navbar</span> {
+  <span class="property">position</span>: <span class="val">fixed</span>;
+  <span class="property">top</span>: <span class="val">0</span>; <span class="property">left</span>: <span class="val">0</span>; <span class="property">right</span>: <span class="val">0</span>;
+  <span class="property">z-index</span>: <span class="val">100</span>;
+}
+
+<span class="comment">/* sticky — jak relative, ale "przykleja się" przy scrollu */</span>
+<span class="selector">.sidebar</span> {
+  <span class="property">position</span>: <span class="val">sticky</span>;
+  <span class="property">top</span>: <span class="val">64px</span>;  <span class="comment">/* przykleja się 64px od góry */</span>
+}
+
+<span class="comment">/* z-index — kolejność warstw (wyższy = na wierzchu) */</span>
+<span class="selector">.modal</span>   { <span class="property">z-index</span>: <span class="val">1000</span>; }
+<span class="selector">.overlay</span> { <span class="property">z-index</span>: <span class="val">999</span>; }
+<span class="selector">.navbar</span>  { <span class="property">z-index</span>: <span class="val">100</span>; }</code></pre>
+  </div>
+</section>
+
+<!-- ============================================================
+     9. ANIMACJE I PRZEJŚCIA
+     ============================================================ -->
+<section class="content-section" id="css-animacje">
+  <div class="content-section-header">
+    <span class="section-icon">✨</span>
+    <h2>Animacje i Przejścia</h2>
+  </div>
+  <div class="content-card">
+    <pre class="code-block" data-lang="CSS"><code><span class="comment">/* TRANSITION — płynne przejście przy zmianie stanu */</span>
+<span class="selector">.btn</span> {
+  <span class="property">background</span>: <span class="val">#7c3aed</span>;
+  <span class="property">transform</span>: <span class="val">translateY(0)</span>;
+
+  <span class="comment">/* właściwość  czas  funkcja-czasowa  opóźnienie */</span>
+  <span class="property">transition</span>: <span class="val">all 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0s</span>;
+}
+<span class="selector">.btn:hover</span> {
+  <span class="property">background</span>: <span class="val">#a855f7</span>;
+  <span class="property">transform</span>: <span class="val">translateY(-4px)</span>;
+  <span class="property">box-shadow</span>: <span class="val">0 0 20px rgba(124,58,237,0.4)</span>;
+}
+
+<span class="comment">/* ANIMATION — pełna animacja z @keyframes */</span>
+<span class="selector">.pulsing-dot</span> {
+  <span class="property">animation</span>: <span class="val">pulse 2s ease-in-out infinite</span>;
+  <span class="comment">/* nazwa  czas  funkcja  opóźnienie  powtórzenia  kierunek */</span>
+  <span class="property">animation</span>: <span class="val">pulse 2s ease-in-out 0s infinite alternate</span>;
+}
+
+<span class="keyword">@keyframes</span> <span class="selector">pulse</span> {
+  <span class="val">0%</span>   { <span class="property">transform</span>: <span class="val">scale(1)</span>;    <span class="property">opacity</span>: <span class="val">1</span>; }
+  <span class="val">50%</span>  { <span class="property">transform</span>: <span class="val">scale(1.1)</span>;  <span class="property">opacity</span>: <span class="val">0.7</span>; }
+  <span class="val">100%</span> { <span class="property">transform</span>: <span class="val">scale(1)</span>;    <span class="property">opacity</span>: <span class="val">1</span>; }
+}
+
+<span class="keyword">@keyframes</span> <span class="selector">float</span> {
+  <span class="val">0%, 100%</span> { <span class="property">transform</span>: <span class="val">translateY(0px)</span>; }
+  <span class="val">50%</span>      { <span class="property">transform</span>: <span class="val">translateY(-16px)</span>; }
+}
+
+<span class="keyword">@keyframes</span> <span class="selector">fadeIn</span> {
+  <span class="val">from</span> { <span class="property">opacity</span>: <span class="val">0</span>; <span class="property">transform</span>: <span class="val">translateY(24px)</span>; }
+  <span class="val">to</span>   { <span class="property">opacity</span>: <span class="val">1</span>; <span class="property">transform</span>: <span class="val">translateY(0)</span>; }
+}
+
+<span class="comment">/* Funkcje czasowe */</span>
+<span class="comment">/* ease          — wolno → szybko → wolno (domyślne) */</span>
+<span class="comment">/* linear        — stała prędkość */</span>
+<span class="comment">/* ease-in       — wolno na starcie */</span>
+<span class="comment">/* ease-out      — wolno na końcu */</span>
+<span class="comment">/* ease-in-out   — wolno na starcie i końcu */</span>
+<span class="comment">/* cubic-bezier  — własna krzywa Béziera */</span></code></pre>
+  </div>
+</section>
+
+<!-- ============================================================
+     10. ZMIENNE CSS
+     ============================================================ -->
+<section class="content-section" id="css-zmienne">
+  <div class="content-section-header">
+    <span class="section-icon">🔧</span>
+    <h2>Zmienne CSS (Custom Properties)</h2>
+  </div>
+  <div class="content-card">
+    <pre class="code-block" data-lang="CSS"><code><span class="comment">/* Deklaracja zmiennych w :root — dostępne globalnie */</span>
+<span class="selector">:root</span> {
+  <span class="property">--kolor-glowny</span>:  <span class="val">#7c3aed</span>;
+  <span class="property">--kolor-hover</span>:   <span class="val">#a855f7</span>;
+  <span class="property">--odstep-base</span>:   <span class="val">16px</span>;
+  <span class="property">--font-rozmiar</span>:  <span class="val">1rem</span>;
+  <span class="property">--promien</span>:       <span class="val">12px</span>;
+  <span class="property">--cien</span>:          <span class="val">0 8px 32px rgba(0,0,0,0.4)</span>;
+}
+
+    <pre class="code-block" data-lang="CSS"><code><span class="comment">/* Użycie zmiennej przez var() */</span>
+<span class="selector">.btn</span> {
+  <span class="property">background</span>:    <span class="val">var(--kolor-glowny)</span>;
+  <span class="property">padding</span>:       <span class="val">var(--odstep-base)</span>;
+  <span class="property">border-radius</span>: <span class="val">var(--promien)</span>;
+  <span class="property">box-shadow</span>:    <span class="val">var(--cien)</span>;
+  <span class="property">font-size</span>:     <span class="val">var(--font-rozmiar)</span>;
+}
+
+<span class="comment">/* var() z wartością fallback (zapasową) */</span>
+<span class="selector">.element</span> {
+  <span class="property">color</span>: <span class="val">var(--kolor-nieistniejacy, #ffffff)</span>;
+}
+
+<span class="comment">/* Nadpisanie zmiennej lokalnie */</span>
+<span class="selector">.btn-danger</span> {
+  <span class="property">--kolor-glowny</span>: <span class="val">#ef4444</span>; <span class="comment">/* nadpisuje tylko w tym elemencie i jego dzieciach */</span>
+  <span class="property">background</span>: <span class="val">var(--kolor-glowny)</span>;
+}
+
+<span class="comment">/* Zmiana zmiennych przez JavaScript */</span>
+<span class="comment">/* document.documentElement.style
+     .setProperty('--kolor-glowny', '#ef4444'); */</span>
+
+<span class="comment">/* Zmienne w media queries */</span>
+<span class="keyword">@media</span> (<span class="property">prefers-color-scheme</span>: <span class="val">light</span>) {
+  <span class="selector">:root</span> {
+    <span class="property">--bg-primary</span>:   <span class="val">#ffffff</span>;
+    <span class="property">--text-primary</span>: <span class="val">#0a0a0f</span>;
+  }
+}</code></pre>
+  </div>
+</section>
+
+<!-- ============================================================
+     11. RESPONSYWNOŚĆ
+     ============================================================ -->
+<section class="content-section" id="css-responsywnosc">
+  <div class="content-section-header">
+    <span class="section-icon">📱</span>
+    <h2>Responsywność</h2>
+  </div>
+  <div class="content-card">
+    <p>Responsywność to zdolność strony do dostosowania wyglądu do różnych rozmiarów ekranu.
+       Podejście <strong style="color:var(--text-primary)">mobile-first</strong> oznacza,
+       że najpierw piszemy style dla mobile, a potem rozszerzamy dla większych ekranów.</p>
+
+    <pre class="code-block" data-lang="CSS" style="margin-top:16px"><code><span class="comment">/* BREAKPOINTS — standardowe punkty przełamania */</span>
+<span class="comment">/* Mobile:  < 768px  (domyślne — mobile first) */</span>
+<span class="comment">/* Tablet:  768px–1024px */</span>
+<span class="comment">/* Desktop: > 1024px */</span>
+
+<span class="comment">/* Styl bazowy (mobile) */</span>
+<span class="selector">.grid</span> {
+  <span class="property">display</span>: <span class="val">grid</span>;
+  <span class="property">grid-template-columns</span>: <span class="val">1fr</span>; <span class="comment">/* 1 kolumna na mobile */</span>
+  <span class="property">gap</span>: <span class="val">16px</span>;
+}
+
+<span class="comment">/* Tablet i większe */</span>
+<span class="keyword">@media</span> (<span class="property">min-width</span>: <span class="val">768px</span>) {
+  <span class="selector">.grid</span> {
+    <span class="property">grid-template-columns</span>: <span class="val">repeat(2, 1fr)</span>; <span class="comment">/* 2 kolumny */</span>
+  }
+}
+
+<span class="comment">/* Desktop i większe */</span>
+<span class="keyword">@media</span> (<span class="property">min-width</span>: <span class="val">1024px</span>) {
+  <span class="selector">.grid</span> {
+    <span class="property">grid-template-columns</span>: <span class="val">repeat(3, 1fr)</span>; <span class="comment">/* 3 kolumny */</span>
+  }
+}
+
+<span class="comment">/* Inne przydatne media queries */</span>
+<span class="keyword">@media</span> (<span class="property">max-width</span>: <span class="val">768px</span>) {
+  <span class="selector">.sidebar</span> { <span class="property">display</span>: <span class="val">none</span>; }
+  <span class="selector">.hamburger</span> { <span class="property">display</span>: <span class="val">flex</span>; }
+}
+
+<span class="keyword">@media</span> (<span class="property">prefers-reduced-motion</span>: <span class="val">reduce</span>) {
+  <span class="selector">*</span> { <span class="property">animation</span>: <span class="val">none !important</span>; <span class="property">transition</span>: <span class="val">none !important</span>; }
+}
+
+<span class="keyword">@media</span> (<span class="property">orientation</span>: <span class="val">landscape</span>) {
+  <span class="selector">.hero</span> { <span class="property">min-height</span>: <span class="val">100vh</span>; }
+}
+
+<span class="comment">/* Responsywna typografia z clamp() */</span>
+<span class="selector">h1</span> {
+  <span class="comment">/* min  preferowana  max */</span>
+  <span class="property">font-size</span>: <span class="val">clamp(1.5rem, 5vw, 3rem)</span>;
+}
+
+<span class="comment">/* Responsywny obraz */</span>
+<span class="selector">img</span> {
+  <span class="property">max-width</span>: <span class="val">100%</span>;
+  <span class="property">height</span>: <span class="val">auto</span>;
+}
+
+<span class="comment">/* Responsywny iframe (proporcje 16:9) */</span>
+<span class="selector">.video-wrapper</span> {
+  <span class="property">position</span>: <span class="val">relative</span>;
+  <span class="property">padding-bottom</span>: <span class="val">56.25%</span>; <span class="comment">/* 9/16 = 56.25% */</span>
+  <span class="property">height</span>: <span class="val">0</span>;
+  <span class="property">overflow</span>: <span class="val">hidden</span>;
+}
+<span class="selector">.video-wrapper iframe</span> {
+  <span class="property">position</span>: <span class="val">absolute</span>;
+  <span class="property">top</span>: <span class="val">0</span>; <span class="property">left</span>: <span class="val">0</span>;
+  <span class="property">width</span>: <span class="val">100%</span>; <span class="property">height</span>: <span class="val">100%</span>;
+}</code></pre>
+  </div>
+</section>
+
+<!-- Style lokalne — wizualizacje -->
+<style>
+/* Box Model viz */
+.box-model-viz {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(13,13,20,0.6);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  margin: 16px 0;
+}
+.bm-margin  { background: rgba(251,146,60,0.1);  border: 2px dashed rgba(251,146,60,0.5);  padding: 16px; border-radius: 8px; position: relative; }
+.bm-border  { background: rgba(124,58,237,0.1);  border: 2px solid rgba(124,58,237,0.6);   padding: 16px; border-radius: 6px; position: relative; }
+.bm-padding { background: rgba(34,197,94,0.1);   border: 2px dashed rgba(34,197,94,0.5);   padding: 16px; border-radius: 4px; position: relative; }
+.bm-content { background: rgba(124,58,237,0.25); border: 1px solid rgba(124,58,237,0.5);   padding: 12px 24px; border-radius: 4px;
+              color: var(--accent-secondary); font-family: 'JetBrains Mono', monospace; font-size: var(--text-xs); font-weight: 600; text-align: center; }
+.bm-label   { position: absolute; top: 2px; left: 6px; font-size: 10px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+
+/* Flexbox viz */
+.flex-viz { margin: 16px 0; }
+.flex-container-demo {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  background: rgba(13,13,20,0.6);
+  border: 2px dashed rgba(124,58,237,0.4);
+  border-radius: var(--radius-md);
+}
+.flex-item-demo {
+  background: rgba(124,58,237,0.2);
+  border: 1px solid rgba(124,58,237,0.4);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--text-xs);
+  color: var(--accent-secondary);
+  text-align: center;
+}
+.flex-item-grow { flex-grow: 2; background: rgba(168,85,247,0.2); border-color: rgba(168,85,247,0.5); }
+
+/* Grid viz */
+.grid-viz { margin: 16px 0; }
+.grid-demo {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header  header"
+    "sidebar main"
+    "footer  footer";
+  gap: 6px;
+  padding: 12px;
+  background: rgba(13,13,20,0.6);
+  border: 2px dashed rgba(124,58,237,0.4);
+  border-radius: var(--radius-md);
+  min-height: 180px;
+}
+.grid-item-demo {
+  background: rgba(124,58,237,0.15);
+  border: 1px solid rgba(124,58,237,0.35);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--text-xs);
+  color: var(--accent-secondary);
+  display: flex; align-items: center; justify-content: center;
+}
+.gi-header  { grid-area: header;  background: rgba(168,85,247,0.2); }
+.gi-sidebar { grid-area: sidebar; }
+.gi-main    { grid-area: main;    background: rgba(109,40,217,0.15); }
+.gi-footer  { grid-area: footer;  background: rgba(168,85,247,0.1); }
+</style>
+
+{% endblock %}

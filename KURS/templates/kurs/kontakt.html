@@ -1,0 +1,150 @@
+{% extends 'kurs/base.html' %}
+{% load static %}
+
+{% block title %}Kontakt | Minikurs HTML5 i CSS3{% endblock %}
+
+{% block content %}
+<meta name="chapter" content="kontakt">
+
+<div class="page-header">
+  <h1>📞 Kontakt</h1>
+  <p>Dane kontaktowe autora kursu i mapa dojazdu.</p>
+</div>
+
+<!-- KARTA KONTAKTOWA -->
+<div class="content-card fade-in" style="max-width:600px; margin-bottom:32px;">
+  <h2 style="color:var(--accent-secondary); margin-bottom:24px;">👤 Dane kontaktowe</h2>
+
+  <div class="contact-row">
+    <span class="contact-icon">👤</span>
+    <div>
+      <div class="contact-label">Imię i nazwisko</div>
+      <!-- ZASTĄP własnymi danymi -->
+      <div class="contact-value">[IMIĘ NAZWISKO]</div>
+    </div>
+  </div>
+
+  <div class="contact-row">
+    <span class="contact-icon">🏫</span>
+    <div>
+      <div class="contact-label">Szkoła i klasa</div>
+      <!-- ZASTĄP własnymi danymi -->
+      <div class="contact-value">
+        Technikum Elektryczne im. Kasprzaka w Warszawie,
+        klasa <strong style="color:var(--accent-secondary)">[KLASA]</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-row">
+    <span class="contact-icon">📍</span>
+    <div>
+      <div class="contact-label">Adres</div>
+      <!-- WAŻNE: link do trasy rowerowej w multimedia.html -->
+      <div class="contact-value">
+        <!-- ZASTĄP własnymi danymi -->
+        <a href="/kurs/multimedia/#trasa-rowerowa"
+           style="color:var(--accent-secondary); text-decoration:underline; text-underline-offset:3px;"
+           title="Kliknij, aby zobaczyć trasę rowerową">
+          <!-- ZASTĄP własnymi danymi -->
+          [ULICA NR], [KOD] Warszawa 🚴
+        </a>
+        <div style="font-size:var(--text-xs); color:var(--text-muted); margin-top:4px;">
+          ↗ Kliknięcie otwiera trasę rowerową w sekcji Multimedia
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-row">
+    <span class="contact-icon">📧</span>
+    <div>
+      <div class="contact-label">E-mail</div>
+      <!-- ZASTĄP własnymi danymi -->
+      <div class="contact-value">
+        <a href="mailto:[email]@example.com"
+           style="color:var(--accent-secondary);">
+          [email]@example.com
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-row" style="border-bottom:none; margin-bottom:0; padding-bottom:0;">
+    <span class="contact-icon">📱</span>
+    <div>
+      <div class="contact-label">Telefon</div>
+      <!-- ZASTĄP własnymi danymi -->
+      <div class="contact-value">
+        <a href="tel:+48000000000"
+           style="color:var(--accent-secondary);">
+          +48 [XXX XXX XXX]
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAPA GOOGLE MAPS -->
+<div class="content-card fade-in" style="margin-bottom:32px;">
+  <h2 style="color:var(--accent-secondary); margin-bottom:8px;">🗺️ Znajdź nas na mapie</h2>
+
+  <p style="margin-bottom:16px;">
+    <a href="/kurs/multimedia/#mapa-kasprzaka"
+       style="color:var(--accent-secondary); font-weight:600;
+              text-decoration:underline; text-underline-offset:3px;">
+      Kliknij, aby zobaczyć mapę w pełnym widoku →
+    </a>
+  </p>
+
+  <!-- Miniatura mapy (400px) -->
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2444.0!2d20.9897!3d52.2297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc8c92692e49%3A0xc2e97552b8af7e8b!2sTechnikum%20Elektryczne%20im.%20Kasprzaka!5e0!3m2!1spl!2spl!4v1"
+    width="100%"
+    height="400"
+    style="border:0; border-radius: var(--radius-lg);
+           box-shadow: var(--shadow-card); display:block;"
+    allowfullscreen
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    title="Technikum im. Kasprzaka — miniatura mapy">
+  </iframe>
+
+  <div style="margin-top:20px; text-align:center;">
+    <a href="/kurs/multimedia/#mapa-kasprzaka" class="btn btn-primary">
+      🗺️ Otwórz pełną mapę w sekcji Multimedia
+    </a>
+  </div>
+</div>
+
+<style>
+.contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+.contact-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  width: 36px;
+  text-align: center;
+  margin-top: 2px;
+}
+.contact-label {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.contact-value {
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+</style>
+{% endblock %}
