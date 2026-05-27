@@ -1,0 +1,240 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rejestracja | Minikurs HTML5 i CSS3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body class="auth-body">
+
+  <div class="auth-layout">
+
+    <!-- ── Lewa kolumna ── -->
+    <div class="auth-left">
+      <a href="/" class="auth-back">
+        <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+        Wróć na stronę główną
+      </a>
+
+      <div class="auth-left-content">
+        <div class="auth-brand">⟨H5⟩</div>
+        <h2 class="auth-left-title">Zacznij naukę<br>już dziś.</h2>
+        <p class="auth-left-sub">Rejestracja zajmuje 30 sekund. Zero opłat, zero spamu.</p>
+
+        <div class="auth-features">
+          <div class="auth-feature">
+            <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
+            13 rozdziałów kursu
+          </div>
+          <div class="auth-feature">
+            <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
+            7 projektów praktycznych
+          </div>
+          <div class="auth-feature">
+            <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
+            Certyfikat ukończenia
+          </div>
+          <div class="auth-feature">
+            <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
+            W 100% za darmo
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-code-bg" aria-hidden="true">
+        <span>&lt;html&gt;</span><span>body {</span><span>display: flex;</span>
+        <span>.hero {</span><span>color: #7c3aed;</span><span>}</span>
+        <span>&lt;/html&gt;</span><span>margin: auto;</span><span>padding: 24px;</span>
+      </div>
+    </div>
+
+    <!-- ── Prawa kolumna — formularz ── -->
+    <div class="auth-right">
+      <div class="auth-card">
+
+        <div class="auth-card-header">
+          <h1>Utwórz konto</h1>
+          <p>Masz już konto?
+            <a href="/login/">Zaloguj się</a>
+          </p>
+        </div>
+
+        {% if messages %}
+          {% for message in messages %}
+            <div class="auth-alert auth-alert-{{ message.tags }}">
+              <i data-lucide="alert-circle" style="width:15px;height:15px;flex-shrink:0;"></i>
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <form method="POST" action="/register/" class="auth-form">
+          {% csrf_token %}
+
+          <div class="auth-field">
+            <label for="reg-username">
+              <i data-lucide="user" style="width:13px;height:13px;"></i>
+              Nazwa użytkownika
+            </label>
+            <input
+              type="text"
+              id="reg-username"
+              name="username"
+              placeholder="jan_kowalski"
+              autocomplete="username"
+              required
+              minlength="3"
+              maxlength="30"
+              value="{{ request.POST.username|default:'' }}"
+            >
+            <span class="auth-hint">Min. 3 znaki, tylko litery, cyfry i _</span>
+          </div>
+
+          <div class="auth-field">
+            <label for="reg-email">
+              <i data-lucide="mail" style="width:13px;height:13px;"></i>
+              E-mail <span class="auth-optional">(opcjonalnie)</span>
+            </label>
+            <input
+              type="email"
+              id="reg-email"
+              name="email"
+              placeholder="jan@example.com"
+              autocomplete="email"
+              value="{{ request.POST.email|default:'' }}"
+            >
+          </div>
+
+          <div class="auth-field">
+            <label for="reg-pass1">
+              <i data-lucide="lock" style="width:13px;height:13px;"></i>
+              Hasło
+            </label>
+            <div class="auth-input-wrap">
+              <input
+                type="password"
+                id="reg-pass1"
+                name="password1"
+                placeholder="Min. 8 znaków"
+                autocomplete="new-password"
+                required
+                minlength="8"
+                oninput="strengthCheck(this.value)"
+              >
+              <button type="button" class="auth-eye" id="toggle-p1" aria-label="Pokaż hasło">
+                <i data-lucide="eye" style="width:16px;height:16px;"></i>
+              </button>
+            </div>
+            <!-- Pasek siły hasła -->
+            <div class="auth-strength">
+              <div class="auth-strength-bar">
+                <div id="strength-fill"></div>
+              </div>
+              <span id="strength-label">—</span>
+            </div>
+          </div>
+
+          <div class="auth-field">
+            <label for="reg-pass2">
+              <i data-lucide="lock-keyhole" style="width:13px;height:13px;"></i>
+              Powtórz hasło
+            </label>
+            <div class="auth-input-wrap">
+              <input
+                type="password"
+                id="reg-pass2"
+                name="password2"
+                placeholder="••••••••"
+                autocomplete="new-password"
+                required
+                minlength="8"
+                oninput="matchCheck()"
+              >
+              <button type="button" class="auth-eye" id="toggle-p2" aria-label="Pokaż hasło">
+                <i data-lucide="eye" style="width:16px;height:16px;"></i>
+              </button>
+            </div>
+            <span id="match-label" class="auth-hint"></span>
+          </div>
+
+          <button type="submit" class="auth-submit">
+            <i data-lucide="user-plus" style="width:17px;height:17px;"></i>
+            Utwórz konto
+          </button>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Toggle hasła
+    function makeToggle(btnId, inputId) {
+      const btn = document.getElementById(btnId);
+      const inp = document.getElementById(inputId);
+      if (!btn || !inp) return;
+      btn.addEventListener('click', () => {
+        const show = inp.type === 'password';
+        inp.type = show ? 'text' : 'password';
+        btn.innerHTML = show
+          ? '<i data-lucide="eye-off" style="width:16px;height:16px;"></i>'
+          : '<i data-lucide="eye"     style="width:16px;height:16px;"></i>';
+        lucide.createIcons();
+      });
+    }
+    makeToggle('toggle-p1', 'reg-pass1');
+    makeToggle('toggle-p2', 'reg-pass2');
+
+    // Siła hasła
+    function strengthCheck(val) {
+      const fill  = document.getElementById('strength-fill');
+      const label = document.getElementById('strength-label');
+      if (!fill || !label) return;
+      let s = 0;
+      if (val.length >= 8)           s++;
+      if (val.length >= 12)          s++;
+      if (/[A-Z]/.test(val))         s++;
+      if (/[0-9]/.test(val))         s++;
+      if (/[^A-Za-z0-9]/.test(val))  s++;
+      const levels = [
+        { w: '0%',   c: 'transparent', t: '—' },
+        { w: '25%',  c: '#ef4444',     t: 'Bardzo słabe' },
+        { w: '50%',  c: '#f97316',     t: 'Słabe' },
+        { w: '75%',  c: '#eab308',     t: 'Średnie' },
+        { w: '90%',  c: '#22c55e',     t: 'Silne' },
+        { w: '100%', c: '#7c3aed',     t: 'Bardzo silne' },
+      ];
+      const lv = levels[Math.min(s, 5)];
+      fill.style.width      = lv.w;
+      fill.style.background = lv.c;
+      label.textContent     = lv.t;
+      label.style.color     = lv.c;
+    }
+
+    // Zgodność haseł
+    function matchCheck() {
+      const p1    = document.getElementById('reg-pass1').value;
+      const p2    = document.getElementById('reg-pass2').value;
+      const label = document.getElementById('match-label');
+      if (!p2) { label.textContent = ''; return; }
+      if (p1 === p2) {
+        label.textContent = 'Hasła są zgodne';
+        label.style.color = '#22c55e';
+      } else {
+        label.textContent = 'Hasła nie są zgodne';
+        label.style.color = '#ef4444';
+      }
+    }
+  </script>
+</body>
+</html>

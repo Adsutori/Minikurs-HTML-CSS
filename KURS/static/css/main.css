@@ -106,7 +106,10 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;      /* ← dodaj to */
+  padding: 0;     /* ← i to */
 }
+
 
 img {
   max-width: 100%;
