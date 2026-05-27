@@ -1,0 +1,71 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Kolory w HTML</h1>
+
+<p>
+  Kolory w HTML możesz definiować na kilka sposobów. Używa się ich w atrybutach stylów inline
+  oraz w CSS. Warto znać wszystkie formaty, bo spotkasz je w każdym projekcie webowym.
+</p>
+
+<h2>Nazwy kolorów</h2>
+<p>
+  HTML rozpoznaje ponad 140 nazwanych kolorów. Oto kilka przykładów:
+</p>
+<pre><code>&lt;p style="color: red"&gt;Czerwony&lt;/p&gt;
+&lt;p style="color: navy"&gt;Granatowy&lt;/p&gt;
+&lt;p style="color: forestgreen"&gt;Leśna zieleń&lt;/p&gt;
+&lt;p style="color: tomato"&gt;Pomidorowy&lt;/p&gt;</code></pre>
+
+<h2>Zapis szesnastkowy (HEX)</h2>
+<p>
+  Najczęściej stosowany format. Zapis <code>#RRGGBB</code> — dwie cyfry hex dla każdego
+  kanału: czerwonego, zielonego i niebieskiego. Wartości od <code>00</code> (brak) do <code>FF</code> (maksimum).
+</p>
+<pre><code>#FF0000  → czerwony
+#00FF00  → zielony
+#0000FF  → niebieski
+#FFFFFF  → biały
+#000000  → czarny
+#808080  → szary
+#FF5733  → koralowy</code></pre>
+<p>Jeśli obie cyfry w każdej parze są takie same, można skrócić zapis do 3 znaków:</p>
+<pre><code>#FF0000 → #F00
+#FFFFFF → #FFF
+#000000 → #000</code></pre>
+
+<h2>Format RGB</h2>
+<p>
+  Trzy liczby od 0 do 255 dla kanałów czerwonego, zielonego i niebieskiego:
+</p>
+<pre><code>style="color: rgb(255, 0, 0)"      → czerwony
+style="color: rgb(0, 128, 0)"      → zielony
+style="color: rgb(100, 100, 100)"  → szary</code></pre>
+
+<h2>Format RGBA — z przezroczystością</h2>
+<p>
+  Czwarty parametr (alfa) określa przezroczystość: <code>0</code> to pełna przezroczystość,
+  <code>1</code> to pełna nieprzezroczystość.
+</p>
+<pre><code>style="background-color: rgba(255, 0, 0, 0.3)"  → półprzezroczysty czerwony</code></pre>
+
+<h2>Format HSL</h2>
+<p>
+  Odcień (0–360°), nasycenie (0–100%) i jasność (0–100%). Intuicyjny dla projektantów:
+</p>
+<pre><code>style="color: hsl(0, 100%, 50%)"    → czerwony
+style="color: hsl(120, 100%, 50%)"  → zielony
+style="color: hsl(240, 100%, 50%)"  → niebieski</code></pre>
+
+<h2>Kolor tła i tekstu</h2>
+<pre><code>&lt;p style="color: white; background-color: #333"&gt;
+  Biały tekst na ciemnym tle
+&lt;/p&gt;</code></pre>
+
+<div class="tip">
+  💡 <strong>Kontrast ma znaczenie!</strong> Tekst powinien być wyraźnie odróżnialny od tła.
+  Minimalne zalecane ratio kontrastu wg standardu WCAG to <strong>4.5:1</strong> dla normalnego tekstu.
+  Możesz to sprawdzić narzędziem <em>WebAIM Contrast Checker</em>.
+</div>
+
+{% endblock %}

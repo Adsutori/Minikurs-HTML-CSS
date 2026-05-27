@@ -1,0 +1,90 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Style inline</h1>
+
+<p>
+  Style inline to style CSS zapisane bezpośrednio w atrybucie <code>style</code>
+  konkretnego elementu HTML. Działają natychmiast i mają najwyższy priorytet
+  w kaskadzie CSS — ale właśnie dlatego należy używać ich z rozwagą.
+</p>
+
+<h2>Składnia</h2>
+<pre><code>&lt;p style="color: red; font-size: 18px; margin-top: 20px"&gt;
+  Czerwony tekst, rozmiar 18px, margines górny 20px
+&lt;/p&gt;</code></pre>
+<p>
+  Wartość atrybutu <code>style</code> to lista właściwości CSS oddzielonych średnikami.
+  Każda właściwość ma format <code>właściwość: wartość</code>.
+</p>
+
+<h2>Priorytety CSS — kaskada</h2>
+<p>
+  CSS stosuje ścisłą hierarchię ważności. Od najniższego do najwyższego priorytetu:
+</p>
+<ol>
+  <li>Style przeglądarki (domyślne)</li>
+  <li>Zewnętrzny arkusz CSS (<code>&lt;link rel="stylesheet"&gt;</code>)</li>
+  <li>Style wewnętrzne (<code>&lt;style&gt;</code> w <code>&lt;head&gt;</code>)</li>
+  <li><strong>Style inline</strong> — nadpisują wszystko powyżej</li>
+  <li><code>!important</code> — nadpisuje nawet style inline (używaj tylko w ostateczności)</li>
+</ol>
+
+<h2>Przykład konfliktu priorytetów</h2>
+<pre><code>&lt;!-- W pliku style.css --&gt;
+p { color: blue; }
+
+&lt;!-- W &lt;head&gt; --&gt;
+&lt;style&gt;
+  p { color: green; }
+&lt;/style&gt;
+
+&lt;!-- W HTML --&gt;
+&lt;p style="color: red"&gt;Jaki kolor?&lt;/p&gt;
+&lt;!-- Wynik: czerwony — style inline wygrywają --&gt;</code></pre>
+
+<h2>Kiedy używać stylów inline?</h2>
+<table>
+  <thead>
+    <tr><th>Sytuacja</th><th>Inline?</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Dynamiczne style generowane przez JavaScript</td><td>✅ Tak</td></tr>
+    <tr><td>Jednorazowy wyjątek od reguły CSS</td><td>⚠️ Ostrożnie</td></tr>
+    <tr><td>Szybki test podczas developmentu</td><td>✅ Tymczasowo</td></tr>
+    <tr><td>Szablony e-mail HTML</td><td>✅ Tak — klienty pocztowe często ignorują zewnętrzny CSS</td></tr>
+    <tr><td>Stylowanie całej strony lub wielu elementów</td><td>❌ Nie — użyj arkusza CSS</td></tr>
+    <tr><td>Nadpisywanie stylów komponentów</td><td>❌ Nie — użyj klas CSS</td></tr>
+  </tbody>
+</table>
+
+<h2>Dlaczego nie nadużywać?</h2>
+<ul>
+  <li><strong>Trudne w utrzymaniu</strong> — zmiana koloru na 50 elementach wymaga edycji 50 plików</li>
+  <li><strong>Brak możliwości reużycia</strong> — nie możesz zastosować tego samego stylu do wielu elementów jedną regułą</li>
+  <li><strong>Brak pseudoklas</strong> — nie możesz napisać <code>style="color:red :hover"</code></li>
+  <li><strong>Zaśmiecony HTML</strong> — kod staje się nieczytelny</li>
+</ul>
+
+<h2>Alternatywa — klasy CSS</h2>
+<pre><code>&lt;!-- ❌ Źle — powtarzasz ten sam styl inline --&gt;
+&lt;p style="color: red; font-weight: bold"&gt;Błąd 1&lt;/p&gt;
+&lt;p style="color: red; font-weight: bold"&gt;Błąd 2&lt;/p&gt;
+&lt;p style="color: red; font-weight: bold"&gt;Błąd 3&lt;/p&gt;
+
+&lt;!-- ✅ Dobrze — jedna klasa, wiele zastosowań --&gt;
+&lt;style&gt;
+  .blad { color: red; font-weight: bold; }
+&lt;/style&gt;
+
+&lt;p class="blad"&gt;Błąd 1&lt;/p&gt;
+&lt;p class="blad"&gt;Błąd 2&lt;/p&gt;
+&lt;p class="blad"&gt;Błąd 3&lt;/p&gt;</code></pre>
+
+<div class="tip">
+  💡 <strong>Zasada:</strong> Jeśli ten sam styl inline pojawia się więcej niż raz —
+  to sygnał, że powinna być klasa CSS. Style inline są jak wyjątki od reguły,
+  nie jak reguła sama w sobie.
+</div>
+
+{% endblock %}

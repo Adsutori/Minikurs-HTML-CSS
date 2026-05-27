@@ -52,19 +52,22 @@
           Dashboard
         </a>
 
-        <div class="sidebar-section-label" style="margin-top:16px;">Poradniki</div>
+        <div class="sidebar-section-label">Kursy</div>
 
-        <a href="{% url 'minikurs:html' %}"
-           class="sidebar-link {% if request.resolver_match.url_name == 'html' %}active{% endif %}">
-          <i data-lucide="code-2" style="width:16px;height:16px;"></i>
-          Poradnik HTML
+        <a href="{% url 'minikurs:kursy_lista' %}"
+          class="sidebar-link {% if request.resolver_match.url_name == 'kursy_lista' %}active{% endif %}">
+          <i data-lucide="graduation-cap" style="width:16px;height:16px;"></i>
+          Wszystkie kursy
         </a>
 
-        <a href="{% url 'minikurs:css' %}"
-           class="sidebar-link {% if request.resolver_match.url_name == 'css' %}active{% endif %}">
-          <i data-lucide="paintbrush" style="width:16px;height:16px;"></i>
-          Poradnik CSS
+        {% for enrollment in user_enrollments %}
+        <a href="{% url 'minikurs:kurs_detail' enrollment.course.slug %}"
+          class="sidebar-link {% if request.resolver_match.url_name == 'kurs_detail' and course.slug == enrollment.course.slug %}active{% endif %}"
+          style="padding-left:28px;">
+          <span style="font-size:0.9rem;">{{ enrollment.course.icon }}</span>
+          {{ enrollment.course.title }}
         </a>
+        {% endfor %}
 
         <div class="sidebar-section-label" style="margin-top:16px;">Projekty</div>
 

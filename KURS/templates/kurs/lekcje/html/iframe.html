@@ -1,0 +1,83 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Ramki iframe</h1>
+
+<p>
+  Element <code>&lt;iframe&gt;</code> (<em>inline frame</em>) pozwala osadzić inną stronę internetową
+  lub zasób wewnątrz bieżącej strony. Najczęściej używa się go do wstawiania filmów z YouTube,
+  map Google, widgetów płatności czy podglądów dokumentów.
+</p>
+
+<h2>Podstawowa składnia</h2>
+<pre><code>&lt;iframe
+  src="https://example.com"
+  width="600"
+  height="400"
+  title="Opis zawartości ramki"&gt;
+&lt;/iframe&gt;</code></pre>
+
+<h2>Osadzanie YouTube</h2>
+<pre><code>&lt;iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/ID_FILMU"
+  title="Tytuł filmu YouTube"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+<p>
+  Adres do osadzania (<em>embed URL</em>) różni się od zwykłego linku YouTube:
+</p>
+<pre><code>&lt;!-- Zwykły link --&gt;
+https://www.youtube.com/watch?v=dQw4w9WgXcQ
+
+&lt;!-- Link do osadzania --&gt;
+https://www.youtube.com/embed/dQw4w9WgXcQ</code></pre>
+
+<h2>Osadzanie Google Maps</h2>
+<pre><code>&lt;iframe
+  src="https://www.google.com/maps/embed?pb=!1m18..."
+  width="600"
+  height="450"
+  style="border:0"
+  allowfullscreen
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  title="Mapa dojazdu"&gt;
+&lt;/iframe&gt;</code></pre>
+
+<h2>Ważne atrybuty iframe</h2>
+<table>
+  <thead><tr><th>Atrybut</th><th>Opis</th></tr></thead>
+  <tbody>
+    <tr><td><code>src</code></td><td>URL osadzanej strony lub zasobu</td></tr>
+    <tr><td><code>title</code></td><td>Opis dla czytników ekranowych — obowiązkowy</td></tr>
+    <tr><td><code>width</code> / <code>height</code></td><td>Rozmiar ramki</td></tr>
+    <tr><td><code>allowfullscreen</code></td><td>Zezwala na tryb pełnoekranowy</td></tr>
+    <tr><td><code>loading="lazy"</code></td><td>Ładuje ramkę dopiero gdy jest widoczna</td></tr>
+    <tr><td><code>sandbox</code></td><td>Ogranicza uprawnienia osadzonej strony</td></tr>
+    <tr><td><code>referrerpolicy</code></td><td>Kontroluje nagłówek Referer</td></tr>
+  </tbody>
+</table>
+
+<h2>Sandbox — bezpieczeństwo</h2>
+<pre><code>&lt;!-- Maksymalne ograniczenia --&gt;
+&lt;iframe src="..." sandbox&gt;&lt;/iframe&gt;
+
+&lt;!-- Zezwól tylko na formularze i skrypty --&gt;
+&lt;iframe src="..." sandbox="allow-forms allow-scripts"&gt;&lt;/iframe&gt;</code></pre>
+<p>
+  Atrybut <code>sandbox</code> blokuje m.in. uruchamianie skryptów, wysyłanie formularzy
+  i otwieranie nowych okien — chyba że jawnie je zezwolisz.
+  Używaj go gdy osadzasz treści z niezaufanych źródeł.
+</p>
+
+<div class="tip">
+  💡 Zawsze dodawaj atrybut <code>title</code> do <code>&lt;iframe&gt;</code> —
+  czytnik ekranowy nie ma innego sposobu, żeby powiedzieć użytkownikowi co jest w ramce.
+  Bez niego dostępność strony spada.
+</div>
+
+{% endblock %}

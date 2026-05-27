@@ -1,0 +1,83 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Listy</h1>
+
+<p>
+  Listy to jeden z najczęściej używanych elementów HTML. Służą do prezentowania
+  zestawów powiązanych informacji — menu nawigacyjne, kroki instrukcji, wypunktowania.
+</p>
+
+<h2>Lista nieuporządkowana <code>&lt;ul&gt;</code></h2>
+<p>Elementy bez numeracji — domyślnie wyświetlane z kropkami (bullet points).</p>
+<pre><code>&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<p>Rodzaje znaczników listy nieuporządkowanej (atrybut <code>type</code>, dziś zastąpiony CSS):</p>
+<ul>
+  <li><code>disc</code> — wypełnione kółko (domyślne)</li>
+  <li><code>circle</code> — puste kółko</li>
+  <li><code>square</code> — kwadrat</li>
+</ul>
+
+<h2>Lista uporządkowana <code>&lt;ol&gt;</code></h2>
+<p>Elementy z numeracją — domyślnie cyfry arabskie.</p>
+<pre><code>&lt;ol&gt;
+  &lt;li&gt;Otwórz edytor kodu&lt;/li&gt;
+  &lt;li&gt;Napisz kod HTML&lt;/li&gt;
+  &lt;li&gt;Zapisz plik jako .html&lt;/li&gt;
+  &lt;li&gt;Otwórz w przeglądarce&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+<p>Typy numeracji przez atrybut <code>type</code>:</p>
+<table>
+  <thead><tr><th>Atrybut</th><th>Efekt</th></tr></thead>
+  <tbody>
+    <tr><td><code>type="1"</code></td><td>1, 2, 3... (domyślne)</td></tr>
+    <tr><td><code>type="A"</code></td><td>A, B, C...</td></tr>
+    <tr><td><code>type="a"</code></td><td>a, b, c...</td></tr>
+    <tr><td><code>type="I"</code></td><td>I, II, III...</td></tr>
+    <tr><td><code>type="i"</code></td><td>i, ii, iii...</td></tr>
+  </tbody>
+</table>
+<p>Możesz też ustawić numer startowy atrybutem <code>start</code>:</p>
+<pre><code>&lt;ol start="5"&gt;
+  &lt;li&gt;Piąty punkt&lt;/li&gt;
+  &lt;li&gt;Szósty punkt&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+<h2>Lista definicji <code>&lt;dl&gt;</code></h2>
+<p>Specjalny typ listy do par termin–definicja:</p>
+<pre><code>&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;Język znaczników do tworzenia stron internetowych&lt;/dd&gt;
+
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;Język arkuszy stylów do opisywania wyglądu stron&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+
+<h2>Listy zagnieżdżone</h2>
+<p>Listy można zagnieżdżać — umieszczać jedną wewnątrz elementu <code>&lt;li&gt;</code> drugiej:</p>
+<pre><code>&lt;ul&gt;
+  &lt;li&gt;Frontend
+    &lt;ul&gt;
+      &lt;li&gt;HTML&lt;/li&gt;
+      &lt;li&gt;CSS&lt;/li&gt;
+      &lt;li&gt;JavaScript&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Backend
+    &lt;ul&gt;
+      &lt;li&gt;Python&lt;/li&gt;
+      &lt;li&gt;Node.js&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+<div class="tip">
+  💡 Menu nawigacyjne na stronach internetowych są prawie zawsze zbudowane z <code>&lt;ul&gt;</code> i <code>&lt;li&gt;</code> —
+  a ich wygląd (poziomy, bez kropek) uzyskuje się przez CSS.
+</div>
+
+{% endblock %}

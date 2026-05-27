@@ -1,0 +1,88 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Dostępność (Accessibility)</h1>
+
+<p>
+  Dostępność stron internetowych (<em>web accessibility</em>, w skrócie <strong>a11y</strong>)
+  to projektowanie stron tak, żeby mogły z nich korzystać <strong>wszyscy użytkownicy</strong> —
+  w tym osoby z niepełnosprawnościami wzroku, słuchu, ruchu czy poznawczymi.
+  To nie tylko kwestia etyki — w wielu krajach jest wymogiem prawnym.
+</p>
+
+<h2>ARIA — Accessible Rich Internet Applications</h2>
+<p>
+  Atrybuty ARIA dodają semantykę elementom, które jej nie mają.
+  Używaj ich gdy HTML5 nie oferuje odpowiedniego znacznika:
+</p>
+<pre><code>&lt;!-- Rola elementu --&gt;
+&lt;div role="button" tabindex="0"&gt;Kliknij mnie&lt;/div&gt;
+
+&lt;!-- Etykieta dla elementu bez widocznego tekstu --&gt;
+&lt;button aria-label="Zamknij okno"&gt;&times;&lt;/button&gt;
+
+&lt;!-- Opis przez inny element --&gt;
+&lt;input type="text" aria-describedby="wskazowka"&gt;
+&lt;span id="wskazowka"&gt;Wpisz co najmniej 8 znaków&lt;/span&gt;
+
+&lt;!-- Stan elementu --&gt;
+&lt;button aria-expanded="false"&gt;Menu&lt;/button&gt;
+&lt;div aria-hidden="true"&gt;Dekoracja, ignoruj&lt;/div&gt;</code></pre>
+
+<h2>Zasady dobrej dostępności HTML</h2>
+
+<h3>1. Używaj semantycznych znaczników</h3>
+<pre><code>&lt;!-- ❌ Źle --&gt;
+&lt;div onclick="..."&gt;Kliknij mnie&lt;/div&gt;
+
+&lt;!-- ✅ Dobrze --&gt;
+&lt;button type="button"&gt;Kliknij mnie&lt;/button&gt;</code></pre>
+
+<h3>2. Zawsze dodawaj alt do obrazów</h3>
+<pre><code>&lt;img src="wykres.png" alt="Wykres słupkowy: sprzedaż wzrosła o 30% w Q3 2026"&gt;
+&lt;img src="dekoracja.png" alt=""&gt; &lt;!-- Dekoracyjny — pusty alt --&gt;</code></pre>
+
+<h3>3. Etykiety formularzy</h3>
+<pre><code>&lt;!-- ❌ Źle --&gt;
+&lt;input type="text" placeholder="Imię"&gt;
+
+&lt;!-- ✅ Dobrze --&gt;
+&lt;label for="imie"&gt;Imię:&lt;/label&gt;
+&lt;input type="text" id="imie" name="imie"&gt;</code></pre>
+
+<h3>4. Kontrast kolorów</h3>
+<p>Minimalny stosunek kontrastu wg WCAG 2.1:</p>
+<ul>
+  <li>Normalny tekst: <strong>4.5:1</strong></li>
+  <li>Duży tekst (18px+): <strong>3:1</strong></li>
+  <li>Elementy UI (przyciski, ikony): <strong>3:1</strong></li>
+</ul>
+
+<h3>5. Nawigacja klawiaturą</h3>
+<p>
+  Cała strona powinna być obsługiwalna samą klawiaturą.
+  Sprawdź: czy możesz przejść przez wszystkie interaktywne elementy klawiszem <kbd>Tab</kbd>?
+  Czy widać który element jest aktywny (focus)?
+</p>
+<pre><code>&lt;!-- Nigdy nie usuwaj outline bez alternatywy! --&gt;
+/* ❌ Źle */
+* { outline: none; }
+
+/* ✅ Dobrze — zastąp własnym stylem */
+button:focus-visible { outline: 3px solid #0066cc; }</code></pre>
+
+<h2>Narzędzia do sprawdzania dostępności</h2>
+<ul>
+  <li><strong>WAVE</strong> — rozszerzenie przeglądarki, wizualizuje błędy dostępności</li>
+  <li><strong>axe DevTools</strong> — wtyczka do Chrome/Firefox</li>
+  <li><strong>Lighthouse</strong> — wbudowany w Chrome DevTools (zakładka Accessibility)</li>
+  <li><strong>NVDA / VoiceOver</strong> — czytniki ekranowe do testowania</li>
+</ul>
+
+<div class="tip">
+  💡 Dobra dostępność pomaga nie tylko osobom z niepełnosprawnościami.
+  Strona dostępna jest też lepsza dla użytkowników mobilnych, osób starszych,
+  osób w trudnych warunkach (słabe oświetlenie, głośne otoczenie) i robotów wyszukiwarek.
+</div>
+
+{% endblock %}

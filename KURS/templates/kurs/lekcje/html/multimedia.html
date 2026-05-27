@@ -1,0 +1,74 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Multimedia</h1>
+
+<p>
+  HTML5 wprowadził natywną obsługę wideo i audio — bez potrzeby instalowania wtyczek
+  jak Flash. Wystarczy kilka linii kodu, żeby osadzić film lub muzykę bezpośrednio na stronie.
+</p>
+
+<h2>Wideo — plik lokalny</h2>
+<pre><code>&lt;video width="640" height="360" controls&gt;
+  &lt;source src="film.mp4" type="video/mp4"&gt;
+  &lt;source src="film.webm" type="video/webm"&gt;
+  &lt;p&gt;Twoja przeglądarka nie obsługuje elementu video.&lt;/p&gt;
+&lt;/video&gt;</code></pre>
+
+<h2>Atrybuty elementu <code>&lt;video&gt;</code></h2>
+<table>
+  <thead><tr><th>Atrybut</th><th>Opis</th></tr></thead>
+  <tbody>
+    <tr><td><code>controls</code></td><td>Pokazuje przyciski odtwarzania, głośności itp.</td></tr>
+    <tr><td><code>autoplay</code></td><td>Automatyczne odtwarzanie (wymaga <code>muted</code>)</td></tr>
+    <tr><td><code>muted</code></td><td>Wyciszenie dźwięku</td></tr>
+    <tr><td><code>loop</code></td><td>Pętla — odtwarza od początku po zakończeniu</td></tr>
+    <tr><td><code>poster</code></td><td>Miniatura wyświetlana przed odtworzeniem</td></tr>
+    <tr><td><code>preload</code></td><td><code>auto</code> / <code>metadata</code> / <code>none</code></td></tr>
+  </tbody>
+</table>
+
+<h2>Wideo z YouTube — iframe</h2>
+<pre><code>&lt;iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/ID_FILMU"
+  title="Tytuł filmu"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+<p>
+  <code>ID_FILMU</code> to część adresu URL po <code>watch?v=</code> na YouTube.
+  Dla linku <code>youtube.com/watch?v=dQw4w9WgXcQ</code> ID to <code>dQw4w9WgXcQ</code>.
+</p>
+
+<h2>Audio — plik lokalny</h2>
+<pre><code>&lt;audio controls&gt;
+  &lt;source src="muzyka.mp3" type="audio/mpeg"&gt;
+  &lt;source src="muzyka.ogg" type="audio/ogg"&gt;
+  &lt;p&gt;Twoja przeglądarka nie obsługuje elementu audio.&lt;/p&gt;
+&lt;/audio&gt;</code></pre>
+
+<h2>Napisy do wideo — <code>&lt;track&gt;</code></h2>
+<pre><code>&lt;video controls&gt;
+  &lt;source src="film.mp4" type="video/mp4"&gt;
+  &lt;track
+    kind="subtitles"
+    src="napisy-pl.vtt"
+    srclang="pl"
+    label="Polski"
+    default&gt;
+&lt;/video&gt;</code></pre>
+<p>
+  Napisy zapisuje się w formacie <strong>WebVTT</strong> (pliki <code>.vtt</code>).
+  Ich dodanie znacząco poprawia dostępność treści wideo.
+</p>
+
+<div class="tip">
+  💡 Zawsze podawaj kilka formatów w <code>&lt;source&gt;</code> — nie wszystkie przeglądarki
+  obsługują te same kodeki. Bezpieczna kombinacja to <strong>MP4 + WebM</strong> dla wideo
+  i <strong>MP3 + OGG</strong> dla audio.
+</div>
+
+{% endblock %}

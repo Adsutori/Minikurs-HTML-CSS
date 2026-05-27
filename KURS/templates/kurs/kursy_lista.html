@@ -1,0 +1,79 @@
+{% extends 'kurs/base.html' %}
+{% block title %}Kursy | Minikurs{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>
+    <i data-lucide="graduation-cap" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;"></i>
+    Dostępne kursy
+  </h1>
+  <p>Wybierz kurs i zacznij naukę w swoim tempie.</p>
+</div>
+
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:24px;">
+  {% for item in courses_data %}
+  <div class="content-card" style="display:flex;flex-direction:column;gap:16px;">
+
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div style="font-size:2.5rem;">{{ item.course.icon }}</div>
+      <div>
+        <h2 style="margin:0;font-size:var(--text-xl);color:var(--text-primary);">
+          {{ item.course.title }}
+        </h2>
+        <span style="font-size:var(--text-xs);color:var(--text-muted);">
+          {{ item.lessons_count }} lekcji
+        </span>
+      </div>
+      {% if item.enrolled %}
+        <span class="badge badge-success" style="margin-left:auto;">✅ Zapisany</span>
+      {% endif %}
+    </div>
+
+    <p style="margin:0;font-size:var(--text-sm);color:var(--text-secondary);">
+      {{ item.course.description }}
+    </p>
+
+    {% if item.enrolled %}
+    <div>
+      <div style="display:flex;justify-content:space-between;
+                  font-size:var(--text-xs);color:var(--text-muted);margin-bottom:6px;">
+        <span>Postęp</span>
+        <span style="color:var(--accent-secondary);font-weight:700;">{{ item.progress }}%</span>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" style="width:{{ item.progress }}%;"></div>
+      </div>
+    </div>
+    {% endif %}
+
+    <div style="display:flex;gap:10px;margin-top:auto;">
+      <a href="{% url 'minikurs:kurs_detail' item.course.slug %}"
+         class="btn btn-primary btn-sm" style="flex:1;justify-content:center;">
+        <i data-lucide="{% if item.enrolled %}play{% else %}eye{% endif %}"
+           style="width:14px;height:14px;"></i>
+        {% if item.enrolled %}Kontynuuj{% else %}Zobacz kurs{% endif %}
+      </a>
+      {% if item.enrolled %}
+      <form method="post" action="{% url 'minikurs:unenroll' item.course.slug %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline btn-sm"
+                onclick="return confirm('Zrezygnować z kursu?')"
+                title="Zrezygnuj z kursu">
+          <i data-lucide="x" style="width:14px;height:14px;"></i>
+        </button>
+      </form>
+      {% else %}
+      <form method="post" action="{% url 'minikurs:enroll' item.course.slug %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline btn-sm">
+          <i data-lucide="plus" style="width:14px;height:14px;"></i>
+          Zapisz się
+        </button>
+      </form>
+      {% endif %}
+    </div>
+
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -37,4 +37,14 @@ urlpatterns = [
 
     # ── AJAX ──────────────────────────────────────────────────
     path('track/',                        views.track_progress_ajax,        name='track_progress'),
+
+    # Kursy
+    path('kursy/',                              views.kursy_lista,  name='kursy_lista'),
+    path('kursy/<slug:course_slug>/',           views.kurs_detail,  name='kurs_detail'),
+    path('kursy/<slug:course_slug>/zapisz/',    views.enroll,       name='enroll'),
+    path('kursy/<slug:course_slug>/rezygnuj/',  views.unenroll,     name='unenroll'),
+
+    # Lekcje
+    path('kursy/<slug:course_slug>/<slug:lesson_slug>/',         views.lekcja,          name='lekcja'),
+    path('kursy/<slug:course_slug>/<slug:lesson_slug>/toggle/',  views.toggle_complete, name='toggle_complete'),
 ]
