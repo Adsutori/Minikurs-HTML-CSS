@@ -6,6 +6,7 @@
 {% block content %}
 <meta name="chapter" content="glowna">
 
+<!-- POWITANIE -->
 <div class="page-header">
   <h1>
     <i data-lucide="book-open" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;"></i>
@@ -14,7 +15,6 @@
   <p>Wszystko, co musisz wiedzieć zanim zaczniesz — program, cele i struktura platformy.</p>
 </div>
 
-<!-- Powitanie zalogowanego usera -->
 <div class="content-card fade-in"
      style="margin-bottom:28px; background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(168,85,247,0.05));
             border-color: rgba(124,58,237,0.3);">
@@ -39,13 +39,88 @@
   </div>
 </div>
 
-<!-- CO ZYSKASZ -->
+<!-- ═══════════════════════════════════════════════════════════
+     WIDEO — Czym jest HTML?
+════════════════════════════════════════════════════════════ -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:8px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="play-circle" style="width:22px;height:22px;"></i>
+    Czym jest HTML?
+  </h2>
+  <p style="color:var(--text-muted);font-size:var(--text-sm);margin-bottom:20px;">
+    3-minutowe wprowadzenie — Mirosław Zelent wyjaśnia, czym jest HTML i dlaczego warto się go uczyć.
+  </p>
+
+  <div style="display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap;">
+
+    <!-- Wideo -->
+    <div style="flex:2;min-width:280px;">
+      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;
+                  border-radius:var(--radius-md);border:1px solid rgba(124,58,237,0.2);">
+        <video controls
+               style="position:absolute;top:0;left:0;width:100%;height:100%;background:#000;"
+               poster="">
+          <source src="{% static 'media/vid/kurs-html.mp4' %}" type="video/mp4">
+          Twoja przeglądarka nie obsługuje odtwarzacza wideo.
+        </video>
+      </div>
+    </div>
+
+    <!-- Opis obok wideo -->
+    <div style="flex:1;min-width:220px;display:flex;flex-direction:column;gap:14px;">
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div style="width:32px;height:32px;border-radius:50%;background:rgba(124,58,237,0.15);
+                    display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i data-lucide="clock" style="width:14px;height:14px;color:var(--accent-secondary);"></i>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">Czas trwania</div>
+          <div style="font-size:var(--text-xs);color:var(--text-muted);">3 minuty</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div style="width:32px;height:32px;border-radius:50%;background:rgba(124,58,237,0.15);
+                    display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i data-lucide="user" style="width:14px;height:14px;color:var(--accent-secondary);"></i>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">Autor filmu</div>
+          <div style="font-size:var(--text-xs);color:var(--text-muted);">Mirosław Zelent</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div style="width:32px;height:32px;border-radius:50%;background:rgba(124,58,237,0.15);
+                    display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i data-lucide="bar-chart-2" style="width:14px;height:14px;color:var(--accent-secondary);"></i>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">Poziom</div>
+          <div style="font-size:var(--text-xs);color:var(--text-muted);">Absolutny początkujący</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div style="width:32px;height:32px;border-radius:50%;background:rgba(124,58,237,0.15);
+                    display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i data-lucide="tag" style="width:14px;height:14px;color:var(--accent-secondary);"></i>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">Temat</div>
+          <div style="font-size:var(--text-xs);color:var(--text-muted);">Podstawy HTML</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CO ZYSKASZ
+════════════════════════════════════════════════════════════ -->
 <div class="content-card fade-in" style="margin-bottom:28px;">
   <h2 style="color:var(--accent-secondary);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
     <i data-lucide="target" style="width:22px;height:22px;"></i>
     Co wyniesiesz z kursu?
   </h2>
-
   <div class="grid-2" style="gap:16px;">
 
     <div style="display:flex;gap:14px;padding:16px;background:rgba(124,58,237,0.06);
@@ -114,8 +189,8 @@
   </div>
   <div class="content-card" style="text-align:center;padding:20px;">
     <i data-lucide="book-open" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
-    <div style="font-size:var(--text-3xl);font-weight:800;" class="gradient-text">13</div>
-    <div style="font-size:var(--text-xs);color:var(--text-muted);">Rozdziałów</div>
+    <div style="font-size:var(--text-3xl);font-weight:800;" class="gradient-text">50</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Lekcji</div>
   </div>
   <div class="content-card" style="text-align:center;padding:20px;">
     <i data-lucide="lock-open" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
@@ -129,53 +204,290 @@
   </div>
 </div>
 
-<!-- PROGRAM -->
+<!-- ═══════════════════════════════════════════════════════════
+     SPRAWDŹ CZEGO MOŻESZ SIĘ NAUCZYĆ — PROJEKTY
+════════════════════════════════════════════════════════════ -->
 <div class="content-card fade-in" style="margin-bottom:28px;">
-  <h2 style="color:var(--accent-secondary);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
-    <i data-lucide="list" style="width:22px;height:22px;"></i>
-    Program kursu
+  <h2 style="color:var(--accent-secondary);margin-bottom:8px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="folder-open" style="width:22px;height:22px;"></i>
+    Sprawdź czego możesz się nauczyć
   </h2>
+  <p style="color:var(--text-muted);font-size:var(--text-sm);margin-bottom:32px;">
+    Poniżej znajdziesz projekty zrealizowane w trakcie kursu — każdy z nich uczy konkretnych umiejętności,
+    które stosuje się na prawdziwych stronach internetowych. Kliknij zdjęcie, aby przejść do projektu.
+  </p>
 
-  <div style="display:flex;flex-direction:column;gap:12px;">
-
-    {% for num, title, sub, icon, url_name in course_chapters %}
-    <a href="{% url 'minikurs:'|add:url_name %}"
-       style="display:flex;align-items:center;gap:16px;padding:16px;
-              background:rgba(124,58,237,0.04);border:1px solid rgba(124,58,237,0.12);
-              border-radius:var(--radius-md);text-decoration:none;transition:var(--transition);"
-       onmouseover="this.style.borderColor='var(--accent-primary)';this.style.background='rgba(124,58,237,0.08)'"
-       onmouseout="this.style.borderColor='rgba(124,58,237,0.12)';this.style.background='rgba(124,58,237,0.04)'">
-      <div style="width:36px;height:36px;border-radius:var(--radius-sm);
-                  background:rgba(124,58,237,0.15);display:flex;align-items:center;
-                  justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;
-                  font-size:0.7rem;font-weight:700;color:var(--accent-secondary);">
-        {{ num }}
-      </div>
-      <div style="flex:1;">
-        <div style="font-weight:700;color:var(--text-primary);font-size:var(--text-sm);">{{ title }}</div>
-        <div style="font-size:var(--text-xs);color:var(--text-muted);">{{ sub }}</div>
-      </div>
-      <i data-lucide="chevron-right" style="width:16px;height:16px;color:var(--text-muted);"></i>
+  <!-- Projekt 1 — Sprawdzian (screen LEWO, opis PRAWO) -->
+  <div class="project-row" style="display:flex;gap:32px;align-items:center;margin-bottom:48px;flex-wrap:wrap;">
+    <a href="{% url 'minikurs:sprawdzian' %}"
+       class="project-thumb" style="flex:1;min-width:260px;max-width:480px;">
+      <img src="{% static 'media/img/sprawdzian.png' %}"
+           alt="Sprawdzian praktyczny"
+           style="width:100%;border-radius:var(--radius-md);
+                  border:2px solid rgba(124,58,237,0.25);
+                  transition:var(--transition);display:block;"
+           onmouseover="this.style.borderColor='var(--accent-primary)';this.style.transform='scale(1.02)'"
+           onmouseout="this.style.borderColor='rgba(124,58,237,0.25)';this.style.transform='scale(1)'">
     </a>
-    {% empty %}
-    <!-- Fallback — statyczna lista gdy brak context_processor -->
-    {% for item in static_chapters %}
-    <div style="display:flex;align-items:center;gap:16px;padding:16px;
-                background:rgba(124,58,237,0.04);border:1px solid rgba(124,58,237,0.12);
-                border-radius:var(--radius-md);">
-      <div style="width:36px;height:36px;border-radius:var(--radius-sm);
-                  background:rgba(124,58,237,0.15);display:flex;align-items:center;
-                  justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;
-                  font-size:0.7rem;font-weight:700;color:var(--accent-secondary);">
-        {{ forloop.counter|stringformat:"02d" }}
+    <div style="flex:1;min-width:240px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;
+                  background:rgba(124,58,237,0.12);border-radius:20px;
+                  padding:4px 14px;margin-bottom:14px;">
+        <i data-lucide="clipboard-check" style="width:14px;height:14px;color:var(--accent-secondary);"></i>
+        <span style="font-size:var(--text-xs);color:var(--accent-secondary);font-weight:600;">Projekt 1</span>
       </div>
-      <div>
-        <div style="font-weight:700;color:var(--text-primary);font-size:var(--text-sm);">{{ item }}</div>
+      <h3 style="color:var(--text-primary);margin:0 0 12px;font-size:var(--text-xl);">Sprawdzian praktyczny</h3>
+      <p style="color:var(--text-secondary);font-size:var(--text-sm);line-height:1.7;margin-bottom:16px;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
+        et dolore magna aliqua. Projekt ten uczy budowania poprawnej struktury dokumentu HTML5,
+        stosowania nagłówków, akapitów i list nieuporządkowanych — elementów obecnych na każdej stronie WWW.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+        <span class="badge badge-accent">HTML5</span>
+        <span class="badge badge-accent">Struktura dokumentu</span>
+        <span class="badge badge-accent">Nagłówki</span>
       </div>
+      <a href="{% url 'minikurs:sprawdzian' %}" class="btn btn-primary btn-sm">
+        <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+        Przejdź do projektu
+      </a>
     </div>
-    {% endfor %}
-    {% endfor %}
   </div>
+
+  <div style="height:1px;background:rgba(124,58,237,0.1);margin-bottom:48px;"></div>
+
+  <!-- Projekt 2 — Lista (opis LEWO, screen PRAWO) -->
+  <div class="project-row" style="display:flex;gap:32px;align-items:center;margin-bottom:48px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:240px;order:1;">
+      <div style="display:inline-flex;align-items:center;gap:8px;
+                  background:rgba(124,58,237,0.12);border-radius:20px;
+                  padding:4px 14px;margin-bottom:14px;">
+        <i data-lucide="list-checks" style="width:14px;height:14px;color:var(--accent-secondary);"></i>
+        <span style="font-size:var(--text-xs);color:var(--accent-secondary);font-weight:600;">Projekt 2</span>
+      </div>
+      <h3 style="color:var(--text-primary);margin:0 0 12px;font-size:var(--text-xl);">Lista</h3>
+      <p style="color:var(--text-secondary);font-size:var(--text-sm);line-height:1.7;margin-bottom:16px;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris. Projekt demonstruje użycie list
+        uporządkowanych i nieuporządkowanych, które są podstawą nawigacji i treści na stronach.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+        <span class="badge badge-accent">Listy HTML</span>
+        <span class="badge badge-accent">CSS styling</span>
+        <span class="badge badge-accent">ul / ol / li</span>
+      </div>
+      <a href="{% url 'minikurs:lista' %}" class="btn btn-primary btn-sm">
+        <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+        Przejdź do projektu
+      </a>
+    </div>
+    <a href="{% url 'minikurs:lista' %}"
+       class="project-thumb" style="flex:1;min-width:260px;max-width:480px;order:2;">
+      <img src="{% static 'media/img/lista.png' %}"
+           alt="Lista zadań"
+           style="width:100%;border-radius:var(--radius-md);
+                  border:2px solid rgba(124,58,237,0.25);
+                  transition:var(--transition);display:block;"
+           onmouseover="this.style.borderColor='var(--accent-primary)';this.style.transform='scale(1.02)'"
+           onmouseout="this.style.borderColor='rgba(124,58,237,0.25)';this.style.transform='scale(1)'">
+    </a>
+  </div>
+
+  <div style="height:1px;background:rgba(124,58,237,0.1);margin-bottom:48px;"></div>
+
+  <!-- Projekt 3 — Tabela kolorów (screen LEWO, opis PRAWO) -->
+  <div class="project-row" style="display:flex;gap:32px;align-items:center;margin-bottom:48px;flex-wrap:wrap;">
+    <a href="{% url 'minikurs:tabela_kolorow' %}"
+       class="project-thumb" style="flex:1;min-width:260px;max-width:480px;">
+      <img src="{% static 'media/img/tabela_kolorow.png' %}"
+           alt="Tabela kolorów"
+           style="width:100%;border-radius:var(--radius-md);
+                  border:2px solid rgba(124,58,237,0.25);
+                  transition:var(--transition);display:block;"
+           onmouseover="this.style.borderColor='var(--accent-primary)';this.style.transform='scale(1.02)'"
+           onmouseout="this.style.borderColor='rgba(124,58,237,0.25)';this.style.transform='scale(1)'">
+    </a>
+    <div style="flex:1;min-width:240px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;
+                  background:rgba(124,58,237,0.12);border-radius:20px;
+                  padding:4px 14px;margin-bottom:14px;">
+        <i data-lucide="palette" style="width:14px;height:14px;color:var(--accent-secondary);"></i>
+        <span style="font-size:var(--text-xs);color:var(--accent-secondary);font-weight:600;">Projekt 3</span>
+      </div>
+      <h3 style="color:var(--text-primary);margin:0 0 12px;font-size:var(--text-xl);">Tabela z kolorami</h3>
+      <p style="color:var(--text-secondary);font-size:var(--text-sm);line-height:1.7;margin-bottom:16px;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit
+        in voluptate velit esse cillum dolore. Projekt pokazuje jak budować tabele HTML i stylować
+        komórki kolorem tła — technika używana w panelach administracyjnych i dashboardach.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+        <span class="badge badge-accent">Tabele HTML</span>
+        <span class="badge badge-accent">Kolory CSS</span>
+        <span class="badge badge-accent">background-color</span>
+      </div>
+      <a href="{% url 'minikurs:tabela_kolorow' %}" class="btn btn-primary btn-sm">
+        <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+        Przejdź do projektu
+      </a>
+    </div>
+  </div>
+
+  <div style="height:1px;background:rgba(124,58,237,0.1);margin-bottom:48px;"></div>
+
+  <!-- Projekt 4 — Tabele, Listy, Łącza (opis LEWO, screen PRAWO) -->
+  <div class="project-row" style="display:flex;gap:32px;align-items:center;margin-bottom:48px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:240px;order:1;">
+      <div style="display:inline-flex;align-items:center;gap:8px;
+                  background:rgba(124,58,237,0.12);border-radius:20px;
+                  padding:4px 14px;margin-bottom:14px;">
+        <i data-lucide="table-2" style="width:14px;height:14px;color:var(--accent-secondary);"></i>
+        <span style="font-size:var(--text-xs);color:var(--accent-secondary);font-weight:600;">Projekt 4</span>
+      </div>
+      <h3 style="color:var(--text-primary);margin:0 0 12px;font-size:var(--text-xl);">Tabele, Listy i Łącza</h3>
+      <p style="color:var(--text-secondary);font-size:var(--text-sm);line-height:1.7;margin-bottom:16px;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat
+        non proident, sunt in culpa qui officia deserunt mollit anim. Projekt łączy trzy kluczowe
+        elementy HTML — tabele danych, listy nawigacyjne i hiperlącza wewnętrzne i zewnętrzne.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+        <span class="badge badge-accent">Tabele</span>
+        <span class="badge badge-accent">Hiperlącza</span>
+        <span class="badge badge-accent">Nawigacja</span>
+      </div>
+      <a href="{% url 'minikurs:tabele_listy_lacza' %}" class="btn btn-primary btn-sm">
+        <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+        Przejdź do projektu
+      </a>
+    </div>
+    <a href="{% url 'minikurs:tabele_listy_lacza' %}"
+       class="project-thumb" style="flex:1;min-width:260px;max-width:480px;order:2;">
+      <img src="{% static 'media/img/tabele_listy_lacza.png' %}"
+           alt="Tabele, Listy, Łącza"
+           style="width:100%;border-radius:var(--radius-md);
+                  border:2px solid rgba(124,58,237,0.25);
+                  transition:var(--transition);display:block;"
+           onmouseover="this.style.borderColor='var(--accent-primary)';this.style.transform='scale(1.02)'"
+           onmouseout="this.style.borderColor='rgba(124,58,237,0.25)';this.style.transform='scale(1)'">
+    </a>
+  </div>
+
+  <div style="height:1px;background:rgba(124,58,237,0.1);margin-bottom:48px;"></div>
+
+  <!-- Projekt 5 — Multimedia (screen LEWO, opis PRAWO) -->
+  <div class="project-row" style="display:flex;gap:32px;align-items:center;margin-bottom:48px;flex-wrap:wrap;">
+    <a href="{% url 'minikurs:multimedia' %}"
+       class="project-thumb" style="flex:1;min-width:260px;max-width:480px;">
+      <img src="{% static 'media/img/multimedia.png' %}"
+           alt="Multimedia"
+           style="width:100%;border-radius:var(--radius-md);
+                  border:2px solid rgba(124,58,237,0.25);
+                  transition:var(--transition);display:block;"
+           onmouseover="this.style.borderColor='var(--accent-primary)';this.style.transform='scale(1.02)'"
+           onmouseout="this.style.borderColor='rgba(124,58,237,0.25)';this.style.transform='scale(1)'">
+    </a>
+    <div style="flex:1;min-width:240px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;
+                  background:rgba(124,58,237,0.12);border-radius:20px;
+                  padding:4px 14px;margin-bottom:14px;">
+        <i data-lucide="film" style="width:14px;height:14px;color:var(--accent-secondary);"></i>
+        <span style="font-size:var(--text-xs);color:var(--accent-secondary);font-weight:600;">Projekt 5</span>
+      </div>
+      <h3 style="color:var(--text-primary);margin:0 0 12px;font-size:var(--text-xl);">Multimedia</h3>
+      <p style="color:var(--text-secondary);font-size:var(--text-sm);line-height:1.7;margin-bottom:16px;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia
+        voluptas sit aspernatur aut odit aut fugit. Projekt prezentuje osadzanie obrazów, wideo
+        i audio w HTML5 — umiejętność niezbędna przy budowie galerii i stron portfolio.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+        <span class="badge badge-accent">img / video / audio</span>
+        <span class="badge badge-accent">Galeria</span>
+        <span class="badge badge-accent">Atrybuty mediów</span>
+      </div>
+      <a href="{% url 'minikurs:multimedia' %}" class="btn btn-primary btn-sm">
+        <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+        Przejdź do projektu
+      </a>
+    </div>
+  </div>
+
+  <div style="height:1px;background:rgba(124,58,237,0.1);margin-bottom:48px;"></div>
+
+  <!-- Projekt 6 — Resumo (opis LEWO, screen PRAWO) -->
+  <div class="project-row" style="display:flex;gap:32px;align-items:center;margin-bottom:48px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:240px;order:1;">
+      <div style="display:inline-flex;align-items:center;gap:8px;
+                  background:rgba(124,58,237,0.12);border-radius:20px;
+                  padding:4px 14px;margin-bottom:14px;">
+        <i data-lucide="file-text" style="width:14px;height:14px;color:var(--accent-secondary);"></i>
+        <span style="font-size:var(--text-xs);color:var(--accent-secondary);font-weight:600;">Projekt 6</span>
+      </div>
+      <h3 style="color:var(--text-primary);margin:0 0 12px;font-size:var(--text-xl);">Resumo — CV w HTML/CSS</h3>
+      <p style="color:var(--text-secondary);font-size:var(--text-sm);line-height:1.7;margin-bottom:16px;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. At vero eos et accusamus et iusto
+        odio dignissimos ducimus qui blanditiis praesentium. Projekt uczy tworzenia layoutu
+        dwukolumnowego z użyciem Flexbox — techniki stosowanej w CV, landing page i stronach firmowych.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+        <span class="badge badge-accent">Flexbox</span>
+        <span class="badge badge-accent">Layout dwukolumnowy</span>
+        <span class="badge badge-accent">Typografia CSS</span>
+      </div>
+      <a href="{% url 'minikurs:formularze_resumo' %}" class="btn btn-primary btn-sm">
+        <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+        Przejdź do projektu
+      </a>
+    </div>
+    <a href="{% url 'minikurs:formularze_resumo' %}"
+       class="project-thumb" style="flex:1;min-width:260px;max-width:480px;order:2;">
+      <img src="{% static 'media/img/resumo.png' %}"
+           alt="Resumo CV"
+           style="width:100%;border-radius:var(--radius-md);
+                  border:2px solid rgba(124,58,237,0.25);
+                  transition:var(--transition);display:block;"
+           onmouseover="this.style.borderColor='var(--accent-primary)';this.style.transform='scale(1.02)'"
+           onmouseout="this.style.borderColor='rgba(124,58,237,0.25)';this.style.transform='scale(1)'">
+    </a>
+  </div>
+
+  <div style="height:1px;background:rgba(124,58,237,0.1);margin-bottom:48px;"></div>
+
+  <!-- Projekt 7 — Kwestionariusz (screen LEWO, opis PRAWO) -->
+  <div class="project-row" style="display:flex;gap:32px;align-items:center;margin-bottom:16px;flex-wrap:wrap;">
+    <a href="{% url 'minikurs:formularze_kwestionariusz' %}"
+       class="project-thumb" style="flex:1;min-width:260px;max-width:480px;">
+      <img src="{% static 'media/img/kwestionariusz.png' %}"
+           alt="Kwestionariusz"
+           style="width:100%;border-radius:var(--radius-md);
+                  border:2px solid rgba(124,58,237,0.25);
+                  transition:var(--transition);display:block;"
+           onmouseover="this.style.borderColor='var(--accent-primary)';this.style.transform='scale(1.02)'"
+           onmouseout="this.style.borderColor='rgba(124,58,237,0.25)';this.style.transform='scale(1)'">
+    </a>
+    <div style="flex:1;min-width:240px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;
+                  background:rgba(124,58,237,0.12);border-radius:20px;
+                  padding:4px 14px;margin-bottom:14px;">
+        <i data-lucide="clipboard" style="width:14px;height:14px;color:var(--accent-secondary);"></i>
+        <span style="font-size:var(--text-xs);color:var(--accent-secondary);font-weight:600;">Projekt 7</span>
+      </div>
+      <h3 style="color:var(--text-primary);margin:0 0 12px;font-size:var(--text-xl);">Kwestionariusz</h3>
+      <p style="color:var(--text-secondary);font-size:var(--text-sm);line-height:1.7;margin-bottom:16px;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam libero tempore cum soluta nobis
+        eligendi optio cumque nihil impedit quo minus. Projekt pokazuje budowę formularza HTML5
+        z polami tekstowymi, radio, checkbox i przyciskiem submit — fundament każdego kontaktu online.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+        <span class="badge badge-accent">Formularze HTML5</span>
+        <span class="badge badge-accent">input / select</span>
+        <span class="badge badge-accent">Walidacja</span>
+      </div>
+      <a href="{% url 'minikurs:formularze_kwestionariusz' %}" class="btn btn-primary btn-sm">
+        <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+        Przejdź do projektu
+      </a>
+    </div>
+  </div>
+
 </div>
 
 <!-- CTA -->
