@@ -1,0 +1,98 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Składnia i struktura dokumentu HTML</h1>
+
+<p>
+  Każdy plik HTML ma określoną strukturę — zestaw obowiązkowych elementów, które muszą się w nim znaleźć,
+  żeby przeglądarka poprawnie go wyświetliła. Poznajmy ją krok po kroku.
+</p>
+
+<h2>Minimalny dokument HTML5</h2>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pl"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Tytuł strony&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Treść strony&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<h2>Omówienie każdej linii</h2>
+
+<h3><code>&lt;!DOCTYPE html&gt;</code></h3>
+<p>
+  Deklaracja typu dokumentu. Informuje przeglądarkę, że mamy do czynienia z HTML5.
+  Musi być pierwszą linią każdego pliku — przed nią nie może być nic, nawet spacja.
+</p>
+
+<h3><code>&lt;html lang="pl"&gt;</code></h3>
+<p>
+  Główny element dokumentu — wszystko inne musi się w nim znajdować.
+  Atrybut <code>lang</code> określa język strony. Jest ważny dla czytników ekranowych
+  i robotów wyszukiwarek.
+</p>
+
+<h3><code>&lt;head&gt;</code></h3>
+<p>
+  Sekcja nagłówkowa dokumentu. Nie jest wyświetlana na stronie — zawiera metadane:
+  kodowanie znaków, tytuł karty, linki do stylów CSS i skryptów JavaScript.
+</p>
+
+<h3><code>&lt;meta charset="UTF-8"&gt;</code></h3>
+<p>
+  Określa kodowanie znaków. <strong>UTF-8</strong> obsługuje praktycznie wszystkie znaki świata,
+  w tym polskie litery (ą, ę, ó, ś...). Bez tej linii polskie znaki mogą się nie wyświetlać.
+</p>
+
+<h3><code>&lt;meta name="viewport"&gt;</code></h3>
+<p>
+  Kluczowy meta tag dla stron responsywnych. Mówi przeglądarce mobilnej, żeby
+  wyświetlała stronę w rzeczywistej szerokości urządzenia, a nie skalowała jej jak
+  stronę desktopową.
+</p>
+
+<h3><code>&lt;title&gt;</code></h3>
+<p>
+  Tytuł strony widoczny w karcie przeglądarki i w wynikach wyszukiwania Google.
+  Powinien być krótki, opisowy i unikalny dla każdej podstrony.
+</p>
+
+<h3><code>&lt;body&gt;</code></h3>
+<p>
+  Tu umieszczasz całą widoczną treść strony: tekst, obrazy, przyciski, formularze — wszystko.
+</p>
+
+<h2>Znaczniki — jak działają?</h2>
+<p>
+  Większość znaczników HTML składa się z <strong>tagu otwierającego</strong> i <strong>zamykającego</strong>:
+</p>
+<pre><code>&lt;p&gt;To jest akapit.&lt;/p&gt;</code></pre>
+<p>
+  Tag zamykający różni się od otwierającego ukośnikiem <code>/</code> przed nazwą.
+  Niektóre znaczniki są <em>samozamykające się</em> — nie mają treści ani tagu zamykającego:
+</p>
+<pre><code>&lt;br&gt;
+&lt;img src="foto.jpg" alt="Opis"&gt;
+&lt;meta charset="UTF-8"&gt;</code></pre>
+
+<h2>Zagnieżdżanie</h2>
+<p>
+  Znaczniki można zagnieżdżać — umieszczać jedne wewnątrz drugich. Ważna zasada:
+  <strong>znaczniki muszą być zamykane w odwrotnej kolejności niż były otwierane.</strong>
+</p>
+<pre><code>&lt;!-- ✅ Poprawnie --&gt;
+&lt;p&gt;To jest &lt;strong&gt;ważny&lt;/strong&gt; tekst.&lt;/p&gt;
+
+&lt;!-- ❌ Błędnie --&gt;
+&lt;p&gt;To jest &lt;strong&gt;ważny&lt;/p&gt;&lt;/strong&gt;</code></pre>
+
+<div class="tip">
+  💡 <strong>Wskazówka:</strong> Komentarze w HTML zapisujesz tak: <code>&lt;!-- treść komentarza --&gt;</code>.
+  Przeglądarka je ignoruje — przydają się do opisywania kodu lub tymczasowego wyłączania fragmentów.
+</div>
+
+{% endblock %}

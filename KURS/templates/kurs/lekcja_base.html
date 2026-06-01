@@ -1,0 +1,76 @@
+{% extends 'kurs/base.html' %}
+
+{% block content %}
+
+<!-- Breadcrumb -->
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;
+            font-size:var(--text-xs);color:var(--text-muted);">
+  <a href="{% url 'minikurs:kursy_lista' %}"
+     style="color:var(--text-muted);text-decoration:none;">Kursy</a>
+  <i data-lucide="chevron-right" style="width:12px;height:12px;"></i>
+  <a href="{% url 'minikurs:kurs_detail' course.slug %}"
+     style="color:var(--text-muted);text-decoration:none;">{{ course.title }}</a>
+  <i data-lucide="chevron-right" style="width:12px;height:12px;"></i>
+  <span style="color:var(--accent-secondary);">{{ lesson.title }}</span>
+</div>
+
+<!-- Header lekcji -->
+<div style="display:flex;align-items:flex-start;justify-content:space-between;
+            gap:16px;margin-bottom:32px;flex-wrap:wrap;">
+  <div>
+    <h1 style="margin:0 0 8px;font-size:var(--text-3xl);">{{ lesson.title }}</h1>
+    {% if lesson.description %}
+    <p style="margin:0;color:var(--text-muted);">{{ lesson.description }}</p>
+    {% endif %}
+  </div>
+
+  <!-- Przycisk oznacz jako ukończone -->
+  <form method="post" action="{% url 'minikurs:toggle_complete' course.slug lesson.slug %}">
+    {% csrf_token %}
+    <button type="submit"
+            class="btn {% if progress.completed %}btn-outline{% else %}btn-primary{% endif %} btn-sm"
+            style="white-space:nowrap;">
+      {% if progress.completed %}
+        <i data-lucide="x-circle" style="width:14px;height:14px;"></i>
+        Oznacz jako nieukończone
+      {% else %}
+        <i data-lucide="check-circle" style="width:14px;height:14px;"></i>
+        Oznacz jako ukończone
+      {% endif %}
+    </button>
+  </form>
+</div>
+
+<!-- TREŚĆ LEKCJI — tu wstrzykujesz content z pliku lekcji -->
+<div class="content-card lesson-content" style="margin-bottom:32px;">
+  {% block lekcja_content %}{% endblock %}
+</div>
+
+<!-- Nawigacja prev/next -->
+<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+  {% if prev_lesson %}
+  <a href="{% url 'minikurs:lekcja' course.slug prev_lesson.slug %}"
+     class="btn btn-outline" style="flex:1;max-width:280px;">
+    <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+    {{ prev_lesson.title }}
+  </a>
+  {% else %}
+  <div></div>
+  {% endif %}
+
+  {% if next_lesson %}
+  <a href="{% url 'minikurs:lekcja' course.slug next_lesson.slug %}"
+     class="btn btn-primary" style="flex:1;max-width:280px;justify-content:flex-end;">
+    {{ next_lesson.title }}
+    <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+  </a>
+  {% else %}
+  <a href="{% url 'minikurs:kurs_detail' course.slug %}"
+     class="btn btn-primary" style="flex:1;max-width:280px;justify-content:flex-end;">
+    <i data-lucide="flag" style="width:16px;height:16px;"></i>
+    Koniec kursu!
+  </a>
+  {% endif %}
+</div>
+
+{% endblock %}

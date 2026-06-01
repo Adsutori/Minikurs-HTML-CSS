@@ -1,0 +1,64 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Formatowanie tekstu</h1>
+
+<p>
+  HTML oferuje szereg znaczników do nadawania tekstowi znaczenia i wyglądu.
+  Warto rozróżnić dwie kategorie: znaczniki <strong>semantyczne</strong> (niosące znaczenie)
+  i <strong>prezentacyjne</strong> (wpływające tylko na wygląd).
+</p>
+
+<h2>Pogrubienie i kursywa</h2>
+<table>
+  <thead>
+    <tr><th>Znacznik</th><th>Efekt</th><th>Znaczenie</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>&lt;strong&gt;</code></td><td><strong>pogrubienie</strong></td><td>treść ważna, istotna</td></tr>
+    <tr><td><code>&lt;b&gt;</code></td><td><b>pogrubienie</b></td><td>tylko wizualne, bez znaczenia</td></tr>
+    <tr><td><code>&lt;em&gt;</code></td><td><em>kursywa</em></td><td>nacisk, emfaza</td></tr>
+    <tr><td><code>&lt;i&gt;</code></td><td><i>kursywa</i></td><td>tylko wizualne (np. terminy techniczne)</td></tr>
+  </tbody>
+</table>
+
+<h2>Podkreślenie i przekreślenie</h2>
+<pre><code>&lt;u&gt;tekst podkreślony&lt;/u&gt;
+&lt;ins&gt;tekst dodany (podkreślony)&lt;/ins&gt;
+
+&lt;s&gt;tekst przekreślony&lt;/s&gt;
+&lt;del&gt;tekst usunięty (przekreślony)&lt;/del&gt;</code></pre>
+<p>
+  <code>&lt;ins&gt;</code> i <code>&lt;del&gt;</code> mają znaczenie semantyczne — oznaczają zmiany w dokumencie
+  (np. w edytorach tekstu czy systemach kontroli wersji).
+</p>
+
+<h2>Indeksy i wyróżnienie</h2>
+<pre><code>&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O — wzór wody&lt;/p&gt;
+&lt;p&gt;E = mc&lt;sup&gt;2&lt;/sup&gt; — wzór Einsteina&lt;/p&gt;
+&lt;p&gt;To jest &lt;mark&gt;wyróżniony fragment&lt;/mark&gt; tekstu.&lt;/p&gt;</code></pre>
+
+<h2>Znaczniki semantyczne dla tekstu</h2>
+<ul>
+  <li><code>&lt;abbr title="HyperText Markup Language"&gt;HTML&lt;/abbr&gt;</code> — skrót z rozwinięciem w dymku</li>
+  <li><code>&lt;cite&gt;</code> — tytuł dzieła (książki, filmu, artykułu)</li>
+  <li><code>&lt;dfn&gt;</code> — definicja terminu</li>
+  <li><code>&lt;address&gt;</code> — dane kontaktowe autora lub właściciela strony</li>
+  <li><code>&lt;time datetime="2026-01-01"&gt;1 stycznia 2026&lt;/time&gt;</code> — data/czas czytelna dla maszyn</li>
+</ul>
+
+<h2>Przykład złożony</h2>
+<pre><code>&lt;p&gt;
+  Technologia &lt;abbr title="HyperText Markup Language"&gt;HTML&lt;/abbr&gt;
+  została stworzona przez &lt;cite&gt;Tima Bernersa-Lee&lt;/cite&gt;
+  w &lt;time datetime="1991"&gt;1991 roku&lt;/time&gt;.
+  Jest to &lt;dfn&gt;język znaczników&lt;/dfn&gt; — nie język programowania.
+&lt;/p&gt;</code></pre>
+
+<div class="tip">
+  💡 <strong>Zasada:</strong> Używaj <code>&lt;strong&gt;</code> i <code>&lt;em&gt;</code> zamiast <code>&lt;b&gt;</code> i <code>&lt;i&gt;</code>
+  wszędzie tam, gdzie chcesz przekazać znaczenie, nie tylko zmienić wygląd.
+  Czytniki ekranowe i wyszukiwarki rozumieją tę różnicę.
+</div>
+
+{% endblock %}

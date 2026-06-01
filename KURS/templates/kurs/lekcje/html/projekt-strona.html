@@ -1,0 +1,291 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Projekt: Prosta strona WWW</h1>
+
+<p>
+  To finalny projekt kursu HTML. Zbudujesz kompletną, wielostronicową witrynę
+  składającą się z trzech podstron: strony głównej, strony "O mnie" i strony kontaktowej.
+  Bez CSS — czysty, semantyczny HTML od początku do końca.
+</p>
+
+<h2>Struktura projektu</h2>
+<pre><code>moja-strona/
+├── index.html
+├── o-mnie.html
+├── kontakt.html
+└── images/
+    └── (tu wrzucasz swoje zdjęcia)</code></pre>
+
+<h2>Plik 1 — index.html (Strona główna)</h2>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pl"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;meta name="description" content="Strona główna — Jan Kowalski, Frontend Developer"&gt;
+  &lt;title&gt;Jan Kowalski — Strona główna&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;header&gt;
+    &lt;h1&gt;Jan Kowalski&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Strona główna&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="o-mnie.html"&gt;O mnie&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="kontakt.html"&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Witaj na mojej stronie!&lt;/h2&gt;
+      &lt;p&gt;
+        Jestem Frontend Developerem z pasją do tworzenia pięknych i dostępnych stron internetowych.
+        Specjalizuję się w HTML5 i CSS3.
+      &lt;/p&gt;
+      &lt;p&gt;&lt;a href="o-mnie.html"&gt;Dowiedz się więcej o mnie &amp;rarr;&lt;/a&gt;&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;hr&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Moje projekty&lt;/h2&gt;
+
+      &lt;article&gt;
+        &lt;h3&gt;CV w HTML&lt;/h3&gt;
+        &lt;p&gt;Profesjonalne curriculum vitae zbudowane w czystym HTML5 z semantyczną strukturą.&lt;/p&gt;
+        &lt;p&gt;&lt;a href="cv/index.html"&gt;Zobacz projekt&lt;/a&gt;&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article&gt;
+        &lt;h3&gt;Strona wizytówkowa&lt;/h3&gt;
+        &lt;p&gt;Prosta strona prezentująca moje umiejętności i doświadczenie.&lt;/p&gt;
+        &lt;p&gt;&lt;a href="#"&gt;Wkrótce&lt;/a&gt;&lt;/p&gt;
+      &lt;/article&gt;
+
+    &lt;/section&gt;
+
+    &lt;hr&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Moje umiejętności&lt;/h2&gt;
+      &lt;ul&gt;
+        &lt;li&gt;HTML5 &amp;mdash; semantyczny, dostępny kod&lt;/li&gt;
+        &lt;li&gt;CSS3 &amp;mdash; Flexbox, Grid, animacje&lt;/li&gt;
+        &lt;li&gt;Git &amp;mdash; kontrola wersji&lt;/li&gt;
+        &lt;li&gt;Responsywne strony internetowe&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/section&gt;
+
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;hr&gt;
+    &lt;p&gt;&lt;small&gt;&amp;copy; &lt;time datetime="2026"&gt;2026&lt;/time&gt; Jan Kowalski&lt;/small&gt;&lt;/p&gt;
+  &lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<h2>Plik 2 — o-mnie.html</h2>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pl"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;meta name="description" content="O mnie — Jan Kowalski, Frontend Developer z Warszawy"&gt;
+  &lt;title&gt;O mnie — Jan Kowalski&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;header&gt;
+    &lt;h1&gt;Jan Kowalski&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Strona główna&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="o-mnie.html"&gt;O mnie&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="kontakt.html"&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+
+    &lt;h2&gt;O mnie&lt;/h2&gt;
+
+    &lt;figure&gt;
+      &lt;img src="images/zdjecie.jpg" alt="Zdjęcie Jana Kowalskiego" width="200"&gt;
+      &lt;figcaption&gt;Jan Kowalski, Frontend Developer&lt;/figcaption&gt;
+    &lt;/figure&gt;
+
+    &lt;section&gt;
+      &lt;h3&gt;Kim jestem?&lt;/h3&gt;
+      &lt;p&gt;
+        Mam 22 lata i mieszkam w Warszawie. Od 3 lat uczę się tworzenia stron internetowych.
+        Zaczynałem od prostych stron w HTML, dziś tworzę responsywne layouty z CSS i zaczynam
+        przygodę z JavaScript.
+      &lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section&gt;
+      &lt;h3&gt;Moja historia&lt;/h3&gt;
+      &lt;p&gt;
+        Pierwszą stronę internetową stworzyłem w &lt;time datetime="2023"&gt;2023 roku&lt;/time&gt;
+        podczas zajęć w technikum. Od tamtej pory nie mogę przestać — każdy projekt
+        uczy mnie czegoś nowego.
+      &lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section&gt;
+      &lt;h3&gt;Poza pracą&lt;/h3&gt;
+      &lt;ul&gt;
+        &lt;li&gt;📷 Fotografia uliczna&lt;/li&gt;
+        &lt;li&gt;🎮 Gry indie&lt;/li&gt;
+        &lt;li&gt;📚 Książki o designie i UX&lt;/li&gt;
+        &lt;li&gt;🚴 Rower&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/section&gt;
+
+    &lt;p&gt;&lt;a href="kontakt.html"&gt;Napisz do mnie &amp;rarr;&lt;/a&gt;&lt;/p&gt;
+
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;hr&gt;
+    &lt;p&gt;&lt;small&gt;&amp;copy; &lt;time datetime="2026"&gt;2026&lt;/time&gt; Jan Kowalski&lt;/small&gt;&lt;/p&gt;
+  &lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<h2>Plik 3 — kontakt.html</h2>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pl"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;meta name="description" content="Kontakt — napisz do Jana Kowalskiego"&gt;
+  &lt;title&gt;Kontakt — Jan Kowalski&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;header&gt;
+    &lt;h1&gt;Jan Kowalski&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Strona główna&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="o-mnie.html"&gt;O mnie&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="kontakt.html"&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+
+    &lt;h2&gt;Kontakt&lt;/h2&gt;
+
+    &lt;section&gt;
+      &lt;h3&gt;Dane kontaktowe&lt;/h3&gt;
+      &lt;address&gt;
+        &lt;p&gt;
+          📧 Email: &lt;a href="mailto:jan@example.com"&gt;jan@example.com&lt;/a&gt;&lt;br&gt;
+          📞 Telefon: &lt;a href="tel:+48501234567"&gt;+48 501 234 567&lt;/a&gt;&lt;br&gt;
+          💼 GitHub: &lt;a href="https://github.com/jankowalski" target="_blank" rel="noopener"&gt;github.com/jankowalski&lt;/a&gt;&lt;br&gt;
+          🔗 LinkedIn: &lt;a href="https://linkedin.com/in/jankowalski" target="_blank" rel="noopener"&gt;linkedin.com/in/jankowalski&lt;/a&gt;
+        &lt;/p&gt;
+      &lt;/address&gt;
+    &lt;/section&gt;
+
+    &lt;hr&gt;
+
+    &lt;section&gt;
+      &lt;h3&gt;Formularz kontaktowy&lt;/h3&gt;
+      &lt;form action="/wyslij" method="POST"&gt;
+
+        &lt;fieldset&gt;
+          &lt;legend&gt;Twoje dane&lt;/legend&gt;
+
+          &lt;label for="imie"&gt;Imię i nazwisko:&lt;/label&gt;&lt;br&gt;
+          &lt;input type="text" id="imie" name="imie"
+            placeholder="Jan Kowalski" required&gt;&lt;br&gt;&lt;br&gt;
+
+          &lt;label for="email"&gt;Adres email:&lt;/label&gt;&lt;br&gt;
+          &lt;input type="email" id="email" name="email"
+            placeholder="jan@example.com" required&gt;&lt;br&gt;&lt;br&gt;
+
+          &lt;label for="telefon"&gt;Telefon (opcjonalnie):&lt;/label&gt;&lt;br&gt;
+          &lt;input type="tel" id="telefon" name="telefon"
+            placeholder="+48 501 234 567"&gt;&lt;br&gt;&lt;br&gt;
+
+        &lt;/fieldset&gt;
+
+        &lt;fieldset&gt;
+          &lt;legend&gt;Wiadomość&lt;/legend&gt;
+
+          &lt;label for="temat"&gt;Temat:&lt;/label&gt;&lt;br&gt;
+          &lt;select id="temat" name="temat"&gt;
+            &lt;option value=""&gt;-- wybierz temat --&lt;/option&gt;
+            &lt;option value="wspolpraca"&gt;Współpraca&lt;/option&gt;
+            &lt;option value="projekt"&gt;Wycena projektu&lt;/option&gt;
+            &lt;option value="inne"&gt;Inne&lt;/option&gt;
+          &lt;/select&gt;&lt;br&gt;&lt;br&gt;
+
+          &lt;label for="wiadomosc"&gt;Treść wiadomości:&lt;/label&gt;&lt;br&gt;
+          &lt;textarea id="wiadomosc" name="wiadomosc"
+            rows="6" cols="50"
+            placeholder="Napisz swoją wiadomość..."
+            required&gt;&lt;/textarea&gt;&lt;br&gt;&lt;br&gt;
+
+          &lt;label&gt;
+            &lt;input type="checkbox" name="zgoda" required&gt;
+            Wyrażam zgodę na przetwarzanie moich danych osobowych.
+          &lt;/label&gt;&lt;br&gt;&lt;br&gt;
+
+        &lt;/fieldset&gt;
+
+        &lt;button type="submit"&gt;Wyślij wiadomość&lt;/button&gt;
+        &lt;button type="reset"&gt;Wyczyść formularz&lt;/button&gt;
+
+      &lt;/form&gt;
+    &lt;/section&gt;
+
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;hr&gt;
+    &lt;p&gt;&lt;small&gt;&amp;copy; &lt;time datetime="2026"&gt;2026&lt;/time&gt; Jan Kowalski&lt;/small&gt;&lt;/p&gt;
+  &lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<h2>Co ćwiczymy w tym projekcie?</h2>
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Umiejętność</th>
+      <th scope="col">Gdzie zastosowana</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Wielostronicowa nawigacja</td><td><code>&lt;nav&gt;</code> z łączami między plikami</td></tr>
+    <tr><td>Semantyczny layout</td><td><code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;section&gt;</code></td></tr>
+    <tr><td>Obrazy z podpisem</td><td><code>&lt;figure&gt;</code> i <code>&lt;figcaption&gt;</code></td></tr>
+    <tr><td>Formularz kontaktowy</td><td><code>&lt;form&gt;</code>, <code>&lt;fieldset&gt;</code>, <code>&lt;select&gt;</code>, <code>&lt;textarea&gt;</code></td></tr>
+    <tr><td>Meta tagi SEO</td><td><code>description</code>, <code>title</code> na każdej podstronie</td></tr>
+    <tr><td>Łącza zewnętrzne</td><td>GitHub, LinkedIn z <code>rel="noopener"</code></td></tr>
+    <tr><td>Encje HTML</td><td><code>&amp;copy;</code>, <code>&amp;mdash;</code>, <code>&amp;rarr;</code></td></tr>
+  </tbody>
+</table>
+
+<div class="tip">
+  💡 <strong>Gratulacje — ukończyłeś kurs HTML!</strong> Masz teraz solidne podstawy
+  do nauki CSS, gdzie nadasz tym stronom prawdziwy wygląd. Wróć do tych projektów
+  po kursie CSS i zobaczysz jak bardzo się zmienią.
+</div>
+
+{% endblock %}

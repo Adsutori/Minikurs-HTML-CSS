@@ -1,0 +1,79 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>ID i Class</h1>
+
+<p>
+  Atrybuty <code>id</code> i <code>class</code> to podstawowe narzędzia do identyfikowania
+  i grupowania elementów HTML. Bez nich CSS i JavaScript nie wiedziałyby, do których
+  elementów się odwoływać.
+</p>
+
+<h2>ID — unikalny identyfikator</h2>
+<pre><code>&lt;header id="glowny-naglowek"&gt;...&lt;/header&gt;
+&lt;section id="o-nas"&gt;...&lt;/section&gt;
+&lt;footer id="stopka"&gt;...&lt;/footer&gt;</code></pre>
+<p>Zasady używania <code>id</code>:</p>
+<ul>
+  <li>Musi być <strong>unikalne</strong> na całej stronie</li>
+  <li>Nie może zawierać spacji</li>
+  <li>Może zawierać litery, cyfry, myślniki i podkreślenia</li>
+  <li>Powinno zaczynać się od litery</li>
+</ul>
+
+<h2>Class — wielokrotna klasa</h2>
+<pre><code>&lt;p class="tekst-wazny"&gt;Ważna informacja.&lt;/p&gt;
+&lt;p class="tekst-wazny podswietlony"&gt;Ważna i podświetlona.&lt;/p&gt;
+&lt;div class="karta aktywna"&gt;Aktywna karta.&lt;/div&gt;</code></pre>
+<p>
+  Klasy można dowolnie łączyć — oddzielasz je spacją.
+  Ta sama klasa może być użyta na wielu elementach.
+</p>
+
+<h2>Odwołania w CSS</h2>
+<pre><code>/* Selektor ID — poprzedzony # */
+#glowny-naglowek {
+  background-color: #1a1a2e;
+  color: white;
+}
+
+/* Selektor klasy — poprzedzony . */
+.tekst-wazny {
+  font-weight: bold;
+  color: #c0392b;
+}
+
+/* Element z konkretną klasą */
+p.podswietlony {
+  background-color: yellow;
+}</code></pre>
+
+<h2>Odwołania w JavaScript</h2>
+<pre><code>// Pobierz element po ID
+const naglowek = document.getElementById('glowny-naglowek');
+
+// Pobierz pierwszy element o klasie
+const wazny = document.querySelector('.tekst-wazny');
+
+// Pobierz wszystkie elementy o klasie
+const wszystkieWazne = document.querySelectorAll('.tekst-wazny');</code></pre>
+
+<h2>ID vs Class — kiedy co używać?</h2>
+<table>
+  <thead><tr><th></th><th>ID</th><th>Class</th></tr></thead>
+  <tbody>
+    <tr><td>Unikalność</td><td>Tylko raz na stronie</td><td>Dowolna liczba razy</td></tr>
+    <tr><td>Selektor CSS</td><td><code>#nazwa</code></td><td><code>.nazwa</code></td></tr>
+    <tr><td>Priorytet CSS</td><td>Wyższy (100 punktów)</td><td>Niższy (10 punktów)</td></tr>
+    <tr><td>Kotwice URL</td><td>✅ <code>href="#sekcja"</code></td><td>❌</td></tr>
+    <tr><td>Typowe użycie</td><td>Główne sekcje, kotwice, JS</td><td>Stylowanie, komponenty</td></tr>
+  </tbody>
+</table>
+
+<div class="tip">
+  💡 <strong>Dobra praktyka:</strong> Nazwy klas i ID pisz po angielsku lub konsekwentnie po polsku,
+  używaj myślników zamiast spacji (<code>glowny-naglowek</code>, nie <code>glownyNaglowek</code> w HTML).
+  Konwencja z myślnikami to standard w świecie CSS.
+</div>
+
+{% endblock %}

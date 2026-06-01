@@ -1,0 +1,96 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Atrybuty globalne</h1>
+
+<p>
+  Atrybuty globalne to takie, które można dodać do <strong>dowolnego</strong> znacznika HTML.
+  Niezależnie od tego czy to <code>&lt;p&gt;</code>, <code>&lt;div&gt;</code> czy <code>&lt;button&gt;</code> —
+  te atrybuty zawsze działają.
+</p>
+
+<h2>id — unikalny identyfikator</h2>
+<pre><code>&lt;h2 id="sekcja-kontakt"&gt;Kontakt&lt;/h2&gt;
+
+&lt;!-- Odwołanie w CSS --&gt;
+#sekcja-kontakt { color: navy; }
+
+&lt;!-- Odwołanie w HTML (kotwica) --&gt;
+&lt;a href="#sekcja-kontakt"&gt;Przejdź do kontaktu&lt;/a&gt;</code></pre>
+<p>
+  Wartość <code>id</code> musi być <strong>unikalna na całej stronie</strong> —
+  nie może powtórzyć się dwa razy w jednym dokumencie.
+</p>
+
+<h2>class — klasa stylu</h2>
+<pre><code>&lt;p class="wazny"&gt;Ten akapit jest ważny.&lt;/p&gt;
+&lt;p class="wazny duzy"&gt;Ważny i duży — dwie klasy.&lt;/p&gt;
+
+&lt;!-- Odwołanie w CSS --&gt;
+.wazny { font-weight: bold; }
+.duzy  { font-size: 1.5rem; }</code></pre>
+<p>
+  W odróżnieniu od <code>id</code>, klasa może być użyta wielokrotnie.
+  Element może mieć wiele klas — oddzielamy je spacją.
+</p>
+
+<h2>style — styl inline</h2>
+<pre><code>&lt;p style="color: red; font-size: 18px; margin-top: 20px"&gt;
+  Czerwony tekst 18px
+&lt;/p&gt;</code></pre>
+<p>
+  Style inline mają najwyższy priorytet w CSS — nadpisują style z arkuszy.
+  Używaj ich oszczędnie, tylko gdy naprawdę potrzebujesz nadpisać styl w jednym miejscu.
+</p>
+
+<h2>title — dymek z opisem</h2>
+<pre><code>&lt;abbr title="HyperText Markup Language"&gt;HTML&lt;/abbr&gt;
+&lt;img src="foto.jpg" alt="Zdjęcie" title="Kliknij, aby powiększyć"&gt;
+&lt;button title="Usuń ten element"&gt;🗑️&lt;/button&gt;</code></pre>
+<p>Tekst z <code>title</code> pojawia się jako dymek po najechaniu kursorem.</p>
+
+<h2>lang — język elementu</h2>
+<pre><code>&lt;p lang="en"&gt;This paragraph is in English.&lt;/p&gt;
+&lt;p lang="de"&gt;Dieser Absatz ist auf Deutsch.&lt;/p&gt;</code></pre>
+<p>
+  Przydatne gdy na polskiej stronie cytujesz tekst w innym języku —
+  czytnik ekranowy przełączy odpowiedni głos.
+</p>
+
+<h2>tabindex — kolejność fokusa</h2>
+<pre><code>&lt;input type="text" tabindex="1"&gt;
+&lt;input type="text" tabindex="3"&gt;
+&lt;input type="text" tabindex="2"&gt;</code></pre>
+<p>
+  Określa kolejność przechodzenia przez elementy klawiszem <kbd>Tab</kbd>.
+  <code>tabindex="0"</code> — naturalna kolejność DOM.
+  <code>tabindex="-1"</code> — element pominięty przy nawigacji klawiaturą.
+</p>
+
+<h2>hidden — ukrycie elementu</h2>
+<pre><code>&lt;div hidden&gt;Ten element jest niewidoczny.&lt;/div&gt;</code></pre>
+
+<h2>data-* — własne atrybuty danych</h2>
+<pre><code>&lt;button data-user-id="42" data-action="usun"&gt;Usuń użytkownika&lt;/button&gt;
+&lt;div data-kategoria="html" data-poziom="podstawowy"&gt;...&lt;/div&gt;</code></pre>
+<p>
+  Atrybuty <code>data-*</code> pozwalają przechowywać dowolne dane w elementach HTML.
+  Są niewidoczne dla użytkownika, ale dostępne dla JavaScript przez
+  <code>element.dataset.userId</code>.
+</p>
+
+<h2>contenteditable — edytowalny element</h2>
+<pre><code>&lt;p contenteditable="true"&gt;
+  Kliknij tutaj i edytuj ten tekst bezpośrednio w przeglądarce.
+&lt;/p&gt;</code></pre>
+
+<h2>draggable — przeciąganie</h2>
+<pre><code>&lt;div draggable="true"&gt;Przeciągnij mnie!&lt;/div&gt;</code></pre>
+
+<div class="tip">
+  💡 <strong>Zasada:</strong> <code>id</code> używaj do unikalnych elementów (kotwice, JS, formularze).
+  <code>class</code> używaj do stylowania i grupowania podobnych elementów.
+  Nigdy nie używaj <code>id</code> tylko po to, żeby nadać styl — od tego jest <code>class</code>.
+</div>
+
+{% endblock %}

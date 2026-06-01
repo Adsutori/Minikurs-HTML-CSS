@@ -1,310 +1,195 @@
 ﻿{% extends 'kurs/base.html' %}
 {% load static %}
 
-{% block title %}Strona główna | Minikurs HTML5 i CSS3{% endblock %}
-{% block meta_description %}Witaj w Minikursie HTML5 i CSS3 — naucz się budować strony internetowe od zera.{% endblock %}
+{% block title %}O kursie | Minikurs HTML5 i CSS3{% endblock %}
 
 {% block content %}
 <meta name="chapter" content="glowna">
 
-<!-- ============================================================
-     NAGŁÓWEK STRONY
-     ============================================================ -->
 <div class="page-header">
-  <h1>🏠 Strona główna kursu</h1>
-  <p>Twoje centrum dowodzenia — wszystko, czego potrzebujesz, żeby zacząć.</p>
+  <h1>
+    <i data-lucide="book-open" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;"></i>
+    O platformie
+  </h1>
+  <p>Wszystko, co musisz wiedzieć zanim zaczniesz — program, cele i struktura platformy.</p>
 </div>
 
-<!-- ============================================================
-     SEKCJA WSTĘPU
-     ============================================================ -->
-<div class="content-card fade-in" style="text-align:center; max-width:700px; margin:0 auto 48px;">
-  <p style="font-size: var(--text-lg); color: var(--text-secondary); line-height: 1.8;">
-    Witaj w <strong style="color: var(--accent-secondary);">Minikursie HTML5 i CSS3</strong> —
-    miejscu, gdzie nauka tworzenia stron internetowych jest prosta, darmowa i dostępna dla każdego.
-    Przez cały kurs będziesz budować prawdziwe projekty, które możesz pokazać w swoim portfolio.
-    Nie potrzebujesz żadnego wcześniejszego doświadczenia — zaczynamy od absolutnych podstaw.
-    Gotowy? Zacznijmy od pierwszego pytania: czym właściwie jest HTML?
-  </p>
-</div>
-
-<!-- ============================================================
-     SEKCJA WIDEO
-     ============================================================ -->
-<div class="content-section fade-in">
-  <div class="content-section-header">
-    <span class="section-icon">🎬</span>
-    <h2>Zanim zaczniesz — obejrzyj to wideo</h2>
-  </div>
-
-  <div class="content-card">
-    <p style="margin-bottom: 20px; color: var(--text-secondary);">
-      Mirosław Zelent w kilku minutach wyjaśnia czym jest HTML i jak działa przeglądarka.
-      Idealne wprowadzenie przed pierwszą lekcją.
-    </p>
-    <!-- ZASTĄP src właściwym ID filmu Zelenta z YouTube -->
-    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius: var(--radius-lg);">
-      <iframe
-        src="https://www.youtube.com/embed/mfMkVzmGQOI"
-        title="Czym jest HTML? — Mirosław Zelent"
-        style="position:absolute; top:0; left:0; width:100%; height:100%;
-               border:0; border-radius: var(--radius-lg);
-               box-shadow: var(--shadow-glow-sm);"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
+<!-- Powitanie zalogowanego usera -->
+<div class="content-card fade-in"
+     style="margin-bottom:28px; background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(168,85,247,0.05));
+            border-color: rgba(124,58,237,0.3);">
+  <div style="display:flex; align-items:center; gap:16px;">
+    <div style="width:48px;height:48px;border-radius:50%;background:var(--gradient-btn);
+                display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <i data-lucide="user" style="width:22px;height:22px;color:white;"></i>
     </div>
-    <p style="margin-top:12px; font-size: var(--text-xs); color: var(--text-muted); text-align:center;">
-      <!-- ZASTĄP src właściwym ID filmu Zelenta -->
-      Źródło: YouTube · Mirosław Zelent · „Czym jest HTML?"
-    </p>
+    <div>
+      <p style="margin:0;font-size:var(--text-lg);font-weight:700;color:var(--text-primary);">
+        Witaj, <span style="color:var(--accent-secondary);">{{ user.username }}</span>!
+      </p>
+      <p style="margin:0;font-size:var(--text-sm);color:var(--text-muted);">
+        Gotowy na naukę HTML5 i CSS3? Zacznij od wybrania kursu lub przejrzyj program poniżej.
+      </p>
+    </div>
+    <a href="{% url 'minikurs:dashboard' %}"
+       class="btn btn-outline btn-sm" style="margin-left:auto;white-space:nowrap;">
+      <i data-lucide="layout-dashboard" style="width:14px;height:14px;"></i>
+      Mój postęp
+    </a>
   </div>
 </div>
 
-<!-- ============================================================
-     SEKCJA PROJEKTÓW
-     ============================================================ -->
-<div class="content-section fade-in">
-  <div class="content-section-header">
-    <span class="section-icon">👀</span>
-    <h2>Sprawdź czego możesz się nauczyć</h2>
+<!-- CO ZYSKASZ -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="target" style="width:22px;height:22px;"></i>
+    Co wyniesiesz z kursu?
+  </h2>
+
+  <div class="grid-2" style="gap:16px;">
+
+    <div style="display:flex;gap:14px;padding:16px;background:rgba(124,58,237,0.06);
+                border-radius:var(--radius-md);border:1px solid rgba(124,58,237,0.15);">
+      <i data-lucide="code-2" style="width:22px;height:22px;color:var(--accent-secondary);flex-shrink:0;margin-top:2px;"></i>
+      <div>
+        <div style="font-weight:700;color:var(--text-primary);margin-bottom:4px;">Struktura HTML5</div>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">Semantyczne znaczniki i szkielet każdej nowoczesnej strony.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:14px;padding:16px;background:rgba(124,58,237,0.06);
+                border-radius:var(--radius-md);border:1px solid rgba(124,58,237,0.15);">
+      <i data-lucide="paintbrush" style="width:22px;height:22px;color:var(--accent-secondary);flex-shrink:0;margin-top:2px;"></i>
+      <div>
+        <div style="font-weight:700;color:var(--text-primary);margin-bottom:4px;">Stylowanie CSS3</div>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">Flexbox, Grid, animacje i zmienne CSS jak pro.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:14px;padding:16px;background:rgba(124,58,237,0.06);
+                border-radius:var(--radius-md);border:1px solid rgba(124,58,237,0.15);">
+      <i data-lucide="table-2" style="width:22px;height:22px;color:var(--accent-secondary);flex-shrink:0;margin-top:2px;"></i>
+      <div>
+        <div style="font-weight:700;color:var(--text-primary);margin-bottom:4px;">Formularze i Tabele</div>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">Interaktywne formularze i tabele danych.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:14px;padding:16px;background:rgba(124,58,237,0.06);
+                border-radius:var(--radius-md);border:1px solid rgba(124,58,237,0.15);">
+      <i data-lucide="film" style="width:22px;height:22px;color:var(--accent-secondary);flex-shrink:0;margin-top:2px;"></i>
+      <div>
+        <div style="font-weight:700;color:var(--text-primary);margin-bottom:4px;">Multimedia</div>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">Obrazy, wideo, audio, mapy i galerie.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:14px;padding:16px;background:rgba(124,58,237,0.06);
+                border-radius:var(--radius-md);border:1px solid rgba(124,58,237,0.15);">
+      <i data-lucide="link-2" style="width:22px;height:22px;color:var(--accent-secondary);flex-shrink:0;margin-top:2px;"></i>
+      <div>
+        <div style="font-weight:700;color:var(--text-primary);margin-bottom:4px;">Hiperlącza i Nawigacja</div>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">Wewnętrzne, zewnętrzne, mailto, tel i anchory.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:14px;padding:16px;background:rgba(124,58,237,0.06);
+                border-radius:var(--radius-md);border:1px solid rgba(124,58,237,0.15);">
+      <i data-lucide="award" style="width:22px;height:22px;color:var(--accent-secondary);flex-shrink:0;margin-top:2px;"></i>
+      <div>
+        <div style="font-weight:700;color:var(--text-primary);margin-bottom:4px;">Certyfikat</div>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">Własna strona od zera i certyfikat ukończenia.</div>
+      </div>
+    </div>
+
   </div>
-  <p style="margin-bottom: 32px; color: var(--text-secondary);">
-    Oto <strong style="color: var(--text-primary);">7 projektów</strong>, które zbudujesz podczas kursu:
-  </p>
-
-  <div class="projects-grid">
-
-    <!-- Karta 1 — Sprawdzian -->
-    <div class="project-card fade-in fade-in-delay-1">
-      <div class="project-card-img">
-        <!-- ZASTĄP src własnym screenshotem projektu -->
-        <img src="{% static 'img/preview_sprawdzian.jpg' %}"
-             alt="Sprawdzian praktyczny"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="project-card-placeholder" style="display:none;">
-          <span>✏️</span>
-        </div>
-      </div>
-      <div class="project-card-body">
-        <h3>Sprawdzian praktyczny</h3>
-        <p>Pierwsza praca z HTML — podstawowe znaczniki, struktura dokumentu,
-           nagłówki i akapity. Takie elementy znajdziesz na każdej stronie WWW.</p>
-        <a href="{% url 'minikurs:sprawdzian' %}" class="btn btn-outline btn-sm">
-          Zobacz projekt →
-        </a>
-      </div>
-    </div>
-
-    <!-- Karta 2 — Lista -->
-    <div class="project-card fade-in fade-in-delay-2">
-      <div class="project-card-img">
-        <!-- ZASTĄP src własnym screenshotem projektu -->
-        <img src="{% static 'img/preview_lista.jpg' %}"
-             alt="Lista HTML"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="project-card-placeholder" style="display:none;">
-          <span>📋</span>
-        </div>
-      </div>
-      <div class="project-card-body">
-        <h3>Lista</h3>
-        <p>Listy nieuporządkowane i uporządkowane — fundamenty nawigacji,
-           menu i wyliczeń na stronach internetowych.</p>
-        <a href="{% url 'minikurs:lista' %}" class="btn btn-outline btn-sm">
-          Zobacz projekt →
-        </a>
-      </div>
-    </div>
-
-    <!-- Karta 3 — Tabela kolorów -->
-    <div class="project-card fade-in fade-in-delay-3">
-      <div class="project-card-img">
-        <!-- ZASTĄP src własnym screenshotem projektu -->
-        <img src="{% static 'img/preview_tabela_kolorow.jpg' %}"
-             alt="Tabela kolorów"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="project-card-placeholder" style="display:none;">
-          <span>🎨</span>
-        </div>
-      </div>
-      <div class="project-card-body">
-        <h3>Tabela kolorów</h3>
-        <p>Tabele HTML z kolorowymi komórkami — nauka atrybutów bgcolor,
-           colspan, rowspan używanych w layoutach i danych.</p>
-        <a href="{% url 'minikurs:tabela_kolorow' %}" class="btn btn-outline btn-sm">
-          Zobacz projekt →
-        </a>
-      </div>
-    </div>
-
-    <!-- Karta 4 — Tabele, Listy, Łącza -->
-    <div class="project-card fade-in fade-in-delay-1">
-      <div class="project-card-img">
-        <!-- ZASTĄP src własnym screenshotem projektu -->
-        <img src="{% static 'img/preview_tabele_listy.jpg' %}"
-             alt="Tabele, Listy i Łącza"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="project-card-placeholder" style="display:none;">
-          <span>🔗</span>
-        </div>
-      </div>
-      <div class="project-card-body">
-        <h3>Tabele, Listy i Łącza</h3>
-        <p>Połączenie tabel, list i hiperłączy — trzy filary każdej
-           strony internetowej w jednym projekcie.</p>
-        <a href="{% url 'minikurs:tabele_listy_lacza' %}" class="btn btn-outline btn-sm">
-          Zobacz projekt →
-        </a>
-      </div>
-    </div>
-
-    <!-- Karta 5 — Multimedia -->
-    <div class="project-card fade-in fade-in-delay-2">
-      <div class="project-card-img">
-        <!-- ZASTĄP src własnym screenshotem projektu -->
-        <img src="{% static 'img/preview_multimedia.jpg' %}"
-             alt="Multimedia"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="project-card-placeholder" style="display:none;">
-          <span>🎬</span>
-        </div>
-      </div>
-      <div class="project-card-body">
-        <h3>Multimedia</h3>
-        <p>Osadzanie wideo, audio i map Google — elementy multimedialne
-           które znajdziesz na każdym nowoczesnym portalu.</p>
-        <a href="{% url 'minikurs:multimedia' %}" class="btn btn-outline btn-sm">
-          Zobacz projekt →
-        </a>
-      </div>
-    </div>
-
-    <!-- Karta 6 — Resumo -->
-    <div class="project-card fade-in fade-in-delay-3">
-      <div class="project-card-img">
-        <!-- ZASTĄP src własnym screenshotem projektu -->
-        <img src="{% static 'img/preview_resumo.jpg' %}"
-             alt="Resumo — Formularz CV"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="project-card-placeholder" style="display:none;">
-          <span>📝</span>
-        </div>
-      </div>
-      <div class="project-card-body">
-        <h3>Resumo — Formularz CV</h3>
-        <p>Formularz HTML z polami tekstowymi, radio, checkbox i select —
-           podstawa każdego formularza kontaktowego lub rejestracyjnego.</p>
-        <a href="{% url 'minikurs:formularze_resumo' %}" class="btn btn-outline btn-sm">
-          Zobacz projekt →
-        </a>
-      </div>
-    </div>
-
-    <!-- Karta 7 — Kwestionariusz -->
-    <div class="project-card fade-in fade-in-delay-1">
-      <div class="project-card-img">
-        <!-- ZASTĄP src własnym screenshotem projektu -->
-        <img src="{% static 'img/preview_kwestionariusz.jpg' %}"
-             alt="Kwestionariusz Osobowy"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="project-card-placeholder" style="display:none;">
-          <span>📋</span>
-        </div>
-      </div>
-      <div class="project-card-body">
-        <h3>Kwestionariusz Osobowy</h3>
-        <p>Rozbudowany formularz HTML — walidacja, różne typy inputów,
-           textarea. Wzorzec każdego formularza rejestracyjnego w sieci.</p>
-        <a href="{% url 'minikurs:formularze_kwestionariusz' %}" class="btn btn-outline btn-sm">
-          Zobacz projekt →
-        </a>
-      </div>
-    </div>
-
-  </div><!-- /.projects-grid -->
 </div>
 
-<!-- ============================================================
-     STYLE LOKALNE — siatka projektów
-     ============================================================ -->
-<style>
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
+<!-- STATYSTYKI -->
+<div class="grid-4 fade-in" style="gap:16px;margin-bottom:28px;">
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="folder-open" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-3xl);font-weight:800;" class="gradient-text">7</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Projektów</div>
+  </div>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="book-open" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-3xl);font-weight:800;" class="gradient-text">13</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Rozdziałów</div>
+  </div>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="lock-open" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-3xl);font-weight:800;" class="gradient-text">100%</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Darmowy</div>
+  </div>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="zap" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-3xl);font-weight:800;" class="gradient-text">0</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Wymagań</div>
+  </div>
+</div>
 
-.project-card {
-  background: rgba(22, 22, 31, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(124, 58, 237, 0.15);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition: var(--transition);
-}
+<!-- PROGRAM -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="list" style="width:22px;height:22px;"></i>
+    Program kursu
+  </h2>
 
-.project-card:hover {
-  transform: scale(1.02);
-  border-color: var(--accent-primary);
-  box-shadow: var(--shadow-glow-sm);
-}
+  <div style="display:flex;flex-direction:column;gap:12px;">
 
-.project-card-img {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  background: var(--bg-card);
-}
+    {% for num, title, sub, icon, url_name in course_chapters %}
+    <a href="{% url 'minikurs:'|add:url_name %}"
+       style="display:flex;align-items:center;gap:16px;padding:16px;
+              background:rgba(124,58,237,0.04);border:1px solid rgba(124,58,237,0.12);
+              border-radius:var(--radius-md);text-decoration:none;transition:var(--transition);"
+       onmouseover="this.style.borderColor='var(--accent-primary)';this.style.background='rgba(124,58,237,0.08)'"
+       onmouseout="this.style.borderColor='rgba(124,58,237,0.12)';this.style.background='rgba(124,58,237,0.04)'">
+      <div style="width:36px;height:36px;border-radius:var(--radius-sm);
+                  background:rgba(124,58,237,0.15);display:flex;align-items:center;
+                  justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;
+                  font-size:0.7rem;font-weight:700;color:var(--accent-secondary);">
+        {{ num }}
+      </div>
+      <div style="flex:1;">
+        <div style="font-weight:700;color:var(--text-primary);font-size:var(--text-sm);">{{ title }}</div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">{{ sub }}</div>
+      </div>
+      <i data-lucide="chevron-right" style="width:16px;height:16px;color:var(--text-muted);"></i>
+    </a>
+    {% empty %}
+    <!-- Fallback — statyczna lista gdy brak context_processor -->
+    {% for item in static_chapters %}
+    <div style="display:flex;align-items:center;gap:16px;padding:16px;
+                background:rgba(124,58,237,0.04);border:1px solid rgba(124,58,237,0.12);
+                border-radius:var(--radius-md);">
+      <div style="width:36px;height:36px;border-radius:var(--radius-sm);
+                  background:rgba(124,58,237,0.15);display:flex;align-items:center;
+                  justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;
+                  font-size:0.7rem;font-weight:700;color:var(--accent-secondary);">
+        {{ forloop.counter|stringformat:"02d" }}
+      </div>
+      <div>
+        <div style="font-weight:700;color:var(--text-primary);font-size:var(--text-sm);">{{ item }}</div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endfor %}
+  </div>
+</div>
 
-.project-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.project-card:hover .project-card-img img {
-  transform: scale(1.05);
-}
-
-.project-card-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  background: var(--gradient-card);
-}
-
-.project-card-body {
-  padding: 20px;
-}
-
-.project-card-body h3 {
-  font-size: var(--text-base);
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.project-card-body p {
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 16px;
-}
-
-@media (max-width: 1024px) {
-  .projects-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 640px) {
-  .projects-grid { grid-template-columns: 1fr; }
-}
-</style>
+<!-- CTA -->
+<div class="content-card fade-in"
+     style="text-align:center;padding:40px;
+            background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(168,85,247,0.06));
+            border-color:rgba(124,58,237,0.3);">
+  <i data-lucide="rocket" style="width:40px;height:40px;color:var(--accent-secondary);margin-bottom:16px;"></i>
+  <h2 style="margin:0 0 8px;color:var(--text-primary);">Gotowy, żeby zacząć?</h2>
+  <p style="color:var(--text-muted);margin:0 0 24px;">Przejdź do pierwszego rozdziału i zacznij budować strony.</p>
+  <a href="{% url 'minikurs:html' %}" class="btn btn-primary btn-lg">
+    <i data-lucide="play" style="width:18px;height:18px;"></i>
+    Zacznij od HTML
+  </a>
+</div>
 
 {% endblock %}
-

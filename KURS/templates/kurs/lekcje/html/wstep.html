@@ -1,0 +1,50 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Wstęp do HTML</h1>
+
+<p>
+  HTML, czyli <strong>HyperText Markup Language</strong>, to język znaczników używany do tworzenia stron internetowych.
+  Nie jest to język programowania — nie zawiera logiki ani obliczeń. Jego zadaniem jest opisanie <em>struktury</em> i
+  <em>treści</em> dokumentu: co jest nagłówkiem, co akapitem, co obrazkiem, a co odnośnikiem.
+</p>
+
+<p>
+  Każda strona internetowa, którą widzisz w przeglądarce, zbudowana jest z HTML-a. CSS odpowiada za wygląd,
+  JavaScript za interaktywność — ale fundamentem zawsze jest HTML.
+</p>
+
+<h2>Krótka historia</h2>
+<p>
+  HTML powstał na początku lat 90. XX wieku. Jego twórcą jest <strong>Tim Berners-Lee</strong>, który pracując w CERN,
+  potrzebował sposobu na łatwe udostępnianie dokumentów naukowych przez sieć. Dziś HTML jest standardem
+  utrzymywanym przez organizację <strong>W3C</strong> (World Wide Web Consortium).
+</p>
+<p>
+  Aktualna wersja to <strong>HTML5</strong>, która wprowadziła wiele nowych możliwości: obsługę wideo i audio,
+  nowe znaczniki semantyczne oraz wsparcie dla aplikacji webowych.
+</p>
+
+<h2>Jak działa przeglądarka?</h2>
+<p>
+  Kiedy wpisujesz adres strony w przeglądarce, ona pobiera plik HTML z serwera i <em>renderuje</em> go —
+  czyli interpretuje znaczniki i wyświetla gotową stronę. Przeglądarka czyta kod od góry do dołu,
+  budując strukturę zwaną <strong>DOM</strong> (Document Object Model).
+</p>
+
+<h2>Co będziesz umiał po tym kursie?</h2>
+<ul>
+  <li>Tworzyć poprawnie zbudowane strony HTML5</li>
+  <li>Używać znaczników do formatowania tekstu, list, tabel i formularzy</li>
+  <li>Wstawiać obrazy, wideo i audio</li>
+  <li>Tworzyć hiperłącza i nawigację</li>
+  <li>Rozumieć semantykę i dostępność stron</li>
+  <li>Zbudować własne CV i prostą stronę WWW</li>
+</ul>
+
+<div class="tip">
+  💡 <strong>Wskazówka:</strong> Do pisania HTML wystarczy zwykły edytor tekstu (np. VS Code, Notepad++).
+  Nie potrzebujesz żadnego specjalnego oprogramowania — tylko przeglądarki do podglądu efektów.
+</div>
+
+{% endblock %}

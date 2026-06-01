@@ -1,0 +1,118 @@
+{% extends 'kurs/base.html' %}
+{% block title %}{{ course.title }} | Minikurs{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+    <span style="font-size:3rem;">{{ course.icon }}</span>
+    <div>
+      <h1 style="margin:0;">{{ course.title }}</h1>
+      <p style="margin:4px 0 0;">{{ course.description }}</p>
+    </div>
+    <div style="margin-left:auto;display:flex;gap:10px;align-items:center;">
+      {% if enrollment %}
+        <span class="badge badge-success">✅ Zapisany</span>
+        <form method="post" action="{% url 'minikurs:unenroll' course.slug %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline btn-sm"
+                  onclick="return confirm('Zrezygnować z kursu?')">
+            <i data-lucide="x" style="width:14px;height:14px;"></i>
+            Rezygnuj
+          </button>
+        </form>
+      {% else %}
+        <form method="post" action="{% url 'minikurs:enroll' course.slug %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary btn-sm">
+            <i data-lucide="plus" style="width:14px;height:14px;"></i>
+            Zapisz się
+          </button>
+        </form>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Progress bar -->
+{% if enrollment %}
+<div class="content-card fade-in" style="margin-bottom:24px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+    <span style="font-size:var(--text-sm);color:var(--text-secondary);font-weight:600;">
+      Twój postęp
+    </span>
+    <span style="font-size:var(--text-sm);color:var(--accent-secondary);font-weight:700;">
+      {{ done_count }} / {{ lessons_data|length }} lekcji — {{ progress }}%
+    </span>
+  </div>
+  <div class="progress-bar-track" style="height:10px;">
+    <div class="progress-bar-fill" style="width:{{ progress }}%;"></div>
+  </div>
+</div>
+{% endif %}
+
+<!-- Lista lekcji — styl Scrimba -->
+<div class="content-card fade-in">
+  <h2 style="color:var(--accent-secondary);margin-bottom:20px;display:flex;
+              align-items:center;gap:10px;">
+    <i data-lucide="list" style="width:20px;height:20px;"></i>
+    Program kursu
+  </h2>
+
+  <div style="display:flex;flex-direction:column;gap:4px;">
+    {% for item in lessons_data %}
+    <a href="{% url 'minikurs:lekcja' course.slug item.lesson.slug %}"
+       style="display:flex;align-items:center;gap:14px;padding:14px 16px;
+              border-radius:var(--radius-md);text-decoration:none;
+              transition:var(--transition);
+              background:{% if item.completed %}rgba(34,197,94,0.06){% elif item.visited %}rgba(124,58,237,0.06){% else %}transparent{% endif %};
+              border:1px solid {% if item.completed %}rgba(34,197,94,0.2){% elif item.visited %}rgba(124,58,237,0.15){% else %}transparent{% endif %};"
+       onmouseover="this.style.background='rgba(124,58,237,0.08)';this.style.borderColor='rgba(124,58,237,0.3)'"
+       onmouseout="this.style.background='{% if item.completed %}rgba(34,197,94,0.06){% elif item.visited %}rgba(124,58,237,0.06){% else %}transparent{% endif %}';
+                  this.style.borderColor='{% if item.completed %}rgba(34,197,94,0.2){% elif item.visited %}rgba(124,58,237,0.15){% else %}transparent{% endif %}'">
+
+      <!-- Ikona statusu -->
+      <div style="width:32px;height:32px;border-radius:50%;flex-shrink:0;
+                  display:flex;align-items:center;justify-content:center;
+                  background:{% if item.completed %}rgba(34,197,94,0.2){% elif item.visited %}rgba(124,58,237,0.2){% else %}rgba(255,255,255,0.05){% endif %};
+                  border:1px solid {% if item.completed %}rgba(34,197,94,0.4){% elif item.visited %}rgba(124,58,237,0.3){% else %}rgba(255,255,255,0.1){% endif %};">
+        {% if item.completed %}
+          <i data-lucide="check" style="width:14px;height:14px;color:#86efac;"></i>
+        {% elif item.visited %}
+          <i data-lucide="eye" style="width:14px;height:14px;color:var(--accent-secondary);"></i>
+        {% else %}
+          <span style="font-size:0.65rem;font-weight:700;color:var(--text-muted);
+                       font-family:'JetBrains Mono',monospace;">
+            {{ forloop.counter|stringformat:"02d" }}
+          </span>
+        {% endif %}
+      </div>
+
+      <!-- Tytuł i opis -->
+      <div style="flex:1;min-width:0;">
+        <div style="font-weight:600;font-size:var(--text-sm);
+                    color:{% if item.completed %}#86efac{% else %}var(--text-primary){% endif %};">
+          {{ item.lesson.title }}
+        </div>
+        {% if item.lesson.description %}
+        <div style="font-size:var(--text-xs);color:var(--text-muted);margin-top:2px;
+                    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+          {{ item.lesson.description }}
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Czas trwania -->
+      {% if item.lesson.duration %}
+      <span style="font-size:var(--text-xs);color:var(--text-muted);
+                   font-family:'JetBrains Mono',monospace;flex-shrink:0;">
+        {{ item.lesson.duration }}
+      </span>
+      {% endif %}
+
+      <i data-lucide="chevron-right"
+         style="width:14px;height:14px;color:var(--text-muted);flex-shrink:0;"></i>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

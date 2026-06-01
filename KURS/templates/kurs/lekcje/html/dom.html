@@ -1,0 +1,82 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Czym jest DOM?</h1>
+
+<p>
+  DOM — <strong>Document Object Model</strong> — to reprezentacja dokumentu HTML
+  w postaci drzewa obiektów. Kiedy przeglądarka wczytuje stronę, nie widzi surowego tekstu HTML —
+  buduje z niego strukturę, po której JavaScript może się poruszać i którą może modyfikować.
+</p>
+
+<h2>Jak wygląda drzewo DOM?</h2>
+<p>Dla takiego HTML:</p>
+<pre><code>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Strona&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Witaj!&lt;/h1&gt;
+    &lt;p&gt;To jest &lt;strong&gt;ważny&lt;/strong&gt; tekst.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>Przeglądarka buduje takie drzewo:</p>
+<pre><code>Document
+└── html
+    ├── head
+    │   └── title
+    │       └── "Strona"
+    └── body
+        ├── h1
+        │   └── "Witaj!"
+        └── p
+            ├── "To jest "
+            ├── strong
+            │   └── "ważny"
+            └── " tekst."</code></pre>
+
+<h2>Węzły DOM</h2>
+<table>
+  <thead><tr><th>Typ węzła</th><th>Przykład</th></tr></thead>
+  <tbody>
+    <tr><td>Element node</td><td><code>&lt;p&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;h1&gt;</code></td></tr>
+    <tr><td>Text node</td><td>Tekst wewnątrz elementu</td></tr>
+    <tr><td>Attribute node</td><td><code>class="aktywny"</code>, <code>href="..."</code></td></tr>
+    <tr><td>Comment node</td><td><code>&lt;!-- komentarz --&gt;</code></td></tr>
+    <tr><td>Document node</td><td>Korzeń całego drzewa</td></tr>
+  </tbody>
+</table>
+
+<h2>Dlaczego DOM jest ważny?</h2>
+<p>
+  Dzięki DOM JavaScript może dynamicznie zmieniać stronę bez jej przeładowania:
+</p>
+<pre><code>// Zmień tekst nagłówka
+document.querySelector('h1').textContent = 'Nowy tytuł';
+
+// Dodaj klasę do elementu
+document.querySelector('.karta').classList.add('aktywna');
+
+// Utwórz nowy element i dodaj go do strony
+const nowy = document.createElement('p');
+nowy.textContent = 'Nowy akapit!';
+document.body.appendChild(nowy);</code></pre>
+
+<h2>Inspektor DOM w przeglądarce</h2>
+<p>
+  Każda przeglądarka ma wbudowane narzędzia deweloperskie (<kbd>F12</kbd>),
+  gdzie możesz podglądać i edytować DOM na żywo:
+</p>
+<ul>
+  <li><strong>Elements</strong> (Chrome/Edge) / <strong>Inspector</strong> (Firefox) — drzewo DOM</li>
+  <li>Kliknij prawym przyciskiem na element → <em>Zbadaj element</em></li>
+  <li>Możesz edytować HTML i CSS bezpośrednio w przeglądarce (zmiany są tymczasowe)</li>
+</ul>
+
+<div class="tip">
+  💡 DOM to interfejs między HTML a JavaScript. Dobra znajomość struktury DOM
+  jest kluczowa gdy zaczniesz uczyć się JavaScript — wszystkie operacje na stronie
+  (animacje, dynamiczne treści, formularze) przechodzą właśnie przez DOM.
+</div>
+
+{% endblock %}

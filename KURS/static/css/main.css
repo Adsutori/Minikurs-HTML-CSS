@@ -106,7 +106,10 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;      /* ← dodaj to */
+  padding: 0;     /* ← i to */
 }
+
 
 img {
   max-width: 100%;
@@ -722,4 +725,275 @@ tfoot td {
 
   .section { padding: 48px 0; }
   .container { padding: 0 16px; }
+}
+
+/* ============================================================
+   LESSON CONTENT — Treść lekcji
+   ============================================================ */
+
+.lesson-content {
+  padding: 40px 48px;
+  background: var(--gradient-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  max-width: 860px;
+  line-height: 1.8;
+}
+
+/* --- Nagłówki --- */
+.lesson-content h1 {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--text-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.lesson-content h2 {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 48px;
+  margin-bottom: 16px;
+  padding-left: 14px;
+  border-left: 3px solid var(--accent-primary);
+}
+
+.lesson-content h3 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--accent-secondary);
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+.lesson-content h4 {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+/* --- Akapity --- */
+.lesson-content p {
+  color: var(--text-secondary);
+  font-size: var(--text-base);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+/* --- Inline code --- */
+.lesson-content code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  background: rgba(124, 58, 237, 0.15);
+  color: var(--accent-secondary);
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+/* --- Bloki kodu pre > code --- */
+.lesson-content pre {
+  background: #0d0d14;
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-left: 4px solid var(--accent-primary);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  overflow-x: auto;
+  margin: 20px 0 28px;
+  position: relative;
+}
+
+.lesson-content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #e2e8f0;
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  border-radius: 0;
+}
+
+/* --- Listy --- */
+.lesson-content ul,
+.lesson-content ol {
+  list-style: revert;
+  padding-left: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lesson-content ul li,
+.lesson-content ol li {
+  color: var(--text-secondary);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  padding-left: 4px;
+}
+
+.lesson-content ul li::marker {
+  color: var(--accent-primary);
+}
+
+.lesson-content ol li::marker {
+  color: var(--accent-secondary);
+  font-weight: 600;
+}
+
+/* Zagnieżdżone listy */
+.lesson-content ul ul,
+.lesson-content ol ol,
+.lesson-content ul ol,
+.lesson-content ol ul {
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+/* --- Tabele --- */
+.lesson-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0 28px;
+  font-size: var(--text-sm);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.lesson-content thead {
+  background: rgba(124, 58, 237, 0.2);
+}
+
+.lesson-content thead th {
+  padding: 14px 18px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--accent-secondary);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+}
+
+.lesson-content tbody tr {
+  border-bottom: 1px solid rgba(30, 30, 46, 0.8);
+  transition: var(--transition);
+}
+
+.lesson-content tbody tr:hover {
+  background: rgba(124, 58, 237, 0.06);
+}
+
+.lesson-content tbody tr:last-child {
+  border-bottom: none;
+}
+
+.lesson-content tbody td {
+  padding: 12px 18px;
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+/* --- Linki --- */
+.lesson-content a {
+  color: var(--accent-secondary);
+  text-decoration: underline;
+  text-decoration-color: rgba(168, 85, 247, 0.3);
+  text-underline-offset: 3px;
+  transition: var(--transition);
+}
+
+.lesson-content a:hover {
+  color: var(--text-primary);
+  text-decoration-color: var(--accent-secondary);
+}
+
+/* --- Tip / Wskazówka --- */
+.lesson-content .tip {
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  border-left: 4px solid var(--accent-primary);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  margin: 28px 0;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+.lesson-content .tip strong {
+  color: var(--accent-secondary);
+}
+
+/* --- HR --- */
+.lesson-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 40px 0;
+}
+
+/* --- Strong / Em --- */
+.lesson-content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.lesson-content em {
+  color: var(--accent-secondary);
+  font-style: italic;
+}
+
+/* --- Blockquote --- */
+.lesson-content blockquote {
+  border-left: 4px solid var(--accent-secondary);
+  background: rgba(168, 85, 247, 0.06);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 16px 22px;
+  margin: 24px 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* --- Definition list --- */
+.lesson-content dl {
+  margin-bottom: 20px;
+}
+
+.lesson-content dt {
+  font-weight: 600;
+  color: var(--accent-secondary);
+  margin-top: 16px;
+  font-size: var(--text-sm);
+}
+
+.lesson-content dd {
+  color: var(--text-secondary);
+  padding-left: 20px;
+  margin-top: 4px;
+  font-size: var(--text-sm);
+  border-left: 2px solid rgba(124, 58, 237, 0.2);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .lesson-content {
+    padding: 24px 20px;
+  }
+
+  .lesson-content h1 { font-size: var(--text-2xl); }
+  .lesson-content h2 { font-size: var(--text-xl); }
+  .lesson-content h3 { font-size: var(--text-lg); }
+
+  .lesson-content pre {
+    padding: 16px;
+    font-size: 0.8rem;
+  }
 }

@@ -1,0 +1,374 @@
+[
+  {
+    "model": "minikurs.course",
+    "pk": 1,
+    "fields": {
+      "slug": "html",
+      "title": "Kurs HTML5",
+      "description": "Naucz się HTML5 od podstaw. Kurs prowadzi Cię przez strukturę dokumentów, znaczniki, formularze, multimedia i pierwsze projekty.",
+      "icon": "🌐",
+      "order": 1
+    }
+  },
+  {
+    "model": "minikurs.course",
+    "pk": 2,
+    "fields": {
+      "slug": "css",
+      "title": "Kurs CSS3",
+      "description": "Opanuj CSS3 — selektory, Box Model, Flexbox, Grid, animacje i responsywny design.",
+      "icon": "🎨",
+      "order": 2
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 1,
+    "fields": {
+      "course": 1,
+      "slug": "wstep",
+      "title": "Wstęp do HTML",
+      "description": "Czym jest HTML, krótka historia, jak działa przeglądarka",
+      "template": "kurs/lekcje/html/wstep.html",
+      "order": 1,
+      "published": true,
+      "duration": "10 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 2,
+    "fields": {
+      "course": 1,
+      "slug": "skladnia",
+      "title": "Składnia i struktura dokumentu",
+      "description": "DOCTYPE, html, head, body — omówienie każdego elementu",
+      "template": "kurs/lekcje/html/skladnia.html",
+      "order": 2,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 3,
+    "fields": {
+      "course": 1,
+      "slug": "znaczniki-podstawowe",
+      "title": "Znaczniki podstawowe",
+      "description": "Nagłówki, akapity, div, span, pre, code, cytaty",
+      "template": "kurs/lekcje/html/znaczniki-podstawowe.html",
+      "order": 3,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 4,
+    "fields": {
+      "course": 1,
+      "slug": "tekst",
+      "title": "Formatowanie tekstu",
+      "description": "strong, em, mark, sub, sup, ins, del i znaczniki semantyczne",
+      "template": "kurs/lekcje/html/tekst.html",
+      "order": 4,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 5,
+    "fields": {
+      "course": 1,
+      "slug": "znaki-specjalne",
+      "title": "Znaki specjalne",
+      "description": "Encje HTML — &amp;, &lt;, &gt;, &nbsp;, &copy; i inne",
+      "template": "kurs/lekcje/html/znaki-specjalne.html",
+      "order": 5,
+      "published": true,
+      "duration": "10 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 6,
+    "fields": {
+      "course": 1,
+      "slug": "kolory",
+      "title": "Kolory w HTML",
+      "description": "HEX, RGB, RGBA, HSL — wszystkie formaty kolorów",
+      "template": "kurs/lekcje/html/kolory.html",
+      "order": 6,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 7,
+    "fields": {
+      "course": 1,
+      "slug": "listy",
+      "title": "Listy",
+      "description": "ul, ol, dl — listy nieuporządkowane, uporządkowane i definicji",
+      "template": "kurs/lekcje/html/listy.html",
+      "order": 7,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 8,
+    "fields": {
+      "course": 1,
+      "slug": "tabele",
+      "title": "Tabele",
+      "description": "table, tr, td, th, colspan, rowspan — dane tabelaryczne",
+      "template": "kurs/lekcje/html/tabele.html",
+      "order": 8,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 9,
+    "fields": {
+      "course": 1,
+      "slug": "lacza",
+      "title": "Hiperłącza",
+      "description": "Łącza wewnętrzne, zewnętrzne, kotwice, mailto, tel",
+      "template": "kurs/lekcje/html/lacza.html",
+      "order": 9,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 10,
+    "fields": {
+      "course": 1,
+      "slug": "grafika",
+      "title": "Grafika",
+      "description": "img, picture, figure, figcaption — obrazy i responsywność",
+      "template": "kurs/lekcje/html/grafika.html",
+      "order": 10,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 11,
+    "fields": {
+      "course": 1,
+      "slug": "multimedia",
+      "title": "Multimedia",
+      "description": "video, audio, iframe — wideo, muzyka i osadzanie YouTube",
+      "template": "kurs/lekcje/html/multimedia.html",
+      "order": 11,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 12,
+    "fields": {
+      "course": 1,
+      "slug": "inputy",
+      "title": "Inputy",
+      "description": "Wszystkie typy input — text, email, date, color, file i inne",
+      "template": "kurs/lekcje/html/inputy.html",
+      "order": 12,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 13,
+    "fields": {
+      "course": 1,
+      "slug": "formularze",
+      "title": "Formularze",
+      "description": "form, label, select, textarea, fieldset — kompletne formularze",
+      "template": "kurs/lekcje/html/formularze.html",
+      "order": 13,
+      "published": true,
+      "duration": "25 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 14,
+    "fields": {
+      "course": 1,
+      "slug": "atrybuty",
+      "title": "Atrybuty globalne",
+      "description": "id, class, style, title, data-*, tabindex, contenteditable",
+      "template": "kurs/lekcje/html/atrybuty.html",
+      "order": 14,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 15,
+    "fields": {
+      "course": 1,
+      "slug": "semantyka",
+      "title": "Znaczniki semantyczne",
+      "description": "header, nav, main, article, section, aside, footer i inne",
+      "template": "kurs/lekcje/html/semantyka.html",
+      "order": 15,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 16,
+    "fields": {
+      "course": 1,
+      "slug": "meta-seo",
+      "title": "Meta tagi i SEO",
+      "description": "description, Open Graph, robots, canonical, favicon",
+      "template": "kurs/lekcje/html/meta-seo.html",
+      "order": 16,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 17,
+    "fields": {
+      "course": 1,
+      "slug": "head",
+      "title": "Sekcja head",
+      "description": "Wszystko co może znaleźć się w head — CSS, JS, czcionki",
+      "template": "kurs/lekcje/html/head.html",
+      "order": 17,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 18,
+    "fields": {
+      "course": 1,
+      "slug": "id-class",
+      "title": "ID i Class",
+      "description": "Różnice, zastosowania, selektory CSS i odwołania w JS",
+      "template": "kurs/lekcje/html/id-class.html",
+      "order": 18,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 19,
+    "fields": {
+      "course": 1,
+      "slug": "style-inline",
+      "title": "Style inline",
+      "description": "Kiedy używać, priorytety CSS, dobre i złe praktyki",
+      "template": "kurs/lekcje/html/style-inline.html",
+      "order": 19,
+      "published": true,
+      "duration": "10 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 20,
+    "fields": {
+      "course": 1,
+      "slug": "iframe",
+      "title": "Ramki iframe",
+      "description": "Osadzanie YouTube, Google Maps, sandbox i bezpieczeństwo",
+      "template": "kurs/lekcje/html/iframe.html",
+      "order": 20,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 21,
+    "fields": {
+      "course": 1,
+      "slug": "dom",
+      "title": "Czym jest DOM",
+      "description": "Document Object Model — drzewo dokumentu i inspektor przeglądarki",
+      "template": "kurs/lekcje/html/dom.html",
+      "order": 21,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 22,
+    "fields": {
+      "course": 1,
+      "slug": "dostepnosc",
+      "title": "Dostępność (Accessibility)",
+      "description": "ARIA, kontrast, nawigacja klawiaturą, narzędzia a11y",
+      "template": "kurs/lekcje/html/dostepnosc.html",
+      "order": 22,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 23,
+    "fields": {
+      "course": 1,
+      "slug": "walidacja",
+      "title": "Walidacja HTML",
+      "description": "Najczęstsze błędy, walidator W3C, narzędzia w VS Code",
+      "template": "kurs/lekcje/html/walidacja.html",
+      "order": 23,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 24,
+    "fields": {
+      "course": 1,
+      "slug": "projekt-cv",
+      "title": "Projekt: CV w HTML",
+      "description": "Zbuduj profesjonalne CV w czystym HTML5",
+      "template": "kurs/lekcje/html/projekt-cv.html",
+      "order": 24,
+      "published": true,
+      "duration": "40 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 25,
+    "fields": {
+      "course": 1,
+      "slug": "projekt-strona",
+      "title": "Projekt: Prosta strona WWW",
+      "description": "Zbuduj kompletną, wielostronicową witrynę w HTML",
+      "template": "kurs/lekcje/html/projekt-strona.html",
+      "order": 25,
+      "published": true,
+      "duration": "60 min"
+    }
+  }
+]

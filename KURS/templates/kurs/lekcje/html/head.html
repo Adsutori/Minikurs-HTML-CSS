@@ -1,0 +1,82 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Sekcja &lt;head&gt;</h1>
+
+<p>
+  Sekcja <code>&lt;head&gt;</code> to "zaplecze" dokumentu HTML — niewidoczna dla użytkownika,
+  ale kluczowa dla działania strony. Zawiera metadane, linki do zasobów zewnętrznych
+  i instrukcje dla przeglądarki.
+</p>
+
+<h2>Co może znaleźć się w &lt;head&gt;?</h2>
+<pre><code>&lt;head&gt;
+  &lt;!-- Kodowanie znaków --&gt;
+  &lt;meta charset="UTF-8"&gt;
+
+  &lt;!-- Responsywność --&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+  &lt;!-- Tytuł strony --&gt;
+  &lt;title&gt;Strona główna | MojaStrona&lt;/title&gt;
+
+  &lt;!-- Opis dla wyszukiwarek --&gt;
+  &lt;meta name="description" content="Opis strony do 160 znaków"&gt;
+
+  &lt;!-- Arkusz stylów CSS --&gt;
+  &lt;link rel="stylesheet" href="css/style.css"&gt;
+
+  &lt;!-- Favicon --&gt;
+  &lt;link rel="icon" type="image/png" href="favicon.png"&gt;
+
+  &lt;!-- Czcionki Google Fonts --&gt;
+  &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+  &lt;link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet"&gt;
+
+  &lt;!-- Style inline (niezalecane dla dużych projektów) --&gt;
+  &lt;style&gt;
+    body { margin: 0; font-family: Inter, sans-serif; }
+  &lt;/style&gt;
+
+  &lt;!-- Skrypt JavaScript (defer = czeka na załadowanie HTML) --&gt;
+  &lt;script src="js/main.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+
+<h2>Dołączanie CSS — trzy sposoby</h2>
+<pre><code>&lt;!-- 1. Zewnętrzny plik (najlepsza praktyka) --&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;
+
+&lt;!-- 2. Style wewnętrzne w &lt;style&gt; --&gt;
+&lt;style&gt;
+  p { color: navy; }
+&lt;/style&gt;
+
+&lt;!-- 3. Inline na elemencie (ostateczność) --&gt;
+&lt;p style="color: navy"&gt;...&lt;/p&gt;</code></pre>
+
+<h2>Dołączanie JavaScript — gdzie i jak?</h2>
+<pre><code>&lt;!-- W &lt;head&gt; z defer — plik ładuje się równolegle, wykonuje po HTML --&gt;
+&lt;script src="main.js" defer&gt;&lt;/script&gt;
+
+&lt;!-- W &lt;head&gt; z async — ładuje się równolegle, wykonuje natychmiast --&gt;
+&lt;script src="analytics.js" async&gt;&lt;/script&gt;
+
+&lt;!-- Na końcu &lt;body&gt; — stara metoda, dziś zastąpiona przez defer --&gt;
+&lt;script src="main.js"&gt;&lt;/script&gt;</code></pre>
+
+<table>
+  <thead><tr><th>Metoda</th><th>Kiedy używać</th></tr></thead>
+  <tbody>
+    <tr><td><code>defer</code></td><td>Większość skryptów — czeka na DOM, zachowuje kolejność</td></tr>
+    <tr><td><code>async</code></td><td>Niezależne skrypty (np. analytics) — nie czeka na DOM</td></tr>
+    <tr><td>Koniec <code>&lt;body&gt;</code></td><td>Stara praktyka — <code>defer</code> jest lepszy</td></tr>
+  </tbody>
+</table>
+
+<div class="tip">
+  💡 Kolejność elementów w <code>&lt;head&gt;</code> ma znaczenie.
+  <code>meta charset</code> i <code>meta viewport</code> powinny być <strong>zawsze pierwsze</strong> —
+  przed <code>&lt;title&gt;</code> i innymi tagami.
+</div>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Grafika</h1>
+
+<p>
+  Obrazy to nieodłączna część każdej strony internetowej. HTML oferuje kilka sposobów
+  na ich wstawianie i opisywanie — od prostego <code>&lt;img&gt;</code> po responsywne
+  zestawy obrazów.
+</p>
+
+<h2>Podstawowe wstawianie obrazu</h2>
+<pre><code>&lt;img src="zdjecie.jpg" alt="Opis zdjęcia"&gt;</code></pre>
+<p>
+  <code>src</code> — ścieżka do pliku (lokalna lub URL).<br>
+  <code>alt</code> — tekst alternatywny: wyświetla się gdy obraz nie może się załadować
+  i jest czytany przez czytniki ekranowe. <strong>Zawsze go podawaj.</strong>
+</p>
+
+<h2>Ścieżki do plików</h2>
+<pre><code>&lt;!-- Plik w tym samym folderze --&gt;
+&lt;img src="foto.jpg" alt="..."&gt;
+
+&lt;!-- Plik w podfolderze --&gt;
+&lt;img src="images/foto.jpg" alt="..."&gt;
+
+&lt;!-- Plik w folderze wyżej --&gt;
+&lt;img src="../foto.jpg" alt="..."&gt;
+
+&lt;!-- Obraz z internetu (URL) --&gt;
+&lt;img src="https://example.com/foto.jpg" alt="..."&gt;</code></pre>
+
+<h2>Rozmiar obrazu</h2>
+<pre><code>&lt;img src="foto.jpg" alt="..." width="400" height="300"&gt;</code></pre>
+<p>
+  Podawanie <code>width</code> i <code>height</code> jest dobrą praktyką — przeglądarka
+  rezerwuje miejsce przed załadowaniem obrazu, co zapobiega "skakaniu" layoutu.
+</p>
+
+<h2>Formaty obrazów w sieci</h2>
+<table>
+  <thead><tr><th>Format</th><th>Zastosowanie</th><th>Przezroczystość</th></tr></thead>
+  <tbody>
+    <tr><td>JPEG / JPG</td><td>Zdjęcia, fotografie</td><td>❌</td></tr>
+    <tr><td>PNG</td><td>Grafiki, loga, ikony</td><td>✅</td></tr>
+    <tr><td>GIF</td><td>Proste animacje</td><td>✅ (1-bit)</td></tr>
+    <tr><td>SVG</td><td>Wektory, ikony, loga</td><td>✅</td></tr>
+    <tr><td>WebP</td><td>Nowoczesny format — mniejszy rozmiar</td><td>✅</td></tr>
+    <tr><td>AVIF</td><td>Najnowszy — bardzo dobra kompresja</td><td>✅</td></tr>
+  </tbody>
+</table>
+
+<h2>Responsywne obrazy — <code>&lt;picture&gt;</code></h2>
+<p>
+  Element <code>&lt;picture&gt;</code> pozwala podać różne obrazy dla różnych warunków
+  (rozdzielczość ekranu, format obsługiwany przez przeglądarkę):
+</p>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="foto.avif" type="image/avif"&gt;
+  &lt;source srcset="foto.webp" type="image/webp"&gt;
+  &lt;img src="foto.jpg" alt="Opis zdjęcia"&gt;
+&lt;/picture&gt;</code></pre>
+<p>Przeglądarka wybierze pierwszy format, który obsługuje. <code>&lt;img&gt;</code> to fallback.</p>
+
+<h2>Podpis pod obrazem — <code>&lt;figure&gt;</code></h2>
+<pre><code>&lt;figure&gt;
+  &lt;img src="wykres.png" alt="Wykres sprzedaży 2025"&gt;
+  &lt;figcaption&gt;Rys. 1. Wyniki sprzedaży w roku 2025&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+
+<div class="tip">
+  💡 Nigdy nie pomijaj atrybutu <code>alt</code>. Jeśli obraz jest czysto dekoracyjny
+  i nie niesie żadnej informacji, wpisz pusty alt: <code>alt=""</code> — czytnik ekranowy
+  go wtedy pominie.
+</div>
+
+{% endblock %}

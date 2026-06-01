@@ -41,6 +41,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'minikurs.context_processors.user_enrollments',
             ],
         },
     },
@@ -76,8 +77,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL          = '/kurs/login/'
-LOGIN_REDIRECT_URL = '/kurs/'
+LOGIN_URL           = '/login/'
+LOGIN_REDIRECT_URL  = '/kurs/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Wiadomości — mapowanie tagów na klasy CSS

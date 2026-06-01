@@ -1,0 +1,151 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Formularze</h1>
+
+<p>
+  Formularz to sposób na zbieranie danych od użytkownika — logowanie, rejestracja,
+  wyszukiwarka, zamówienie. Wszystko opiera się na znaczniku <code>&lt;form&gt;</code>,
+  który grupuje pola i definiuje sposób wysyłania danych.
+</p>
+
+<h2>Podstawowa struktura formularza</h2>
+<pre><code>&lt;form action="/wyslij" method="POST"&gt;
+  &lt;label for="imie"&gt;Imię:&lt;/label&gt;
+  &lt;input type="text" id="imie" name="imie" required&gt;
+
+  &lt;label for="email"&gt;Email:&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" required&gt;
+
+  &lt;button type="submit"&gt;Wyślij&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+<h2>Atrybuty znacznika <code>&lt;form&gt;</code></h2>
+<table>
+  <thead><tr><th>Atrybut</th><th>Opis</th></tr></thead>
+  <tbody>
+    <tr><td><code>action</code></td><td>Adres URL, na który wysyłane są dane formularza</td></tr>
+    <tr><td><code>method="GET"</code></td><td>Dane dołączane do URL — widoczne, do wyszukiwania</td></tr>
+    <tr><td><code>method="POST"</code></td><td>Dane w ciele żądania — niewidoczne, do logowania, rejestracji</td></tr>
+    <tr><td><code>enctype</code></td><td>Kodowanie danych — wymagane <code>multipart/form-data</code> przy wysyłaniu plików</td></tr>
+    <tr><td><code>novalidate</code></td><td>Wyłącza wbudowaną walidację przeglądarki</td></tr>
+    <tr><td><code>autocomplete</code></td><td><code>on</code> / <code>off</code> — podpowiedzi dla całego formularza</td></tr>
+  </tbody>
+</table>
+
+<h2>GET vs POST</h2>
+<pre><code>&lt;!-- GET — dane widoczne w URL: /szukaj?q=html+kurs --&gt;
+&lt;form action="/szukaj" method="GET"&gt;
+  &lt;input type="search" name="q" placeholder="Szukaj..."&gt;
+  &lt;button type="submit"&gt;Szukaj&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- POST — dane ukryte w ciele żądania --&gt;
+&lt;form action="/logowanie" method="POST"&gt;
+  &lt;input type="email" name="email"&gt;
+  &lt;input type="password" name="haslo"&gt;
+  &lt;button type="submit"&gt;Zaloguj się&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+<h2>Label — powiązanie z polem</h2>
+<p>
+  Każde pole formularza powinno mieć etykietę <code>&lt;label&gt;</code>.
+  Powiązanie przez <code>for</code> i <code>id</code> sprawia, że kliknięcie etykiety
+  aktywuje pole — ważne dla dostępności i wygody użytkownika.
+</p>
+<pre><code>&lt;!-- Metoda 1: przez for/id --&gt;
+&lt;label for="haslo"&gt;Hasło:&lt;/label&gt;
+&lt;input type="password" id="haslo" name="haslo"&gt;
+
+&lt;!-- Metoda 2: input wewnątrz label --&gt;
+&lt;label&gt;
+  Hasło:
+  &lt;input type="password" name="haslo"&gt;
+&lt;/label&gt;</code></pre>
+
+<h2>Textarea — pole wieloliniowe</h2>
+<pre><code>&lt;label for="wiadomosc"&gt;Wiadomość:&lt;/label&gt;
+&lt;textarea id="wiadomosc" name="wiadomosc" rows="5" cols="40"
+  placeholder="Wpisz swoją wiadomość..."&gt;&lt;/textarea&gt;</code></pre>
+
+<h2>Select — lista rozwijana</h2>
+<pre><code>&lt;label for="kraj"&gt;Kraj:&lt;/label&gt;
+&lt;select id="kraj" name="kraj"&gt;
+  &lt;option value=""&gt;-- wybierz kraj --&lt;/option&gt;
+  &lt;option value="pl"&gt;Polska&lt;/option&gt;
+  &lt;option value="de"&gt;Niemcy&lt;/option&gt;
+  &lt;option value="fr" selected&gt;Francja&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+<p>Atrybut <code>selected</code> ustawia domyślnie wybraną opcję.</p>
+
+<h2>Grupowanie opcji — <code>&lt;optgroup&gt;</code></h2>
+<pre><code>&lt;select name="jezyk"&gt;
+  &lt;optgroup label="Frontend"&gt;
+    &lt;option value="html"&gt;HTML&lt;/option&gt;
+    &lt;option value="css"&gt;CSS&lt;/option&gt;
+    &lt;option value="js"&gt;JavaScript&lt;/option&gt;
+  &lt;/optgroup&gt;
+  &lt;optgroup label="Backend"&gt;
+    &lt;option value="python"&gt;Python&lt;/option&gt;
+    &lt;option value="php"&gt;PHP&lt;/option&gt;
+  &lt;/optgroup&gt;
+&lt;/select&gt;</code></pre>
+
+<h2>Checkbox i Radio</h2>
+<pre><code>&lt;!-- Checkbox — wielokrotny wybór --&gt;
+&lt;fieldset&gt;
+  &lt;legend&gt;Zainteresowania:&lt;/legend&gt;
+  &lt;label&gt;&lt;input type="checkbox" name="hobby" value="html"&gt; HTML&lt;/label&gt;
+  &lt;label&gt;&lt;input type="checkbox" name="hobby" value="css"&gt; CSS&lt;/label&gt;
+  &lt;label&gt;&lt;input type="checkbox" name="hobby" value="js"&gt; JavaScript&lt;/label&gt;
+&lt;/fieldset&gt;
+
+&lt;!-- Radio — jeden wybór z grupy --&gt;
+&lt;fieldset&gt;
+  &lt;legend&gt;Poziom zaawansowania:&lt;/legend&gt;
+  &lt;label&gt;&lt;input type="radio" name="poziom" value="poczatkujacy"&gt; Początkujący&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="poziom" value="sredni"&gt; Średniozaawansowany&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="poziom" value="zaawansowany"&gt; Zaawansowany&lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+<p>
+  Przyciski radio z tą samą wartością <code>name</code> tworzą grupę —
+  można wybrać tylko jeden z nich.
+</p>
+
+<h2>Fieldset i Legend — grupowanie pól</h2>
+<pre><code>&lt;form action="/rejestracja" method="POST"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Dane osobowe&lt;/legend&gt;
+    &lt;label for="imie"&gt;Imię:&lt;/label&gt;
+    &lt;input type="text" id="imie" name="imie" required&gt;
+    &lt;label for="nazwisko"&gt;Nazwisko:&lt;/label&gt;
+    &lt;input type="text" id="nazwisko" name="nazwisko" required&gt;
+  &lt;/fieldset&gt;
+
+  &lt;fieldset&gt;
+    &lt;legend&gt;Dane konta&lt;/legend&gt;
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" required&gt;
+    &lt;label for="haslo"&gt;Hasło:&lt;/label&gt;
+    &lt;input type="password" id="haslo" name="haslo" minlength="8" required&gt;
+  &lt;/fieldset&gt;
+
+  &lt;button type="submit"&gt;Zarejestruj się&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+<h2>Przyciski — <code>&lt;button&gt;</code> vs <code>&lt;input&gt;</code></h2>
+<pre><code>&lt;!-- Preferowany sposób — można wstawić HTML wewnątrz --&gt;
+&lt;button type="submit"&gt;✅ Wyślij formularz&lt;/button&gt;
+&lt;button type="reset"&gt;🗑️ Wyczyść&lt;/button&gt;
+&lt;button type="button"&gt;Kliknij (bez akcji)&lt;/button&gt;
+
+&lt;!-- Starszy sposób --&gt;
+&lt;input type="submit" value="Wyślij"&gt;</code></pre>
+
+<div class="tip">
+  💡 <strong>Walidacja HTML5:</strong> Atrybuty takie jak <code>required</code>, <code>minlength</code>,
+  <code>pattern</code> czy <code>type="email"</code> dają podstawową walidację po stronie przeglądarki —
+  bez JavaScript. To wygodne, ale <strong>nigdy nie zastępuje walidacji po stronie serwera</strong>.
+</div>
+
+{% endblock %}

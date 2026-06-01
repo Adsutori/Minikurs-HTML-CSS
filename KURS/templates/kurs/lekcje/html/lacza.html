@@ -1,0 +1,72 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Hiperłącza</h1>
+
+<p>
+  Hiperłącza to fundament sieci WWW — to dzięki nim strony są ze sobą połączone.
+  W HTML tworzymy je znacznikiem <code>&lt;a&gt;</code> (od ang. <em>anchor</em> — kotwica).
+</p>
+
+<h2>Podstawowa składnia</h2>
+<pre><code>&lt;a href="https://www.example.com"&gt;Kliknij tutaj&lt;/a&gt;</code></pre>
+<p>
+  Atrybut <code>href</code> (<em>hypertext reference</em>) określa cel łącza.
+  Między tagami umieszczasz tekst lub element, który będzie klikalny.
+</p>
+
+<h2>Rodzaje łączy</h2>
+
+<h3>Łącze zewnętrzne</h3>
+<pre><code>&lt;a href="https://www.google.pl"&gt;Przejdź do Google&lt;/a&gt;</code></pre>
+
+<h3>Łącze wewnętrzne (do innej podstrony)</h3>
+<pre><code>&lt;a href="kontakt.html"&gt;Kontakt&lt;/a&gt;
+&lt;a href="../index.html"&gt;Strona główna&lt;/a&gt;
+&lt;a href="/o-nas/"&gt;O nas (ścieżka absolutna)&lt;/a&gt;</code></pre>
+
+<h3>Łącze do sekcji na tej samej stronie (kotwica)</h3>
+<pre><code>&lt;!-- Cel kotwicy --&gt;
+&lt;h2 id="kontakt"&gt;Kontakt&lt;/h2&gt;
+
+&lt;!-- Łącze do kotwicy --&gt;
+&lt;a href="#kontakt"&gt;Przejdź do sekcji Kontakt&lt;/a&gt;</code></pre>
+
+<h3>Łącze e-mail i telefon</h3>
+<pre><code>&lt;a href="mailto:kontakt@example.com"&gt;Napisz do nas&lt;/a&gt;
+&lt;a href="tel:+48501234567"&gt;Zadzwoń: 501 234 567&lt;/a&gt;</code></pre>
+
+<h2>Otwieranie w nowej karcie</h2>
+<pre><code>&lt;a href="https://www.example.com" target="_blank" rel="noopener noreferrer"&gt;
+  Otwórz w nowej karcie
+&lt;/a&gt;</code></pre>
+<p>
+  <code>target="_blank"</code> otwiera łącze w nowej karcie.<br>
+  <code>rel="noopener noreferrer"</code> to zabezpieczenie — bez niego nowa karta mogłaby
+  uzyskać dostęp do okna rodzica przez JavaScript.
+</p>
+
+<h2>Łącze jako obrazek</h2>
+<pre><code>&lt;a href="https://www.example.com"&gt;
+  &lt;img src="logo.png" alt="Logo firmy"&gt;
+&lt;/a&gt;</code></pre>
+
+<h2>Atrybut <code>rel</code> — wskazówki dla robotów</h2>
+<table>
+  <thead><tr><th>Wartość</th><th>Znaczenie</th></tr></thead>
+  <tbody>
+    <tr><td><code>nofollow</code></td><td>Robot wyszukiwarki nie podąża za tym linkiem</td></tr>
+    <tr><td><code>noopener</code></td><td>Nowa karta nie ma dostępu do okna rodzica</td></tr>
+    <tr><td><code>noreferrer</code></td><td>Przeglądarka nie wysyła nagłówka Referer</td></tr>
+    <tr><td><code>sponsored</code></td><td>Link sponsorowany / reklamowy</td></tr>
+    <tr><td><code>ugc</code></td><td>Link z treści użytkownika (komentarz, forum)</td></tr>
+  </tbody>
+</table>
+
+<div class="tip">
+  💡 <strong>Dobra praktyka:</strong> Tekst łącza powinien opisywać cel, nie być ogólnikowy.
+  Zamiast "kliknij tutaj" pisz "pobierz raport PDF" lub "przejdź do dokumentacji".
+  To ważne dla SEO i dostępności.
+</div>
+
+{% endblock %}

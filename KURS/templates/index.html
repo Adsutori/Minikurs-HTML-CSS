@@ -7,15 +7,15 @@
   <meta name="description" content="Minikurs HTML5 i CSS3 — naucz się budować strony internetowe od zera. Darmowy kurs online.">
   <title>Minikurs HTML5 i CSS3</title>
 
-  <!-- Favicon SVG inline -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0f'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-weight='700' font-size='13' fill='%237c3aed'%3EH5%3C/text%3E%3C/svg%3E">
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- CSS -->
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
   <link rel="stylesheet" href="{% static 'css/landing.css' %}">
 </head>
@@ -34,74 +34,215 @@
       <a href="#program">Program</a>
       <a href="{% url 'minikurs:glowna' %}">Kurs</a>
       {% if user.is_authenticated %}
-        <a href="{% url 'minikurs:dashboard' %}" class="btn btn-outline btn-sm">Dashboard</a>
+        <a href="{% url 'minikurs:dashboard' %}" class="btn btn-outline btn-sm">
+          <i data-lucide="layout-dashboard" style="width:14px;height:14px;"></i>
+          Dashboard
+        </a>
       {% else %}
-        <a href="{% url 'minikurs:login' %}" class="btn btn-outline btn-sm">Zaloguj się</a>
-        <a href="{% url 'minikurs:register' %}" class="btn btn-primary btn-sm">Zarejestruj się</a>
+        <a href="{% url 'login' %}" class="btn btn-outline btn-sm">
+          <i data-lucide="log-in" style="width:14px;height:14px;"></i>
+          Zaloguj się
+        </a>
+        <a href="{% url 'register' %}" class="btn btn-primary btn-sm">
+          <i data-lucide="user-plus" style="width:14px;height:14px;"></i>
+          Zarejestruj się
+        </a>
       {% endif %}
     </div>
   </nav>
 
   <!-- ============================================================
-       HERO SECTION
+       HERO — animated code editor zamiast zdjęć stockowych
        ============================================================ -->
   <section class="hero" id="hero">
     <canvas id="particles-canvas"></canvas>
 
     <div class="hero-content">
+
       <!-- Lewa kolumna — tekst -->
       <div class="hero-left">
         <div class="hero-badge">
-          ✦ W 100% DARMOWY KURS ✦
+          <i data-lucide="zap" style="width:12px;height:12px;"></i>
+          W 100% DARMOWY KURS
         </div>
 
-        <h1 class="hero-title" id="typing-title">
+        <h1 class="hero-title">
           <span id="typed-text"></span><span class="typing-cursor"></span>
         </h1>
 
         <p class="hero-subtitle">
           Minikurs HTML5 i CSS3 — od zera do własnej strony.<br>
-          Bez opłat. Bez rejestracji. Tylko wiedza.
+          Bez opłat. Tylko wiedza.
         </p>
+
+        <!-- Trust badges -->
+        <div class="hero-trust">
+          <span class="hero-trust-item">
+            <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;"></i>
+            50 lekcji
+          </span>
+          <span class="hero-trust-item">
+            <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;"></i>
+            7 projektów
+          </span>
+          <span class="hero-trust-item">
+            <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;"></i>
+            Certyfikat
+          </span>
+        </div>
 
         <div class="hero-buttons">
           <a href="{% url 'minikurs:glowna' %}" class="btn btn-primary btn-lg">
-            Zacznij naukę →
+            <i data-lucide="play" style="width:18px;height:18px;"></i>
+            Zacznij naukę
           </a>
           <a href="#program" class="btn btn-outline btn-lg">
+            <i data-lucide="list" style="width:18px;height:18px;"></i>
             Zobacz program
           </a>
         </div>
       </div>
 
-      <!-- Prawa kolumna — grafiki stockowe -->
+      <!-- Prawa kolumna — animowany edytor kodu -->
       <div class="hero-right">
-        <!-- GRAFIKA STOCKOWA: laptop z kodem -->
-        <img
-          class="hero-img-main"
-          src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600"
-          alt="Laptop z kodem HTML"
-          loading="eager"
-        >
-        <!-- GRAFIKA STOCKOWA: kod na ekranie -->
-        <img
-          class="hero-img-secondary"
-          src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400"
-          alt="Kod na ekranie monitora"
-          loading="eager"
-        >
+        <div class="code-editor">
+
+          <!-- Pasek tytułowy edytora -->
+          <div class="code-editor-titlebar">
+            <div class="code-editor-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="code-editor-filename">
+              <i data-lucide="file-code" style="width:13px;height:13px;opacity:0.6;"></i>
+              index.html
+            </div>
+            <div class="code-editor-lang">HTML</div>
+          </div>
+
+          <!-- Zawartość edytora z numerami linii -->
+          <div class="code-editor-body">
+            <div class="code-lines">
+
+              <div class="code-line">
+                <span class="ln">1</span>
+                <span class="code-tag">&lt;!DOCTYPE</span>
+                <span class="code-attr"> html</span>
+                <span class="code-tag">&gt;</span>
+              </div>
+
+              <div class="code-line">
+                <span class="ln">2</span>
+                <span class="code-tag">&lt;html</span>
+                <span class="code-attr"> lang</span>
+                <span class="code-punct">=</span>
+                <span class="code-val">"pl"</span>
+                <span class="code-tag">&gt;</span>
+              </div>
+
+              <div class="code-line">
+                <span class="ln">3</span>
+                <span class="code-tag">&lt;head&gt;</span>
+              </div>
+
+              <div class="code-line code-line-indent">
+                <span class="ln">4</span>
+                <span class="code-tag">&lt;title&gt;</span>
+                <span class="code-text">Moja strona</span>
+                <span class="code-tag">&lt;/title&gt;</span>
+              </div>
+
+              <div class="code-line">
+                <span class="ln">5</span>
+                <span class="code-tag">&lt;/head&gt;</span>
+              </div>
+
+              <div class="code-line">
+                <span class="ln">6</span>
+                <span class="code-tag">&lt;body&gt;</span>
+              </div>
+
+              <div class="code-line code-line-indent code-line-highlight">
+                <span class="ln">7</span>
+                <span class="code-tag">&lt;h1</span>
+                <span class="code-attr"> class</span>
+                <span class="code-punct">=</span>
+                <span class="code-val">"hero"</span>
+                <span class="code-tag">&gt;</span>
+                <span class="code-text typed-code" id="typed-code-text"></span>
+                <span class="typing-cursor-code"></span>
+                <span class="code-tag">&lt;/h1&gt;</span>
+              </div>
+
+              <div class="code-line code-line-indent">
+                <span class="ln">8</span>
+                <span class="code-tag">&lt;p&gt;</span>
+                <span class="code-text">Witaj w świecie HTML!</span>
+                <span class="code-tag">&lt;/p&gt;</span>
+              </div>
+
+              <div class="code-line code-line-indent">
+                <span class="ln">9</span>
+                <span class="code-tag">&lt;a</span>
+                <span class="code-attr"> href</span>
+                <span class="code-punct">=</span>
+                <span class="code-val">"#start"</span>
+                <span class="code-tag">&gt;</span>
+                <span class="code-text">Zacznij</span>
+                <span class="code-tag">&lt;/a&gt;</span>
+              </div>
+
+              <div class="code-line">
+                <span class="ln">10</span>
+                <span class="code-tag">&lt;/body&gt;</span>
+              </div>
+
+              <div class="code-line">
+                <span class="ln">11</span>
+                <span class="code-tag">&lt;/html&gt;</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Pasek statusu edytora -->
+          <div class="code-editor-statusbar">
+            <span>
+              <i data-lucide="check-circle" style="width:11px;height:11px;color:#22c55e;"></i>
+              Brak błędów
+            </span>
+            <span>UTF-8</span>
+            <span>Ln 7, Col 24</span>
+            <span>HTML</span>
+          </div>
+
+        </div>
+
+        {% comment %} <!-- Floating badge — wynik w przeglądarce -->
+        <div class="code-preview-badge">
+          <div class="code-preview-badge-header">
+            <i data-lucide="monitor" style="width:12px;height:12px;"></i>
+            Podgląd
+          </div>
+          <div class="code-preview-badge-content">
+            <strong>Witaj w HTML!</strong>
+            <span>Witaj w świecie HTML!</span>
+            <a>Zacznij</a>
+          </div>
+        </div> {% endcomment %}
+
       </div>
     </div>
 
     <!-- Scroll indicator -->
     <div class="hero-scroll">
-      <span>Przewiń</span>
-      <div class="hero-scroll-arrow"></div>
+      <i data-lucide="chevrons-down" style="width:20px;height:20px;opacity:0.5;"></i>
     </div>
   </section>
 
   <!-- ============================================================
-       SEKCJA 2 — CO ZYSKASZ (id="program")
+       SEKCJA 2 — CO ZYSKASZ
        ============================================================ -->
   <section class="features-section" id="program">
     <div class="container">
@@ -113,42 +254,54 @@
       <div class="features-grid">
 
         <div class="feature-card fade-in fade-in-delay-1">
-          <span class="feature-icon">🏗️</span>
+          <span class="feature-icon">
+            <i data-lucide="code-2"></i>
+          </span>
           <h3>Struktura HTML5</h3>
           <p>Poznasz semantyczne znaczniki, nauczysz się budować szkielet każdej
              nowoczesnej strony internetowej.</p>
         </div>
 
         <div class="feature-card fade-in fade-in-delay-2">
-          <span class="feature-icon">🎨</span>
+          <span class="feature-icon">
+            <i data-lucide="paintbrush"></i>
+          </span>
           <h3>Stylowanie CSS3</h3>
           <p>Flexbox, Grid, animacje, zmienne CSS — opanujesz narzędzia,
              których używają profesjonalni developerzy.</p>
         </div>
 
         <div class="feature-card fade-in fade-in-delay-3">
-          <span class="feature-icon">📝</span>
+          <span class="feature-icon">
+            <i data-lucide="table-2"></i>
+          </span>
           <h3>Formularze i Tabele</h3>
           <p>Tworzenie interaktywnych formularzy, tabel danych i list —
              fundamenty każdej aplikacji webowej.</p>
         </div>
 
         <div class="feature-card fade-in fade-in-delay-1">
-          <span class="feature-icon">🖼️</span>
+          <span class="feature-icon">
+            <i data-lucide="film"></i>
+          </span>
           <h3>Multimedia w HTML</h3>
           <p>Osadzanie obrazów, wideo i audio. Nauczysz się jak działają
              mapy, odtwarzacze i galerie.</p>
         </div>
 
         <div class="feature-card fade-in fade-in-delay-2">
-          <span class="feature-icon">🔗</span>
+          <span class="feature-icon">
+            <i data-lucide="link-2"></i>
+          </span>
           <h3>Hiperlącza i Nawigacja</h3>
           <p>Wewnętrzne i zewnętrzne linki, anchory, nawigacja —
              podstawa każdej strony WWW.</p>
         </div>
 
         <div class="feature-card fade-in fade-in-delay-3">
-          <span class="feature-icon">🏆</span>
+          <span class="feature-icon">
+            <i data-lucide="award"></i>
+          </span>
           <h3>Projekt Końcowy</h3>
           <p>Zbudujesz własną stronę od zera i otrzymasz certyfikat
              ukończenia kursu.</p>
@@ -166,21 +319,25 @@
       <div class="stats-grid">
 
         <div class="stat-item fade-in">
+          <i data-lucide="folder-open" class="stat-icon"></i>
           <span class="stat-number" data-target="7" data-suffix="">7</span>
           <span class="stat-label">Projektów praktycznych</span>
         </div>
 
         <div class="stat-item fade-in fade-in-delay-1">
+          <i data-lucide="book-open" class="stat-icon"></i>
           <span class="stat-number" data-target="13" data-suffix="">13</span>
           <span class="stat-label">Rozdziałów kursu</span>
         </div>
 
         <div class="stat-item fade-in fade-in-delay-2">
+          <i data-lucide="lock-open" class="stat-icon"></i>
           <span class="stat-number" data-target="100" data-suffix="%">100%</span>
           <span class="stat-label">Darmowy dostęp</span>
         </div>
 
         <div class="stat-item fade-in fade-in-delay-3">
+          <i data-lucide="users" class="stat-icon"></i>
           <span class="stat-number" data-target="0" data-suffix="">0</span>
           <span class="stat-label">Wymagań wstępnych</span>
         </div>
@@ -190,16 +347,20 @@
   </section>
 
   <!-- ============================================================
-       SEKCJA 4 — FULL-WIDTH IMAGE
+       SEKCJA 4 — FULL-WIDTH GRADIENT BANNER (zamiast zdjęcia)
        ============================================================ -->
   <section class="fullwidth-image-section">
-    <!-- GRAFIKA STOCKOWA: laptop z kodem, ciepłe światło -->
-    <img
-      src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1400"
-      alt="Laptop z kodem — zacznij kodować"
-      loading="lazy"
-    >
+    <div class="fullwidth-code-bg" aria-hidden="true">
+      <span>&lt;html&gt;</span><span>&lt;head&gt;</span><span>body {</span>
+      <span>display:</span><span>flex;</span><span>&lt;/head&gt;</span>
+      <span>.hero</span><span>{</span><span>color:</span>
+      <span>#7c3aed;</span><span>}</span><span>&lt;div&gt;</span>
+      <span>margin:</span><span>auto;</span><span>&lt;/html&gt;</span>
+      <span>padding:</span><span>24px;</span><span>@media</span>
+      <span>&lt;section&gt;</span><span>grid-template</span><span>}</span>
+    </div>
     <div class="fullwidth-image-overlay">
+      <i data-lucide="quote" style="width:48px;height:48px;opacity:0.3;margin-bottom:16px;"></i>
       <p class="fullwidth-quote">
         „Każdy może nauczyć się kodować.<br>
         <strong>Pytanie brzmi: kiedy zaczniesz?</strong>"
@@ -219,7 +380,6 @@
 
       <div class="accordion" id="accordion">
 
-        <!-- Rozdział 1 -->
         <div class="accordion-item" data-index="0">
           <div class="accordion-header">
             <div class="accordion-header-left">
@@ -229,30 +389,25 @@
                 <div class="accordion-subtitle">11 tematów · Podstawy języka znaczników</div>
               </div>
             </div>
-            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+            <i data-lucide="chevron-down" class="accordion-chevron"></i>
           </div>
           <div class="accordion-body">
             <div class="accordion-content">
               <div class="accordion-tags">
-                <span class="accordion-tag">Wstęp</span>
-                <span class="accordion-tag">Tekst</span>
-                <span class="accordion-tag">Znaki specjalne</span>
-                <span class="accordion-tag">Listy</span>
-                <span class="accordion-tag">Tabele</span>
-                <span class="accordion-tag">Hiperłącza</span>
-                <span class="accordion-tag">Grafika</span>
-                <span class="accordion-tag">Multimedia</span>
-                <span class="accordion-tag">Inputy</span>
-                <span class="accordion-tag">Formularze</span>
-                <span class="accordion-tag">Atrybuty</span>
+                <span class="accordion-tag"><i data-lucide="hash" style="width:11px;height:11px;"></i> Wstęp</span>
+                <span class="accordion-tag"><i data-lucide="type" style="width:11px;height:11px;"></i> Tekst</span>
+                <span class="accordion-tag"><i data-lucide="list" style="width:11px;height:11px;"></i> Listy</span>
+                <span class="accordion-tag"><i data-lucide="table-2" style="width:11px;height:11px;"></i> Tabele</span>
+                <span class="accordion-tag"><i data-lucide="link" style="width:11px;height:11px;"></i> Hiperłącza</span>
+                <span class="accordion-tag"><i data-lucide="image" style="width:11px;height:11px;"></i> Grafika</span>
+                <span class="accordion-tag"><i data-lucide="film" style="width:11px;height:11px;"></i> Multimedia</span>
+                <span class="accordion-tag"><i data-lucide="square" style="width:11px;height:11px;"></i> Inputy</span>
+                <span class="accordion-tag"><i data-lucide="clipboard-list" style="width:11px;height:11px;"></i> Formularze</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Rozdział 2 -->
         <div class="accordion-item" data-index="1">
           <div class="accordion-header">
             <div class="accordion-header-left">
@@ -262,26 +417,23 @@
                 <div class="accordion-subtitle">7 tematów · Stylowanie i layout</div>
               </div>
             </div>
-            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+            <i data-lucide="chevron-down" class="accordion-chevron"></i>
           </div>
           <div class="accordion-body">
             <div class="accordion-content">
               <div class="accordion-tags">
-                <span class="accordion-tag">Selektory</span>
-                <span class="accordion-tag">Box Model</span>
-                <span class="accordion-tag">Flexbox</span>
-                <span class="accordion-tag">Grid</span>
-                <span class="accordion-tag">Animacje</span>
-                <span class="accordion-tag">Zmienne CSS</span>
-                <span class="accordion-tag">Responsywność</span>
+                <span class="accordion-tag"><i data-lucide="filter" style="width:11px;height:11px;"></i> Selektory</span>
+                <span class="accordion-tag"><i data-lucide="box" style="width:11px;height:11px;"></i> Box Model</span>
+                <span class="accordion-tag"><i data-lucide="layout" style="width:11px;height:11px;"></i> Flexbox</span>
+                <span class="accordion-tag"><i data-lucide="grid" style="width:11px;height:11px;"></i> Grid</span>
+                <span class="accordion-tag"><i data-lucide="sparkles" style="width:11px;height:11px;"></i> Animacje</span>
+                <span class="accordion-tag"><i data-lucide="sliders" style="width:11px;height:11px;"></i> Zmienne CSS</span>
+                <span class="accordion-tag"><i data-lucide="smartphone" style="width:11px;height:11px;"></i> Responsywność</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Rozdział 3 -->
         <div class="accordion-item" data-index="2">
           <div class="accordion-header">
             <div class="accordion-header-left">
@@ -291,25 +443,22 @@
                 <div class="accordion-subtitle">5 projektów · Buduj, nie tylko czytaj</div>
               </div>
             </div>
-            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+            <i data-lucide="chevron-down" class="accordion-chevron"></i>
           </div>
           <div class="accordion-body">
             <div class="accordion-content">
               <div class="accordion-tags">
-                <span class="accordion-tag">Lista</span>
-                <span class="accordion-tag">Tabela kolorów</span>
-                <span class="accordion-tag">Tabele + Listy + Łącza</span>
-                <span class="accordion-tag">Multimedia</span>
-                <span class="accordion-tag">Resumo</span>
-                <span class="accordion-tag">Kwestionariusz</span>
+                <span class="accordion-tag"><i data-lucide="list-checks" style="width:11px;height:11px;"></i> Lista</span>
+                <span class="accordion-tag"><i data-lucide="palette" style="width:11px;height:11px;"></i> Tabela kolorów</span>
+                <span class="accordion-tag"><i data-lucide="table" style="width:11px;height:11px;"></i> Tabele + Listy</span>
+                <span class="accordion-tag"><i data-lucide="video" style="width:11px;height:11px;"></i> Multimedia</span>
+                <span class="accordion-tag"><i data-lucide="file-text" style="width:11px;height:11px;"></i> Resumo</span>
+                <span class="accordion-tag"><i data-lucide="clipboard" style="width:11px;height:11px;"></i> Kwestionariusz</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Rozdział 4 -->
         <div class="accordion-item" data-index="3">
           <div class="accordion-header">
             <div class="accordion-header-left">
@@ -319,23 +468,20 @@
                 <div class="accordion-subtitle">Praca z początku roku — podstawy HTML</div>
               </div>
             </div>
-            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+            <i data-lucide="chevron-down" class="accordion-chevron"></i>
           </div>
           <div class="accordion-body">
             <div class="accordion-content">
               <div class="accordion-tags">
-                <span class="accordion-tag">Nagłówki h1–h6</span>
-                <span class="accordion-tag">Akapity</span>
-                <span class="accordion-tag">Formatowanie tekstu</span>
-                <span class="accordion-tag">Znaczniki semantyczne</span>
+                <span class="accordion-tag"><i data-lucide="heading-1" style="width:11px;height:11px;"></i> Nagłówki h1–h6</span>
+                <span class="accordion-tag"><i data-lucide="align-left" style="width:11px;height:11px;"></i> Akapity</span>
+                <span class="accordion-tag"><i data-lucide="bold" style="width:11px;height:11px;"></i> Formatowanie</span>
+                <span class="accordion-tag"><i data-lucide="code" style="width:11px;height:11px;"></i> Semantyka</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Rozdział 5 -->
         <div class="accordion-item" data-index="4">
           <div class="accordion-header">
             <div class="accordion-header-left">
@@ -345,23 +491,21 @@
                 <div class="accordion-subtitle">Strona prezentacyjna autora kursu</div>
               </div>
             </div>
-            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+            <i data-lucide="chevron-down" class="accordion-chevron"></i>
           </div>
           <div class="accordion-body">
             <div class="accordion-content">
               <div class="accordion-tags">
-                <span class="accordion-tag">Grafiki JPG/PNG/GIF</span>
-                <span class="accordion-tag">Tabela 5×6</span>
-                <span class="accordion-tag">Audio/Video</span>
-                <span class="accordion-tag">Linki zewnętrzne</span>
+                <span class="accordion-tag"><i data-lucide="image" style="width:11px;height:11px;"></i> Grafiki JPG/PNG/GIF</span>
+                <span class="accordion-tag"><i data-lucide="table-2" style="width:11px;height:11px;"></i> Tabela 5×6</span>
+                <span class="accordion-tag"><i data-lucide="music" style="width:11px;height:11px;"></i> Audio/Video</span>
+                <span class="accordion-tag"><i data-lucide="external-link" style="width:11px;height:11px;"></i> Linki zewnętrzne</span>
               </div>
             </div>
           </div>
         </div>
 
-      </div><!-- /.accordion -->
+      </div>
     </div>
   </section>
 
@@ -370,10 +514,12 @@
        ============================================================ -->
   <section class="cta-section">
     <div class="container">
+      <i data-lucide="rocket" class="cta-icon fade-in"></i>
       <h2 class="fade-in">Gotowy, żeby zacząć?</h2>
-      <p class="fade-in fade-in-delay-1">Dołącz do kursu już teraz — za darmo, bez rejestracji.</p>
+      <p class="fade-in fade-in-delay-1">Dołącz do kursu już teraz — za darmo.</p>
       <a href="{% url 'minikurs:glowna' %}" class="btn btn-primary btn-lg fade-in fade-in-delay-2">
-        Przejdź do kursu →
+        <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+        Przejdź do kursu
       </a>
     </div>
   </section>
@@ -384,7 +530,6 @@
   <footer class="landing-footer">
     <div class="footer-grid">
 
-      <!-- Lewa: brand -->
       <div class="footer-col">
         <div class="footer-brand-logo">⟨H5⟩</div>
         <div class="footer-brand-name">Minikurs HTML5 i CSS3</div>
@@ -394,43 +539,45 @@
         </p>
       </div>
 
-      <!-- Środek: szybkie linki -->
       <div class="footer-col">
         <h4>Szybkie linki</h4>
         <ul class="footer-links">
-          <li><a href="/">Strona główna</a></li>
-          <li><a href="{% url 'minikurs:html' %}">Poradnik HTML</a></li>
-          <li><a href="{% url 'minikurs:css' %}">Poradnik CSS</a></li>
-          <li><a href="{% url 'minikurs:kontakt' %}">Kontakt</a></li>
-          <li><a href="{% url 'minikurs:o_mnie' %}">O mnie</a></li>
+          <li>
+            <i data-lucide="home" style="width:13px;height:13px;"></i>
+            <a href="/">Strona główna</a>
+          </li>
+          <li>
+            <i data-lucide="mail" style="width:13px;height:13px;"></i>
+            <a href="{% url 'minikurs:kontakt' %}">Kontakt</a>
+          </li>
+          <li>
+            <i data-lucide="user" style="width:13px;height:13px;"></i>
+            <a href="{% url 'minikurs:o_mnie' %}">O mnie</a>
+          </li>
+          <li>
+            <i data-lucide="link" style="width:13px;height:13px;"></i>
+            <a href="{% url 'minikurs:linki' %}">Linki</a>
+          </li>
         </ul>
       </div>
 
-      <!-- Prawa: autor -->
       <div class="footer-col">
         <h4>Autor</h4>
-        <!-- ZASTĄP własnymi danymi -->
-        <p class="footer-author-name">[IMIĘ NAZWISKO]</p>
+        <p class="footer-author-name">Krzysztof Januszewski</p>
         <p class="footer-author-info">
-          Technikum im. Kasprzaka<br>
-          w Warszawie<br>
-          Klasa [KLASA]
+          Technikum im. Marcina<br>
+          Kasprzaka w Warszawie<br>
+          Klasa 3F
         </p>
       </div>
 
     </div>
 
-    <!-- Footer bottom -->
     <div class="footer-bottom">
       <p class="footer-bottom-text">
-        <!-- ZASTĄP własnymi danymi -->
-        <span>[IMIĘ NAZWISKO]</span>
+        <span>Krzysztof Januszewski 3F</span>
         &nbsp;·&nbsp;
-        <span>[KLASA]</span>
-        &nbsp;·&nbsp;
-        © 2025
-        &nbsp;·&nbsp;
-        <span>[KLASA]</span>
+        © 2026
       </p>
     </div>
   </footer>
@@ -438,6 +585,41 @@
   <!-- JS -->
   <script src="{% static 'js/main.js' %}"></script>
   <script src="{% static 'js/landing.js' %}"></script>
+
+  <!-- Inicjalizacja Lucide -->
+  <script>
+    lucide.createIcons();
+  </script>
+
+  <!-- Animowany kod w edytorze hero -->
+  <script>
+    (function () {
+      const phrases = ['Witaj w HTML!', 'Naucz się CSS!', 'Buduj strony!', 'Koduj z pasją!'];
+      let pi = 0, ci = 0, deleting = false;
+      const el = document.getElementById('typed-code-text');
+      if (!el) return;
+
+      function tick() {
+        const phrase = phrases[pi];
+        if (!deleting) {
+          el.textContent = phrase.slice(0, ++ci);
+          if (ci === phrase.length) {
+            deleting = true;
+            setTimeout(tick, 1800);
+            return;
+          }
+        } else {
+          el.textContent = phrase.slice(0, --ci);
+          if (ci === 0) {
+            deleting = false;
+            pi = (pi + 1) % phrases.length;
+          }
+        }
+        setTimeout(tick, deleting ? 60 : 100);
+      }
+      setTimeout(tick, 1200);
+    })();
+  </script>
+
 </body>
 </html>
-

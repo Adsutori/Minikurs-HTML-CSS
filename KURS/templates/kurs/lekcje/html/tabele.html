@@ -1,0 +1,94 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Tabele</h1>
+
+<p>
+  Tabele HTML służą do prezentowania danych w układzie wierszy i kolumn.
+  Ważna zasada: tabele są przeznaczone dla <strong>danych tabelarycznych</strong>,
+  nie do tworzenia layoutu strony — od tego jest CSS.
+</p>
+
+<h2>Podstawowa struktura</h2>
+<pre><code>&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Imię&lt;/th&gt;
+      &lt;th&gt;Wiek&lt;/th&gt;
+      &lt;th&gt;Miasto&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Anna&lt;/td&gt;
+      &lt;td&gt;28&lt;/td&gt;
+      &lt;td&gt;Warszawa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Piotr&lt;/td&gt;
+      &lt;td&gt;34&lt;/td&gt;
+      &lt;td&gt;Kraków&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+<h2>Elementy tabeli</h2>
+<table>
+  <thead><tr><th>Znacznik</th><th>Opis</th></tr></thead>
+  <tbody>
+    <tr><td><code>&lt;table&gt;</code></td><td>Kontener całej tabeli</td></tr>
+    <tr><td><code>&lt;thead&gt;</code></td><td>Sekcja nagłówkowa tabeli</td></tr>
+    <tr><td><code>&lt;tbody&gt;</code></td><td>Sekcja z danymi</td></tr>
+    <tr><td><code>&lt;tfoot&gt;</code></td><td>Sekcja stopki tabeli (np. sumy)</td></tr>
+    <tr><td><code>&lt;tr&gt;</code></td><td>Wiersz tabeli</td></tr>
+    <tr><td><code>&lt;th&gt;</code></td><td>Komórka nagłówkowa (pogrubiona, wyśrodkowana)</td></tr>
+    <tr><td><code>&lt;td&gt;</code></td><td>Komórka z danymi</td></tr>
+    <tr><td><code>&lt;caption&gt;</code></td><td>Tytuł tabeli</td></tr>
+  </tbody>
+</table>
+
+<h2>Łączenie komórek</h2>
+<p>
+  <code>colspan</code> łączy komórki poziomo (w poprzek kolumn),
+  <code>rowspan</code> łączy komórki pionowo (w poprzek wierszy):
+</p>
+<pre><code>&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;td colspan="2"&gt;Łączy dwie kolumny&lt;/td&gt;
+    &lt;td&gt;Kolumna 3&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td rowspan="2"&gt;Łączy dwa wiersze&lt;/td&gt;
+    &lt;td&gt;B2&lt;/td&gt;
+    &lt;td&gt;C2&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;B3&lt;/td&gt;
+    &lt;td&gt;C3&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+<h2>Dostępność tabeli</h2>
+<p>Dla czytników ekranowych warto dodać:</p>
+<pre><code>&lt;table&gt;
+  &lt;caption&gt;Wyniki egzaminów — semestr I&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;Przedmiot&lt;/th&gt;
+      &lt;th scope="col"&gt;Ocena&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;Matematyka&lt;/th&gt;
+      &lt;td&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+<div class="tip">
+  💡 Atrybut <code>scope="col"</code> lub <code>scope="row"</code> w <code>&lt;th&gt;</code> informuje czytnik ekranowy,
+  czy nagłówek dotyczy kolumny czy wiersza. To ważne dla dostępności.
+</div>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Meta tagi i SEO</h1>
+
+<p>
+  Meta tagi to elementy umieszczane w sekcji <code>&lt;head&gt;</code>, które przekazują
+  informacje o stronie przeglądarkom, wyszukiwarkom i platformom społecznościowym.
+  Użytkownik ich nie widzi, ale mają ogromny wpływ na to, jak strona jest indeksowana i wyświetlana.
+</p>
+
+<h2>Podstawowe meta tagi</h2>
+<pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;meta name="description" content="Kurs HTML5 od podstaw — naucz się tworzyć strony internetowe."&gt;
+  &lt;meta name="author" content="Jan Kowalski"&gt;
+  &lt;meta name="keywords" content="HTML, kurs HTML, nauka HTML, strony internetowe"&gt;
+  &lt;title&gt;Kurs HTML5 od podstaw | MiniKurs&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+
+<h2>Najważniejszy meta tag — description</h2>
+<p>
+  <code>meta name="description"</code> to opis strony wyświetlany pod tytułem w wynikach Google.
+  Powinien mieć <strong>150–160 znaków</strong>, zawierać słowa kluczowe i zachęcać do kliknięcia.
+</p>
+
+<h2>Open Graph — podgląd w mediach społecznościowych</h2>
+<p>
+  Kiedy ktoś udostępnia link na Facebooku, LinkedIn czy Twitterze, platforma
+  pobiera dane z tagów Open Graph:
+</p>
+<pre><code>&lt;meta property="og:title" content="Kurs HTML5 od podstaw"&gt;
+&lt;meta property="og:description" content="Naucz się HTML w praktyce — od zera do własnej strony."&gt;
+&lt;meta property="og:image" content="https://example.com/og-image.jpg"&gt;
+&lt;meta property="og:url" content="https://example.com/kurs-html"&gt;
+&lt;meta property="og:type" content="website"&gt;</code></pre>
+
+<h2>Twitter Cards</h2>
+<pre><code>&lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;meta name="twitter:title" content="Kurs HTML5 od podstaw"&gt;
+&lt;meta name="twitter:description" content="Naucz się HTML w praktyce."&gt;
+&lt;meta name="twitter:image" content="https://example.com/twitter-image.jpg"&gt;</code></pre>
+
+<h2>Kontrola robotów wyszukiwarek</h2>
+<pre><code>&lt;!-- Pozwól indeksować i podążać za linkami (domyślne) --&gt;
+&lt;meta name="robots" content="index, follow"&gt;
+
+&lt;!-- Zablokuj indeksowanie tej strony --&gt;
+&lt;meta name="robots" content="noindex, nofollow"&gt;
+
+&lt;!-- Nie archiwizuj strony w Google Cache --&gt;
+&lt;meta name="robots" content="noarchive"&gt;</code></pre>
+
+<h2>Canonical — unikanie duplikatów</h2>
+<pre><code>&lt;link rel="canonical" href="https://example.com/kurs-html"&gt;</code></pre>
+<p>
+  Jeśli ta sama treść dostępna jest pod kilkoma adresami URL, canonical wskazuje
+  Google która wersja jest "oryginalna" — zapobiega karze za duplikaty treści.
+</p>
+
+<h2>Favicon</h2>
+<pre><code>&lt;link rel="icon" type="image/png" href="/favicon.png"&gt;
+&lt;link rel="apple-touch-icon" href="/apple-touch-icon.png"&gt;</code></pre>
+
+<div class="tip">
+  💡 <strong>Trzy rzeczy, które musi mieć każda strona:</strong>
+  unikalny <code>&lt;title&gt;</code>, wypełniony <code>meta description</code>
+  i poprawny <code>meta viewport</code>. To absolutne minimum SEO.
+</div>
+
+{% endblock %}

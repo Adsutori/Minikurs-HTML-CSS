@@ -1,0 +1,201 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Projekt: CV w HTML</h1>
+
+<p>
+  Czas zastosować zdobytą wiedzę w praktyce. Zbudujesz teraz <strong>profesjonalne CV</strong>
+  w czystym HTML — bez CSS, tylko z semantyczną strukturą. To świetne ćwiczenie,
+  które łączy nagłówki, listy, tabele, łącza i znaczniki semantyczne w jeden spójny dokument.
+</p>
+
+<h2>Struktura projektu</h2>
+<pre><code>cv/
+└── index.html</code></pre>
+
+<h2>Pełny kod CV</h2>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pl"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;CV — Jan Kowalski&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;header&gt;
+    &lt;h1&gt;Jan Kowalski&lt;/h1&gt;
+    &lt;p&gt;&lt;strong&gt;Frontend Developer&lt;/strong&gt;&lt;/p&gt;
+    &lt;address&gt;
+      &lt;a href="mailto:jan@example.com"&gt;jan@example.com&lt;/a&gt; &amp;nbsp;|&amp;nbsp;
+      &lt;a href="tel:+48501234567"&gt;+48 501 234 567&lt;/a&gt; &amp;nbsp;|&amp;nbsp;
+      Warszawa, Polska &amp;nbsp;|&amp;nbsp;
+      &lt;a href="https://github.com/jankowalski" target="_blank" rel="noopener"&gt;github.com/jankowalski&lt;/a&gt;
+    &lt;/address&gt;
+  &lt;/header&gt;
+
+  &lt;hr&gt;
+
+  &lt;main&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;O mnie&lt;/h2&gt;
+      &lt;p&gt;
+        Pasjonat tworzenia stron internetowych z 2-letnim doświadczeniem w HTML i CSS.
+        Szukam pierwszej pracy jako Junior Frontend Developer. Lubię pisać czysty,
+        semantyczny kod i dbam o dostępność oraz wydajność stron.
+      &lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;hr&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Doświadczenie zawodowe&lt;/h2&gt;
+
+      &lt;article&gt;
+        &lt;h3&gt;Freelance Web Developer&lt;/h3&gt;
+        &lt;p&gt;Praca własna &amp;mdash; &lt;time datetime="2024"&gt;2024&lt;/time&gt; &amp;ndash; obecnie&lt;/p&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Tworzenie stron wizytówkowych dla małych firm&lt;/li&gt;
+          &lt;li&gt;Optymalizacja stron pod kątem SEO i wydajności&lt;/li&gt;
+          &lt;li&gt;Wdrażanie responsywnych layoutów HTML i CSS&lt;/li&gt;
+          &lt;li&gt;Obsługa klientów i wycena projektów&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/article&gt;
+
+      &lt;article&gt;
+        &lt;h3&gt;Praktykant — Agencja Reklamowa XYZ&lt;/h3&gt;
+        &lt;p&gt;Warszawa &amp;mdash; &lt;time datetime="2023-07"&gt;lipiec 2023&lt;/time&gt; &amp;ndash; &lt;time datetime="2023-09"&gt;wrzesień 2023&lt;/time&gt;&lt;/p&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Pomoc przy tworzeniu szablonów e-mail w HTML&lt;/li&gt;
+          &lt;li&gt;Aktualizacja treści na stronach klientów&lt;/li&gt;
+          &lt;li&gt;Testowanie stron w różnych przeglądarkach&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/article&gt;
+
+    &lt;/section&gt;
+
+    &lt;hr&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Wykształcenie&lt;/h2&gt;
+
+      &lt;article&gt;
+        &lt;h3&gt;Technikum Informatyczne&lt;/h3&gt;
+        &lt;p&gt;Zespół Szkół nr 5, Warszawa&lt;/p&gt;
+        &lt;p&gt;&lt;time datetime="2020"&gt;2020&lt;/time&gt; &amp;ndash; &lt;time datetime="2024"&gt;2024&lt;/time&gt;&lt;/p&gt;
+        &lt;p&gt;Specjalizacja: Programowanie aplikacji internetowych&lt;/p&gt;
+      &lt;/article&gt;
+
+    &lt;/section&gt;
+
+    &lt;hr&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Umiejętności techniczne&lt;/h2&gt;
+      &lt;table border="1" cellpadding="6" cellspacing="0"&gt;
+        &lt;thead&gt;
+          &lt;tr&gt;
+            &lt;th scope="col"&gt;Technologia&lt;/th&gt;
+            &lt;th scope="col"&gt;Poziom&lt;/th&gt;
+            &lt;th scope="col"&gt;Lata doświadczenia&lt;/th&gt;
+          &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+          &lt;tr&gt;
+            &lt;th scope="row"&gt;HTML5&lt;/th&gt;
+            &lt;td&gt;Zaawansowany&lt;/td&gt;
+            &lt;td&gt;3 lata&lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;th scope="row"&gt;CSS3&lt;/th&gt;
+            &lt;td&gt;Średniozaawansowany&lt;/td&gt;
+            &lt;td&gt;2 lata&lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;th scope="row"&gt;JavaScript&lt;/th&gt;
+            &lt;td&gt;Podstawowy&lt;/td&gt;
+            &lt;td&gt;1 rok&lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;th scope="row"&gt;Git&lt;/th&gt;
+            &lt;td&gt;Podstawowy&lt;/td&gt;
+            &lt;td&gt;1 rok&lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/tbody&gt;
+      &lt;/table&gt;
+    &lt;/section&gt;
+
+    &lt;hr&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Języki obce&lt;/h2&gt;
+      &lt;dl&gt;
+        &lt;dt&gt;Angielski&lt;/dt&gt;
+        &lt;dd&gt;B2 &amp;mdash; komunikatywny, czytanie dokumentacji technicznej&lt;/dd&gt;
+        &lt;dt&gt;Niemiecki&lt;/dt&gt;
+        &lt;dd&gt;A2 &amp;mdash; podstawowy&lt;/dd&gt;
+      &lt;/dl&gt;
+    &lt;/section&gt;
+
+    &lt;hr&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Zainteresowania&lt;/h2&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Projektowanie interfejsów użytkownika&lt;/li&gt;
+        &lt;li&gt;Open source — aktywny na GitHubie&lt;/li&gt;
+        &lt;li&gt;Fotografia cyfrowa&lt;/li&gt;
+        &lt;li&gt;Gry planszowe&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/section&gt;
+
+    &lt;hr&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Klauzula RODO&lt;/h2&gt;
+      &lt;p&gt;
+        &lt;small&gt;
+          Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych
+          do realizacji procesu rekrutacji zgodnie z Rozporządzeniem Parlamentu Europejskiego
+          i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r.
+        &lt;/small&gt;
+      &lt;/p&gt;
+    &lt;/section&gt;
+
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;hr&gt;
+    &lt;p&gt;&lt;small&gt;&amp;copy; &lt;time datetime="2026"&gt;2026&lt;/time&gt; Jan Kowalski&lt;/small&gt;&lt;/p&gt;
+  &lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<h2>Co ćwiczymy w tym projekcie?</h2>
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Element</th>
+      <th scope="col">Gdzie użyty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Znaczniki semantyczne</td><td><code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;address&gt;</code></td></tr>
+    <tr><td>Nagłówki h1–h3</td><td>Imię, sekcje, stanowiska</td></tr>
+    <tr><td>Listy <code>&lt;ul&gt;</code> i <code>&lt;dl&gt;</code></td><td>Obowiązki, języki</td></tr>
+    <tr><td>Tabela z <code>scope</code></td><td>Umiejętności techniczne</td></tr>
+    <tr><td>Łącza <code>&lt;a&gt;</code></td><td>Email, telefon, GitHub</td></tr>
+    <tr><td>Encje HTML</td><td><code>&amp;mdash;</code>, <code>&amp;ndash;</code>, <code>&amp;copy;</code>, <code>&amp;nbsp;</code></td></tr>
+    <tr><td><code>&lt;time&gt;</code></td><td>Daty przy doświadczeniu i wykształceniu</td></tr>
+    <tr><td><code>&lt;small&gt;</code></td><td>Klauzula RODO, stopka</td></tr>
+  </tbody>
+</table>
+
+<div class="tip">
+  💡 <strong>Zadanie:</strong> Wypełnij CV swoimi prawdziwymi danymi. Potem wróć do tego projektu
+  po kursie CSS — dodasz style i zamienisz go w naprawdę profesjonalny dokument.
+</div>
+
+{% endblock %}

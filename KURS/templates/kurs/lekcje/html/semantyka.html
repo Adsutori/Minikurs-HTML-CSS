@@ -1,0 +1,76 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Znaczniki semantyczne</h1>
+
+<p>
+  HTML5 wprowadził zestaw znaczników semantycznych — elementów, których nazwa
+  opisuje <strong>rolę treści</strong>, a nie jej wygląd. Zamiast samych <code>&lt;div&gt;</code>
+  mamy teraz <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code> i inne.
+  To ważne dla SEO, dostępności i czytelności kodu.
+</p>
+
+<h2>Główne znaczniki semantyczne</h2>
+<table>
+  <thead><tr><th>Znacznik</th><th>Zastosowanie</th></tr></thead>
+  <tbody>
+    <tr><td><code>&lt;header&gt;</code></td><td>Nagłówek strony lub sekcji — logo, tytuł, nawigacja</td></tr>
+    <tr><td><code>&lt;nav&gt;</code></td><td>Główna nawigacja — menu, linki do podstron</td></tr>
+    <tr><td><code>&lt;main&gt;</code></td><td>Główna treść strony — tylko jeden na stronę</td></tr>
+    <tr><td><code>&lt;article&gt;</code></td><td>Samodzielna treść — post, artykuł, komentarz</td></tr>
+    <tr><td><code>&lt;section&gt;</code></td><td>Tematyczna sekcja dokumentu z nagłówkiem</td></tr>
+    <tr><td><code>&lt;aside&gt;</code></td><td>Treść poboczna — sidebar, reklama, powiązane linki</td></tr>
+    <tr><td><code>&lt;footer&gt;</code></td><td>Stopka strony lub sekcji — copyright, kontakt</td></tr>
+    <tr><td><code>&lt;figure&gt;</code></td><td>Ilustracja, diagram, kod z podpisem</td></tr>
+    <tr><td><code>&lt;figcaption&gt;</code></td><td>Podpis do elementu <code>&lt;figure&gt;</code></td></tr>
+    <tr><td><code>&lt;mark&gt;</code></td><td>Wyróżnienie tekstu (np. wynik wyszukiwania)</td></tr>
+    <tr><td><code>&lt;time&gt;</code></td><td>Data lub czas czytelna dla maszyn</td></tr>
+    <tr><td><code>&lt;details&gt;</code></td><td>Rozwijana sekcja (accordion bez JS)</td></tr>
+    <tr><td><code>&lt;summary&gt;</code></td><td>Nagłówek elementu <code>&lt;details&gt;</code></td></tr>
+  </tbody>
+</table>
+
+<h2>Typowy layout semantyczny</h2>
+<pre><code>&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Moja strona&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Strona główna&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/blog"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/kontakt"&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;article&gt;
+      &lt;h2&gt;Tytuł artykułu&lt;/h2&gt;
+      &lt;time datetime="2026-05-27"&gt;27 maja 2026&lt;/time&gt;
+      &lt;p&gt;Treść artykułu...&lt;/p&gt;
+    &lt;/article&gt;
+
+    &lt;aside&gt;
+      &lt;h3&gt;Powiązane artykuły&lt;/h3&gt;
+      &lt;ul&gt;...&lt;/ul&gt;
+    &lt;/aside&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2026 Moja strona. Wszelkie prawa zastrzeżone.&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+
+<h2>Details i Summary — accordion bez JavaScript</h2>
+<pre><code>&lt;details&gt;
+  &lt;summary&gt;Kliknij, aby rozwinąć&lt;/summary&gt;
+  &lt;p&gt;Ta treść jest ukryta domyślnie i pojawia się po kliknięciu.&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+
+<div class="tip">
+  💡 Używanie znaczników semantycznych zamiast samych <code>&lt;div&gt;</code> sprawia,
+  że Google lepiej rozumie strukturę Twojej strony, czytniki ekranowe mogą
+  sprawnie nawigować po treści, a inni programiści szybciej czytają Twój kod.
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Znaki specjalne</h1>
+
+<p>
+  Niektórych znaków nie można wpisać bezpośrednio w kodzie HTML — albo dlatego, że mają
+  specjalne znaczenie w składni (jak <code>&lt;</code> i <code>&gt;</code>), albo dlatego,
+  że trudno je wprowadzić z klawiatury. Do ich zapisu służą <strong>encje HTML</strong>.
+</p>
+
+<h2>Jak działają encje?</h2>
+<p>
+  Każda encja zaczyna się od znaku <code>&amp;</code> (ampersand) i kończy średnikiem <code>;</code>.
+  Możesz używać nazwy encji lub jej kodu numerycznego:
+</p>
+<pre><code>&amp;copy;   → ©
+&amp;#169;  → © (ten sam znak, zapis numeryczny)</code></pre>
+
+<h2>Najważniejsze encje</h2>
+<table>
+  <thead>
+    <tr><th>Encja</th><th>Znak</th><th>Opis</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>&amp;lt;</code></td><td>&lt;</td><td>nawias kątowy otwierający</td></tr>
+    <tr><td><code>&amp;gt;</code></td><td>&gt;</td><td>nawias kątowy zamykający</td></tr>
+    <tr><td><code>&amp;amp;</code></td><td>&amp;</td><td>ampersand</td></tr>
+    <tr><td><code>&amp;quot;</code></td><td>&quot;</td><td>cudzysłów prosty</td></tr>
+    <tr><td><code>&amp;apos;</code></td><td>'</td><td>apostrof</td></tr>
+    <tr><td><code>&amp;nbsp;</code></td><td>(spacja niełamliwa)</td><td>spacja, która nie łamie wiersza</td></tr>
+    <tr><td><code>&amp;copy;</code></td><td>&copy;</td><td>znak praw autorskich ©</td></tr>
+    <tr><td><code>&amp;reg;</code></td><td>&reg;</td><td>zastrzeżony znak towarowy ®</td></tr>
+    <tr><td><code>&amp;trade;</code></td><td>&trade;</td><td>znak handlowy ™</td></tr>
+    <tr><td><code>&amp;euro;</code></td><td>&euro;</td><td>euro €</td></tr>
+    <tr><td><code>&amp;pound;</code></td><td>&pound;</td><td>funt brytyjski £</td></tr>
+    <tr><td><code>&amp;mdash;</code></td><td>&mdash;</td><td>myślnik długi —</td></tr>
+    <tr><td><code>&amp;ndash;</code></td><td>&ndash;</td><td>myślnik krótki –</td></tr>
+    <tr><td><code>&amp;hellip;</code></td><td>&hellip;</td><td>wielokropek …</td></tr>
+    <tr><td><code>&amp;infin;</code></td><td>&infin;</td><td>nieskończoność ∞</td></tr>
+    <tr><td><code>&amp;frac12;</code></td><td>&frac12;</td><td>½</td></tr>
+    <tr><td><code>&amp;frac14;</code></td><td>&frac14;</td><td>¼</td></tr>
+    <tr><td><code>&amp;frac34;</code></td><td>&frac34;</td><td>¾</td></tr>
+  </tbody>
+</table>
+
+<h2>Kiedy używać <code>&amp;nbsp;</code>?</h2>
+<p>
+  Twarda spacja (<em>non-breaking space</em>) zapobiega łamaniu wiersza między dwoma wyrazami.
+  Używaj jej np. między liczbą a jednostką:
+</p>
+<pre><code>&lt;p&gt;Cena: 99&amp;nbsp;zł&lt;/p&gt;
+&lt;p&gt;Temperatura: 36,6&amp;nbsp;°C&lt;/p&gt;</code></pre>
+
+<h2>Wyświetlanie kodu HTML na stronie</h2>
+<p>
+  Jeśli chcesz pokazać użytkownikowi kod HTML jako tekst (nie wykonywać go),
+  musisz zamienić nawiasy kątowe na encje:
+</p>
+<pre><code>&lt;p&gt;Znacznik akapitu wygląda tak: &amp;lt;p&amp;gt;treść&amp;lt;/p&amp;gt;&lt;/p&gt;</code></pre>
+<p>Efekt: Znacznik akapitu wygląda tak: &lt;p&gt;treść&lt;/p&gt;</p>
+
+{% endblock %}

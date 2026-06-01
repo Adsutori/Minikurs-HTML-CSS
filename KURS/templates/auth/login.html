@@ -1,0 +1,139 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logowanie | Minikurs HTML5 i CSS3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body class="auth-body">
+
+  <div class="auth-layout">
+
+    <!-- ── Lewa kolumna — dekoracyjna ── -->
+    <div class="auth-left">
+      <a href="/" class="auth-back">
+        <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+        Wróć na stronę główną
+      </a>
+
+      <div class="auth-left-content">
+        <div class="auth-brand">⟨H5⟩</div>
+        <h2 class="auth-left-title">Minikurs<br>HTML5 i CSS3</h2>
+        <p class="auth-left-sub">Zaloguj się i kontynuuj naukę od miejsca, w którym skończyłeś.</p>
+
+        <div class="auth-features">
+          <div class="auth-feature">
+            <i data-lucide="trending-up" style="width:16px;height:16px;"></i>
+            Śledź swój postęp
+          </div>
+          <div class="auth-feature">
+            <i data-lucide="award" style="width:16px;height:16px;"></i>
+            Zdobądź certyfikat
+          </div>
+          <div class="auth-feature">
+            <i data-lucide="bookmark" style="width:16px;height:16px;"></i>
+            Zapisuj ulubione rozdziały
+          </div>
+        </div>
+      </div>
+
+      <!-- Dekoracyjny kod w tle -->
+      <div class="auth-code-bg" aria-hidden="true">
+        <span>&lt;html&gt;</span><span>body {</span><span>display: flex;</span>
+        <span>.hero {</span><span>color: #7c3aed;</span><span>}</span>
+        <span>&lt;/html&gt;</span><span>margin: auto;</span><span>padding: 24px;</span>
+      </div>
+    </div>
+
+    <!-- ── Prawa kolumna — formularz ── -->
+    <div class="auth-right">
+      <div class="auth-card">
+
+        <div class="auth-card-header">
+          <h1>Zaloguj się</h1>
+          <p>Nie masz konta?
+            <a href="/register/">Zarejestruj się</a>
+          </p>
+        </div>
+
+        {% if messages %}
+          {% for message in messages %}
+            <div class="auth-alert auth-alert-{{ message.tags }}">
+              <i data-lucide="alert-circle" style="width:15px;height:15px;flex-shrink:0;"></i>
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <form method="POST" action="/login/{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}" class="auth-form">
+          {% csrf_token %}
+
+          <div class="auth-field">
+            <label for="username">
+              <i data-lucide="user" style="width:13px;height:13px;"></i>
+              Nazwa użytkownika
+            </label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="jan_kowalski"
+              autocomplete="username"
+              required
+              value="{{ request.POST.username|default:'' }}"
+            >
+          </div>
+
+          <div class="auth-field">
+            <label for="password">
+              <i data-lucide="lock" style="width:13px;height:13px;"></i>
+              Hasło
+            </label>
+            <div class="auth-input-wrap">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="••••••••"
+                autocomplete="current-password"
+                required
+              >
+              <button type="button" class="auth-eye" id="toggle-pass" aria-label="Pokaż hasło">
+                <i data-lucide="eye" style="width:16px;height:16px;"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="auth-submit">
+            <i data-lucide="log-in" style="width:17px;height:17px;"></i>
+            Zaloguj się
+          </button>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    lucide.createIcons();
+    const btn = document.getElementById('toggle-pass');
+    const inp = document.getElementById('password');
+    btn.addEventListener('click', () => {
+      const show = inp.type === 'password';
+      inp.type = show ? 'text' : 'password';
+      btn.innerHTML = show
+        ? '<i data-lucide="eye-off" style="width:16px;height:16px;"></i>'
+        : '<i data-lucide="eye"     style="width:16px;height:16px;"></i>';
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

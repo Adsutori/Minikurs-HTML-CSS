@@ -1,0 +1,85 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Walidacja HTML</h1>
+
+<p>
+  Walidacja HTML to sprawdzenie, czy kod jest zgodny ze standardami W3C.
+  Poprawny kod działa przewidywalnie we wszystkich przeglądarkach, jest łatwiejszy
+  w utrzymaniu i lepiej indeksowany przez wyszukiwarki.
+</p>
+
+<h2>Najczęstsze błędy HTML</h2>
+
+<h3>Brakujący DOCTYPE</h3>
+<pre><code>&lt;!-- ❌ Źle — przeglądarka przechodzi w tryb quirks --&gt;
+&lt;html&gt;...&lt;/html&gt;
+
+&lt;!-- ✅ Dobrze --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="pl"&gt;...&lt;/html&gt;</code></pre>
+
+<h3>Niezamknięte znaczniki</h3>
+<pre><code>&lt;!-- ❌ Źle --&gt;
+&lt;ul&gt;
+  &lt;li&gt;Punkt 1
+  &lt;li&gt;Punkt 2
+&lt;/ul&gt;
+
+&lt;!-- ✅ Dobrze --&gt;
+&lt;ul&gt;
+  &lt;li&gt;Punkt 1&lt;/li&gt;
+  &lt;li&gt;Punkt 2&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+<h3>Nieprawidłowe zagnieżdżenie</h3>
+<pre><code>&lt;!-- ❌ Źle --&gt;
+&lt;p&gt;Tekst &lt;strong&gt;ważny&lt;/p&gt;&lt;/strong&gt;
+
+&lt;!-- ✅ Dobrze --&gt;
+&lt;p&gt;Tekst &lt;strong&gt;ważny&lt;/strong&gt;&lt;/p&gt;</code></pre>
+
+<h3>Brakujący atrybut alt</h3>
+<pre><code>&lt;!-- ❌ Źle --&gt;
+&lt;img src="foto.jpg"&gt;
+
+&lt;!-- ✅ Dobrze --&gt;
+&lt;img src="foto.jpg" alt="Opis zdjęcia"&gt;</code></pre>
+
+<h3>Duplikaty ID</h3>
+<pre><code>&lt;!-- ❌ Źle — dwa elementy z tym samym id --&gt;
+&lt;div id="sekcja"&gt;...&lt;/div&gt;
+&lt;div id="sekcja"&gt;...&lt;/div&gt;
+
+&lt;!-- ✅ Dobrze --&gt;
+&lt;div id="sekcja-1"&gt;...&lt;/div&gt;
+&lt;div id="sekcja-2"&gt;...&lt;/div&gt;</code></pre>
+
+<h2>Walidator W3C</h2>
+<p>
+  Oficjalny walidator HTML dostępny jest pod adresem <strong>validator.w3.org</strong>.
+  Możesz sprawdzić stronę na trzy sposoby:
+</p>
+<ul>
+  <li><strong>By URL</strong> — podaj adres opublikowanej strony</li>
+  <li><strong>By File Upload</strong> — wgraj plik HTML</li>
+  <li><strong>By Direct Input</strong> — wklej kod HTML bezpośrednio</li>
+</ul>
+
+<h2>Walidacja w VS Code</h2>
+<p>
+  Rozszerzenia, które pomagają pisać poprawny HTML na bieżąco:
+</p>
+<ul>
+  <li><strong>HTMLHint</strong> — podkreśla błędy składniowe w czasie pisania</li>
+  <li><strong>W3C Web Validator</strong> — waliduje plik przez API W3C</li>
+  <li><strong>Prettier</strong> — automatycznie formatuje i poprawia wcięcia</li>
+</ul>
+
+<div class="tip">
+  💡 Przeglądarki są bardzo tolerancyjne — wyświetlą stronę nawet z błędami w HTML.
+  Nie oznacza to jednak, że kod jest poprawny. Błędy mogą powodować różne zachowanie
+  w różnych przeglądarkach, problemy z dostępnością i gorsze pozycje w SEO.
+</div>
+
+{% endblock %}

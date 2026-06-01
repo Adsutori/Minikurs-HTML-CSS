@@ -1,0 +1,77 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Znaczniki podstawowe</h1>
+
+<p>
+  HTML posiada kilkadziesiąt znaczników. Na co dzień używa się jednak kilkunastu z nich.
+  W tej lekcji poznasz te, które spotkasz w niemal każdym pliku HTML.
+</p>
+
+<h2>Nagłówki <code>&lt;h1&gt;</code> – <code>&lt;h6&gt;</code></h2>
+<p>
+  HTML oferuje sześć poziomów nagłówków. <code>&lt;h1&gt;</code> to nagłówek główny — powinien
+  wystąpić na stronie tylko raz i opisywać jej główny temat. Im wyższy numer, tym mniejszy nagłówek.
+</p>
+<pre><code>&lt;h1&gt;Nagłówek pierwszego poziomu&lt;/h1&gt;
+&lt;h2&gt;Nagłówek drugiego poziomu&lt;/h2&gt;
+&lt;h3&gt;Nagłówek trzeciego poziomu&lt;/h3&gt;</code></pre>
+
+<div class="tip">
+  💡 Nagłówki mają znaczenie dla SEO i dostępności. Używaj ich zgodnie z hierarchią treści,
+  nie po to, żeby uzyskać określony rozmiar czcionki — od tego jest CSS.
+</div>
+
+<h2>Akapit <code>&lt;p&gt;</code></h2>
+<p>
+  Podstawowy blok tekstu. Przeglądarka automatycznie dodaje odstęp przed i po akapicie.
+</p>
+<pre><code>&lt;p&gt;To jest pierwszy akapit.&lt;/p&gt;
+&lt;p&gt;To jest drugi akapit.&lt;/p&gt;</code></pre>
+
+<h2>Podział wiersza <code>&lt;br&gt;</code> i linia pozioma <code>&lt;hr&gt;</code></h2>
+<p>
+  <code>&lt;br&gt;</code> przenosi tekst do nowej linii bez tworzenia nowego akapitu.
+  <code>&lt;hr&gt;</code> rysuje poziomą linię — przydatna do wizualnego podziału sekcji.
+</p>
+<pre><code>&lt;p&gt;Pierwsza linia&lt;br&gt;Druga linia w tym samym akapicie&lt;/p&gt;
+&lt;hr&gt;</code></pre>
+
+<h2>Kontenery blokowe i liniowe</h2>
+<p>
+  Dwa uniwersalne znaczniki bez domyślnego stylu:
+</p>
+<ul>
+  <li><code>&lt;div&gt;</code> — kontener <strong>blokowy</strong>, zajmuje całą szerokość wiersza. Służy do grupowania większych sekcji.</li>
+  <li><code>&lt;span&gt;</code> — kontener <strong>liniowy</strong>, nie łamie wiersza. Służy do wyróżniania fragmentów tekstu.</li>
+</ul>
+<pre><code>&lt;div&gt;
+  &lt;p&gt;Ten akapit jest wewnątrz diva.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Tekst z &lt;span style="color:red"&gt;czerwonym fragmentem&lt;/span&gt;.&lt;/p&gt;</code></pre>
+
+<h2>Preformatowany tekst <code>&lt;pre&gt;</code> i kod <code>&lt;code&gt;</code></h2>
+<p>
+  <code>&lt;pre&gt;</code> zachowuje spacje i wcięcia dokładnie tak jak w kodzie źródłowym.
+  <code>&lt;code&gt;</code> oznacza fragment kodu — przeglądarka wyświetla go czcionką monospace.
+  Często używa się ich razem.
+</p>
+<pre><code>&lt;pre&gt;&lt;code&gt;
+function hello() {
+  console.log("Cześć!");
+}
+&lt;/code&gt;&lt;/pre&gt;</code></pre>
+
+<h2>Cytaty</h2>
+<pre><code>&lt;blockquote&gt;
+  Daj mi punkt oparcia, a poruszę Ziemię.
+&lt;/blockquote&gt;
+
+&lt;p&gt;Jak powiedział Archimedes: &lt;q&gt;Daj mi punkt oparcia...&lt;/q&gt;&lt;/p&gt;</code></pre>
+<p>
+  <code>&lt;blockquote&gt;</code> to cytat blokowy (zajmuje cały wiersz, z wcięciem).
+  <code>&lt;q&gt;</code> to cytat liniowy — przeglądarka automatycznie dodaje cudzysłowy.
+</p>
+
+{% endblock %}
