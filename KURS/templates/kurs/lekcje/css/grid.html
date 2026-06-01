@@ -1,0 +1,131 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>CSS Grid</h1>
+
+<p>
+  CSS Grid to dwuwymiarowy system układu — kontrolujesz jednocześnie wiersze
+  i kolumny. Idealny do budowania całych layoutów stron, galerii i złożonych
+  siatek elementów.
+</p>
+
+<h2>Włączenie Grid</h2>
+<pre><code>.container {
+  display: grid;
+}</code></pre>
+
+<h2>grid-template-columns i grid-template-rows</h2>
+<pre><code>/* 3 kolumny po 200px */
+grid-template-columns: 200px 200px 200px;
+
+/* Jednostka fr — ułamek dostępnej przestrzeni */
+grid-template-columns: 1fr 1fr 1fr;      /* 3 równe kolumny */
+grid-template-columns: 1fr 2fr 1fr;      /* środkowa 2x szersza */
+grid-template-columns: 250px 1fr;        /* sidebar + główna treść */
+
+/* repeat() — skrót */
+grid-template-columns: repeat(3, 1fr);
+grid-template-columns: repeat(4, minmax(200px, 1fr));
+
+/* Wiersze */
+grid-template-rows: 60px 1fr 80px; /* header | main | footer */</code></pre>
+
+<h2>gap</h2>
+<pre><code>.container {
+  gap: 24px;          /* równy odstęp */
+  gap: 16px 24px;     /* wiersz | kolumna */
+  row-gap: 16px;
+  column-gap: 24px;
+}</code></pre>
+
+<h2>Responsywna siatka — auto-fill i auto-fit</h2>
+<pre><code>/* auto-fill — tworzy tyle kolumn ile się mieści */
+grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+/* auto-fit — jak auto-fill ale rozciąga kolumny żeby wypełnić przestrzeń */
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));</code></pre>
+<p>
+  To jedna z najpotężniejszych technik CSS — responsywna siatka
+  <strong>bez media queries</strong>.
+</p>
+
+<h2>Umieszczanie elementów — grid-column i grid-row</h2>
+<pre><code>/* Linie siatki numerowane od 1 */
+.item {
+  grid-column: 1 / 3;  /* od linii 1 do linii 3 (zajmuje 2 kolumny) */
+  grid-row: 1 / 2;
+}
+
+/* Skrót span */
+.item {
+  grid-column: span 2; /* zajmuje 2 kolumny */
+  grid-row: span 3;    /* zajmuje 3 wiersze */
+}
+
+/* Od końca — ujemne indeksy */
+.item {
+  grid-column: 1 / -1; /* od pierwszej do ostatniej linii */
+}</code></pre>
+
+<h2>grid-template-areas — nazwane obszary</h2>
+<pre><code>.layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 60px 1fr 80px;
+  grid-template-areas:
+    "header  header"
+    "sidebar main"
+    "footer  footer";
+  min-height: 100vh;
+}
+
+.header  { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.main    { grid-area: main; }
+.footer  { grid-area: footer; }</code></pre>
+
+<h2>justify-items i align-items</h2>
+<pre><code>.container {
+  justify-items: start | end | center | stretch; /* poziomo w komórce */
+  align-items:   start | end | center | stretch; /* pionowo w komórce */
+  place-items: center; /* skrót: align-items + justify-items */
+}</code></pre>
+
+<h2>justify-content i align-content</h2>
+<pre><code>/* Gdy siatka jest mniejsza niż kontener */
+.container {
+  justify-content: start | end | center | space-between | space-around;
+  align-content:   start | end | center | space-between | space-around;
+  place-content: center; /* skrót */
+}</code></pre>
+
+<h2>justify-self i align-self (na item)</h2>
+<pre><code>.item {
+  justify-self: center; /* indywidualne wyrównanie poziome */
+  align-self: end;      /* indywidualne wyrównanie pionowe */
+  place-self: center end;
+}</code></pre>
+
+<h2>Praktyczny layout strony</h2>
+<pre><code>body {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-rows: 64px 1fr;
+  grid-template-areas:
+    "sidebar topbar"
+    "sidebar content";
+  min-height: 100vh;
+}
+
+.sidebar { grid-area: sidebar; }
+.topbar  { grid-area: topbar; }
+.content { grid-area: content; padding: 32px; }</code></pre>
+
+<div class="tip">
+  💡 <strong>Kiedy Grid, kiedy Flexbox?</strong>
+  Grid = layout całej strony lub dwuwymiarowe siatki kart.
+  Flexbox = komponenty wewnątrz siatki (nawigacja, przyciski, karta).
+  Najlepsze projekty używają obu jednocześnie.
+</div>
+
+{% endblock %}

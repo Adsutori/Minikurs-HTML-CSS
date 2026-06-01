@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Course(models.Model):
-    slug        = models.SlugField(unique=True)          # 'html', 'css'
-    title       = models.CharField(max_length=200)       # 'Kurs HTML5'
+    slug        = models.SlugField(unique=True)
+    title       = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     icon        = models.CharField(max_length=10, default='📖')
     order       = models.PositiveIntegerField(default=0)
@@ -20,13 +21,13 @@ class Course(models.Model):
 
 class Lesson(models.Model):
     course      = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons')
-    slug        = models.SlugField()                     # 'wprowadzenie', 'tagi-html'
+    slug        = models.SlugField()
     title       = models.CharField(max_length=200)
     description = models.CharField(max_length=300, blank=True)
-    template    = models.CharField(max_length=200)       # 'kurs/lekcje/html/wprowadzenie.html'
+    template    = models.CharField(max_length=200)
     order       = models.PositiveIntegerField(default=0)
     published   = models.BooleanField(default=True)
-    duration    = models.CharField(max_length=20, blank=True)  # '15 min'
+    duration    = models.CharField(max_length=20, blank=True)
 
     class Meta:
         ordering = ['order']
@@ -66,13 +67,20 @@ class Enrollment(models.Model):
             completed=True
         ).count()
 
+    @property
+    def is_completed(self):
+        total = self.course.get_lessons().count()
+        if total == 0:
+            return False
+        return self.completed_count() >= total
+
 
 class LessonProgress(models.Model):
-    user        = models.ForeignKey(User, on_delete=models.CASCADE, related_name='lesson_progress')
-    lesson      = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name='progress')
-    completed   = models.BooleanField(default=False)
-    visited_at  = models.DateTimeField(auto_now=True)
-    completed_at= models.DateTimeField(null=True, blank=True)
+    user         = models.ForeignKey(User, on_delete=models.CASCADE, related_name='lesson_progress')
+    lesson       = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name='progress')
+    completed    = models.BooleanField(default=False)
+    visited_at   = models.DateTimeField(auto_now=True)
+    completed_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         unique_together = ['user', 'lesson']

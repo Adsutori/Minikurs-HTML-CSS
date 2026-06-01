@@ -1,0 +1,136 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Box Model</h1>
+
+<p>
+  Każdy element HTML jest prostokątnym pudełkiem. Box Model opisuje jak to pudełko
+  jest zbudowane — z czego składa się jego rozmiar i jak obliczana jest jego przestrzeń.
+  To jeden z najważniejszych konceptów w CSS.
+</p>
+
+<h2>Warstwy Box Model</h2>
+<p>Od środka do zewnątrz:</p>
+<pre><code>┌─────────────────────────────────┐
+│           MARGIN                │  ← przestrzeń na zewnątrz
+│  ┌───────────────────────────┐  │
+│  │         BORDER            │  │  ← obramowanie
+│  │  ┌─────────────────────┐  │  │
+│  │  │      PADDING        │  │  │  ← wewnętrzny odstęp
+│  │  │  ┌───────────────┐  │  │  │
+│  │  │  │    CONTENT    │  │  │  │  ← treść
+│  │  │  └───────────────┘  │  │  │
+│  │  └─────────────────────┘  │  │
+│  └───────────────────────────┘  │
+└─────────────────────────────────┘</code></pre>
+
+<h2>Content — treść</h2>
+<pre><code>div {
+  width: 300px;   /* szerokość treści */
+  height: 200px;  /* wysokość treści */
+}</code></pre>
+
+<h2>Padding — wewnętrzny odstęp</h2>
+<pre><code>/* Wszystkie strony */
+padding: 20px;
+
+/* Góra/dół | Lewo/prawo */
+padding: 16px 24px;
+
+/* Góra | Lewo/prawo | Dół */
+padding: 10px 20px 15px;
+
+/* Góra | Prawo | Dół | Lewo (zgodnie z ruchem wskazówek zegara) */
+padding: 10px 20px 15px 5px;
+
+/* Indywidualnie */
+padding-top:    10px;
+padding-right:  20px;
+padding-bottom: 15px;
+padding-left:   5px;</code></pre>
+
+<h2>Border — obramowanie</h2>
+<pre><code>/* Skrócony zapis: grubość | styl | kolor */
+border: 2px solid #333;
+border: 1px dashed rgba(124, 58, 237, 0.3);
+border: 3px dotted red;
+
+/* Indywidualnie */
+border-width: 2px;
+border-style: solid;  /* solid | dashed | dotted | double | none */
+border-color: #333;
+
+/* Tylko wybrane strony */
+border-top: 3px solid #7c3aed;
+border-bottom: 1px solid #eee;
+border-left: none;
+
+/* Zaokrąglone rogi */
+border-radius: 8px;
+border-radius: 50%;            /* koło */
+border-radius: 12px 4px;       /* góra-lewo/dół-prawo | góra-prawo/dół-lewo */
+border-radius: 12px 4px 8px 4px; /* każdy róg osobno */</code></pre>
+
+<h2>Margin — zewnętrzny odstęp</h2>
+<pre><code>/* Składnia identyczna jak padding */
+margin: 20px;
+margin: 16px 24px;
+margin: 10px 20px 15px 5px;
+
+/* Wyśrodkowanie elementu blokowego */
+margin: 0 auto;
+
+/* Ujemny margin — element "wychodzi" poza rodzica */
+margin-top: -10px;
+
+/* Indywidualnie */
+margin-top:    10px;
+margin-right:  20px;
+margin-bottom: 15px;
+margin-left:   5px;</code></pre>
+
+<h2>box-sizing — kluczowa właściwość</h2>
+<p>
+  Domyślnie (<code>content-box</code>) <code>width</code> oznacza tylko szerokość treści —
+  padding i border są <em>dodawane</em> do całkowitego rozmiaru. To często mylące.
+</p>
+<pre><code>/* content-box (domyślne) — mylące */
+.box {
+  width: 300px;
+  padding: 20px;
+  border: 2px solid;
+  /* Całkowita szerokość = 300 + 20*2 + 2*2 = 344px */
+}
+
+/* border-box — intuicyjne */
+.box {
+  box-sizing: border-box;
+  width: 300px;
+  padding: 20px;
+  border: 2px solid;
+  /* Całkowita szerokość = 300px — padding i border mieszczą się w środku */
+}
+
+/* Najlepsza praktyka — zastosuj globalnie */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}</code></pre>
+
+<h2>Scalanie marginesów</h2>
+<p>
+  Marginesy pionowe sąsiadujących elementów blokowych <strong>scalają się</strong> —
+  zamiast sumować, stosowany jest większy z nich:
+</p>
+<pre><code>h2 { margin-bottom: 24px; }
+p  { margin-top: 16px; }
+/* Odstęp między h2 a p = 24px (nie 40px!) */</code></pre>
+
+<div class="tip">
+  💡 Zawsze dodawaj <code>box-sizing: border-box</code> do resetu CSS.
+  To jedna z najważniejszych linii kodu w każdym projekcie —
+  sprawia, że rozmiary elementów zachowują się intuicyjnie.
+</div>
+
+{% endblock %}

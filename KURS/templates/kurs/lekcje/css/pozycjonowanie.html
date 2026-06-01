@@ -1,0 +1,136 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Pozycjonowanie</h1>
+
+<p>
+  Właściwość <code>position</code> kontroluje jak element jest umieszczany na stronie.
+  Razem z właściwościami <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>
+  i <code>z-index</code> daje pełną kontrolę nad układem.
+</p>
+
+<h2>position: static (domyślne)</h2>
+<pre><code>div { position: static; }</code></pre>
+<p>
+  Element jest w normalnym przepływie dokumentu. Właściwości
+  <code>top/right/bottom/left/z-index</code> nie mają efektu.
+</p>
+
+<h2>position: relative</h2>
+<pre><code>.box {
+  position: relative;
+  top: 20px;   /* przesuń 20px od swojej normalnej pozycji */
+  left: 10px;
+}</code></pre>
+<ul>
+  <li>Element pozostaje w normalnym przepływie (zajmuje swoje miejsce)</li>
+  <li>Przesuwa się <em>względem swojej oryginalnej pozycji</em></li>
+  <li>Tworzy <strong>kontekst pozycjonowania</strong> dla dzieci <code>absolute</code></li>
+</ul>
+
+<h2>position: absolute</h2>
+<pre><code>.parent {
+  position: relative; /* kontekst dla dziecka */
+}
+
+.child {
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* Pozycjonowany względem najbliższego rodzica z position != static */
+}</code></pre>
+<ul>
+  <li>Wychodzi z normalnego przepływu — nie zajmuje miejsca</li>
+  <li>Pozycjonowany względem <strong>najbliższego przodka z <code>position</code> innym niż <code>static</code></strong></li>
+  <li>Jeśli brak takiego przodka — pozycjonowany względem <code>&lt;html&gt;</code></li>
+</ul>
+
+<h2>position: fixed</h2>
+<pre><code>.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}</code></pre>
+<ul>
+  <li>Pozycjonowany względem <strong>okna przeglądarki (viewport)</strong></li>
+  <li>Pozostaje w miejscu podczas przewijania strony</li>
+  <li>Wychodzi z normalnego przepływu</li>
+</ul>
+
+<h2>position: sticky</h2>
+<pre><code>.section-header {
+  position: sticky;
+  top: 60px; /* "przykleja się" gdy dotrze do 60px od góry */
+  background: white;
+  z-index: 10;
+}
+
+thead {
+  position: sticky;
+  top: 0; /* nagłówek tabeli przyklejony podczas przewijania */
+}</code></pre>
+<ul>
+  <li>Hybryd <code>relative</code> i <code>fixed</code></li>
+  <li>Zachowuje się jak <code>relative</code> dopóki nie osiągnie progu</li>
+  <li>Potem "przykleja się" jak <code>fixed</code></li>
+  <li>Działa tylko w obrębie swojego rodzica</li>
+</ul>
+
+<h2>z-index — warstwy</h2>
+<pre><code>.modal-overlay {
+  position: fixed;
+  z-index: 1000;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1001; /* nad overlay */
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 9999;
+}</code></pre>
+<p>
+  <code>z-index</code> działa tylko na elementach z <code>position</code> innym niż <code>static</code>.
+  Wyższy <code>z-index</code> = element na wierzchu.
+</p>
+
+<h2>Centrowanie z position: absolute</h2>
+<pre><code>/* Klasyczna technika centrowania */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}</code></pre>
+
+<h2>Typowe zastosowania</h2>
+<table>
+  <thead>
+    <tr><th>Wartość</th><th>Typowe zastosowanie</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>relative</code></td><td>Kontekst dla dzieci absolute, drobne korekty pozycji</td></tr>
+    <tr><td><code>absolute</code></td><td>Tooltips, dropdowny, odznaki, nakładki</td></tr>
+    <tr><td><code>fixed</code></td><td>Navbar, cookie banner, przycisk "wróć na górę"</td></tr>
+    <tr><td><code>sticky</code></td><td>Przyklejone nagłówki sekcji, sticky sidebar</td></tr>
+  </tbody>
+</table>
+
+<div class="tip">
+  💡 <strong>Najczęstszy błąd:</strong> <code>position: absolute</code> nie działa
+  jak oczekujesz, bo brakuje <code>position: relative</code> na rodzicu.
+  Zawsze sprawdź czy rodzic ma ustawiony kontekst pozycjonowania.
+</div>
+
+{% endblock %}

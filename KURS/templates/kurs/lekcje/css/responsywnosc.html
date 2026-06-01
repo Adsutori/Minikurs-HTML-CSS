@@ -1,0 +1,169 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Responsywność i Media Queries</h1>
+
+<p>
+  Responsywny design to podejście, w którym strona dopasowuje swój wygląd
+  do rozmiaru ekranu — od małego telefonu po duży monitor. CSS osiąga to
+  głównie przez <strong>media queries</strong> i elastyczne jednostki.
+</p>
+
+<h2>Meta viewport — obowiązkowy</h2>
+<pre><code>&lt;!-- Bez tego media queries nie działają na mobile! --&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+
+<h2>Media Queries — składnia</h2>
+<pre><code>/* Styl dla ekranów do 768px */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Styl dla ekranów od 768px wzwyż */
+@media (min-width: 768px) {
+  .sidebar {
+    display: block;
+  }
+}
+
+/* Zakres */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}</code></pre>
+
+<h2>Breakpointy — standardowe wartości</h2>
+<table>
+  <thead>
+    <tr><th>Nazwa</th><th>Szerokość</th><th>Urządzenie</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>xs</td><td>&lt; 480px</td><td>Małe telefony</td></tr>
+    <tr><td>sm</td><td>480px – 768px</td><td>Telefony</td></tr>
+    <tr><td>md</td><td>768px – 1024px</td><td>Tablety</td></tr>
+    <tr><td>lg</td><td>1024px – 1280px</td><td>Laptopy</td></tr>
+    <tr><td>xl</td><td>1280px – 1536px</td><td>Duże monitory</td></tr>
+    <tr><td>2xl</td><td>&gt; 1536px</td><td>Bardzo duże ekrany</td></tr>
+  </tbody>
+</table>
+
+<h2>Mobile First vs Desktop First</h2>
+<pre><code>/* Mobile First — zacznij od małego, dodawaj dla większych */
+.grid {
+  grid-template-columns: 1fr; /* telefon */
+}
+@media (min-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); } /* tablet */
+}
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(3, 1fr); } /* desktop */
+}
+
+/* Desktop First — zacznij od dużego, redukuj dla mniejszych */
+.grid {
+  grid-template-columns: repeat(3, 1fr); /* desktop */
+}
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(2, 1fr); } /* tablet */
+}
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; } /* telefon */
+}</code></pre>
+<p>
+  <strong>Mobile First jest zalecanym podejściem</strong> — większość ruchu pochodzi
+  z telefonów, a przeglądarki mobilne renderują stronę szybciej gdy nie muszą
+  nadpisywać dużej ilości styli.
+</p>
+
+<h2>Elastyczne jednostki</h2>
+<pre><code>/* vw / vh — procent szerokości / wysokości viewport */
+.hero {
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 25vw;
+  min-width: 200px;
+  max-width: 320px;
+}
+
+/* clamp() — min | preferowany | max */
+h1 {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+}
+
+.container {
+  width: clamp(320px, 90%, 1200px);
+  margin: 0 auto;
+}</code></pre>
+
+<h2>Responsywne obrazy</h2>
+<pre><code>/* Podstawowe — nigdy nie wychodź poza rodzica */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* srcset — różne rozdzielczości */
+&lt;img
+  src="obrazek-800.jpg"
+  srcset="obrazek-400.jpg 400w,
+          obrazek-800.jpg 800w,
+          obrazek-1200.jpg 1200w"
+  sizes="(max-width: 768px) 100vw, 50vw"
+  alt="Opis"
+&gt;</code></pre>
+
+<h2>Media queries — inne typy</h2>
+<pre><code>/* Orientacja */
+@media (orientation: portrait)  { /* pionowo */ }
+@media (orientation: landscape) { /* poziomo */ }
+
+/* Preferencja ciemnego motywu */
+@media (prefers-color-scheme: dark) {
+  body { background: #0a0a0f; color: #f1f5f9; }
+}
+
+/* Preferencja zredukowanego ruchu */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Wydruk */
+@media print {
+  .navbar, .sidebar { display: none; }
+  body { color: black; background: white; }
+}</code></pre>
+
+<h2>Container Queries — nowoczesne podejście</h2>
+<pre><code>/* Styl zależny od rozmiaru rodzica, nie viewport */
+.card-wrapper {
+  container-type: inline-size;
+  container-name: card;
+}
+
+@container card (min-width: 400px) {
+  .card {
+    display: flex;
+    flex-direction: row;
+  }
+}</code></pre>
+
+<div class="tip">
+  💡 <strong>Złota zasada:</strong> Nie dodawaj breakpointów dla konkretnych urządzeń —
+  dodawaj je tam, gdzie Twój layout się "łamie". Otwórz DevTools, zwęź okno
+  i obserwuj kiedy design przestaje wyglądać dobrze.
+</div>
+
+{% endblock %}

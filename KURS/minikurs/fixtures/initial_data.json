@@ -370,5 +370,355 @@
       "published": true,
       "duration": "60 min"
     }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 26,
+    "fields": {
+      "course": 2,
+      "slug": "wstep-css",
+      "title": "Wstęp do CSS",
+      "description": "Czym jest CSS, historia, sposoby dołączania do HTML, pierwsza reguła",
+      "template": "kurs/lekcje/css/wstep-css.html",
+      "order": 1,
+      "published": true,
+      "duration": "10 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 27,
+    "fields": {
+      "course": 2,
+      "slug": "selektory",
+      "title": "Selektory CSS",
+      "description": "Selektory elementu, klasy, ID, atrybutów, złożone i specyficzność",
+      "template": "kurs/lekcje/css/selektory.html",
+      "order": 2,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 28,
+    "fields": {
+      "course": 2,
+      "slug": "kolory-css",
+      "title": "Kolory w CSS",
+      "description": "HEX, RGB, HSL, oklch, currentColor, opacity i przezroczystość",
+      "template": "kurs/lekcje/css/kolory-css.html",
+      "order": 3,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 29,
+    "fields": {
+      "course": 2,
+      "slug": "box-model",
+      "title": "Box Model",
+      "description": "Content, padding, border, margin, box-sizing i scalanie marginesów",
+      "template": "kurs/lekcje/css/box-model.html",
+      "order": 4,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 30,
+    "fields": {
+      "course": 2,
+      "slug": "typografia",
+      "title": "Typografia w CSS",
+      "description": "font-family, size, weight, line-height, letter-spacing, gradient text",
+      "template": "kurs/lekcje/css/typografia.html",
+      "order": 5,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 31,
+    "fields": {
+      "course": 2,
+      "slug": "tlo-i-gradienty",
+      "title": "Tło i gradienty",
+      "description": "background-*, linear/radial/conic-gradient, wielowarstwowe tła",
+      "template": "kurs/lekcje/css/tlo-i-gradienty.html",
+      "order": 6,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 32,
+    "fields": {
+      "course": 2,
+      "slug": "display",
+      "title": "Właściwość display",
+      "description": "block, inline, inline-block, none, flex, grid i ich różnice",
+      "template": "kurs/lekcje/css/display.html",
+      "order": 7,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 33,
+    "fields": {
+      "course": 2,
+      "slug": "pozycjonowanie",
+      "title": "Pozycjonowanie",
+      "description": "static, relative, absolute, fixed, sticky i z-index",
+      "template": "kurs/lekcje/css/pozycjonowanie.html",
+      "order": 8,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 34,
+    "fields": {
+      "course": 2,
+      "slug": "flexbox",
+      "title": "Flexbox",
+      "description": "Oś główna, justify-content, align-items, flex-grow, gap i order",
+      "template": "kurs/lekcje/css/flexbox.html",
+      "order": 9,
+      "published": true,
+      "duration": "25 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 35,
+    "fields": {
+      "course": 2,
+      "slug": "responsywnosc",
+      "title": "Responsywność i Media Queries",
+      "description": "Breakpointy, mobile first, clamp(), container queries",
+      "template": "kurs/lekcje/css/responsywnosc.html",
+      "order": 10,
+      "published": true,
+      "duration": "25 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 36,
+    "fields": {
+      "course": 2,
+      "slug": "zmienne-css",
+      "title": "Zmienne CSS",
+      "description": "Custom Properties, zasięg, dark mode, integracja z JavaScript",
+      "template": "kurs/lekcje/css/zmienne-css.html",
+      "order": 11,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 37,
+    "fields": {
+      "course": 2,
+      "slug": "pseudoklasy",
+      "title": "Pseudoklasy i pseudoelementy",
+      "description": ":hover, :nth-child, :has(), ::before, ::after, ::selection",
+      "template": "kurs/lekcje/css/pseudoklasy.html",
+      "order": 12,
+      "published": true,
+      "duration": "25 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 38,
+    "fields": {
+      "course": 2,
+      "slug": "transformacje",
+      "title": "Transformacje CSS",
+      "description": "translate, rotate, scale, skew, transform-origin i 3D",
+      "template": "kurs/lekcje/css/transformacje.html",
+      "order": 13,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 39,
+    "fields": {
+      "course": 2,
+      "slug": "animacje",
+      "title": "Animacje CSS",
+      "description": "Transitions, @keyframes, fill-mode, scroll-driven animations",
+      "template": "kurs/lekcje/css/animacje.html",
+      "order": 14,
+      "published": true,
+      "duration": "25 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 40,
+    "fields": {
+      "course": 2,
+      "slug": "overflow-i-scroll",
+      "title": "Overflow i scroll",
+      "description": "overflow, text-overflow, scroll-snap, scrollbar styling",
+      "template": "kurs/lekcje/css/overflow-i-scroll.html",
+      "order": 15,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 41,
+    "fields": {
+      "course": 2,
+      "slug": "shadows",
+      "title": "Cienie w CSS",
+      "description": "box-shadow, text-shadow, drop-shadow, zestawy systemowe",
+      "template": "kurs/lekcje/css/shadows.html",
+      "order": 16,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 42,
+    "fields": {
+      "course": 2,
+      "slug": "filtry",
+      "title": "Filtry CSS",
+      "description": "filter, backdrop-filter, glassmorphism, animowanie filtrów",
+      "template": "kurs/lekcje/css/filtry.html",
+      "order": 17,
+      "published": true,
+      "duration": "15 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 43,
+    "fields": {
+      "course": 2,
+      "slug": "clip-path",
+      "title": "clip-path i kształty",
+      "description": "circle, polygon, inset, path(), shape-outside, animacje kształtów",
+      "template": "kurs/lekcje/css/clip-path.html",
+      "order": 18,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 44,
+    "fields": {
+      "course": 2,
+      "slug": "grid",
+      "title": "CSS Grid",
+      "description": "grid-template, fr, repeat, auto-fit, grid-areas, subgrid",
+      "template": "kurs/lekcje/css/grid.html",
+      "order": 19,
+      "published": true,
+      "duration": "25 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 45,
+    "fields": {
+      "course": 2,
+      "slug": "grid-zaawansowany",
+      "title": "Zaawansowany CSS Grid",
+      "description": "dense, implicit grid, nakładanie elementów, masonry, layout aplikacji",
+      "template": "kurs/lekcje/css/grid-zaawansowany.html",
+      "order": 20,
+      "published": true,
+      "duration": "25 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 46,
+    "fields": {
+      "course": 2,
+      "slug": "custom-properties-zaawansowane",
+      "title": "Zaawansowane techniki CSS",
+      "description": "calc, clamp, logiczne właściwości, @layer, Container Queries, @property",
+      "template": "kurs/lekcje/css/custom-properties-zaawansowane.html",
+      "order": 21,
+      "published": true,
+      "duration": "25 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 47,
+    "fields": {
+      "course": 2,
+      "slug": "transitions-zaawansowane",
+      "title": "Zaawansowane przejścia i mikro-animacje",
+      "description": "Krzywe Béziera, stany UI, View Transitions API, scroll-driven",
+      "template": "kurs/lekcje/css/transitions-zaawansowane.html",
+      "order": 22,
+      "published": true,
+      "duration": "25 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 48,
+    "fields": {
+      "course": 2,
+      "slug": "dostepnosc-css",
+      "title": "Dostępność w CSS",
+      "description": "focus-visible, kontrast WCAG, prefers-*, sr-only, rozmiary dotyku",
+      "template": "kurs/lekcje/css/dostepnosc-css.html",
+      "order": 23,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 49,
+    "fields": {
+      "course": 2,
+      "slug": "wydajnosc-css",
+      "title": "Wydajność CSS",
+      "description": "Reflow, will-change, content-visibility, critical CSS, coverage",
+      "template": "kurs/lekcje/css/wydajnosc-css.html",
+      "order": 24,
+      "published": true,
+      "duration": "20 min"
+    }
+  },
+  {
+    "model": "minikurs.lesson",
+    "pk": 50,
+    "fields": {
+      "course": 2,
+      "slug": "metodologie-css",
+      "title": "Metodologie CSS i projekt końcowy",
+      "description": "BEM, SMACSS, ITCSS, Utility-First, projekt karty profilu, podsumowanie",
+      "template": "kurs/lekcje/css/metodologie-css.html",
+      "order": 25,
+      "published": true,
+      "duration": "60 min"
+    }
   }
 ]

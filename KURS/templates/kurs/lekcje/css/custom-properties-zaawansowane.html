@@ -1,0 +1,253 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Zaawansowane techniki CSS</h1>
+
+<p>
+  Nowoczesny CSS to znacznie więcej niż kolory i marginesy. Funkcje matematyczne,
+  logiczne właściwości, zapytania o kontener i nowe selektory
+  zmieniają sposób pisania stylów — mniej kodu, więcej możliwości.
+</p>
+
+<h2>Funkcje matematyczne</h2>
+
+<h3>calc() — obliczenia</h3>
+<pre><code>/* Mieszanie jednostek */
+.sidebar {
+  width: calc(100% - 240px);
+}
+
+.element {
+  padding: calc(var(--spacing) * 2);
+  font-size: calc(1rem + 0.5vw);
+  height: calc(100vh - 64px); /* viewport minus navbar */
+}
+
+/* Zagnieżdżone calc() */
+.grid-item {
+  width: calc((100% - (var(--columns) - 1) * var(--gap)) / var(--columns));
+}</code></pre>
+
+<h3>min(), max(), clamp()</h3>
+<pre><code>/* min() — mniejsza z wartości */
+width: min(100%, 800px);       /* responsywny kontener */
+font-size: min(5vw, 3rem);     /* nie urośnie powyżej 3rem */
+
+/* max() — większa z wartości */
+width: max(300px, 50%);        /* minimum 300px */
+padding: max(16px, 3vw);       /* minimum 16px */
+
+/* clamp(min, preferowana, max) */
+font-size: clamp(1rem, 2.5vw, 2rem);
+width: clamp(280px, 80%, 1200px);
+padding: clamp(16px, 4vw, 48px);
+
+/* Praktyczny przykład — fluid typography */
+h1 { font-size: clamp(1.75rem, 5vw, 4rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 3rem); }
+p  { font-size: clamp(1rem, 2vw, 1.25rem); }</code></pre>
+
+<h3>round(), mod(), rem()</h3>
+<pre><code>/* round() — zaokrąglanie */
+width: round(33.333%, 1px);    /* zaokrągl do 1px */
+font-size: round(up, 1.3rem, 0.25rem); /* zaokrągl w górę do 0.25rem */
+
+/* mod() — reszta z dzielenia */
+transform: rotate(mod(var(--angle), 360deg));
+
+/* Obsługiwane w nowoczesnych przeglądarkach */</code></pre>
+
+<h2>Logiczne właściwości CSS</h2>
+<p>
+  Logiczne właściwości są niezależne od kierunku pisania —
+  działają poprawnie zarówno dla języków LTR (lewo→prawo) jak RTL (prawo→lewo).
+</p>
+<pre><code>/* Fizyczne → Logiczne */
+margin-left:   → margin-inline-start
+margin-right:  → margin-inline-end
+margin-top:    → margin-block-start
+margin-bottom: → margin-block-end
+
+padding-left:  → padding-inline-start
+padding-right: → padding-inline-end
+
+border-left:   → border-inline-start
+border-right:  → border-inline-end
+
+/* Skróty */
+margin-inline:  16px;       /* lewo i prawo */
+margin-block:   24px;       /* góra i dół */
+padding-inline: 20px 40px;  /* start | end */
+padding-block:  16px 32px;  /* start | end */
+
+/* Rozmiary */
+width  → inline-size
+height → block-size
+
+min-width  → min-inline-size
+max-height → max-block-size
+
+/* Pozycjonowanie */
+top    → inset-block-start
+bottom → inset-block-end
+left   → inset-inline-start
+right  → inset-inline-end
+
+inset: 0;           /* top right bottom left = 0 */
+inset: 10px 20px;   /* block | inline */</code></pre>
+
+<h2>Container Queries</h2>
+<pre><code>/* Zdefiniuj kontener */
+.card-wrapper {
+  container-type: inline-size;
+  container-name: card;
+}
+
+/* Styl zależny od szerokości kontenera (nie viewport!) */
+@container card (min-width: 400px) {
+  .card {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .card-image {
+    width: 160px;
+    flex-shrink: 0;
+  }
+}
+
+@container card (min-width: 600px) {
+  .card-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* Bez nazwy — odpytuje najbliższy kontener */
+.widget-wrapper {
+  container-type: inline-size;
+}
+
+@container (max-width: 300px) {
+  .widget { font-size: 0.875rem; }
+}</code></pre>
+
+<h2>@layer — kaskada warstw</h2>
+<pre><code>/* Definiuj kolejność warstw */
+@layer reset, base, components, utilities;
+
+@layer reset {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+  }
+}
+
+@layer components {
+  .btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+  }
+}
+
+@layer utilities {
+  .text-center { text-align: center; }
+  .mt-4 { margin-top: 16px; }
+}
+
+/* Style poza @layer mają zawsze wyższy priorytet */
+.override { color: red; }</code></pre>
+
+<h2>:has() — selektor rodzica</h2>
+<pre><code>/* Karta z obrazem — usuń padding */
+.card:has(> img:first-child) {
+  padding: 0;
+}
+
+/* Formularz z błędem — podświetl */
+.form-group:has(input:invalid) label {
+  color: #ef4444;
+}
+
+/* Nawigacja z otwartym dropdown */
+.nav-item:has(.dropdown.open) > a {
+  color: var(--accent-primary);
+}
+
+/* Grid gdy ma dokładnie 3 dzieci */
+.grid:has(> :nth-child(3):last-child) {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Sekcja bez obrazu — inna typografia */
+article:not(:has(img)) p {
+  font-size: 1.1rem;
+  max-width: 65ch;
+}</code></pre>
+
+<h2>@property — typowane zmienne CSS</h2>
+<pre><code>/* Zdefiniuj zmienną z typem — umożliwia animację! */
+@property --gradient-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --glow-opacity {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: false;
+}
+
+/* Teraz można animować zmienną */
+.rotating-gradient {
+  --gradient-angle: 0deg;
+  background: conic-gradient(
+    from var(--gradient-angle),
+    #7c3aed, #a855f7, #6d28d9, #7c3aed
+  );
+  animation: rotate-gradient 4s linear infinite;
+}
+
+@keyframes rotate-gradient {
+  to { --gradient-angle: 360deg; }
+}</code></pre>
+
+<h2>Nowe selektory CSS</h2>
+<pre><code>/* :is() — grupowanie z zachowaniem specyficzności */
+:is(article, section, aside) h2 {
+  font-size: 1.5rem;
+}
+
+/* :where() — zerowa specyficzność (łatwe do nadpisania) */
+:where(ul, ol) {
+  list-style: none;
+  padding: 0;
+}
+
+/* :not() z wieloma selektorami */
+.btn:not(.btn-primary, .btn-outline) {
+  background: var(--bg-card);
+}
+
+/* :nth-child z selektorem */
+li:nth-child(2n of .active) {
+  background: rgba(124, 58, 237, 0.1);
+}</code></pre>
+
+<div class="tip">
+  💡 <strong>Container Queries to przyszłość responsywności.</strong>
+  Zamiast pytać "jak szeroki jest ekran?" pytasz "jak szeroki jest mój kontener?".
+  Komponenty stają się prawdziwie niezależne — możesz wstawić tę samą kartę
+  w wąski sidebar i szeroką sekcję główną, a ona sama dostosuje swój wygląd.
+</div>
+
+{% endblock %}

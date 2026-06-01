@@ -1,0 +1,116 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>clip-path i kształty</h1>
+
+<p>
+  <code>clip-path</code> pozwala wycinać elementy w dowolne kształty —
+  koła, wielokąty, elipsy, a nawet złożone ścieżki SVG.
+  Razem z <code>shape-outside</code> i nowymi właściwościami kształtów
+  otwiera drzwi do kreatywnych layoutów.
+</p>
+
+<h2>clip-path — podstawowe kształty</h2>
+<pre><code>/* Koło */
+clip-path: circle(50%);              /* koło wypełniające element */
+clip-path: circle(80px at center);   /* koło o promieniu 80px */
+clip-path: circle(40% at 30% 60%);  /* koło z przesuniętym środkiem */
+
+/* Elipsa */
+clip-path: ellipse(50% 30% at center);
+clip-path: ellipse(80px 50px at 50% 50%);
+
+/* Prostokąt z zaokrągleniami */
+clip-path: inset(10px);              /* obetnij 10px z każdej strony */
+clip-path: inset(10px 20px);         /* góra/dół | lewo/prawo */
+clip-path: inset(10px round 16px);   /* z zaokrąglonymi rogami */
+
+/* Wielokąt */
+clip-path: polygon(50% 0%, 100% 100%, 0% 100%);  /* trójkąt */
+clip-path: polygon(
+  0% 0%,
+  100% 0%,
+  100% 80%,
+  50% 100%,
+  0% 80%
+); /* pięciokąt */</code></pre>
+
+<h2>Praktyczne kształty</h2>
+<pre><code>/* Strzałka w prawo */
+.arrow-right {
+  clip-path: polygon(0 0, 80% 0, 100% 50%, 80% 100%, 0 100%);
+}
+
+/* Ukośne cięcie sekcji */
+.section-diagonal {
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+}
+
+/* Awatar w kształcie heksagonu */
+.hexagon {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* Dymek czatu */
+.bubble {
+  clip-path: polygon(
+    0% 0%, 100% 0%, 100% 75%,
+    75% 75%, 75% 100%,
+    50% 75%, 0% 75%
+  );
+}</code></pre>
+
+<h2>Animowanie clip-path</h2>
+<pre><code>/* Reveal animacja */
+.reveal {
+  clip-path: inset(0 100% 0 0); /* ukryty */
+  transition: clip-path 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+  clip-path: inset(0 0% 0 0); /* widoczny */
+}
+
+/* Hover — zmiana kształtu */
+.card-img {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transition: clip-path 0.4s ease;
+}
+
+.card:hover .card-img {
+  clip-path: polygon(5% 5%, 95% 5%, 95% 95%, 5% 95%);
+}
+
+/* Ważne: wielokąty muszą mieć tę samą liczbę punktów! */</code></pre>
+
+<h2>path() — ścieżki SVG</h2>
+<pre><code>/* Dowolny kształt SVG */
+clip-path: path('M 10 10 L 90 10 L 50 90 Z'); /* trójkąt */
+clip-path: path('M 50 0 C 100 0 100 100 50 100 C 0 100 0 0 50 0'); /* blob */</code></pre>
+
+<h2>shape-outside — opływanie tekstu</h2>
+<pre><code>/* Tekst opływa kształt elementu */
+.float-circle {
+  float: left;
+  width: 200px;
+  height: 200px;
+  shape-outside: circle(50%);
+  clip-path: circle(50%);
+  margin-right: 20px;
+}
+
+.float-polygon {
+  float: right;
+  shape-outside: polygon(50% 0%, 100% 100%, 0% 100%);
+  margin-left: 20px;
+}</code></pre>
+
+<div class="tip">
+  💡 <strong>Generator kształtów:</strong> Tworzenie złożonych wielokątów ręcznie
+  jest trudne. Użyj narzędzia <strong>Clippy</strong>
+  (bennettfeely.com/clippy) — wizualny generator <code>clip-path</code>.
+  Pamiętaj że przy animowaniu, oba stany muszą mieć tę samą
+  liczbę punktów wielokąta.
+</div>
+
+{% endblock %}

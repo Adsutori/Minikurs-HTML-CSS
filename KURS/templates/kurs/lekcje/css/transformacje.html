@@ -1,0 +1,146 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Transformacje CSS</h1>
+
+<p>
+  Właściwość <code>transform</code> pozwala przesuwać, obracać, skalować
+  i pochylać elementy bez wpływu na układ strony. Transformacje są
+  akcelerowane sprzętowo — działają płynnie nawet na słabszych urządzeniach.
+</p>
+
+<h2>translate — przesunięcie</h2>
+<pre><code>/* Przesuń o 50px w prawo i 20px w dół */
+transform: translate(50px, 20px);
+
+/* Tylko poziomo */
+transform: translateX(50px);
+
+/* Tylko pionowo */
+transform: translateY(-20px);
+
+/* Procentowo — względem własnego rozmiaru */
+transform: translate(-50%, -50%); /* klasyczne centrowanie */
+
+/* CSS4 — skrót */
+translate: 50px 20px;</code></pre>
+
+<h2>rotate — obrót</h2>
+<pre><code>transform: rotate(45deg);    /* zgodnie z ruchem wskazówek */
+transform: rotate(-90deg);   /* przeciwnie */
+transform: rotate(0.5turn);  /* pół obrotu = 180deg */
+
+/* Obrót 3D */
+transform: rotateX(45deg);
+transform: rotateY(180deg);
+transform: rotateZ(45deg); /* = rotate(45deg) */
+
+/* CSS4 */
+rotate: 45deg;</code></pre>
+
+<h2>scale — skalowanie</h2>
+<pre><code>transform: scale(1.5);       /* 150% w obu kierunkach */
+transform: scale(1.2, 0.8);  /* 120% X, 80% Y */
+transform: scaleX(2);        /* tylko poziomo */
+transform: scaleY(0.5);      /* tylko pionowo */
+transform: scale(-1);        /* odbicie lustrzane */
+
+/* CSS4 */
+scale: 1.5;</code></pre>
+
+<h2>skew — pochylenie</h2>
+<pre><code>transform: skew(15deg);          /* pochylenie poziome */
+transform: skew(15deg, 10deg);   /* X i Y */
+transform: skewX(15deg);
+transform: skewY(10deg);</code></pre>
+
+<h2>Łączenie transformacji</h2>
+<pre><code>/* Kolejność ma znaczenie! */
+transform: translateX(100px) rotate(45deg) scale(1.2);
+
+/* Różna kolejność = różny efekt */
+transform: rotate(45deg) translateX(100px); /* inne niż powyżej */</code></pre>
+
+<h2>transform-origin — punkt transformacji</h2>
+<pre><code>/* Domyślnie: center center (50% 50%) */
+transform-origin: top left;
+transform-origin: 0 0;
+transform-origin: 100% 100%;
+transform-origin: 50% 50%;
+
+/* Przykład — rozwijane menu */
+.dropdown {
+  transform-origin: top center;
+  transform: scaleY(0);
+  transition: transform 0.2s ease;
+}
+.dropdown.open {
+  transform: scaleY(1);
+}</code></pre>
+
+<h2>Transformacje 3D</h2>
+<pre><code>/* Perspektywa — wymagana dla efektów 3D */
+.scene {
+  perspective: 1000px;
+}
+
+/* Obrót karty */
+.card {
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.card:hover {
+  transform: rotateY(180deg);
+}
+
+/* Tył karty */
+.card-back {
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}</code></pre>
+
+<h2>matrix — zaawansowane</h2>
+<pre><code>/* Macierz 2D — łączy wszystkie transformacje */
+/* matrix(scaleX, skewY, skewX, scaleY, translateX, translateY) */
+transform: matrix(1, 0, 0, 1, 50, 100);
+
+/* Rzadko pisane ręcznie — generowane przez JS lub narzędzia */</code></pre>
+
+<h2>Praktyczne przykłady</h2>
+<pre><code>/* Efekt hover na karcie */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* Ikona hamburgera → X */
+.bar-middle {
+  transition: opacity 0.2s, transform 0.3s;
+}
+.bar-top, .bar-bottom {
+  transition: transform 0.3s;
+}
+.open .bar-middle { opacity: 0; }
+.open .bar-top    { transform: rotate(45deg) translate(5px, 5px); }
+.open .bar-bottom { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* Spinner */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}</code></pre>
+
+<div class="tip">
+  💡 <strong>Wydajność:</strong> Do animacji używaj wyłącznie <code>transform</code>
+  i <code>opacity</code> — są akcelerowane przez GPU i nie powodują
+  przeliczania layoutu (<em>reflow</em>). Unikaj animowania <code>width</code>,
+  <code>height</code>, <code>top</code>, <code>left</code>, <code>margin</code>.
+</div>
+
+{% endblock %}

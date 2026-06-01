@@ -1,0 +1,176 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Animacje CSS</h1>
+
+<p>
+  CSS oferuje dwa mechanizmy animacji: <strong>transitions</strong> — proste
+  przejścia między stanami, oraz <strong>animations</strong> z <code>@keyframes</code>
+  — pełna kontrola nad złożonymi sekwencjami.
+</p>
+
+<h2>Transitions — przejścia</h2>
+<pre><code>/* transition: właściwość | czas | funkcja | opóźnienie */
+.btn {
+  background: #7c3aed;
+  transition: background 0.3s ease;
+}
+.btn:hover {
+  background: #a855f7;
+}
+
+/* Wiele właściwości */
+.card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.2s ease;
+}
+
+/* Wszystkie właściwości — ostrożnie z wydajnością */
+.element {
+  transition: all 0.3s ease;
+}</code></pre>
+
+<h2>Funkcje czasowe (easing)</h2>
+<pre><code>transition-timing-function: linear;       /* stała prędkość */
+transition-timing-function: ease;         /* domyślne — wolno-szybko-wolno */
+transition-timing-function: ease-in;      /* zaczyna wolno */
+transition-timing-function: ease-out;     /* kończy wolno */
+transition-timing-function: ease-in-out;  /* wolno na obu końcach */
+
+/* cubic-bezier — własna krzywa */
+transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* Material Design */
+transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); /* sprężysty */
+
+/* steps — skokowe */
+transition-timing-function: steps(4, end); /* 4 kroki */</code></pre>
+
+<h2>@keyframes — klatki kluczowe</h2>
+<pre><code>/* Definicja animacji */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Użycie */
+.element {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+/* Wiele klatek */
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}</code></pre>
+
+<h2>Właściwości animation</h2>
+<pre><code>/* Pełny zapis */
+animation-name:            fadeIn;
+animation-duration:        0.6s;
+animation-timing-function: ease;
+animation-delay:           0.2s;
+animation-iteration-count: 1;        /* lub infinite */
+animation-direction:       normal;   /* reverse | alternate | alternate-reverse */
+animation-fill-mode:       forwards; /* none | forwards | backwards | both */
+animation-play-state:      running;  /* paused */
+
+/* Skrócony zapis */
+/* nazwa | czas | easing | opóźnienie | iteracje | kierunek | fill-mode */
+animation: fadeIn 0.6s ease 0.2s 1 normal forwards;</code></pre>
+
+<h2>fill-mode — ważna właściwość</h2>
+<pre><code>animation-fill-mode: none;      /* domyślne — po animacji wraca do startu */
+animation-fill-mode: forwards;  /* zatrzymuje się na ostatniej klatce */
+animation-fill-mode: backwards; /* stosuje pierwszą klatkę przed startem */
+animation-fill-mode: both;      /* forwards + backwards */</code></pre>
+
+<h2>Wiele animacji</h2>
+<pre><code>.element {
+  animation:
+    fadeIn 0.6s ease forwards,
+    pulse 2s ease-in-out 0.6s infinite;
+}</code></pre>
+
+<h2>Praktyczne animacje</h2>
+<pre><code>/* Spinner */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spinner {
+  width: 32px; height: 32px;
+  border: 3px solid rgba(124,58,237,0.2);
+  border-top-color: #7c3aed;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Pulsujący glow */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(124,58,237,0.3); }
+  50%       { box-shadow: 0 0 30px rgba(124,58,237,0.8); }
+}
+.glow {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Animowany gradient tła */
+@keyframes gradient-flow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animated-bg {
+  background: linear-gradient(135deg, #7c3aed, #a855f7, #6d28d9);
+  background-size: 200% 200%;
+  animation: gradient-flow 4s ease infinite;
+}
+
+/* Fade in z opóźnieniami */
+.item:nth-child(1) { animation: fadeIn 0.5s ease 0.1s both; }
+.item:nth-child(2) { animation: fadeIn 0.5s ease 0.2s both; }
+.item:nth-child(3) { animation: fadeIn 0.5s ease 0.3s both; }
+
+/* Elegantszy sposób z CSS variables */
+.item {
+  animation: fadeIn 0.5s ease calc(var(--i, 0) * 0.1s) both;
+}</code></pre>
+
+<h2>Kontrola przez JavaScript</h2>
+<pre><code>const el = document.querySelector('.box');
+
+// Pauza / wznowienie
+el.style.animationPlayState = 'paused';
+el.style.animationPlayState = 'running';
+
+// Restart animacji
+el.classList.remove('animate');
+void el.offsetWidth; // wymuszenie reflow
+el.classList.add('animate');</code></pre>
+
+<div class="tip">
+  💡 <strong>Dostępność:</strong> Zawsze dodaj:
+  <pre><code>@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}</code></pre>
+  Niektórzy użytkownicy mają epilepsję lub zawroty głowy od animacji.
+</div>
+
+{% endblock %}

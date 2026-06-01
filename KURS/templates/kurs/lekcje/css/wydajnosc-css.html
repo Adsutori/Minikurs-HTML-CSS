@@ -1,0 +1,140 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Wydajność CSS</h1>
+
+<p>
+  Wolny CSS blokuje renderowanie strony. Zrozumienie jak przeglądarka
+  przetwarza style pozwala pisać kod, który działa szybko nawet
+  na słabszych urządzeniach i wolnych połączeniach.
+</p>
+
+<h2>Critical Rendering Path</h2>
+<p>Przeglądarka renderuje stronę w krokach:</p>
+<pre><code>1. Pobierz HTML → zbuduj DOM
+2. Pobierz CSS  → zbuduj CSSOM
+3. DOM + CSSOM  → Render Tree
+4. Layout       → oblicz pozycje i rozmiary
+5. Paint        → narysuj piksele
+6. Composite    → złóż warstwy (GPU)</code></pre>
+<p>
+  CSS jest <strong>render-blocking</strong> — przeglądarka nie wyświetli
+  nic dopóki nie pobierze i nie przetworzy wszystkich arkuszy stylów.
+</p>
+
+<h2>Ładowanie CSS — optymalizacja</h2>
+<pre><code>&lt;!-- Krytyczny CSS — inline w &lt;head&gt; --&gt;
+&lt;style&gt;
+  /* Tylko style potrzebne do pierwszego widoku (above the fold) */
+  body { margin: 0; font-family: 'Inter', sans-serif; }
+  .navbar { ... }
+  .hero { ... }
+&lt;/style&gt;
+
+&lt;!-- Reszta CSS — ładowana asynchronicznie --&gt;
+&lt;link rel="preload" href="main.css" as="style"
+      onload="this.onload=null;this.rel='stylesheet'"&gt;
+&lt;noscript&gt;&lt;link rel="stylesheet" href="main.css"&gt;&lt;/noscript&gt;
+
+&lt;!-- Preconnect dla Google Fonts --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</code></pre>
+
+<h2>Właściwości powodujące reflow (unikaj w animacjach)</h2>
+<pre><code>/* Te właściwości wymuszają przeliczenie layoutu — WOLNE */
+width, height, top, left, right, bottom
+margin, padding, border-width
+font-size, line-height
+display, position, float
+overflow
+
+/* Te właściwości są akcelerowane GPU — SZYBKIE */
+transform: translate(), rotate(), scale()
+opacity
+filter (częściowo)
+will-change</code></pre>
+
+<h2>will-change — optymalizacja warstw</h2>
+<pre><code>/* Informuje przeglądarkę z wyprzedzeniem */
+.animated-card {
+  will-change: transform;
+}
+
+.fade-element {
+  will-change: opacity;
+}
+
+/* Usuń po animacji — will-change zużywa pamięć */
+element.addEventListener('animationend', () => {
+  element.style.willChange = 'auto';
+});
+
+/* NIE rób tego — za dużo warstw */
+* { will-change: transform; } /* ❌ */</code></pre>
+
+<h2>contain — izolacja renderowania</h2>
+<pre><code>/* Izoluje element od reszty dokumentu */
+.widget {
+  contain: layout;    /* zmiany wewnątrz nie wpływają na layout zewnętrzny */
+  contain: paint;     /* nie maluj poza granicami */
+  contain: style;     /* izolacja liczników i właściwości */
+  contain: size;      /* rozmiar nie zależy od dzieci */
+  contain: strict;    /* wszystko powyżej */
+  contain: content;   /* layout + paint + style */
+}
+
+/* content-visibility — lazy rendering */
+.below-fold-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px; /* szacowana wysokość */
+}
+/* Przeglądarka pomija renderowanie niewidocznych sekcji */</code></pre>
+
+<h2>Selektory — wydajność</h2>
+<pre><code>/* Przeglądarka czyta selektory od prawej do lewej */
+
+/* Wolne — zbyt ogólny klucz */
+div > * > span { }        /* ❌ */
+.nav ul li a span { }     /* ❌ za długi łańcuch */
+
+/* Szybkie — konkretny klucz */
+.nav-link { }             /* ✅ */
+.nav-link span { }        /* ✅ akceptowalne */
+
+/* Unikaj selektora uniwersalnego w złożonych regułach */
+.container * { }          /* ❌ */
+.container > .item { }    /* ✅ */</code></pre>
+
+<h2>font-display — ładowanie czcionek</h2>
+<pre><code>@font-face {
+  font-family: 'Inter';
+  src: url('inter.woff2') format('woff2');
+  font-display: swap;     /* pokaż fallback, podmień gdy gotowe */
+  /* swap | block | fallback | optional */
+}
+
+/* Google Fonts z display=swap */
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');</code></pre>
+
+<h2>Zmniejszanie CSS</h2>
+<pre><code>/* Używaj skróconych zapisów */
+margin: 16px 24px;           /* zamiast 4 właściwości */
+border: 1px solid #333;      /* zamiast 3 właściwości */
+background: #fff url() center / cover no-repeat;
+
+/* Grupuj selektory */
+h1, h2, h3 { line-height: 1.2; }
+
+/* Zmienne CSS zamiast powtarzania wartości */
+:root { --accent: #7c3aed; }
+.btn  { background: var(--accent); }
+.link { color: var(--accent); }</code></pre>
+
+<div class="tip">
+  💡 <strong>Narzędzie:</strong> Użyj zakładki <strong>Performance</strong>
+  w Chrome DevTools — nagraj interakcję i sprawdź czy są długie zadania
+  (Long Tasks &gt; 50ms). W zakładce <strong>Coverage</strong> zobaczysz
+  ile procent Twojego CSS jest faktycznie używane na danej stronie.
+</div>
+
+{% endblock %}

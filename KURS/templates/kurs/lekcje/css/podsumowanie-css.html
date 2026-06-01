@@ -1,0 +1,124 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Podsumowanie kursu CSS</h1>
+
+<p>
+  Gratulacje — ukończyłeś pełny kurs CSS! Przeszedłeś drogę od pierwszej
+  reguły stylów do zaawansowanych animacji, Container Queries i metodologii.
+  Oto mapa wszystkiego czego się nauczyłeś.
+</p>
+
+<h2>Mapa wiedzy</h2>
+
+<h3>🧱 Fundamenty</h3>
+<ul>
+  <li><strong>Wstęp do CSS</strong> — składnia, sposoby dołączania, kaskada</li>
+  <li><strong>Selektory</strong> — element, klasa, ID, atrybuty, złożone, specyficzność</li>
+  <li><strong>Kolory</strong> — HEX, RGB, HSL, oklch, currentColor, opacity</li>
+  <li><strong>Box Model</strong> — content, padding, border, margin, box-sizing</li>
+  <li><strong>Typografia</strong> — font-family, size, weight, line-height, text-*</li>
+</ul>
+
+<h3>🎨 Wizualność</h3>
+<ul>
+  <li><strong>Tło i gradienty</strong> — background-*, linear/radial/conic-gradient</li>
+  <li><strong>Cienie</strong> — box-shadow, text-shadow, drop-shadow</li>
+  <li><strong>Filtry</strong> — blur, brightness, contrast, backdrop-filter</li>
+  <li><strong>clip-path</strong> — koła, wielokąty, ścieżki SVG</li>
+</ul>
+
+<h3>📐 Layout</h3>
+<ul>
+  <li><strong>Display</strong> — block, inline, inline-block, none</li>
+  <li><strong>Pozycjonowanie</strong> — static, relative, absolute, fixed, sticky</li>
+  <li><strong>Flexbox</strong> — oś, justify-content, align-items, flex-grow/shrink</li>
+  <li><strong>CSS Grid</strong> — template-columns/rows, areas, auto-fit, subgrid</li>
+  <li><strong>Overflow i scroll</strong> — overflow, scroll-snap, overscroll-behavior</li>
+</ul>
+
+<h3>⚡ Interaktywność</h3>
+<ul>
+  <li><strong>Pseudoklasy</strong> — :hover, :focus, :nth-child, :has(), :is()</li>
+  <li><strong>Pseudoelementy</strong> — ::before, ::after, ::selection, ::marker</li>
+  <li><strong>Transformacje</strong> — translate, rotate, scale, skew, 3D</li>
+  <li><strong>Animacje</strong> — transitions, @keyframes, scroll-driven animations</li>
+</ul>
+
+<h3>🔧 Architektura</h3>
+<ul>
+  <li><strong>Zmienne CSS</strong> — deklaracja, zasięg, dark mode, JS integration</li>
+  <li><strong>Responsywność</strong> — media queries, mobile first, clamp()</li>
+  <li><strong>Zaawansowane techniki</strong> — Container Queries, @layer, @property</li>
+  <li><strong>Metodologie</strong> — BEM, SMACSS, ITCSS, Utility-First</li>
+  <li><strong>Dostępność</strong> — focus, kontrast, prefers-*, sr-only</li>
+  <li><strong>Wydajność</strong> — reflow, will-change, content-visibility</li>
+</ul>
+
+<h2>Najważniejsze zasady</h2>
+<table>
+  <thead>
+    <tr><th>Zasada</th><th>Dlaczego ważna</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>box-sizing: border-box</code> globalnie</td>
+      <td>Intuicyjne rozmiary elementów</td>
+    </tr>
+    <tr>
+      <td>Używaj <code>rem</code> do czcionek</td>
+      <td>Skaluje z ustawieniami przeglądarki</td>
+    </tr>
+    <tr>
+      <td>Mobile First z <code>min-width</code></td>
+      <td>Lepszy dla wydajności i czytelności</td>
+    </tr>
+    <tr>
+      <td>Zmienne CSS dla design systemu</td>
+      <td>Spójność i łatwa zmiana motywu</td>
+    </tr>
+    <tr>
+      <td>Animuj tylko <code>transform</code> i <code>opacity</code></td>
+      <td>GPU-accelerated, bez reflow</td>
+    </tr>
+    <tr>
+      <td>Nigdy <code>*:focus { outline: none }</code></td>
+      <td>Niszczy dostępność klawiaturową</td>
+    </tr>
+    <tr>
+      <td>BEM dla nazewnictwa klas</td>
+      <td>Czytelny, skalowalny, bez konfliktów</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Co dalej?</h2>
+<ul>
+  <li>🔥 <strong>Sass/SCSS</strong> — preprocessor z mixinami, funkcjami i zagnieżdżaniem</li>
+  <li>💨 <strong>Tailwind CSS</strong> — utility-first framework</li>
+  <li>⚡ <strong>CSS-in-JS</strong> — styled-components, Emotion (dla React)</li>
+  <li>🎭 <strong>Framer Motion</strong> — zaawansowane animacje w React</li>
+  <li>📐 <strong>Design Tokens</strong> — systemowe podejście do zmiennych</li>
+  <li>🧪 <strong>CSS Houdini</strong> — dostęp do silnika renderowania przeglądarki</li>
+</ul>
+
+<h2>Zasoby do dalszej nauki</h2>
+<ul>
+  <li><strong>MDN Web Docs</strong> — developer.mozilla.org — kompletna dokumentacja</li>
+  <li><strong>CSS Tricks</strong> — css-tricks.com — artykuły i poradniki</li>
+  <li><strong>web.dev</strong> — Google — wydajność i nowoczesne API</li>
+  <li><strong>caniuse.com</strong> — sprawdź wsparcie przeglądarek</li>
+  <li><strong>cssreference.io</strong> — wizualna dokumentacja właściwości</li>
+  <li><strong>bennettfeely.com/clippy</strong> — generator clip-path</li>
+  <li><strong>cubic-bezier.com</strong> — edytor krzywych Béziera</li>
+</ul>
+
+<div class="tip">
+  🎉 <strong>Jesteś gotowy!</strong> CSS to język, który poznaje się przez
+  praktykę — każdy projekt nauczy Cię czegoś nowego. Zacznij budować,
+  eksperymentuj, psuć i naprawiać. Najlepsi frontend developerzy to ci,
+  którzy nie boją się otworzyć DevTools i sprawdzić dlaczego coś
+  wygląda tak, a nie inaczej.
+</div>
+
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Flexbox</h1>
+
+<p>
+  Flexbox — <strong>Flexible Box Layout</strong> — to jednowymiarowy system układu CSS.
+  Idealny do rozmieszczania elementów w wierszu lub kolumnie, wyrównywania ich
+  i rozdzielania przestrzeni. Rozwiązuje problemy z układem, które wcześniej
+  wymagały hacków z <code>float</code> czy <code>inline-block</code>.
+</p>
+
+<h2>Włączenie Flexbox</h2>
+<pre><code>.container {
+  display: flex; /* lub inline-flex */
+}</code></pre>
+<p>
+  Element z <code>display: flex</code> staje się <strong>flex container</strong>.
+  Jego bezpośrednie dzieci stają się <strong>flex items</strong>.
+</p>
+
+<h2>Oś główna i poprzeczna</h2>
+<p>
+  Flexbox operuje na dwóch osiach:
+  <strong>głównej</strong> (main axis) i <strong>poprzecznej</strong> (cross axis).
+  Domyślnie oś główna biegnie poziomo (→).
+</p>
+
+<h2>flex-direction — kierunek osi</h2>
+<pre><code>.container {
+  flex-direction: row;            /* → domyślne */
+  flex-direction: row-reverse;    /* ← */
+  flex-direction: column;         /* ↓ */
+  flex-direction: column-reverse; /* ↑ */
+}</code></pre>
+
+<h2>justify-content — wyrównanie na osi głównej</h2>
+<pre><code>.container {
+  justify-content: flex-start;    /* domyślne — do początku */
+  justify-content: flex-end;      /* do końca */
+  justify-content: center;        /* wyśrodkowane */
+  justify-content: space-between; /* równe odstępy, bez marginesów */
+  justify-content: space-around;  /* równe odstępy z marginesami */
+  justify-content: space-evenly;  /* wszystkie odstępy równe */
+}</code></pre>
+
+<h2>align-items — wyrównanie na osi poprzecznej</h2>
+<pre><code>.container {
+  align-items: stretch;     /* domyślne — rozciąga do wysokości kontenera */
+  align-items: flex-start;  /* do góry */
+  align-items: flex-end;    /* do dołu */
+  align-items: center;      /* wyśrodkowane pionowo */
+  align-items: baseline;    /* wg linii bazowej tekstu */
+}</code></pre>
+
+<h2>Idealne centrowanie</h2>
+<pre><code>.center-everything {
+  display: flex;
+  justify-content: center; /* poziomo */
+  align-items: center;     /* pionowo */
+  min-height: 100vh;
+}</code></pre>
+
+<h2>flex-wrap — zawijanie</h2>
+<pre><code>.container {
+  flex-wrap: nowrap;       /* domyślne — wszystko w jednej linii */
+  flex-wrap: wrap;         /* zawija do nowych linii */
+  flex-wrap: wrap-reverse; /* zawija odwrotnie */
+}</code></pre>
+
+<h2>gap — odstępy</h2>
+<pre><code>.container {
+  gap: 16px;          /* równy odstęp we wszystkich kierunkach */
+  gap: 16px 24px;     /* wiersz | kolumna */
+  row-gap: 16px;
+  column-gap: 24px;
+}</code></pre>
+
+<h2>Właściwości flex items</h2>
+
+<h3>flex-grow — rozrastanie</h3>
+<pre><code>.item { flex-grow: 0; }  /* domyślne — nie rośnie */
+.item { flex-grow: 1; }  /* zajmuje dostępną przestrzeń */
+
+/* Proporcje */
+.sidebar { flex-grow: 1; }
+.main    { flex-grow: 3; } /* 3x więcej przestrzeni niż sidebar */</code></pre>
+
+<h3>flex-shrink — kurczenie</h3>
+<pre><code>.item { flex-shrink: 1; }  /* domyślne — kurczy się gdy brak miejsca */
+.item { flex-shrink: 0; }  /* nie kurczy się nigdy */</code></pre>
+
+<h3>flex-basis — bazowy rozmiar</h3>
+<pre><code>.item { flex-basis: auto; }   /* domyślne — rozmiar treści */
+.item { flex-basis: 200px; }  /* bazowa szerokość 200px */
+.item { flex-basis: 30%; }</code></pre>
+
+<h3>Skrócony zapis flex</h3>
+<pre><code>/* flex: grow shrink basis */
+.item { flex: 0 1 auto; }  /* domyślne */
+.item { flex: 1; }         /* = flex: 1 1 0 — rośnie i kurczy się */
+.item { flex: auto; }      /* = flex: 1 1 auto */
+.item { flex: none; }      /* = flex: 0 0 auto — sztywny */</code></pre>
+
+<h3>align-self — indywidualne wyrównanie</h3>
+<pre><code>.item { align-self: auto; }        /* dziedziczy align-items */
+.item { align-self: flex-start; }
+.item { align-self: center; }
+.item { align-self: flex-end; }
+.item { align-self: stretch; }</code></pre>
+
+<h3>order — kolejność</h3>
+<pre><code>.item-1 { order: 2; }  /* domyślne: 0 */
+.item-2 { order: 1; }  /* wyświetlony przed item-1 */
+.item-3 { order: -1; } /* wyświetlony jako pierwszy */</code></pre>
+
+<h2>Praktyczny przykład — karta</h2>
+<pre><code>.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-footer {
+  margin-top: auto; /* "pcha" stopkę na dół karty */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}</code></pre>
+
+<div class="tip">
+  💡 <strong>Flexbox vs Grid:</strong> Flexbox jest jednowymiarowy — świetny do
+  nawigacji, przycisków, kart w rzędzie. Grid jest dwuwymiarowy — świetny do
+  całych layoutów stron. W praktyce używasz obu razem.
+</div>
+
+{% endblock %}

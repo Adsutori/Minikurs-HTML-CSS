@@ -1,0 +1,110 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Tło i gradienty</h1>
+
+<p>
+  Właściwości <code>background-*</code> dają ogromne możliwości — od prostych kolorów,
+  przez obrazy, po złożone gradienty wielowarstwowe. To jeden z najczęściej
+  używanych zestawów właściwości w CSS.
+</p>
+
+<h2>background-color</h2>
+<pre><code>div {
+  background-color: #1a1a2e;
+  background-color: rgba(124, 58, 237, 0.1);
+  background-color: transparent;
+}</code></pre>
+
+<h2>background-image</h2>
+<pre><code>div {
+  background-image: url('obrazek.jpg');
+  background-image: url('/static/images/hero.webp');
+}</code></pre>
+
+<h2>background-repeat</h2>
+<pre><code>background-repeat: repeat;     /* domyślne — kafelkuje */
+background-repeat: no-repeat;  /* bez powtarzania */
+background-repeat: repeat-x;   /* tylko poziomo */
+background-repeat: repeat-y;   /* tylko pionowo */</code></pre>
+
+<h2>background-size</h2>
+<pre><code>background-size: auto;          /* oryginalny rozmiar */
+background-size: cover;         /* pokrywa cały element, może przyciąć */
+background-size: contain;       /* mieści się w całości */
+background-size: 300px 200px;   /* dokładny rozmiar */
+background-size: 50%;           /* procentowo */</code></pre>
+
+<h2>background-position</h2>
+<pre><code>background-position: center;
+background-position: top right;
+background-position: 50% 50%;
+background-position: 20px 40px;</code></pre>
+
+<h2>background-attachment</h2>
+<pre><code>background-attachment: scroll;  /* domyślne — przewija się ze stroną */
+background-attachment: fixed;   /* efekt paralaksy — tło stoi w miejscu */
+background-attachment: local;   /* przewija się z treścią elementu */</code></pre>
+
+<h2>Skrócony zapis background</h2>
+<pre><code>/* kolor | obraz | pozycja / rozmiar | powtarzanie | attachment */
+background: #1a1a2e url('hero.jpg') center / cover no-repeat fixed;</code></pre>
+
+<h2>Gradienty liniowe</h2>
+<pre><code>/* Kierunek → wartości kolorów */
+background: linear-gradient(to right, #7c3aed, #a855f7);
+background: linear-gradient(to bottom right, #0a0a0f, #1a0533);
+background: linear-gradient(135deg, #667eea, #764ba2);
+
+/* Z wieloma kolorami */
+background: linear-gradient(135deg,
+  #0a0a0f 0%,
+  #1a0533 50%,
+  #0a0a0f 100%
+);
+
+/* Z przezroczystością */
+background: linear-gradient(
+  to bottom,
+  rgba(0, 0, 0, 0),
+  rgba(0, 0, 0, 0.8)
+);</code></pre>
+
+<h2>Gradienty radialne</h2>
+<pre><code>/* Okrągły gradient od środka */
+background: radial-gradient(circle, #7c3aed, #0a0a0f);
+
+/* Eliptyczny */
+background: radial-gradient(ellipse at center, #7c3aed 0%, #0a0a0f 70%);
+
+/* Pozycja środka */
+background: radial-gradient(circle at top right, #a855f7, transparent);</code></pre>
+
+<h2>Gradienty stożkowe</h2>
+<pre><code>/* Gradient obracający się wokół punktu */
+background: conic-gradient(from 0deg, red, yellow, green, blue, red);
+
+/* Wykres kołowy */
+background: conic-gradient(
+  #7c3aed 0% 30%,
+  #a855f7 30% 60%,
+  #6d28d9 60% 100%
+);</code></pre>
+
+<h2>Wielowarstwowe tła</h2>
+<pre><code>/* Można łączyć wiele warstw — pierwsza jest na wierzchu */
+background:
+  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url('hero.jpg') center / cover no-repeat,
+  #1a1a2e;</code></pre>
+
+<div class="tip">
+  💡 <strong>Efekt glassmorphism</strong> — popularny w nowoczesnym designie:
+  <pre><code>.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}</code></pre>
+</div>
+
+{% endblock %}

@@ -1,0 +1,156 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Overflow i scroll</h1>
+
+<p>
+  Właściwość <code>overflow</code> kontroluje co dzieje się z treścią,
+  która wychodzi poza granice elementu. To kluczowe przy budowaniu
+  scrollowalnych kontenerów, obcinaniu tekstu i tworzeniu efektów.
+</p>
+
+<h2>overflow — podstawowe wartości</h2>
+<pre><code>/* visible — domyślne, treść wychodzi poza element */
+overflow: visible;
+
+/* hidden — treść jest obcinana */
+overflow: hidden;
+
+/* scroll — zawsze pokazuje scrollbar */
+overflow: scroll;
+
+/* auto — scrollbar tylko gdy potrzebny */
+overflow: auto;</code></pre>
+
+<h2>overflow-x i overflow-y</h2>
+<pre><code>/* Kontrola osobno dla osi */
+overflow-x: hidden;  /* obetnij poziomo */
+overflow-y: auto;    /* scrolluj pionowo gdy potrzeba */
+
+/* Scrollowalna tabela */
+.table-wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+}</code></pre>
+
+<h2>Obcinanie tekstu — text-overflow</h2>
+<pre><code>/* Jeden wiersz z wielokropkiem */
+.truncate {
+  white-space: nowrap;     /* nie zawijaj */
+  overflow: hidden;        /* obetnij */
+  text-overflow: ellipsis; /* dodaj ... */
+  max-width: 200px;
+}
+
+/* Wiele wierszy z wielokropkiem */
+.clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Nowoczesny sposób */
+.clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+}</code></pre>
+
+<h2>Scrollbar — stylowanie</h2>
+<pre><code>/* WebKit (Chrome, Safari, Edge) */
+.custom-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #0a0a0f;
+  border-radius: 4px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7c3aed, #a855f7);
+  border-radius: 4px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #a855f7;
+}
+
+/* Firefox */
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #7c3aed #0a0a0f;
+}</code></pre>
+
+<h2>scroll-behavior — płynne przewijanie</h2>
+<pre><code>html {
+  scroll-behavior: smooth;
+}
+
+/* Lub tylko dla konkretnego kontenera */
+.sidebar {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+}</code></pre>
+
+<h2>scroll-snap — przyciąganie</h2>
+<pre><code>/* Kontener */
+.slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory; /* oś | mandatory/proximity */
+  gap: 16px;
+}
+
+/* Elementy */
+.slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start; /* start | center | end */
+}
+
+/* Pionowy scroll snap */
+.sections {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+
+.section {
+  height: 100vh;
+  scroll-snap-align: start;
+}</code></pre>
+
+<h2>overscroll-behavior</h2>
+<pre><code>/* Zapobiega "przechodzeniu" scrolla do rodzica */
+.modal-body {
+  overflow-y: auto;
+  overscroll-behavior: contain; /* scroll nie propaguje się do body */
+}
+
+/* Wyłącz pull-to-refresh na mobile */
+body {
+  overscroll-behavior-y: none;
+}</code></pre>
+
+<h2>scroll-margin i scroll-padding</h2>
+<pre><code>/* Offset dla anchor linków (np. gdy masz fixed navbar) */
+html {
+  scroll-padding-top: 80px; /* wysokość navbara */
+}
+
+/* Lub na konkretnej sekcji */
+#kontakt {
+  scroll-margin-top: 80px;
+}</code></pre>
+
+<div class="tip">
+  💡 <strong>overflow: hidden</strong> ma dodatkowy efekt — tworzy nowy
+  <em>Block Formatting Context</em>, co "zawiera" floaty i zapobiega
+  scalaniu marginesów. Często używane jako szybka naprawa layoutu,
+  ale lepiej rozumieć dlaczego to działa.
+</div>
+
+{% endblock %}

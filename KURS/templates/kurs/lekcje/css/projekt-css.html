@@ -1,0 +1,282 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Projekt: Karta profilu</h1>
+
+<p>
+  Czas zastosować całą wiedzę z kursu w praktyce. Zbudujesz kompletną
+  kartę profilu użytkownika — z awatarem, statystykami, przyciskami
+  i animacjami hover. Projekt łączy Box Model, Flexbox, zmienne CSS,
+  pseudoelementy i przejścia.
+</p>
+
+<h2>Struktura HTML</h2>
+<pre><code>&lt;div class="profile-card"&gt;
+
+  &lt;!-- Tło nagłówka --&gt;
+  &lt;div class="profile-card__cover"&gt;&lt;/div&gt;
+
+  &lt;!-- Awatar --&gt;
+  &lt;div class="profile-card__avatar-wrapper"&gt;
+    &lt;img
+      class="profile-card__avatar"
+      src="https://i.pravatar.cc/120"
+      alt="Zdjęcie profilowe Jan Kowalski"
+    &gt;
+    &lt;span class="profile-card__status" aria-label="Online"&gt;&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Informacje --&gt;
+  &lt;div class="profile-card__body"&gt;
+    &lt;h2 class="profile-card__name"&gt;Jan Kowalski&lt;/h2&gt;
+    &lt;p class="profile-card__role"&gt;Frontend Developer&lt;/p&gt;
+    &lt;p class="profile-card__bio"&gt;
+      Pasjonat CSS i nowoczesnych technologii webowych.
+      Buduję piękne interfejsy od 5 lat.
+    &lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Statystyki --&gt;
+  &lt;div class="profile-card__stats"&gt;
+    &lt;div class="profile-card__stat"&gt;
+      &lt;span class="profile-card__stat-value"&gt;128&lt;/span&gt;
+      &lt;span class="profile-card__stat-label"&gt;Projekty&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="profile-card__stat"&gt;
+      &lt;span class="profile-card__stat-value"&gt;4.2k&lt;/span&gt;
+      &lt;span class="profile-card__stat-label"&gt;Obserwujący&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="profile-card__stat"&gt;
+      &lt;span class="profile-card__stat-value"&gt;312&lt;/span&gt;
+      &lt;span class="profile-card__stat-label"&gt;Obserwuje&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Przyciski --&gt;
+  &lt;div class="profile-card__actions"&gt;
+    &lt;button class="btn btn--primary"&gt;Obserwuj&lt;/button&gt;
+    &lt;button class="btn btn--outline"&gt;Wiadomość&lt;/button&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+
+<h2>CSS — zmienne komponentu</h2>
+<pre><code>/* Zmienne lokalne karty */
+.profile-card {
+  --card-width: 340px;
+  --cover-height: 100px;
+  --avatar-size: 88px;
+  --avatar-border: 4px;
+}</code></pre>
+
+<h2>CSS — pełny kod</h2>
+<pre><code>/* === Karta === */
+.profile-card {
+  --card-width: 340px;
+  --cover-height: 100px;
+  --avatar-size: 88px;
+
+  width: var(--card-width);
+  background: var(--bg-card, #16161f);
+  border: 1px solid var(--border, #1e1e2e);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(124, 58, 237, 0.2);
+}
+
+/* === Cover === */
+.profile-card__cover {
+  height: var(--cover-height);
+  background: linear-gradient(135deg, #7c3aed, #a855f7, #6d28d9);
+  background-size: 200% 200%;
+  animation: gradient-flow 6s ease infinite;
+  position: relative;
+}
+
+.profile-card__cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,..."); /* opcjonalny pattern */
+  opacity: 0.1;
+}
+
+@keyframes gradient-flow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* === Awatar === */
+.profile-card__avatar-wrapper {
+  position: relative;
+  width: var(--avatar-size);
+  margin: calc(var(--avatar-size) / -2) auto 0;
+  z-index: 1;
+}
+
+.profile-card__avatar {
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 50%;
+  border: 4px solid var(--bg-card, #16161f);
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.profile-card:hover .profile-card__avatar {
+  transform: scale(1.05);
+}
+
+/* Wskaźnik statusu */
+.profile-card__status {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+  background: #22c55e;
+  border-radius: 50%;
+  border: 3px solid var(--bg-card, #16161f);
+}
+
+/* === Body === */
+.profile-card__body {
+  padding: 16px 24px 0;
+  text-align: center;
+}
+
+.profile-card__name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary, #f1f5f9);
+  margin-bottom: 4px;
+}
+
+.profile-card__role {
+  font-size: 0.875rem;
+  color: var(--accent-secondary, #a855f7);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.profile-card__bio {
+  font-size: 0.875rem;
+  color: var(--text-secondary, #94a3b8);
+  line-height: 1.6;
+}
+
+/* === Statystyki === */
+.profile-card__stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 24px;
+  margin-top: 16px;
+  border-top: 1px solid var(--border, #1e1e2e);
+  border-bottom: 1px solid var(--border, #1e1e2e);
+}
+
+.profile-card__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.profile-card__stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary, #f1f5f9);
+}
+
+.profile-card__stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted, #475569);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* === Przyciski === */
+.profile-card__actions {
+  display: flex;
+  gap: 12px;
+  padding: 20px 24px;
+}
+
+.profile-card__actions .btn {
+  flex: 1;
+  justify-content: center;
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.profile-card__actions .btn--primary {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: white;
+}
+
+.profile-card__actions .btn--primary:hover {
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+  transform: translateY(-1px);
+}
+
+.profile-card__actions .btn--outline {
+  background: transparent;
+  color: var(--accent-secondary, #a855f7);
+  border: 1px solid var(--accent-primary, #7c3aed);
+}
+
+.profile-card__actions .btn--outline:hover {
+  background: rgba(124, 58, 237, 0.1);
+}
+
+/* === Responsywność === */
+@media (max-width: 400px) {
+  .profile-card {
+    --card-width: 100%;
+  }
+
+  .profile-card__actions {
+    flex-direction: column;
+  }
+}</code></pre>
+
+<h2>Co zastosowaliśmy w projekcie</h2>
+<table>
+  <thead>
+    <tr><th>Technika</th><th>Gdzie użyta</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>CSS Variables</td><td>Rozmiary awatara, kolory, szerokość karty</td></tr>
+    <tr><td>BEM</td><td>Nazewnictwo klas (.profile-card__avatar)</td></tr>
+    <tr><td>Flexbox</td><td>Statystyki, przyciski, wyrównanie</td></tr>
+    <tr><td>Box Model</td><td>Padding, border, overflow: hidden</td></tr>
+    <tr><td>Pseudoelementy</td><td>::after na cover</td></tr>
+    <tr><td>Transformacje</td><td>Hover karty i awatara</td></tr>
+    <tr><td>Animacje</td><td>Gradient flow na cover</td></tr>
+    <tr><td>Transitions</td><td>Wszystkie efekty hover</td></tr>
+    <tr><td>position: relative/absolute</td><td>Awatar wychodzący z cover</td></tr>
+    <tr><td>Media queries</td><td>Responsywność na małych ekranach</td></tr>
+  </tbody>
+</table>
+
+<div class="tip">
+  💡 <strong>Rozszerzenia projektu:</strong> Spróbuj dodać tryb ciemny/jasny
+  przez zmianę zmiennych CSS, animację liczników statystyk przy wejściu
+  na stronę, lub efekt tilt 3D karty śledzący pozycję myszy przez JavaScript.
+</div>
+
+{% endblock %}

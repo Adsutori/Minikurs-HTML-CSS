@@ -1,0 +1,89 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Wstęp do CSS</h1>
+
+<p>
+  CSS — <strong>Cascading Style Sheets</strong> — to język odpowiedzialny za wygląd stron internetowych.
+  HTML buduje strukturę, CSS nadaje jej kolory, czcionki, układy i animacje.
+  Bez CSS każda strona wyglądałaby jak czarno-biały dokument tekstowy.
+</p>
+
+<h2>Czym jest CSS?</h2>
+<p>
+  CSS to język arkuszy stylów. Opisuje <em>jak</em> elementy HTML mają być wyświetlane —
+  ich rozmiar, kolor, pozycję, odstępy i wiele więcej. Działa na zasadzie reguł:
+  <em>„znajdź ten element i nadaj mu te właściwości"</em>.
+</p>
+
+<h2>Krótka historia</h2>
+<ul>
+  <li><strong>1994</strong> — Håkon Wium Lie proponuje CSS jako rozwiązanie dla stylowania stron</li>
+  <li><strong>1996</strong> — CSS1 staje się oficjalnym standardem W3C</li>
+  <li><strong>1998</strong> — CSS2 dodaje pozycjonowanie i media types</li>
+  <li><strong>2011</strong> — CSS3 wprowadza moduły: animacje, Flexbox, gradienty</li>
+  <li><strong>Dziś</strong> — CSS jest żywym standardem, nowe właściwości dodawane są na bieżąco</li>
+</ul>
+
+<h2>Jak CSS łączy się z HTML?</h2>
+<p>Są trzy sposoby dołączenia CSS do strony:</p>
+
+<h3>1. Zewnętrzny plik (najlepsza praktyka)</h3>
+<pre><code>&lt;head&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</code></pre>
+
+<h3>2. Style wewnętrzne w &lt;style&gt;</h3>
+<pre><code>&lt;head&gt;
+  &lt;style&gt;
+    p { color: red; }
+  &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+
+<h3>3. Style inline (na elemencie)</h3>
+<pre><code>&lt;p style="color: red"&gt;Tekst&lt;/p&gt;</code></pre>
+
+<table>
+  <thead>
+    <tr><th>Metoda</th><th>Zalety</th><th>Wady</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Zewnętrzny plik</td>
+      <td>Reużywalny, łatwy w utrzymaniu</td>
+      <td>Dodatkowe żądanie HTTP</td>
+    </tr>
+    <tr>
+      <td>Wewnętrzny &lt;style&gt;</td>
+      <td>Szybki do testowania</td>
+      <td>Nie reużywalny między stronami</td>
+    </tr>
+    <tr>
+      <td>Inline</td>
+      <td>Najwyższy priorytet</td>
+      <td>Trudny w utrzymaniu, brak pseudoklas</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Pierwsza reguła CSS</h2>
+<pre><code>/* To jest komentarz w CSS */
+
+p {
+  color: navy;
+  font-size: 18px;
+  line-height: 1.6;
+}</code></pre>
+<p>
+  Reguła CSS składa się z <strong>selektora</strong> (<code>p</code>),
+  nawiasów klamrowych i <strong>deklaracji</strong> w formacie
+  <code>właściwość: wartość;</code>.
+</p>
+
+<div class="tip">
+  💡 <strong>CSS = Kaskada.</strong> Słowo "kaskadowe" oznacza, że style
+  nakładają się na siebie warstwami — styl przeglądarki, potem Twój arkusz,
+  potem style inline. Każda warstwa może nadpisać poprzednią.
+</div>
+
+{% endblock %}

@@ -1,0 +1,170 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Metodologie CSS</h1>
+
+<p>
+  Gdy projekt rośnie, niezorganizowany CSS staje się koszmarem — konflikty nazw,
+  rosnąca specyficzność, style trudne do usunięcia. Metodologie to sprawdzone
+  konwencje organizacji kodu CSS w skalowalny sposób.
+</p>
+
+<h2>BEM — Block Element Modifier</h2>
+<p>
+  Najpopularniejsza metodologia. Nazwy klas opisują strukturę:
+  <strong>blok</strong>, <strong>element</strong> (część bloku) i <strong>modyfikator</strong> (wariant).
+</p>
+<pre><code>/* Składnia: block__element--modifier */
+
+/* Blok — samodzielny komponent */
+.card { }
+.navbar { }
+.btn { }
+
+/* Element — część bloku (__ podwójne podkreślenie) */
+.card__image { }
+.card__title { }
+.card__footer { }
+.navbar__logo { }
+.navbar__link { }
+
+/* Modyfikator — wariant (-- podwójny myślnik) */
+.card--featured { }
+.card--compact { }
+.btn--primary { }
+.btn--large { }
+.navbar__link--active { }
+
+/* HTML */</code></pre>
+<pre><code>&lt;div class="card card--featured"&gt;
+  &lt;img class="card__image" src="..." alt="..."&gt;
+  &lt;div class="card__body"&gt;
+    &lt;h2 class="card__title"&gt;Tytuł&lt;/h2&gt;
+    &lt;p class="card__text"&gt;Opis&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="card__footer"&gt;
+    &lt;a class="btn btn--primary btn--small"&gt;Czytaj więcej&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h2>SMACSS — Scalable and Modular Architecture</h2>
+<p>Dzieli CSS na 5 kategorii:</p>
+<pre><code>/* 1. Base — resetowanie, elementy HTML */
+body { margin: 0; }
+a { color: var(--accent); }
+
+/* 2. Layout — główne sekcje strony (prefix l-) */
+.l-header { position: fixed; top: 0; }
+.l-sidebar { width: 240px; }
+.l-main { margin-left: 240px; }
+
+/* 3. Module — komponenty wielokrotnego użytku */
+.card { ... }
+.btn { ... }
+.badge { ... }
+
+/* 4. State — stany (prefix is-) */
+.is-active { ... }
+.is-hidden { display: none; }
+.is-loading { opacity: 0.6; }
+
+/* 5. Theme — motywy (prefix theme-) */
+.theme-dark { ... }
+.theme-light { ... }</code></pre>
+
+<h2>ITCSS — Inverted Triangle CSS</h2>
+<p>Organizuje CSS od najbardziej ogólnego do najbardziej specyficznego:</p>
+<pre><code>/* 1. Settings — zmienne, konfiguracja */
+/* 2. Tools — mixiny, funkcje (Sass) */
+/* 3. Generic — reset, normalize */
+/* 4. Elements — style elementów HTML */
+/* 5. Objects — wzorce layoutu (prefix o-) */
+/* 6. Components — komponenty UI (prefix c-) */
+/* 7. Utilities — klasy pomocnicze (prefix u-) */
+
+/* Przykład importu */
+@import 'settings/colors';
+@import 'settings/typography';
+@import 'generic/reset';
+@import 'elements/headings';
+@import 'objects/container';
+@import 'components/card';
+@import 'components/button';
+@import 'utilities/spacing';
+@import 'utilities/display';</code></pre>
+
+<h2>Utility-First — podejście Tailwind</h2>
+<pre><code>/* Zamiast pisać CSS, używasz gotowych klas */
+
+/* Tailwind CSS */</code></pre>
+<pre><code>&lt;div class="flex items-center gap-4 p-6 bg-white rounded-xl shadow-lg"&gt;
+  &lt;img class="w-16 h-16 rounded-full object-cover" src="..." alt="..."&gt;
+  &lt;div&gt;
+    &lt;h2 class="text-xl font-bold text-gray-900"&gt;Jan Kowalski&lt;/h2&gt;
+    &lt;p class="text-sm text-gray-500"&gt;Developer&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<pre><code>/* Zalety: szybkość, spójność, brak konfliktów nazw */
+/* Wady: długie klasy HTML, trudna czytelność */</code></pre>
+
+<h2>CSS Modules</h2>
+<pre><code>/* card.module.css */
+.card { background: var(--bg-card); }
+.title { font-size: 1.5rem; }
+
+/* JavaScript (React) */
+import styles from './card.module.css';
+
+&lt;div className={styles.card}&gt;
+  &lt;h2 className={styles.title}&gt;Tytuł&lt;/h2&gt;
+&lt;/div&gt;
+
+/* Generuje unikalne klasy: .card_abc123 */
+/* Brak konfliktów nazw między komponentami */</code></pre>
+
+<h2>Porównanie metodologii</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Metodologia</th>
+      <th>Najlepsza dla</th>
+      <th>Krzywa uczenia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BEM</td>
+      <td>Każdego projektu — prosta i skuteczna</td>
+      <td>Niska</td>
+    </tr>
+    <tr>
+      <td>SMACSS</td>
+      <td>Średnich projektów z zespołem</td>
+      <td>Średnia</td>
+    </tr>
+    <tr>
+      <td>ITCSS</td>
+      <td>Dużych projektów enterprise</td>
+      <td>Wysoka</td>
+    </tr>
+    <tr>
+      <td>Utility-First</td>
+      <td>Szybkiego prototypowania, React/Vue</td>
+      <td>Średnia</td>
+    </tr>
+    <tr>
+      <td>CSS Modules</td>
+      <td>Aplikacji komponentowych (React)</td>
+      <td>Niska</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="tip">
+  💡 <strong>Praktyczna rada:</strong> Na start naucz się BEM — jest prosty,
+  działa wszędzie i rozwiązuje 80% problemów z organizacją CSS.
+  Reszta metodologii to rozszerzenia tej samej idei: <em>nadaj klasom
+  znaczące, przewidywalne nazwy i trzymaj się konwencji</em>.
+</div>
+
+{% endblock %}

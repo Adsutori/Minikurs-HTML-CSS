@@ -1,0 +1,132 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Selektory CSS</h1>
+
+<p>
+  Selektor to część reguły CSS, która mówi przeglądarce <em>do którego elementu</em>
+  zastosować styl. Znajomość selektorów to fundament pisania efektywnego CSS.
+</p>
+
+<h2>Selektory podstawowe</h2>
+
+<h3>Selektor elementu</h3>
+<pre><code>/* Wszystkie akapity na stronie */
+p {
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Wszystkie nagłówki h2 */
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}</code></pre>
+
+<h3>Selektor klasy</h3>
+<pre><code>/* Element z class="btn" */
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Można łączyć — p z klasą .intro */
+p.intro {
+  font-size: 1.2rem;
+  font-weight: 500;
+}</code></pre>
+
+<h3>Selektor ID</h3>
+<pre><code>/* Element z id="header" */
+#header {
+  background: #1a1a2e;
+  height: 60px;
+}</code></pre>
+
+<h3>Selektor uniwersalny</h3>
+<pre><code>/* Wszystkie elementy na stronie */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}</code></pre>
+
+<h2>Selektory złożone</h2>
+
+<h3>Selektor potomka (spacja)</h3>
+<pre><code>/* Każdy &lt;a&gt; wewnątrz &lt;nav&gt; — na dowolnym poziomie */
+nav a {
+  text-decoration: none;
+  color: white;
+}</code></pre>
+
+<h3>Selektor bezpośredniego dziecka (&gt;)</h3>
+<pre><code>/* Tylko &lt;li&gt; będące bezpośrednim dzieckiem &lt;ul&gt; */
+ul > li {
+  list-style: disc;
+  padding: 4px 0;
+}</code></pre>
+
+<h3>Selektor sąsiada (+)</h3>
+<pre><code>/* &lt;p&gt; bezpośrednio po &lt;h2&gt; */
+h2 + p {
+  margin-top: 8px;
+  color: #666;
+}</code></pre>
+
+<h3>Selektor rodzeństwa (~)</h3>
+<pre><code>/* Wszystkie &lt;p&gt; po &lt;h2&gt; (nie tylko bezpośredni) */
+h2 ~ p {
+  color: #555;
+}</code></pre>
+
+<h2>Selektory atrybutów</h2>
+<pre><code>/* Element z atrybutem href */
+a[href] { color: blue; }
+
+/* Dokładna wartość atrybutu */
+input[type="email"] { border-color: green; }
+
+/* Atrybut zaczyna się od "https" */
+a[href^="https"] { color: green; }
+
+/* Atrybut kończy się na ".pdf" */
+a[href$=".pdf"] { color: red; }
+
+/* Atrybut zawiera "google" */
+a[href*="google"] { font-weight: bold; }</code></pre>
+
+<h2>Grupowanie selektorów</h2>
+<pre><code>/* Ten sam styl dla wielu selektorów — oddziel przecinkiem */
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.2;
+  color: #111;
+}</code></pre>
+
+<h2>Specyficzność selektorów</h2>
+<p>Gdy kilka reguł pasuje do tego samego elementu, wygrywa ta o wyższej specyficzności:</p>
+<table>
+  <thead>
+    <tr><th>Selektor</th><th>Punkty</th><th>Przykład</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Inline style</td><td>1000</td><td><code>style="color:red"</code></td></tr>
+    <tr><td>ID</td><td>100</td><td><code>#header</code></td></tr>
+    <tr><td>Klasa / atrybut / pseudoklasa</td><td>10</td><td><code>.btn</code>, <code>[type]</code>, <code>:hover</code></td></tr>
+    <tr><td>Element / pseudoelement</td><td>1</td><td><code>p</code>, <code>::before</code></td></tr>
+    <tr><td>Uniwersalny *</td><td>0</td><td><code>*</code></td></tr>
+  </tbody>
+</table>
+
+<div class="tip">
+  💡 <strong>Zasada:</strong> Unikaj używania ID w CSS — mają zbyt wysoką specyficzność
+  i trudno je nadpisać. Używaj klas. Nigdy nie używaj <code>!important</code>
+  jako rozwiązania problemów ze specyficznością — to tylko maskuje prawdziwy problem.
+</div>
+
+{% endblock %}

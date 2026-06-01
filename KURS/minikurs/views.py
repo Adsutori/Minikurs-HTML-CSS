@@ -7,7 +7,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.utils import timezone
 import json
-
+from minikurs.models import Course, Lesson, Enrollment, LessonProgress
 from .models import Course, Lesson, Enrollment, LessonProgress
 
 
@@ -196,14 +196,14 @@ def kontakt(request):
 # ================================================================
 @login_required
 def dashboard(request):
+    # Wszystkie enrollmenty — active=True
     enrollments = Enrollment.objects.filter(
         user=request.user, active=True
-    ).select_related('course')
+    ).select_related('course').order_by('course__order')
 
-    # Postęp per kurs
     enrollments_data = []
-    total_done  = 0
-    total_all   = 0
+    total_done = 0
+    total_all  = 0
 
     for enrollment in enrollments:
         lessons_count = enrollment.course.get_lessons().count()
@@ -221,14 +221,16 @@ def dashboard(request):
             'progress':      enrollment.progress_percent(),
         })
 
-    # Ostatnia aktywność
+    # Ostatnia aktywność — 15 ostatnich wpisów
     recent_progress = LessonProgress.objects.filter(
         user=request.user
     ).select_related('lesson__course').order_by('-visited_at')[:15]
 
-    # Kursy dostępne (niezapisane)
-    enrolled_course_ids = enrollments.values_list('course_id', flat=True)
-    available_courses   = Course.objects.exclude(id__in=enrolled_course_ids)
+    # Kursy dostępne (niezapisane lub active=False)
+    enrolled_course_ids = Enrollment.objects.filter(
+        user=request.user, active=True
+    ).values_list('course_id', flat=True)
+    available_courses = Course.objects.exclude(id__in=enrolled_course_ids)
 
     # Globalny procent
     global_percent = round((total_done / total_all) * 100) if total_all else 0
@@ -240,6 +242,7 @@ def dashboard(request):
         'global_percent':    global_percent,
         'total_done':        total_done,
         'total_all':         total_all,
+        'certificates':      [],   # podłącz gdy będzie model Certificate
     })
 
 
@@ -330,33 +333,47 @@ def lekcja(request, course_slug, lesson_slug):
     course = get_object_or_404(Course, slug=course_slug)
     lesson = get_object_or_404(Lesson, course=course, slug=lesson_slug, published=True)
 
+    # Sprawdź czy użytkownik jest zapisany — jeśli nie, przekieruj
     enrollment = Enrollment.objects.filter(
         user=request.user, course=course, active=True
     ).first()
     if not enrollment:
-        messages.info(request, 'Zapisz się na kurs, aby śledzić postęp.')
+        messages.warning(request, f'Musisz zapisać się na kurs „{course.title}", aby przeglądać lekcje.')
+        return redirect('minikurs:kurs_detail', course_slug=course_slug)
 
-    # Oznacz jako odwiedzoną
-    lp, _ = LessonProgress.objects.get_or_create(
-        user=request.user, lesson=lesson
+    # Zapisz postęp odwiedzin
+    progress, _ = LessonProgress.objects.get_or_create(
+        user=request.user,
+        lesson=lesson,
     )
+    LessonProgress.objects.filter(pk=progress.pk).update(visited_at=timezone.now())
 
-    # Prev / next
-    lessons     = list(course.get_lessons())
-    idx         = next((i for i, l in enumerate(lessons) if l.id == lesson.id), 0)
-    prev_lesson = lessons[idx - 1] if idx > 0 else None
-    next_lesson = lessons[idx + 1] if idx < len(lessons) - 1 else None
+    lessons       = list(course.get_lessons())
+    current_index = next((i for i, l in enumerate(lessons) if l.pk == lesson.pk), 0)
+    prev_lesson   = lessons[current_index - 1] if current_index > 0 else None
+    next_lesson   = lessons[current_index + 1] if current_index < len(lessons) - 1 else None
+
+    total = len(lessons)
+    done  = LessonProgress.objects.filter(
+        user=request.user,
+        lesson__course=course,
+        completed=True
+    ).count()
+    course_progress = round((done / total) * 100) if total else 0
 
     return render(request, lesson.template, {
-        'course':       course,
-        'lesson':       lesson,
-        'progress':     lp,
-        'enrollment':   enrollment,
-        'prev_lesson':  prev_lesson,
-        'next_lesson':  next_lesson,
-        'lessons':      lessons,
-        'lesson_index': idx,
+        'course':          course,
+        'lesson':          lesson,
+        'enrollment':      enrollment,
+        'prev_lesson':     prev_lesson,
+        'next_lesson':     next_lesson,
+        'lessons':         lessons,
+        'progress':        progress,
+        'course_progress': course_progress,
+        'done_count':      done,
+        'total_count':     total,
     })
+
 
 
 @login_required
@@ -380,24 +397,45 @@ def toggle_complete(request, course_slug, lesson_slug):
 def enroll(request, course_slug):
     course = get_object_or_404(Course, slug=course_slug)
     enrollment, created = Enrollment.objects.get_or_create(
-        user=request.user, course=course,
+        user=request.user,
+        course=course,
         defaults={'active': True}
     )
-    if not created:
+    if not enrollment.active:
         enrollment.active = True
-        enrollment.save()
-    messages.success(request, f'Zapisano na kurs: {course.title}!')
-    return redirect('minikurs:kurs_detail', course_slug=course_slug)
+        enrollment.save(update_fields=['active'])
+
+    if created:
+        messages.success(request, f'Zapisano na kurs „{course.title}"!')
+    else:
+        messages.info(request, f'Jesteś już zapisany na kurs „{course.title}".')
+
+    return redirect('minikurs:kurs_detail', course_slug=course_slug)  # ← była zła nazwa
+
 
 
 @login_required
 def unenroll(request, course_slug):
     course = get_object_or_404(Course, slug=course_slug)
+
+    # Usuń cały postęp lekcji dla tego kursu
+    deleted_count, _ = LessonProgress.objects.filter(
+        user=request.user,
+        lesson__course=course
+    ).delete()
+
+    # Dezaktywuj enrollment
     Enrollment.objects.filter(
         user=request.user, course=course
     ).update(active=False)
-    messages.info(request, f'Zrezygnowano z kursu: {course.title}.')
+
+    messages.info(
+        request,
+        f'Zrezygnowano z kursu „{course.title}". '
+        f'Usunięto postęp ({deleted_count} lekcji).'
+    )
     return redirect('minikurs:kursy_lista')
+
 
 
 # ================================================================
@@ -409,11 +447,50 @@ def track_progress_ajax(request):
         return JsonResponse({'status': 'skip'})
 
     try:
-        data  = json.loads(request.body)
-        slug  = data.get('chapter', '').strip()
+        data = json.loads(request.body)
+        slug = data.get('chapter', '').strip()
     except (json.JSONDecodeError, AttributeError):
         return JsonResponse({'status': 'error'}, status=400)
 
     lesson = Lesson.objects.filter(slug=slug).first()
     if not lesson:
-        return
+        return JsonResponse({'status': 'invalid'})  # ← brakowało return
+
+    lp, _ = LessonProgress.objects.get_or_create(
+        user=request.user,
+        lesson=lesson,
+    )
+
+    return JsonResponse({'status': 'ok'})
+
+
+
+@login_required
+def complete_lesson(request, course_slug, lesson_slug):
+    """Oznacz lekcję jako ukończoną — POST only."""
+    if request.method != 'POST':
+        return redirect('minikurs:lekcja', course_slug=course_slug, lesson_slug=lesson_slug)
+
+    course = get_object_or_404(Course, slug=course_slug)
+    lesson = get_object_or_404(Lesson, course=course, slug=lesson_slug)
+
+    progress, _ = LessonProgress.objects.get_or_create(
+        user=request.user,
+        lesson=lesson,
+    )
+    if not progress.completed:
+        progress.completed    = True
+        progress.completed_at = timezone.now()
+        progress.save(update_fields=['completed', 'completed_at', 'visited_at'])
+
+    # Przekieruj do następnej lekcji lub z powrotem
+    lessons       = list(course.get_lessons())
+    current_index = next((i for i, l in enumerate(lessons) if l.pk == lesson.pk), 0)
+
+    if current_index < len(lessons) - 1:
+        next_lesson = lessons[current_index + 1]
+        return redirect('minikurs:lekcja',
+                        course_slug=course_slug,
+                        lesson_slug=next_lesson.slug)
+
+    return redirect('minikurs:kurs', course_slug=course_slug)

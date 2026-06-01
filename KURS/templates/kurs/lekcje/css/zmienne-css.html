@@ -1,0 +1,167 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Zmienne CSS (Custom Properties)</h1>
+
+<p>
+  Zmienne CSS — zwane też <strong>Custom Properties</strong> — pozwalają przechowywać
+  wartości i reużywać je w całym arkuszu stylów. To fundament każdego
+  nowoczesnego design systemu.
+</p>
+
+<h2>Deklaracja i użycie</h2>
+<pre><code>/* Deklaracja — zawsze zaczyna się od -- */
+:root {
+  --color-primary: #7c3aed;
+  --color-secondary: #a855f7;
+  --font-size-base: 1rem;
+  --spacing-md: 16px;
+  --border-radius: 8px;
+}
+
+/* Użycie — funkcja var() */
+button {
+  background: var(--color-primary);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-base);
+}</code></pre>
+
+<h2>Wartość zapasowa (fallback)</h2>
+<pre><code>/* Drugi argument var() to wartość zapasowa */
+color: var(--color-accent, #7c3aed);
+font-size: var(--font-size-xl, 1.5rem);
+
+/* Zagnieżdżone fallbacki */
+color: var(--color-brand, var(--color-primary, #7c3aed));</code></pre>
+
+<h2>Zasięg zmiennych</h2>
+<pre><code>/* :root — globalne (dostępne wszędzie) */
+:root {
+  --gap: 24px;
+}
+
+/* Lokalne — tylko w danym komponencie i jego dzieciach */
+.card {
+  --card-padding: 20px;
+  --card-bg: rgba(22, 22, 31, 0.8);
+  padding: var(--card-padding);
+  background: var(--card-bg);
+}
+
+/* Nadpisanie lokalne */
+.card.card--compact {
+  --card-padding: 12px; /* nadpisuje tylko w tym kontekście */
+}</code></pre>
+
+<h2>Dynamiczna zmiana przez JavaScript</h2>
+<pre><code>// Odczyt zmiennej CSS
+const root = document.documentElement;
+const color = getComputedStyle(root)
+  .getPropertyValue('--color-primary').trim();
+
+// Ustawienie zmiennej CSS
+root.style.setProperty('--color-primary', '#e11d48');
+
+// Na konkretnym elemencie
+const card = document.querySelector('.card');
+card.style.setProperty('--card-padding', '8px');</code></pre>
+
+<h2>Dark Mode z zmiennymi CSS</h2>
+<pre><code>:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --border: #e5e7eb;
+}
+
+[data-theme="dark"] {
+  --bg: #0a0a0f;
+  --text: #f1f5f9;
+  --border: #1e1e2e;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  border-color: var(--border);
+}</code></pre>
+<pre><code>// Przełącznik motywu
+const toggle = document.querySelector('#theme-toggle');
+toggle.addEventListener('click', () => {
+  const current = document.documentElement.dataset.theme;
+  document.documentElement.dataset.theme =
+    current === 'dark' ? 'light' : 'dark';
+});</code></pre>
+
+<h2>Zmienne w obliczeniach calc()</h2>
+<pre><code>:root {
+  --spacing-unit: 8px;
+  --columns: 3;
+  --gap: 24px;
+}
+
+.item {
+  width: calc((100% - var(--gap) * (var(--columns) - 1)) / var(--columns));
+  padding: calc(var(--spacing-unit) * 2);
+  margin-bottom: calc(var(--spacing-unit) * 3);
+}</code></pre>
+
+<h2>Animacja zmiennych CSS</h2>
+<pre><code>/* Zmienne CSS nie animują się bezpośrednio, ale można animować właściwości */
+.btn {
+  --glow-opacity: 0;
+  box-shadow: 0 0 20px rgba(124, 58, 237, var(--glow-opacity));
+  transition: box-shadow 0.3s ease;
+}
+
+.btn:hover {
+  --glow-opacity: 0.6;
+}</code></pre>
+
+<h2>Przykład kompletnego design systemu</h2>
+<pre><code>:root {
+  /* Kolory */
+  --clr-bg-primary:   #0a0a0f;
+  --clr-bg-card:      #16161f;
+  --clr-accent:       #7c3aed;
+  --clr-accent-light: #a855f7;
+  --clr-text:         #f1f5f9;
+  --clr-text-muted:   #94a3b8;
+
+  /* Typografia */
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+  --shadow-glow: 0 0 20px rgba(124,58,237,0.4);
+}</code></pre>
+
+<div class="tip">
+  💡 <strong>Konwencja nazewnictwa:</strong> Używaj nazw semantycznych zamiast
+  opisowych — <code>--color-primary</code> zamiast <code>--color-purple</code>.
+  Gdy zmienisz kolor marki z fioletowego na niebieski, nie musisz zmieniać
+  nazwy zmiennej w całym projekcie.
+</div>
+
+{% endblock %}

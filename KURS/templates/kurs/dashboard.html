@@ -7,7 +7,7 @@
 <div class="page-header">
   <h1>📊 Dashboard</h1>
   <p>Witaj, <strong style="color:var(--accent-secondary);">{{ user.username }}</strong>!
-     Oto Twój postęp w kursie.</p>
+     Oto Twój postęp w kursach.</p>
 </div>
 
 <!-- KARTY STATYSTYK -->
@@ -16,17 +16,17 @@
   <div class="content-card" style="text-align:center;">
     <div style="font-size:2.5rem; margin-bottom:8px;">📖</div>
     <div style="font-size:var(--text-3xl); font-weight:800;" class="gradient-text">
-      {{ progress_count }}/13
+      {{ total_done }}/{{ total_all }}
     </div>
-    <div style="font-size:var(--text-sm); color:var(--text-muted);">Rozdziałów ukończonych</div>
+    <div style="font-size:var(--text-sm); color:var(--text-muted);">Lekcji ukończonych</div>
   </div>
 
   <div class="content-card" style="text-align:center;">
     <div style="font-size:2.5rem; margin-bottom:8px;">🎯</div>
     <div style="font-size:var(--text-3xl); font-weight:800;" class="gradient-text">
-      {{ progress_percent }}%
+      {{ global_percent }}%
     </div>
-    <div style="font-size:var(--text-sm); color:var(--text-muted);">Postęp kursu</div>
+    <div style="font-size:var(--text-sm); color:var(--text-muted);">Ogólny postęp</div>
   </div>
 
   <div class="content-card" style="text-align:center;">
@@ -42,13 +42,13 @@
 <!-- GŁÓWNY PROGRESS BAR -->
 <div class="content-card fade-in" style="margin-bottom:32px;">
   <h2 style="color:var(--accent-secondary); margin-bottom:20px;">📈 Ogólny postęp</h2>
-  <div class="progress-label">
-    <span style="color:var(--text-secondary);">Ukończone rozdziały</span>
-    <span style="color:var(--accent-secondary); font-weight:700;">{{ progress_percent }}%</span>
+  <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+    <span style="color:var(--text-secondary);">Ukończone lekcje</span>
+    <span style="color:var(--accent-secondary); font-weight:700;">{{ global_percent }}%</span>
   </div>
   <div class="progress-bar-track" style="height:12px; border-radius:6px;">
-    <div class="dashboard-progress-fill progress-bar-fill"
-         data-width="{{ progress_percent }}"
+    <div class="js-progress-bar"
+         data-width="{{ global_percent }}"
          style="height:100%; border-radius:6px; width:0%;
                 background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
                 transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);">
@@ -57,7 +57,7 @@
   <div style="display:flex; justify-content:space-between; margin-top:8px;
               font-size:var(--text-xs); color:var(--text-muted);">
     <span>0%</span>
-    <span>{{ progress_count }} / 13 rozdziałów</span>
+    <span>{{ total_done }} / {{ total_all }} lekcji</span>
     <span>100%</span>
   </div>
 </div>
@@ -66,52 +66,70 @@
 <div class="content-card fade-in" style="margin-bottom:32px;">
   <h2 style="color:var(--accent-secondary); margin-bottom:20px;">📚 Moje kursy</h2>
 
-  {% if enrollments %}
-    {% for enrollment in enrollments %}
+  {% if enrollments_data %}
+    {% for item in enrollments_data %}
     <div style="display:flex; align-items:center; justify-content:space-between;
                 padding:16px; background:rgba(124,58,237,0.06);
                 border:1px solid rgba(124,58,237,0.15); border-radius:var(--radius-md);
-                margin-bottom:12px;">
+                margin-bottom:12px; flex-wrap:wrap; gap:12px;">
+
       <div style="display:flex; align-items:center; gap:14px;">
         <div style="width:44px; height:44px; border-radius:50%;
                     background:var(--gradient-btn); display:flex;
-                    align-items:center; justify-content:center; font-size:1.2rem;">
-          {% if enrollment.course == 'html' %}📖
-          {% elif enrollment.course == 'css' %}🎨
-          {% else %}🏆{% endif %}
+                    align-items:center; justify-content:center; font-size:1.2rem;
+                    flex-shrink:0;">
+          {{ item.enrollment.course.icon }}
         </div>
         <div>
           <div style="font-weight:700; color:var(--text-primary); font-size:var(--text-sm);">
-            {{ enrollment.get_course_display }}
+            {{ item.enrollment.course.title }}
           </div>
           <div style="font-size:var(--text-xs); color:var(--text-muted);">
-            Zapisano: {{ enrollment.enrolled_at|date:"d.m.Y" }}
+            Zapisano: {{ item.enrollment.enrolled_at|date:"d.m.Y" }}
+          </div>
+          <div style="font-size:var(--text-xs); color:var(--text-muted); margin-top:2px;">
+            {{ item.done_count }} / {{ item.lessons_count }} lekcji ukończonych
           </div>
         </div>
       </div>
-      <div style="text-align:right;">
-        {% if enrollment.completed %}
+
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+        {% if item.enrollment.is_completed %}
           <span class="badge badge-success">✅ Ukończony</span>
         {% else %}
           <span class="badge badge-accent">⏳ W trakcie</span>
         {% endif %}
-        <div style="margin-top:8px;">
-          <div class="progress-bar-track" style="width:120px; height:6px;">
-            <div class="dashboard-progress-fill"
-                 data-width="{{ progress_percent }}"
+
+        <div style="width:140px;">
+          <div class="progress-bar-track" style="height:6px;">
+            <div class="js-progress-bar"
+                 data-width="{{ item.progress }}"
                  style="height:100%; border-radius:3px; width:0%;
                         background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
                         transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);">
             </div>
           </div>
+          <div style="font-size:var(--text-xs); color:var(--text-muted);
+                      margin-top:3px; text-align:right;">
+            {{ item.progress }}%
+          </div>
         </div>
+
+        <a href="{% url 'minikurs:kurs_detail' item.enrollment.course.slug %}"
+           class="btn btn-outline btn-sm">
+          Kontynuuj →
+        </a>
       </div>
+
     </div>
     {% endfor %}
   {% else %}
     <div style="text-align:center; padding:32px; color:var(--text-muted);">
       <div style="font-size:3rem; margin-bottom:12px;">📭</div>
       <p>Nie jesteś jeszcze zapisany na żaden kurs.</p>
+      <a href="{% url 'minikurs:kursy_lista' %}" class="btn btn-primary" style="margin-top:16px;">
+        Przeglądaj kursy →
+      </a>
     </div>
   {% endif %}
 </div>
@@ -126,16 +144,17 @@
     <div style="padding:20px; background:rgba(22,22,31,0.6);
                 border:1px solid var(--border); border-radius:var(--radius-md);
                 display:flex; flex-direction:column; gap:12px;">
-      <div style="font-size:2rem;">
-        {% if course.slug == 'html' %}📖
-        {% elif course.slug == 'css' %}🎨
-        {% else %}🏆{% endif %}
-      </div>
-      {{ course.icon }} {# jeśli masz pole icon w modelu #}
-      {{ course.title }}
-      <a href="{% url 'minikurs:enroll' course.slug %}">Zapisz się</a>
-        </div>
-        {% endfor %}
+      <div style="font-size:2rem;">{{ course.icon }}</div>
+      <div style="font-weight:700; color:var(--text-primary);">{{ course.title }}</div>
+      <p style="font-size:var(--text-sm); color:var(--text-muted); margin:0; flex:1;">
+        {{ course.description }}
+      </p>
+      <a href="{% url 'minikurs:enroll' course.slug %}"
+         class="btn btn-primary btn-sm" style="text-align:center;">
+        Zapisz się →
+      </a>
+    </div>
+    {% endfor %}
   </div>
 </div>
 {% endif %}
@@ -144,31 +163,38 @@
 <div class="content-card fade-in" style="margin-bottom:32px;">
   <h2 style="color:var(--accent-secondary); margin-bottom:20px;">🕐 Ostatnia aktywność</h2>
 
-  {% if progress %}
+  {% if recent_progress %}
     <div class="table-wrapper">
       <table>
         <thead>
           <tr>
-            <th>Rozdział</th>
+            <th>Kurs</th>
+            <th>Lekcja</th>
             <th>Data odwiedzin</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          {% for p in progress %}
+          {% for p in recent_progress %}
           <tr>
+            <td style="color:var(--text-muted); font-size:var(--text-xs); white-space:nowrap;">
+              {{ p.lesson.course.icon }} {{ p.lesson.course.title }}
+            </td>
             <td style="color:var(--text-primary); font-weight:500;">
-              {{ p.get_chapter_display }}
+              <a href="{% url 'minikurs:lekcja' p.lesson.course.slug p.lesson.slug %}"
+                 style="color:inherit; text-decoration:none;">
+                {{ p.lesson.title }}
+              </a>
             </td>
             <td style="color:var(--text-muted); font-size:var(--text-xs);
-                       font-family:'JetBrains Mono',monospace;">
+                       font-family:'JetBrains Mono',monospace; white-space:nowrap;">
               {{ p.visited_at|date:"d.m.Y H:i" }}
             </td>
             <td>
               {% if p.completed %}
-                <span class="badge badge-success">✅ Ukończony</span>
+                <span class="badge badge-success">✅ Ukończona</span>
               {% else %}
-                <span class="badge badge-accent">👁️ Odwiedzony</span>
+                <span class="badge badge-accent">👁️ Odwiedzona</span>
               {% endif %}
             </td>
           </tr>
@@ -194,14 +220,15 @@
 
   {% for cert in certificates %}
   <div style="display:flex; align-items:center; justify-content:space-between;
-              padding:20px; background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(168,85,247,0.05));
+              padding:20px;
+              background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(168,85,247,0.05));
               border:1px solid rgba(124,58,237,0.3); border-radius:var(--radius-md);
-              margin-bottom:12px;">
+              margin-bottom:12px; flex-wrap:wrap; gap:12px;">
     <div style="display:flex; align-items:center; gap:16px;">
       <div style="font-size:2.5rem;">🏆</div>
       <div>
         <div style="font-weight:700; color:var(--text-primary);">
-          {{ cert.enrollment.get_course_display }}
+          {{ cert.enrollment.course.title }}
         </div>
         <div style="font-size:var(--text-xs); color:var(--text-muted); margin-top:2px;">
           Wystawiony: {{ cert.issued_at|date:"d.m.Y" }}
@@ -221,5 +248,14 @@
 </div>
 {% endif %}
 
-{% endblock %}
+<!-- ANIMACJA PASKÓW POSTĘPU -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.js-progress-bar').forEach(bar => {
+      const target = parseFloat(bar.dataset.width) || 0;
+      setTimeout(() => { bar.style.width = target + '%'; }, 100);
+    });
+  });
+</script>
 
+{% endblock %}

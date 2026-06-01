@@ -1,0 +1,105 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Właściwość display</h1>
+
+<p>
+  <code>display</code> to jedna z najważniejszych właściwości CSS — decyduje o tym,
+  jak element jest renderowany i jak wchodzi w interakcję z innymi elementami.
+  Zmiana <code>display</code> całkowicie zmienia zachowanie elementu.
+</p>
+
+<h2>display: block</h2>
+<pre><code>div { display: block; }</code></pre>
+<ul>
+  <li>Zajmuje całą dostępną szerokość</li>
+  <li>Zaczyna się od nowej linii</li>
+  <li>Respektuje <code>width</code>, <code>height</code>, marginesy pionowe</li>
+  <li>Domyślne dla: <code>div</code>, <code>p</code>, <code>h1–h6</code>, <code>section</code>, <code>article</code></li>
+</ul>
+
+<h2>display: inline</h2>
+<pre><code>span { display: inline; }</code></pre>
+<ul>
+  <li>Zajmuje tylko tyle miejsca ile potrzebuje treść</li>
+  <li>Nie zaczyna nowej linii — płynie z tekstem</li>
+  <li><strong>Ignoruje</strong> <code>width</code>, <code>height</code>, marginesy pionowe</li>
+  <li>Domyślne dla: <code>span</code>, <code>a</code>, <code>strong</code>, <code>em</code>, <code>img</code></li>
+</ul>
+
+<h2>display: inline-block</h2>
+<pre><code>button { display: inline-block; }</code></pre>
+<ul>
+  <li>Płynie z tekstem jak <code>inline</code></li>
+  <li>Ale respektuje <code>width</code>, <code>height</code> i marginesy pionowe jak <code>block</code></li>
+  <li>Idealne dla przycisków, odznak, elementów nawigacji</li>
+</ul>
+
+<h2>display: none</h2>
+<pre><code>.hidden { display: none; }</code></pre>
+<ul>
+  <li>Całkowicie usuwa element z układu strony</li>
+  <li>Element nie zajmuje miejsca — jakby nie istniał</li>
+  <li>Różni się od <code>visibility: hidden</code> — tamto ukrywa ale zachowuje miejsce</li>
+</ul>
+
+<h2>display: flex</h2>
+<pre><code>.container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}</code></pre>
+<p>
+  Włącza Flexbox — jednowymiarowy system układu (oś pozioma lub pionowa).
+  Omówiony szczegółowo w lekcji <em>Flexbox</em>.
+</p>
+
+<h2>display: grid</h2>
+<pre><code>.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}</code></pre>
+<p>
+  Włącza CSS Grid — dwuwymiarowy system układu (wiersze i kolumny).
+  Omówiony szczegółowo w lekcji <em>CSS Grid</em>.
+</p>
+
+<h2>display: inline-flex i inline-grid</h2>
+<pre><code>/* Flex/Grid który płynie z tekstem jak inline */
+.badge { display: inline-flex; align-items: center; gap: 4px; }
+.mini-grid { display: inline-grid; grid-template-columns: 1fr 1fr; }</code></pre>
+
+<h2>display: contents</h2>
+<pre><code>/* Element "znika" — jego dzieci zachowują się jakby były bezpośrednio w rodzicu */
+.wrapper { display: contents; }</code></pre>
+
+<h2>visibility vs display: none</h2>
+<pre><code>/* Ukrywa element ale zachowuje jego miejsce w układzie */
+.invisible { visibility: hidden; }
+
+/* Całkowicie usuwa z układu — nie zajmuje miejsca */
+.gone { display: none; }
+
+/* Przezroczysty ale widoczny dla eventów */
+.transparent { opacity: 0; }</code></pre>
+
+<table>
+  <thead>
+    <tr><th>Właściwość</th><th>Widoczny?</th><th>Zajmuje miejsce?</th><th>Eventy?</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>display: none</code></td><td>❌</td><td>❌</td><td>❌</td></tr>
+    <tr><td><code>visibility: hidden</code></td><td>❌</td><td>✅</td><td>❌</td></tr>
+    <tr><td><code>opacity: 0</code></td><td>❌</td><td>✅</td><td>✅</td></tr>
+  </tbody>
+</table>
+
+<div class="tip">
+  💡 <strong>Najczęstszy błąd:</strong> Próba ustawienia <code>width</code> i <code>height</code>
+  na elemencie <code>inline</code> (np. <code>span</code>) i dziwienie się, że nie działa.
+  Zmień na <code>inline-block</code> lub <code>block</code>.
+</div>
+
+{% endblock %}

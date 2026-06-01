@@ -1,0 +1,134 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Filtry CSS</h1>
+
+<p>
+  Właściwość <code>filter</code> stosuje efekty graficzne bezpośrednio w CSS —
+  rozmycie, zmiana kontrastu, nasycenia, odcienia i wiele więcej.
+  <code>backdrop-filter</code> stosuje te efekty do tła za elementem.
+</p>
+
+<h2>filter — podstawowe funkcje</h2>
+<pre><code>/* Rozmycie */
+filter: blur(4px);
+filter: blur(0);   /* usuwa rozmycie */
+
+/* Jasność (0 = czarny, 1 = normalne, 2 = podwójnie jasny) */
+filter: brightness(0.8);
+filter: brightness(1.2);
+
+/* Kontrast */
+filter: contrast(1.5);
+filter: contrast(0.5);
+
+/* Nasycenie */
+filter: saturate(2);    /* bardziej nasycony */
+filter: saturate(0);    /* czarno-biały */
+filter: saturate(0.5);  /* wyblakły */
+
+/* Skala szarości */
+filter: grayscale(1);   /* pełna szarość */
+filter: grayscale(0.5); /* częściowa */
+
+/* Sepii */
+filter: sepia(1);
+filter: sepia(0.3);
+
+/* Inwersja kolorów */
+filter: invert(1);   /* negatyw */
+filter: invert(0.8);
+
+/* Obrót odcienia */
+filter: hue-rotate(90deg);
+filter: hue-rotate(180deg);
+
+/* Przezroczystość (jak opacity) */
+filter: opacity(0.5);
+
+/* Cień (jak box-shadow ale dla kształtu) */
+filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.5));</code></pre>
+
+<h2>Łączenie filtrów</h2>
+<pre><code>/* Wiele filtrów — oddzielone spacją */
+filter: grayscale(0.5) brightness(1.1) contrast(1.2);
+
+/* Efekt vintage */
+.vintage {
+  filter: sepia(0.4) saturate(1.2) brightness(0.9) contrast(1.1);
+}
+
+/* Efekt nocny */
+.night {
+  filter: brightness(0.6) saturate(0.8) hue-rotate(20deg);
+}
+
+/* Hover — przywróć kolory */
+.card img {
+  filter: grayscale(0.8) brightness(0.9);
+  transition: filter 0.3s ease;
+}
+.card:hover img {
+  filter: grayscale(0) brightness(1);
+}</code></pre>
+
+<h2>backdrop-filter — glassmorphism</h2>
+<pre><code>/* Stosuje filtr do tła ZA elementem */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); /* Safari */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  backdrop-filter: blur(8px) brightness(0.7);
+  -webkit-backdrop-filter: blur(8px) brightness(0.7);
+}
+
+/* Navbar z efektem szkła */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(10, 10, 15, 0.7);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border-bottom: 1px solid rgba(124, 58, 237, 0.15);
+}</code></pre>
+
+<h2>Animowanie filtrów</h2>
+<pre><code>/* Filtry można animować przez transition */
+.image {
+  filter: grayscale(1) brightness(0.8);
+  transition: filter 0.4s ease;
+}
+
+.image:hover {
+  filter: grayscale(0) brightness(1);
+}
+
+/* Animowany glow */
+@keyframes glow-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px rgba(124,58,237,0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(124,58,237,0.8));
+  }
+}
+
+.glowing-icon {
+  animation: glow-pulse 2s ease-in-out infinite;
+}</code></pre>
+
+<div class="tip">
+  💡 <strong>Wydajność:</strong> <code>backdrop-filter</code> jest kosztowny
+  obliczeniowo — używaj go z umiarem. Na starszych urządzeniach może powodować
+  spadki płynności. Zawsze testuj na słabszym sprzęcie.
+  Upewnij się też, że element za szkłem faktycznie ma jakąś treść —
+  inaczej efekt nie będzie widoczny.
+</div>
+
+{% endblock %}

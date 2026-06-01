@@ -1,0 +1,106 @@
+{% extends "kurs/lekcja_base.html" %}
+{% block lekcja_content %}
+
+<h1>Kolory w CSS</h1>
+
+<p>
+  CSS oferuje wiele formatów zapisu kolorów — od prostych nazw słownych,
+  przez szesnastkowe kody HEX, po nowoczesne funkcje <code>oklch()</code>.
+  Każdy format ma swoje zastosowanie.
+</p>
+
+<h2>Nazwy kolorów</h2>
+<pre><code>p { color: red; }
+h1 { color: navy; }
+div { background-color: lightgray; }
+button { background: transparent; }</code></pre>
+<p>CSS obsługuje 140 nazwanych kolorów — od <code>black</code> do <code>rebeccapurple</code>.</p>
+
+<h2>HEX — szesnastkowy</h2>
+<pre><code>/* Pełny zapis — #RRGGBB */
+color: #ff0000;   /* czerwony */
+color: #1a1a2e;   /* ciemny granat */
+color: #ffffff;   /* biały */
+
+/* Skrócony zapis — #RGB (gdy pary są identyczne) */
+color: #f00;      /* czerwony = #ff0000 */
+color: #fff;      /* biały = #ffffff */
+
+/* Z przezroczystością — #RRGGBBAA */
+color: #ff000080; /* czerwony 50% opacity */</code></pre>
+
+<h2>RGB i RGBA</h2>
+<pre><code>/* RGB — czerwony, zielony, niebieski (0–255) */
+color: rgb(255, 0, 0);       /* czerwony */
+color: rgb(26, 26, 46);      /* ciemny granat */
+
+/* RGBA — z kanałem alpha (0 = przezroczysty, 1 = pełny) */
+color: rgba(255, 0, 0, 0.5);    /* czerwony 50% */
+color: rgba(124, 58, 237, 0.15); /* fioletowy 15% */
+
+/* Nowoczesna składnia (CSS4) — spacje zamiast przecinków */
+color: rgb(255 0 0);
+color: rgb(255 0 0 / 50%);</code></pre>
+
+<h2>HSL i HSLA</h2>
+<p>
+  HSL — <strong>Hue</strong> (odcień 0–360°), <strong>Saturation</strong> (nasycenie 0–100%),
+  <strong>Lightness</strong> (jasność 0–100%). Intuicyjny do tworzenia palet kolorów.
+</p>
+<pre><code>/* HSL */
+color: hsl(0, 100%, 50%);    /* czerwony */
+color: hsl(270, 70%, 55%);   /* fioletowy */
+color: hsl(120, 60%, 40%);   /* zielony */
+
+/* HSLA — z przezroczystością */
+color: hsla(270, 70%, 55%, 0.8);
+
+/* Nowoczesna składnia */
+color: hsl(270 70% 55% / 80%);</code></pre>
+
+<h2>Nowoczesne formaty — oklch()</h2>
+<pre><code>/* oklch — perceptualnie jednolita przestrzeń kolorów */
+color: oklch(0.7 0.15 270);   /* fioletowy */
+color: oklch(0.5 0.2 30);     /* pomarańczowy */</code></pre>
+<p>
+  <code>oklch()</code> to przyszłość CSS — kolory wyglądają spójnie niezależnie od odcienia.
+  Obsługiwany przez wszystkie nowoczesne przeglądarki.
+</p>
+
+<h2>Właściwości kolorów</h2>
+<pre><code>div {
+  color: #333;                    /* kolor tekstu */
+  background-color: #f5f5f5;      /* kolor tła */
+  border-color: #ddd;             /* kolor obramowania */
+  outline-color: blue;            /* kolor outline */
+  text-decoration-color: red;     /* kolor podkreślenia */
+  caret-color: purple;            /* kursor w input */
+}</code></pre>
+
+<h2>Słowo kluczowe currentColor</h2>
+<pre><code>/* currentColor dziedziczy wartość właściwości color */
+.icon {
+  color: #7c3aed;
+  border: 2px solid currentColor; /* = #7c3aed */
+  fill: currentColor;             /* dla SVG */
+}</code></pre>
+
+<h2>Przezroczystość — opacity vs alpha</h2>
+<pre><code>/* opacity — wpływa na cały element i jego dzieci */
+.modal-overlay {
+  background: black;
+  opacity: 0.5; /* cały element staje się półprzezroczysty */
+}
+
+/* alpha w kolorze — tylko tło, dzieci niezmienione */
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.5); /* tylko tło */
+}</code></pre>
+
+<div class="tip">
+  💡 <strong>Praktyczna wskazówka:</strong> Do budowania design systemu używaj
+  zmiennych CSS z kolorami w formacie HSL — łatwo tworzyć warianty (jaśniejszy/ciemniejszy)
+  zmieniając tylko wartość jasności: <code>hsl(270 70% 55%)</code> → <code>hsl(270 70% 40%)</code>.
+</div>
+
+{% endblock %}
