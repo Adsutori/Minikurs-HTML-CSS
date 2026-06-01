@@ -1,0 +1,49 @@
+- WSZEDZIE MA BYC FAVICONA I ZMIANA KOLORYSTYKI I/LUB GRUBOSCI SUWAKA
+
+- MA BYC STRONA WEJSCIOWA (PRZED STRONĄ GLOWNĄ):
+    - tytul 'Minikurs HTML5 i CSS3' - w title to samo
+    - dodac jakies elementy graficzne, moze jakis fajny background 
+    - na dole IMIE, KLASA, ZNAK COPYRIGHTS, KLASA
+    - TO MA BYC LANDING PAGE - TROCHE JAKIEGOS 'MARKETINGU' (zachecajacy do nauki kodowania i zachecajacy akurat do korzystania z tego kursu, ale darmowy - w pelni darmowy caly kurs - tworzony by popularyzowac nauke), co mozna wyciagnac z tego kursu i takie tam
+
+- STRONA GLOWNA:
+    - ma byc 13 zakladek:
+        - glowna:
+            - na stronie glownej moze byc strona trójdzielna - po lewej ma byc sidebar z linkami (np strona glowna, html, css, sprawdzian praktyczny (ten ktory pisalismy na poczatku roku), projekty (lista, tabela z kolorami itp), o mnie,)
+            - na poczatku mają byc 4 zdania wstepu
+            - dodac wideo 'czym jest html?' - 3 minuty od miroslawa zelenta
+            - sekcja 'sprawdz czego mozesz sie nauczyc' (robert robil zdjecie, poprosic o to zeby zobaczyc jak to wygladac) - tam maja byc screeny kazdej z 7 prac (te ktore robilismy przez caly rok, takze sprawdzian praktyczny) - mamy osadzic i podlinkowac te prace ktore robilismy - kazda z tych naszych prac ma byc opisana (czego uczy, jak te elementry ktore tam są wykorzystuje sie na stronach)
+        - poradnik html / html
+        - poradnik css / css
+        - sprawdzian
+        - lista
+        - tabela z kolorami
+        - tabele listy lacza
+        - multimedia
+        - formularze (i tu rozwijamy na formularze 1 i formularze 2 - nazwy moga byc np Resumo, Kwestionariusz Osobowy)
+        - o mnie
+            - troche sie przedstawic 
+            - min 3 grafiki - jpg, png i gif, a do tego emoji
+            - jedna dowolna lista
+            - min jeden odtwarzacz video - z dysku
+            - jeden odtwarzacz audio - tabela
+            - tabela (okolo 5x6):
+                - pierwsza kolumna lp. z rozwinieciem skrotu
+                - 1 dowolna grafika
+                - 1 dowolny link
+            - 5 odsyłaczy zewnetrznych
+            - 2 odsylacze wewnetrzne
+        - linki 
+        - kontakt
+            - imie nazwisko
+            - szkola i klasa
+            - adres (moze byc fake)
+            - email
+            - nr telefonu (moze byc fake)
+            - mapa google maps z pinezką na technikum kasprzaka w warszawie (ma przenosic do tej mapy w podstronie multimedia - na dole ma byc tez w multimediach napis STRONA KONTAKT) 
+            - klikajac na miejsce zamieszkania ma przenosic do pracy multimedia - trasa rowerowa z mojego miejsaca zamieszkania do kasprzaka
+- w poradniku html ma byc: wstep, tekst, znaki, listy, tabele, hiperlacza, grafika, multimedia, inputy, formularze, atrybuty
+
+- DODATKOWO:
+    - moge zrobic np logowanie, zachowywanie progresu usera, jakis progressbar usera itp, oprocz tego wybrane kursy (user moze wybrac np czy chce enrollowac kurs HTML, czy moze CSS)
+    - po zakonczeniu kursu moze byc jakis np certyfikat dla usera (to w django)
