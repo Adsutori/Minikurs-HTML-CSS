@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Krzysztof Januszewski 3F">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista - Krzysztof Januszewski 3F</title>
+  <link rel="icon" type="image/png" href="images/favicon.ico">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div style="margin-top:0.75vh;" class="menu" style="color: white">
+      <a href="#wstep" class="nav-link">Wstęp</a> |
+      <div class="nav-dropdown">
+        <a href="#europa" class="nav-link">Europa</a>
+        <div class="dropdown-content">
+          <a href="#polska">Polska</a>
+          <a href="#wlochy">Włochy</a>
+          <a href="#hiszpania">Hiszpania</a>
+        </div>
+      </div>
+      |
+      <div class="nav-dropdown">
+        <a href="#azja" class="nav-link">Azja</a>
+        <div class="dropdown-content">
+          <a href="#indonezja">Indonezja</a>
+          <a href="#wietnam">Wietnam</a>
+          <a href="#nepal">Nepal</a>
+        </div>
+      </div>
+      |
+      <div class="nav-dropdown">
+        <a href="#afryka" class="nav-link">Afryka</a>
+        <div class="dropdown-content">
+          <a href="#egipt">Egipt</a>
+          <a href="#tanzania">Tanzania</a>
+          <a href="#madagaskar">Madagaskar</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="scroll-container" id="home">
+    <div class="content">
+      <div class="home">
+        <p style="text-align: center; margin-top:19vh; margin-bottom: 8vh; color: white; font-size: 4.5vw; font-weight: 500;">Wyrusz w podróż<br>po wybranych kontynentych!</p>
+        <a href="#wstep">
+          <center><img class="bounce" style="margin-bottom: 15vh; width: 8vw; height: 8vw;" src="images/down.png" title="Przewiń w dół" /></center>
+        </a>
+      </div>
+
+      <section id="wstep">
+      <div style="height: 10vh;"></div>
+      <div class="list" style="text-align: center; margin-left: 5vw; margin-right: 5vw; margin-bottom: 10vh;">
+        Zapraszam Cię do wirtualnej wyprawy przez różnorodne krajobrazy i kultury świata. Strona ta prezentuje wybrane miejsca Europy, Azji i Afryki w formie uporządkowanej, interaktywnej listy. Każdy region został przedstawiony poprzez charakterystyczne miasta, zabytki oraz obszary przyrodnicze. W Europie zobaczysz między innymi historyczne centrum Warszawa, starożytne dziedzictwo Rzym oraz wyjątkowy klimat Granada. Azja ukazuje kontrasty – od świątyń w Hội An po himalajskie przestrzenie regionu Khumbu. W Afryce poznasz monumentalne zabytki Giza oraz naturalne symbole, takie jak Kilimanjaro. Każde miejsce zostało opatrzone krótkim opisem, który przybliża jego charakter i znaczenie. Struktura strony pozwala łatwo przechodzić między kontynentami i krajami. Projekt łączy elementy geografii, kultury i przyrody w jednej spójnej prezentacji. To cyfrowa mapa inspiracji dla osób ciekawych świata i jego niezwykłej różnorodności.
+      </div>
+      </section>
+
+      <a href="#europa">
+          <center><img class="bounce" style="margin-bottom: 15vh; height: 8vw;" src="images/down.png" title="Przewiń w dół" /></center>
+      </a>
+
+      <div class="list" style="margin-bottom: 5%;">
+        <ol style="font-size: 2vw;">
+          <section id="europa">
+          <li>Europa
+            <ol type="a"  style="font-size: 1.8vw;">
+              <li id="polska">Polska
+                <ul  style="font-size: 1.6vw;">
+                  <li>Tatry
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Czarny Staw Polski<br>
+                        <img src="images/content/tatry_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Czarny Staw leży w surowym, wysokogórskim otoczeniu, zamknięty stromymi ścianami granitowych szczytów. Tafla wody działa jak naturalne lustro, w którym odbijają się skały, chmury i zmieniające się światło. Panuje tu cisza przerywana jedynie dźwiękami wiatru i spływających potoków. To miejsce sprawia wrażenie niemal nietkniętego, silnie związanego z pierwotnym charakterem Tatr."></li>
+                      <li type="disc">Morskie Oko<br>
+                        <img src="images/content/tatry_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Morskie Oko zachwyca rozległą powierzchnią wody i monumentalną oprawą górskich ścian. Krajobraz jest tu bardziej otwarty, a jednocześnie niezwykle spójny i harmonijny. W zależności od pory dnia jezioro zmienia kolor, od głębokiego granatu po jasne odcienie zieleni. Całość tworzy jedno z najbardziej rozpoznawalnych tatrzańskich pejzaży."></li>
+                      <li type="disc">Panorama<br>
+                        <img src="images/content/tatry_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Panorama Tatr odsłania pełną skalę tego pasma — kontrast łagodnych dolin i ostrych, skalistych grani. Z tej perspektywy wyraźnie widać alpejski charakter gór oraz ich surową formę. Światło i pogoda nieustannie modelują krajobraz, nadając mu zmienność i głębię. To widok, który najlepiej oddaje potęgę i wyjątkowość Tatr."></li>
+                    </ul></li>
+                  <li>Kraków
+                    <ul class="photo-row"  style="font-size: 1.6vw;">
+                      <li type="disc">Ulica Floriańska<br>
+                        <img src="images/content/krakow_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Ulica Floriańska prowadzi wprost do serca Krakowa, łącząc dawną Bramę Floriańską z Rynkiem Głównym. Zabytkowe kamienice, sklepy i kawiarnie tworzą tu żywą, miejską przestrzeń o wielowiekowej historii. Ruch pieszych i dźwięki miasta splatają się z architekturą, która zachowała swój historyczny charakter. To jedna z najbardziej rozpoznawalnych ulic Krakowa, pełna codziennego życia i tradycji."></li>
+                      <li type="disc">Wzgórze Wawelskie<br>
+                        <img src="images/content/krakow_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Wzgórze Wawelskie dominuje nad miastem, wznosząc się spokojnie nad nurtem Wisły. Zamek i katedra tworzą monumentalny zespół architektoniczny, który od wieków wyznacza symboliczne centrum Krakowa. Otoczenie zieleni i szerokie widoki nadają temu miejscu wyjątkowy, niemal ceremonialny charakter. Całość łączy historię, architekturę i naturalne położenie w jedną spójną przestrzeń."></li>
+                      <li type="disc">Stare Miasto<br>
+                        <img src="images/content/krakow_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Stare Miasto w Krakowie zachwyca regularnym układem ulic, kamienicami o różnorodnych fasadach i licznymi zabytkami skupionymi wokół Rynku. Spacerując jego uliczkami, łatwo zauważyć, jak historia przenika codzienne życie miasta. Detale architektoniczne, place i zaułki tworzą harmonijną całość o wyjątkowym klimacie. To przestrzeń, w której przeszłość i teraźniejszość naturalnie się przenikają."></li>
+                      </ul>
+                  <li>Warszawa
+                    <ul class="photo-row"  style="font-size: 1.6vw;">
+                      <li type="disc">Stare Miasto<br>
+                        <img src="images/content/warszawa_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Warszawska Starówka pokazuje zupełnie inne oblicze miasta — pełne historii, kolorowych kamienic i brukowanych uliczek. Mimo burzliwej przeszłości odtworzono ją z niezwykłą pieczołowitością, dzięki czemu dziś tętni życiem i zachwyca odwiedzających. Spacerując jej zakamarkami, można poczuć klimat dawnych wieków, jednocześnie obserwując puls współczesnego miasta. To tutaj wiele osób po raz pierwszy odkrywa wyjątkowy charakter Warszawy — ciepły, odważny i głęboko zakorzeniony w tradycji."></li>
+                      <li type="disc">Łazienki Królewskie<br>
+                        <img src="images/content/warszawa_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Łazienki Królewskie odsłaniają spokojne, zielone oblicze Warszawy — eleganckie pałace, rozległe ogrody i alejki pełne światła. To miejsce, gdzie historia spotyka się z naturą, tworząc idealne warunki do odpoczynku i refleksji. Śpiew ptaków, szmer wody i majestatyczne pawie nadają temu parkowi klimat niemal baśniowy."></li>
+                      <li type="disc">Panorama<br>
+                        <img src="images/content/warszawa_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Warszawa zachwyca swoim współczesnym obliczem — strzelistymi wieżowcami, przeszklonymi fasadami i przestrzenią pełną światła. W centrum miasta czuć energię metropolii, która nieustannie się rozwija i zmienia. To miejsce, gdzie tradycja spotyka się z nowoczesnością, a każda ulica opowiada o ambicji i dynamice stolicy."></li>
+                    </ul>
+                </ul>
+              <li id="wlochy">Włochy
+                <ul style="font-size: 1.6vw;">
+                  <li>Rzym
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Panorama<br>
+                        <img src="images/content/rzym_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Rzym zachwyca swoją rozległą panoramą — dachami w ciepłych barwach, strzelistymi kopułami i plątaniną ulic, które kryją historię sięgającą tysiącleci. Z wysokości widać tu niezwykłe połączenie starożytności i współczesnego życia, pulsującego w rytmie południowego miasta. To miejsce, w którym każdy widok opowiada inną historię, zachęcając do odkrywania go krok po kroku."></li>
+                      <li type="disc">Forum Romanum i Koloseum<br>
+                        <img src="images/content/rzym_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Forum Romanum odsłania monumentalne oblicze Wiecznego Miasta — kolumny, świątynie i łuki triumfalne przypominają o dawnej potędze imperium. W tle majestatycznie wznosi się Koloseum, symbol historii, która przetrwała wieki i nadal robi niezwykłe wrażenie. Spacer pośród tych ruin to podróż do czasu, w którym kształtowała się kultura całej Europy."></li>
+                      <li type="disc">Schody Hiszpańskie<br>
+                        <img src="images/content/rzym_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Schody Hiszpańskie tworzą charakterystyczne połączenie architektury i miejskiej przestrzeni, łagodnie wspinając się od placu Hiszpańskiego ku kościołowi Trinità dei Monti. Ich szeroka, tarasowa forma sprawia, że są nie tylko ciągiem komunikacyjnym, ale także miejscem spotkań i odpoczynku. Otaczające je eleganckie kamienice, detale balustrad i pobliska fontanna nadają temu miejscu wyjątkowy, rzymski klimat. Całość wpisuje się naturalnie w rytm miasta, łącząc codzienne życie z historycznym krajobrazem."></li>
+                      </ul>
+                  <li>Neapol
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Panorama z Wezuwiuszem<br>
+                        <img src="images/content/neapol_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Widok na Neapol z zatoką i Wezuwiuszem w tle robi wrażenie już od pierwszej chwili — to sceneria, w której potęga natury spotyka się z pulsującym miastem. Wulkan wyrasta ponad zabudowę jak milczący strażnik, przypominając o długiej i burzliwej historii regionu. Zabudowania schodzą ku wodzie tarasami kolorów, tworząc pejzaż pełen światła i ciepła."></li >
+                      <li type="disc">Quartieri Spagnoli<br>
+                        <img src="images/content/neapol_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Quartieri Spagnoli odsłaniają najbardziej autentyczne oblicze Neapolu — gęstą sieć wąskich uliczek, gdzie codzienne życie toczy się tuż obok przechodniów. Między kamienicami unoszą się zapachy kuchni, słychać rozmowy mieszkańców i dźwięki miasta, które nigdy całkiem nie cichnie. Fasady budynków pełne są detali: kapliczek, suszącego się prania, śladów dawnych szyldów i balkonów zastawionych roślinami. To przestrzeń, która zmienia się wraz z porą dnia, zachowując swój intensywny, niepowtarzalny rytm."></li>
+                      <li type="disc">Piazza del Plebiscito<br>
+                        <img src="images/content/neapol_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Piazza del Plebiscito otwiera się szeroką, monumentalną przestrzenią, rzadko spotykaną w gęstej zabudowie Neapolu. Otoczony półkolistą kolumnadą i historycznymi budynkami plac emanuje spokojem i elegancją. Jego skala pozwala złapać oddech, obserwować architekturę i rytm miasta z pewnego dystansu. To miejsce, w którym historia i współczesne życie spotykają się w naturalnej, harmonijnej formie."></li>
+                      </ul>
+                  <li>Wybrzeże Amalfitańskie
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Positano<br>
+                        <img src="images/content/amalfia_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Miasteczko Positano zachwyca swoją panoramą, gdzie góry schodzą stromo w stronę morza, a domy w pastelowych kolorach wcinają się w zbocza jakby przypadkiem, a jednak z niezwykłą harmonią. Z tej perspektywy widać, jak natura i architektura tworzą nierozerwalną całość, pełną światła i kontrastów. To miejsce, w którym każdy widok wydaje się obrazem stworzonym do podziwiania i fotografowania."></li>
+                      <li type="disc">Plaże Amalfi<br>
+                        <img src="images/content/amalfia_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Plaże Amalfi zachwycają swoim położeniem — często wciśnięte w skaliste zatoczki, z turkusową wodą i miękkim żwirem lub drobnym piaskiem. Każda z nich oferuje niezwykłe połączenie spokoju i dramatyzmu krajobrazu: strome klify, rozrzucone łodzie rybackie i szum fal tworzą niepowtarzalną atmosferę. Spacer wzdłuż brzegu pozwala poczuć bliskość morza i rytm życia nadmorskiego miasta, jednocześnie podziwiając widoki, które zapadają w pamięć na długo."></li>
+                      <li type="disc">Półwysep Sorrentyński<br>
+                        <img src="images/content/amalfia_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Półwysep Sorrentyński rozciąga się między Zatoką Neapolitańską a Zatoką Salerno, tworząc krajobraz pełen kontrastów i światła. Strome klify opadają tu wprost do morza, a pomiędzy nimi pojawiają się miasteczka, gaje cytrusowe i tarasy z widokiem na wodę. Przestrzeń jest otwarta i spokojna, a jednocześnie dynamiczna dzięki zmiennemu ukształtowaniu terenu. Całość sprawia wrażenie miejsca, w którym natura i śródziemnomorski styl życia pozostają w idealnej równowadze."></li>
+                    </ul>
+                </ul>
+              <li id="hiszpania">Hiszpania
+                <ul style="font-size: 1.6vw;">
+                  <li>Barcelona
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Sagrada Família<br>
+                        <img src="images/content/barcelona_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Sagrada Família olśniewa już przy pierwszym spojrzeniu — jej strzeliste wieże i pełne symboliki detale sprawiają, że wygląda bardziej jak wizja niż budowla. To miejsce, w którym architektura staje się opowieścią, a każdy fragment fasady skrywa głębsze znaczenia. Gdy patrzy się na tę świątynię po raz pierwszy, można poczuć potęgę wyobraźni Gaudiego i energię miasta, które wciąż ją tworzy."></li>
+                      <li type="disc">Ogrody Gaudiego<br>
+                        <img src="images/content/barcelona_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Ogrody Gaudiego emanują barwą, fantazją i lekkością — to miejsce, gdzie architektura przenika się z naturą w sposób zupełnie wyjątkowy. Kręte ścieżki, mozaikowe ławki i bajkowe formy sprawiają, że każdy zakątek parku wygląda jak scena z niecodziennego snu. Wędrówka między drzewami i kolorowymi konstrukcjami pozwala poczuć prawdziwą duszę Barcelony: radosną, twórczą i otwartą."></li>
+                      <li type="disc">Łuk Triumfalny<br>
+                        <img src="images/content/barcelona_3.png" class="photo-glow" onclick="openPhoto(this)" data-desc="Łuk Triumfalny Barcelony - wita gości elegancją i spokojem, otwierając drogę do tętniącej życiem części miasta. Jego ceglany kolor, dekoracje i przestrzeń wokół tworzą klimat miejsca, które łączy historię z nowoczesnością. Spacer wzdłuż alei prowadzącej do niego pozwala poczuć rytm miasta — lekki, pełen energii i słońca."></li>
+                      </ul>
+                  <li>Tarifa
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Panorama<br>
+                        <img src="images/content/tarifa_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Tarifa urzeka swoją wyjątkową perspektywą — z wielu miejsc widać tu wyraźnie brzeg Afryki, oddzielony od Europy jedynie wąską taflą Cieśniny Gibraltarskiej. To widok, który sprawia, że miasto wydaje się zawieszone między dwoma światami, pełne historii, wiatrów i energii granicznego miejsca. Białe zabudowania i dachy Tarify kontrastują z intensywnym błękitem wody, tworząc obraz, który trudno zapomnieć."></li>
+                      <li type="disc">Plaże<br>
+                        <img src="images/content/tarifa_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Plaże Tarify potrafią zaskoczyć swoją naturalnością — jedne są szerokie i dzikie, inne otoczone sosnowymi lasami, które dają cień i szum wiatru w koronach drzew. To miejsce, gdzie morze spotyka się z naturą w najczystszej formie, a zapach żywicy miesza się z bryzą Atlantyku. Spacer po takich plażach pozwala na chwilę zapomnienia i pełne zanurzenie się w przestrzeni, która wydaje się nienaruszona i spokojna."></li>
+                      <li type="disc">Urokliwe tereny wiejskie<br>
+                        <img src="images/content/tarifa_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Andaluzyjskie okolice Tarify rozsiane są wśród falujących wzgórz, zielonych łąk i samotnych gospodarstw, które nadają krajobrazowi spokojny, pastoralny rytm. Tutaj widać zupełnie inne oblicze regionu — pełne ciszy, światła i prostoty życia blisko natury. Z każdego wzniesienia roztacza się panorama na oceany traw i wiatraków, które podkreślają charakter tej części Hiszpanii."></li>
+                      </ul>
+                  <li>Granada
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Panorama<br>
+                        <img src="images/content/granada_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Granada zachwyca już z oddali, gdy na wzgórzu wyrasta Alhambra — potężna, a jednocześnie pełna delikatności w swojej mauretańskiej architekturze. U jej stóp rozciąga się miasto o bielonych domach, wąskich uliczkach i spokojnym rytmie andaluzyjskiego dnia. Z tej perspektywy widać jednocześnie historię i codzienność, splecione w wyjątkowy pejzaż pełen światła i ciepła."></li>
+                      <li type="disc">Alhambra<br>
+                        <img src="images/content/granada_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Wnętrza Alhambry przenoszą w inny świat — pełen misternych zdobień, cichych dziedzińców i gry światła, które odbija się od marmurowych kolumn. Każdy krok odsłania tu subtelne detale, jakby architekci chcieli opowiedzieć historię zbudowaną z ornamentów i szeptów fontann. To przestrzeń, w której czas zwalnia, a powietrze wypełnia się spokojem i elegancją mauretańskiej kultury."></li>
+                      <li type="disc">Sierra Nevada<br>
+                        <img src="images/content/granada_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Tuż obok Granady wyrastają potężne szczyty Sierra Nevady, których obecność nadaje miastu wyjątkowy charakter. Białe grzbiety gór kontrastują z ciepłą architekturą Andaluzji, tworząc krajobraz o niezwykłej sile i majestacie. To miejsce, gdzie widać spotkanie dwóch światów — surowej natury i bogatej kultury, które wzajemnie się dopełniają."></li>
+                      </ul>
+                </ul>
+            </ol>
+          </section>
+          <section id="azja">
+          <li>Azja
+            <ol type="a" style="font-size: 1.8vw;">
+              <li id="indonezja">Indonezja
+                <ul style="font-size: 1.6vw;">
+                  <li>Bali
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Brama Candi Bentar<br>
+                        <img src="images/content/bali_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Brama Candi Bentar tworzy majestatyczne wejście do świątyni, dzieląc przestrzeń na świat zewnętrzny i sakralny. Kamienne, zdobione detale nadają miejscu poczucie harmonii i równowagi, a przejście przez nią wprowadza w spokojną atmosferę duchowego rytmu Bali. Obok bramy często widać bujną roślinność i charakterystyczne elementy architektury balijskiej. To punkt, w którym codzienność spotyka się z tradycją i duchowością wyspy."></li>
+                      <li type="disc">Plaże<br>
+                        <img src="images/content/bali_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Plaże Bali zachwycają różnorodnością — od miękkiego, złotego piasku po dramatyczne, czarne wulkaniczne wybrzeża. Szum fal miesza się z ciepłym, tropikalnym powietrzem, tworząc relaksującą i zarazem pełną energii przestrzeń. Palmy kołyszą się nad brzegiem, a woda odbija zmienne światło nieba, nadając każdej chwili wyjątkowy nastrój. Spacer lub odpoczynek na plaży pozwala poczuć rytm wyspy i jej naturalne piękno."></li>
+                      <li type="disc">Tarasy ryżowe Jatiluwih<br>
+                        <img src="images/content/bali_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Tarasy ryżowe Jatiluwih rozciągają się falami zieleni po zboczach wzgórz, tworząc krajobraz pełen harmonii i rytmu natury. Skomplikowany system irygacyjny i geometryczne ułożenie pól ukazują kunszt lokalnych rolników i długowieczną tradycję upraw ryżu. Widok zmienia się wraz z porą dnia, gdy światło podkreśla linie tarasów i głębię dolin. To miejsce, w którym natura, praca człowieka i kultura łączą się w spójną, malowniczą całość."></li>
+                      </ul>
+                  <li>Park Narodowy Komodo
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Wyspa Padar<br>
+                        <img src="images/content/komodo_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Wyspa Padar zachwyca surowym krajobrazem, w którym pofałdowane wzgórza opadają wprost do zatok o intensywnie turkusowej wodzie. Charakterystyczne punkty widokowe odsłaniają mozaikę plaż i linii brzegowej, tworząc jedną z najbardziej rozpoznawalnych panoram regionu. Brak gęstej roślinności podkreśla rzeźbę terenu i potęgę natury. Cała przestrzeń sprawia wrażenie dzikiej i niemal nietkniętej."></li>
+                      <li type="disc">Wyspa Komodo<br>
+                        <img src="images/content/komodo_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Wyspa Komodo łączy w sobie surowe piękno krajobrazu z unikalnym światem przyrody. Suche wzgórza, sawannowa roślinność i jasne plaże kontrastują z głębokim błękitem morza. To teren o wyraźnie pierwotnym charakterze, gdzie natura rządzi się własnymi prawami. Archipelag wokół wyspy tworzy środowisko pełne różnorodności i naturalnej energii."></li>
+                      <li type="disc">Rafy koralowe Cannibal Rock<br>
+                        <img src="images/content/komodo_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Cannibal Rock skrywa pod powierzchnią wody niezwykle bogaty świat raf koralowych. Kolorowe gąbki, koralowce i ławice ryb tworzą tu gęstą, tętniącą życiem podwodną scenerię. Przejrzystość wody pozwala dostrzec detale i intensywne barwy nawet na większej głębokości. To jedno z tych miejsc, gdzie podwodny krajobraz zachwyca swoją złożonością i naturalnym rytmem."></li>
+                      </ul>
+                  <li>Jawa Wschodnia
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Wulkan Bromo<br>
+                        <img src="images/content/jawa_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Wulkan Bromo wyróżnia się surowym, niemal księżycowym krajobrazem, rozciągającym się na terenie ogromnej kaldery. Morze piasku, dymiący krater i otaczające go pasma gór tworzą przestrzeń pełną kontrastów i otwartości. Zmieniające się światło podkreśla fakturę terenu, nadając krajobrazowi wyjątkową głębię. Całość sprawia wrażenie miejsca odciętego od codzienności, rządzącego się własnym rytmem natury."></li>
+                      <li type="disc">Wodospad Tumpak Sewu<br>
+                        <img src="images/content/jawa_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Tumpak Sewu zachwyca formą szerokiej kaskady, spływającej dziesiątkami strumieni w głąb zielonego amfiteatru. Otoczony bujną roślinnością wodospad tworzy intensywną, niemal teatralną scenerię. Szum wody i wilgotne powietrze potęgują wrażenie obcowania z dziką przyrodą. To miejsce, w którym siła natury i harmonia krajobrazu są odczuwalne na każdym kroku."></li>
+                      <li type="disc">Puszcza Meru Betiri<br>
+                        <img src="images/content/jawa_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Puszcza Meru Betiri rozciąga się jako gęsty, tropikalny las, pełen ciszy i naturalnego porządku. Wysokie drzewa, splątane liany i wilgotne ścieżki tworzą krajobraz niemal nietknięty przez człowieka. Różnorodność roślin i zwierząt nadaje temu miejscu charakter żywego, samoregulującego się ekosystemu. To przestrzeń, w której natura zachowuje swoją pierwotną formę i rytm."></li>
+                      </ul>
+                </ul>
+              <li id="wietnam">Wietnam
+                <ul style="font-size: 1.6vw;">
+                  <li>Hội An
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Mỹ Sơn<br>
+                        <img src="images/content/hoian_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Kompleks świątynny Mỹ Sơn ukryty jest wśród zielonych wzgórz i tropikalnej roślinności, tworząc przestrzeń o wyraźnie sakralnym charakterze. Ceglane wieże i ruiny dawnych świątyń świadczą o bogatej historii cywilizacji Czamów i ich zaawansowanej architekturze. Miejsce emanuje spokojem i pewną surowością, podkreśloną przez naturalne otoczenie. Całość sprawia wrażenie harmonijnego połączenia kultury i krajobrazu."></li>
+                      <li type="disc">Stare Miasto<br>
+                        <img src="images/content/hoian_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Starówka Hội An zachwyca niską zabudową, pastelowymi fasadami i wąskimi ulicami, które zachowały swój historyczny układ. Drewniane domy, lampiony i spokojny rytm miasta tworzą atmosferę pełną ciepła i elegancji. Przestrzeń jest uporządkowana i kameralna, sprzyjająca niespiesznym spacerom. To miejsce, w którym historia handlowego portu wciąż jest widoczna w architekturze i detalu."></li>
+                      <li type="disc">Most Japoński<br>
+                        <img src="images/content/hoian_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Most Japoński stanowi charakterystyczny punkt starówki Hội An, łącząc dwie części dawnego miasta. Jego zadaszona konstrukcja i subtelne zdobienia odzwierciedlają wpływy japońskie i lokalne tradycje budowlane. Most wpisuje się naturalnie w otoczenie, stając się spokojnym akcentem w miejskim krajobrazie. To jeden z najbardziej rozpoznawalnych symboli Hội An i jego wielokulturowej przeszłości."></li>
+                      </ul>
+                  <li>Sapa
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Wodospad Silver Waterfall<br>
+                        <img src="images/content/sapa_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Silver Waterfall spada z dużej wysokości po stromych, skalnych zboczach, tworząc dynamiczną i wyrazistą formę w górskim krajobrazie północnego Wietnamu. Woda rozbija się o skały, a unosząca się mgiełka chłodzi powietrze i podkreśla surowy charakter miejsca. Otoczenie porośnięte jest gęstą roślinnością, która kontrastuje z jasnym nurtem wodospadu. Całość wpisuje się naturalnie w górski pejzaż regionu Sapa."></li>
+                      <li type="disc">Tereny wiejskie dookoła Sapa<br>
+                        <img src="images/content/sapa_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Okolice Sapy otwierają się na szerokie doliny, w których tarasy ryżowe układają się w precyzyjne, zielone linie. Pola schodzą po zboczach wzgórz, tworząc krajobraz ukształtowany przez pokolenia lokalnych społeczności. Wśród tarasów rozproszone są niewielkie wioski, ścieżki i drewniane domy, nadające przestrzeni spokojny, rytmiczny charakter. To obszar, gdzie codzienne życie pozostaje silnie związane z naturą i cyklem pór roku."></li>
+                      <li type="disc">Góra Fansipan<br>
+                        <img src="images/content/sapa_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Góra Fansipan wznosi się ponad otaczającym regionem jako najwyższy szczyt Wietnamu, dominując nad krajobrazem północnych gór. Jej masywne zbocza często spowite są chmurami, które nadają miejscu tajemniczy i zmienny charakter. Z wysokości rozciągają się rozległe widoki na pasma górskie i doliny regionu Sapa. Obecność Fansipanu podkreśla surowość i monumentalność tego fragmentu Wietnamu."></li>
+                      </ul>
+                  <li>Hanoi
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Stare Miasto<br>
+                        <img src="images/content/hanoi_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Stare Miasto w Hanoi tętni codziennym życiem, zamkniętym w gęstej sieci wąskich ulic i niskiej zabudowy. Sklepy, stragany i warsztaty wypełniają przestrzeń dźwiękami, zapachami i ruchem, tworząc intensywny, miejski rytm. Architektura zachowała tu tradycyjny charakter, a każda ulica ma własną historię i specjalizację. Całość sprawia wrażenie miejsca autentycznego i nieustannie żywego."></li>
+                      <li type="disc">Świątynia Bach Ma<br>
+                        <img src="images/content/hanoi_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Świątynia Bach Ma stanowi spokojny kontrast dla otaczającego ją zgiełku Starego Miasta. Ukryta wśród zabudowy, zachowała kameralny charakter i atmosferę dawnych wierzeń. Czerwone bramy, drewniane detale i zapach kadzideł wprowadzają poczucie skupienia i wyciszenia. To przestrzeń, w której tradycja duchowa Hanoi pozostaje silnie obecna."></li>
+                      <li type="disc">Pagoda Tran Quoc<br>
+                        <img src="images/content/hanoi_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Pagoda Tran Quoc położona jest malowniczo nad brzegiem jeziora, otoczona wodą i zielenią. Jej smukła sylwetka i ciepłe barwy harmonijnie wpisują się w spokojny krajobraz. Odbicia pagody w tafli jeziora potęgują wrażenie równowagi i ciszy. To jedno z tych miejsc, gdzie miejska przestrzeń łączy się z duchowym i naturalnym otoczeniem."></li>
+                      </ul>
+                </ul>
+              <li id="nepal">Nepal
+                <ul style="font-size: 1.6vw;">
+                  <li>Dolina Katmandu
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Boudhanath<br>
+                        <img src="images/content/Katmandu_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Stupa Boudhanath dominuje nad okolicą swoją monumentalną, harmonijną formą. Wokół niej nieustannie krążą wierni, młynki modlitewne i zapach kadzideł, tworząc rytm codziennej duchowości. Architektura miejsca sprzyja skupieniu i kontemplacji. To jedna z najważniejszych przestrzeni buddyjskich w Dolinie Katmandu."></li>
+                      <li type="disc">Swayambhunath<br>
+                        <img src="images/content/Katmandu_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Swayambhunath wznosi się na wzgórzu ponad miastem, łącząc sacrum z rozległym widokiem na dolinę. Charakterystyczna stupa i modlitewne flagi tworzą silny wizualny symbol Nepalu. Schody prowadzące na szczyt podkreślają proces przejścia od codzienności do ciszy i refleksji. Miejsce zachowuje równowagę między duchowością a życiem miasta."></li>
+                      <li type="disc">Plac Durbar Square w Bhaktapurze<br>
+                        <img src="images/content/Katmandu_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Plac Durbar Square w Bhaktapurze odsłania bogactwo dawnej architektury Newarów. Świątynie, pałace i detale rzeźbiarskie tworzą zwartą, historyczną przestrzeń. Układ placu pozwala odczytać dawną funkcję miasta jako centrum władzy i kultury. Całość emanuje spokojem i szacunkiem dla tradycji."></li>
+                      </ul>
+                  <li>Górny Mustang
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Lo Manthang<br>
+                        <img src="images/content/Mustang_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Lo Manthang zachowało charakter ufortyfikowanego miasta, otoczonego murami na tle surowego krajobrazu Górnego Mustangu. Wąskie uliczki i gliniane zabudowania tworzą spójną, niemal ponadczasową przestrzeń. Miasto pozostaje silnie związane z tradycją buddyzmu tybetańskiego. Panuje tu atmosfera ciszy i odosobnienia."></li>
+                      <li type="disc">Sky Caves<br>
+                        <img src="images/content/Mustang_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Sky Caves to system jaskiń wykutych wysoko w skalnych ścianach Mustangu. Ich położenie i forma świadczą o niezwykłej adaptacji człowieka do trudnych warunków środowiska. Jaskinie pozostają częściowo owiane tajemnicą, budząc pytania o ich dawne funkcje. Krajobraz wokół podkreśla surowość i izolację tego miejsca."></li>
+                      <li type="disc">Klasztory buddyzmu tybetańskiego<br>
+                        <img src="images/content/Mustang_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Klasztory Górnego Mustangu wpisują się w krajobraz w sposób naturalny i oszczędny. Ich wnętrza kryją malowidła, mantry i rytuały zakorzenione w tybetańskiej tradycji. Cisza i prostota architektury sprzyjają skupieniu. To miejsca, w których duchowość pozostaje nierozerwalnie związana z otoczeniem."></li>
+                      </ul>
+                  <li>Khumbu
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Mount Everest<br>
+                        <img src="images/content/Khumbu_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Mount Everest dominuje nad regionem Khumbu swoją ogromną skalą i surową formą. Jego obecność wyznacza rytm krajobrazu i wpływa na charakter całego obszaru. Śnieżne zbocza i lodowce tworzą monumentalne tło dla życia w górach. To symbol potęgi natury i wysokogórskiego świata."></li>
+                      <li type="disc">Klasztor Tengboche<br>
+                        <img src="images/content/Khumbu_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Klasztor Tengboche położony jest na otwartej przestrzeni z widokiem na najwyższe szczyty Himalajów. Jego architektura i położenie podkreślają duchowy wymiar regionu Khumbu. Mnisi, modlitwy i ceremonie tworzą spokojny kontrapunkt dla surowego górskiego otoczenia. Miejsce zachowuje atmosferę skupienia i równowagi."></li>
+                      <li type="disc">Namche Bazaar<br>
+                        <img src="images/content/Khumbu_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Namche Bazaar pełni rolę centralnego punktu życia w regionie Khumbu. Tarasowo położona zabudowa tworzy amfiteatralny układ, otwarty na górskie panoramy. Miasteczko łączy tradycję Szerpów z ruchem wypraw i codzienną aktywnością mieszkańców. To przestrzeń dynamiczna, a jednocześnie silnie zakorzeniona w lokalnej kulturze."></li>
+                      </ul>
+                </ul>
+            </ol>
+          </section>
+          <section id="afryka">
+          <li>Afryka
+            <ol type="a" style="font-size: 1.8vw;">
+              <li id="egipt">Egipt
+                <ul style="font-size: 1.6vw;">
+                  <li>Giza
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Wielki Sfinks<br>
+                        <img src="images/content/giza_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Wielki Sfinks spoczywa u stóp piramid, łącząc w sobie ludzką twarz i ciało lwa. Jego monumentalna forma od wieków budzi pytania o symbolikę i znaczenie. Kamień nosi ślady czasu, które tylko podkreślają jego tajemniczy charakter. Całość wpisuje się w pustynny krajobraz pełen historii i ciszy."></li>
+                      <li type="disc">Piramida Cheopsa<br>
+                        <img src="images/content/giza_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Piramida Cheopsa dominuje nad płaskim krajobrazem Gizy swoją idealną, geometryczną formą. To największa z piramid i jedno z najbardziej rozpoznawalnych dzieł starożytnego świata. Jej masywność kontrastuje z prostotą kształtu. Obiekt pozostaje symbolem ludzkiej ambicji i inżynieryjnej precyzji."></li>
+                      <li type="disc">Nil<br>
+                        <img src="images/content/giza_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Nil przecina pustynny krajobraz Egiptu pasem zieleni i życia. Jego brzegi od tysiącleci stanowią centrum osadnictwa i rolnictwa. Spokojny nurt kontrastuje z surowością otaczającego terenu. Rzeka nadaje rytm krajobrazowi i codzienności regionu."></li>
+                      </ul>
+                  <li>Luksor
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Karnak<br>
+                        <img src="images/content/luksor_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Kompleks świątynny Karnak zachwyca skalą i bogactwem architektonicznych detali. Kolumnady i pylony tworzą monumentalną przestrzeń o ceremonialnym charakterze. Układ świątyń ukazuje znaczenie religii w starożytnym Egipcie. Całość sprawia wrażenie kamiennego miasta poświęconego bogom."></li>
+                      <li type="disc">Dolina Królów<br>
+                        <img src="images/content/luksor_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Dolina Królów skrywa grobowce wykute głęboko w skalnych zboczach. Surowy krajobraz kontrastuje z bogato zdobionymi wnętrzami grobów. Malowidła zachowały intensywne kolory i symbolikę życia pozagrobowego. Miejsce emanuje ciszą i powagą."></li>
+                      <li type="disc">Świątynia Luksorska<br>
+                        <img src="images/content/luksor_3.png" class="photo-glow" onclick="openPhoto(this)" data-desc="Świątynia Luksorska położona jest w samym sercu miasta, nad brzegiem Nilu. Jej aleje kolumn i posągi tworzą monumentalne wejście do świata dawnych wierzeń. Architektura łączy funkcję religijną z reprezentacyjną. Obiekt harmonijnie wpisuje się w miejski krajobraz."></li>
+                      </ul>
+                  <li>Aleksandria
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Biblioteka Aleksandryjska<br>
+                        <img src="images/content/aleksandria_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Nowoczesna Biblioteka Aleksandryjska nawiązuje formą do starożytnego centrum wiedzy. Jej geometryczna bryła kontrastuje z nadmorskim otoczeniem. Wnętrza łączą funkcję naukową i kulturalną. To symbol ciągłości myśli i edukacji."></li>
+                      <li type="disc">Kaum asz-Szukafa<br>
+                        <img src="images/content/aleksandria_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Katakumby Kom asz-Szukafa ukazują niezwykłe połączenie tradycji egipskiej, greckiej i rzymskiej. Podziemne korytarze prowadzą przez bogato zdobione komory grobowe. Mrok i chłód potęgują wrażenie tajemnicy. To jedno z najbardziej unikatowych miejsc archeologicznych Aleksandrii."></li>
+                      <li type="disc">Fort Kaitbeja<br>
+                        <img src="images/content/aleksandria_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Fort Kaitbeja wznosi się na wybrzeżu Morza Śródziemnego w strategicznym punkcie miasta. Jego masywne mury kontrastują z otwartą przestrzenią morza. Twierdza pełniła funkcję obronną i orientacyjną. Dziś stanowi ważny element panoramy Aleksandrii."></li>
+                      </ul>
+                </ul>
+              <li id="tanzania">Tanzania
+                <ul style="font-size: 1.6vw;">
+                  <li>Północna Tanzania
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Kilimanjaro<br>
+                        <img src="images/content/tanp_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Kilimandżaro wznosi się samotnie ponad sawanną, tworząc wyraźny punkt odniesienia w krajobrazie. Jego ośnieżony szczyt kontrastuje z ciepłym, afrykańskim klimatem. Zróżnicowane strefy roślinne zmieniają się wraz z wysokością. Góra dominuje nad regionem swoją skalą i obecnością."></li>
+                      <li type="disc">Masai Mara<br>
+                        <img src="images/content/tanp_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Masai Mara rozciąga się jako otwarta sawanna pełna dzikiej przyrody. Rozległe przestrzenie sprzyjają obserwacji stad zwierząt i naturalnych migracji. Krajobraz pozostaje prosty, a zarazem dynamiczny. To obszar, gdzie natura funkcjonuje według własnych praw."></li>
+                      <li type="disc">Jezioro Manyara<br>
+                        <img src="images/content/tanp_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Jezioro Manyara leży u podnóża Wielkiego Rowu Afrykańskiego. Jego brzegi porastają lasy i tereny podmokłe pełne ptactwa. Tafla wody zmienia się wraz z porami roku. Całość tworzy zróżnicowany i harmonijny ekosystem."></li>
+                      </ul>
+                  <li>Środkowa Tanzania
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Park Narodowy Ruaha<br>
+                        <img src="images/content/tanś_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Park Narodowy Ruaha zachwyca surowym, dzikim charakterem krajobrazu. Rzeki i sawanny tworzą naturalne korytarze życia. Obszar jest mniej uczęszczany, co podkreśla jego pierwotność. Dominują tu przestrzeń i cisza."></li>
+                      <li type="disc">Dodoma<br>
+                        <img src="images/content/tanś_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Dodoma łączy administracyjną funkcję stolicy z lokalnym, spokojnym rytmem. Zabudowa miasta jest niska i rozproszona. Otoczenie podkreśla suchy, środkowotanzański krajobraz. Miejsce zachowuje prostotę i funkcjonalność."></li>
+                      <li type="disc">Park Narodowy Tarangire<br>
+                        <img src="images/content/tanś_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Tarangire znany jest z rozległych sawann i charakterystycznych baobabów. Rzeka przyciąga liczne gatunki zwierząt, szczególnie w porze suchej. Krajobraz zmienia się wraz z ruchem stad. Park zachowuje wyraźny, naturalny rytm."></li>
+                      </ul>
+                  <li>Wschodnia Tanzania
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Mkomazi<br>
+                        <img src="images/content/tanw_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Mkomazi to półsuche tereny u stóp gór, o surowym i otwartym charakterze. Sawanny i akacje tworzą spokojny, minimalistyczny krajobraz. Obszar sprzyja ochronie rzadkich gatunków. Dominuje tu poczucie przestrzeni i ciszy."></li>
+                      <li type="disc">Park Narodowy Mikumi<br>
+                        <img src="images/content/tanw_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Mikumi oferuje rozległe równiny otoczone wzgórzami. Krajobraz przypomina klasyczną afrykańską sawannę. Widoczność sprzyja obserwacji dzikiej przyrody. Park zachowuje równowagę między dostępnością a dzikością."></li>
+                      <li type="disc">Plaże Zanzibaru<br>
+                        <img src="images/content/tanw_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Plaże Zanzibaru rozciągają się pasami jasnego piasku nad turkusowym oceanem. Linie palm i spokojna woda tworzą harmonijną scenerię. Przestrzeń sprzyja odpoczynkowi i obserwacji natury. Wybrzeże zachowuje lekki, wyspiarski charakter."></li>
+                      </ul>
+                </ul>
+              <li id="madagaskar">Madagaskar
+                <ul style="font-size: 1.6vw;">
+                  <li>Zachodni Madagaskar
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Aleja baobabów<br>
+                        <img src="images/content/mad_za_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Aleja Baobabów zlokalizowana blisko miejscowości Marofototra to jedno z najbardziej charakterystycznych miejsc Madagaskaru, gdzie potężne drzewa tworzą naturalny korytarz. Pnie baobabów wyrastają z płaskiego terenu, nadając krajobrazowi monumentalny i niemal symboliczny charakter. Ich sylwetki zmieniają się wraz ze światłem, szczególnie o poranku i o zachodzie słońca. Przestrzeń jest otwarta i spokojna, pozbawiona gęstej roślinności. Całość sprawia wrażenie krajobrazu poza czasem."></li>
+                      <li type="disc">Tsingy de Bemaraha<br>
+                        <img src="images/content/mad_za_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Tsingy de Bemaraha zachwyca niezwykłą formą skalnego lasu, złożonego z ostrych wapiennych iglic. Krajobraz jest surowy i wymagający, pełen szczelin, wąwozów i stromych ścian. Naturalne mosty i wąskie przejścia tworzą skomplikowaną strukturę terenu. Obszar ten stanowi schronienie dla wielu endemicznych gatunków. Całość ukazuje siłę procesów geologicznych i dzikość natury."></li>
+                      <li type="disc">Park Narodowy Ankarafantsika<br>
+                        <img src="images/content/mad_za_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Park Narodowy Ankarafantsika rozciąga się na terenie suchych lasów i sawann zachodniego Madagaskaru. Dominują tu czerwone gleby, jeziora i mozaika roślinności. Obszar znany jest z bogactwa ptaków i lemurów. Krajobraz pozostaje zróżnicowany, lecz spokojny w odbiorze. Park zachowuje naturalny, mało przekształcony charakter."></li>
+                      </ul>
+                  <li>Południowy Madagaskar
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Park Narodowy Andohahela<br>
+                        <img src="images/content/mad_pd_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Park Narodowy Andohahela łączy w sobie kilka stref klimatycznych, od wilgotnych lasów po suche tereny południa. Zróżnicowanie krajobrazu tworzy mozaikę środowisk naturalnych. Wysokie drzewa przechodzą tu w kolczastą roślinność charakterystyczną dla regionu. Obszar sprzyja obserwacji endemicznych gatunków. Park ukazuje kontrasty typowe dla Madagaskaru."></li>
+                      <li type="disc">Rezerwat Berenty<br>
+                        <img src="images/content/mad_pd_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Rezerwat Berenty położony jest nad rzeką, w otoczeniu suchego krajobrazu południa. Zieleń galerii leśnej wyraźnie kontrastuje z otaczającym terenem. Miejsce znane jest z dużych populacji lemurów i łatwej obserwacji przyrody. Przestrzeń pozostaje uporządkowana i czytelna. Rezerwat łączy ochronę natury z dostępnością dla odwiedzających."></li>
+                      <li type="disc">Park Narodowy Tsimanampetsotsa<br>
+                        <img src="images/content/mad_pd_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Park Narodowy Tsimanampetsotsa obejmuje suche tereny, laguny i słone jeziora. Dominującym elementem krajobrazu jest rozległa przestrzeń i niska roślinność. Obszar przyciąga liczne gatunki ptaków, szczególnie wodnych. Środowisko jest surowe, ale harmonijne. Park ukazuje inną, mniej znaną stronę Madagaskaru."></li>
+                      </ul>
+                  <li>Północny Madagaskar
+                    <ul class="photo-row"  style="font-size: 1.5vw;">
+                      <li type="disc">Wyspa Nosy Be<br>
+                        <img src="images/content/mad_pn_1.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Wyspa Nosy Be wyróżnia się tropikalnym krajobrazem i łagodnym klimatem. Plaże, palmy i ciepłe wody oceanu tworzą spokojną scenerię. Wnętrze wyspy porastają lasy i plantacje. Nadmorskie miejscowości zachowują lekki, wyspiarski charakter. Całość sprzyja odpoczynkowi i kontaktowi z naturą."></li>
+                      <li type="disc">Park Narodowy Montagne d'Ambre<br>
+                        <img src="images/content/mad_pn_2.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Park Narodowy Montagne d’Ambre obejmuje wulkaniczny masyw porośnięty wilgotnym lasem. Wysoka wilgotność sprzyja bujnej roślinności i licznym wodospadom. Ścieżki prowadzą przez chłodniejsze, zielone wnętrze parku. Obszar jest domem dla wielu endemicznych gatunków. Krajobraz wyraźnie kontrastuje z suchszymi regionami północy."></li>
+                      <li type="disc">Park Narodowy Ankarana<br>
+                        <img src="images/content/mad_pn_3.jpg" class="photo-glow" onclick="openPhoto(this)" data-desc="Park Narodowy Ankarana charakteryzuje się krasowym krajobrazem i rozbudowanym systemem jaskiń. Ostre formacje skalne przeplatają się z suchym lasem. Podziemne rzeki i groty tworzą złożoną strukturę terenu. Obszar pozostaje dziki i słabo przekształcony. Park łączy elementy geologii i biologicznej różnorodności."></li>
+                      </ul>
+                </ul>
+            </ol>
+            </section>
+        </ol>
+      </div>
+      <div class="footer">
+        <footer>
+          <br><a style="color:rgb(255, 255, 255);" href="sources.html">Źródła</a><br>
+          Krzysztof Januszewski 3F ©2025<br><br>
+        </footer>
+      </div>
+    </div>
+  </div>
+  <div id="photoModal" class="modal" onclick="closePhoto(event)">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Zamknij" onclick="closePhotoBtn(event)">✕</button>
+      <img id="modalImage" alt="">
+      <div id="modalCaption" class="modal-caption"></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    const container = document.querySelector('.scroll-container');
+    const navbar = document.querySelector('.navbar');
+    if(!container) return;
+    function headerOffset(){
+      if(!navbar) return 0;
+      return Math.ceil(navbar.getBoundingClientRect().height) + 8;
+    }
+    function scrollToHash(hash){
+      if(!hash) return;
+      const id = hash.startsWith('#') ? hash.slice(1) : hash;
+      if(id === 'home'){
+        container.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      const target = document.getElementById(id);
+      if(!target) return;
+      if(target === container){
+        container.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      const rectT = target.getBoundingClientRect();
+      const rectC = container.getBoundingClientRect();
+      const offset = headerOffset();
+      let top = rectT.top - rectC.top + container.scrollTop - offset;
+      if(top < 0) top = 0;
+      container.scrollTo({ top, behavior: 'smooth' });
+    }
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest && e.target.closest('a[href^="#"]');
+      if(!a) return;
+      const href = a.getAttribute('href') || '';
+      if(href === '#' || href === '') return;
+      e.preventDefault();
+      history.pushState(null, '', href);
+      scrollToHash(href);
+    });
+    window.addEventListener('popstate', () => {
+      if(location.hash) scrollToHash(location.hash);
+      else container.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    if(location.hash){
+      setTimeout(()=> scrollToHash(location.hash), 50);
+    }
+  })();
+  </script>
+</body>
+</html>
