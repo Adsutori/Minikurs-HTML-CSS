@@ -4,261 +4,454 @@
 {% block title %}Tabele, Listy i Łącza | Minikurs HTML5 i CSS3{% endblock %}
 
 {% block content %}
-<meta name="chapter" content="tabele_listy_lacza">
 
+<!-- NAGŁÓWEK -->
 <div class="page-header">
-  <h1>🔗 Tabele, Listy i Łącza</h1>
-  <p>Trzy filary HTML w jednym projekcie — nawigacja kotwicowa, tabela danych i linki.</p>
+  <h1>
+    <i data-lucide="table-2" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;"></i>
+    Tabele, Listy i Łącza
+  </h1>
+  <p>Projekt szkolny demonstrujący zaawansowane użycie tabel HTML, list i hiperlączy na przykładzie dyskografii Pink Floyd.</p>
 </div>
 
-<!-- Nawigacja kotwicowa do sekcji na tej stronie -->
-<div class="content-card fade-in" style="margin-bottom:24px;">
-  <h2 style="color:var(--accent-secondary); margin-bottom:12px;">🧭 Nawigacja po tej stronie</h2>
-  <div style="display:flex; gap:12px; flex-wrap:wrap;">
-    <a href="#sekcja-tabela" class="btn btn-outline btn-sm">📊 Tabela danych</a>
-    <a href="#sekcja-lista"  class="btn btn-outline btn-sm">📋 Lista z linkami</a>
-    <a href="#sekcja-lacza"  class="btn btn-outline btn-sm">🔗 Typy hiperłączy</a>
+<!-- BREADCRUMB -->
+<div style="display:flex;align-items:center;gap:8px;font-size:var(--text-xs);
+            color:var(--text-muted);margin-bottom:24px;">
+  <a href="{% url 'minikurs:glowna' %}" style="color:var(--text-muted);text-decoration:none;">O platformie</a>
+  <i data-lucide="chevron-right" style="width:12px;height:12px;"></i>
+  <span style="color:var(--accent-secondary);">Tabele, Listy i Łącza</span>
+</div>
+
+<!-- KARTY INFO -->
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:28px;">
+
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="table-2" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">2</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Tabele</div>
   </div>
-</div>
 
-<!-- TABELA DANYCH -->
-<div class="content-card fade-in" style="margin-bottom:32px;" id="sekcja-tabela">
-  <h2 style="color:var(--accent-secondary); margin-bottom:16px;">📊 Plan lekcji — Tabela danych</h2>
-
-  <div class="table-wrapper">
-    <table>
-      <caption style="caption-side:top; padding:12px; color:var(--text-muted);
-                      font-size:var(--text-sm); text-align:left; margin-bottom:8px;">
-        Przykładowy tygodniowy plan lekcji klasy technikum
-      </caption>
-      <thead>
-        <tr>
-          <th>Godzina</th>
-          <th>Poniedziałek</th>
-          <th>Wtorek</th>
-          <th>Środa</th>
-          <th>Czwartek</th>
-          <th>Piątek</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--accent-secondary); font-weight:600; font-family:monospace;">8:00</td>
-          <td>Matematyka</td>
-          <td>Fizyka</td>
-          <td>Język angielski</td>
-          <td>Informatyka</td>
-          <td>Matematyka</td>
-        </tr>
-        <tr>
-          <td style="color:var(--accent-secondary); font-weight:600; font-family:monospace;">9:45</td>
-          <td>Język polski</td>
-          <td>Matematyka</td>
-          <td>Fizyka</td>
-          <td>Język polski</td>
-          <td>WF</td>
-        </tr>
-        <tr>
-          <td style="color:var(--accent-secondary); font-weight:600; font-family:monospace;">11:30</td>
-          <td>Informatyka</td>
-          <td>Język angielski</td>
-          <td>Matematyka</td>
-          <td>Chemia</td>
-          <td>Informatyka</td>
-        </tr>
-        <tr>
-          <td style="color:var(--accent-secondary); font-weight:600; font-family:monospace;">13:15</td>
-          <td>WF</td>
-          <td>Historia</td>
-          <td>Biologia</td>
-          <td>WF</td>
-          <td>Godzina wychowawcza</td>
-        </tr>
-        <tr>
-          <td style="color:var(--accent-secondary); font-weight:600; font-family:monospace;">15:00</td>
-          <td style="color:var(--text-muted); font-style:italic;">—</td>
-          <td>Zajęcia dodatkowe</td>
-          <td style="color:var(--text-muted); font-style:italic;">—</td>
-          <td>Koło informatyczne</td>
-          <td style="color:var(--text-muted); font-style:italic;">—</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="6" style="text-align:center; color:var(--text-muted); font-size:var(--text-xs);">
-            Plan obowiązuje od września 2025 · Technikum im. Kasprzaka w Warszawie
-          </td>
-        </tr>
-      </tfoot>
-    </table>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="list" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">25</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Pozycji</div>
   </div>
+
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="link-2" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">8</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Podstron</div>
+  </div>
+
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="layers" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">7+</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Scaleń komórek</div>
+  </div>
+
 </div>
 
-<!-- LISTA Z LINKAMI -->
-<div class="content-card fade-in" style="margin-bottom:32px;" id="sekcja-lista">
-  <h2 style="color:var(--accent-secondary); margin-bottom:16px;">📋 Lista zasobów z linkami</h2>
+<!-- OPIS PROJEKTU -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:16px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="info" style="width:20px;height:20px;"></i>
+    O projekcie
+  </h2>
+  <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:16px;">
+    Projekt przedstawia pełną dyskografię Pink Floyd — jednego z największych zespołów rockowych w historii.
+    Głównym celem było opanowanie <strong style="color:var(--text-primary);">zaawansowanych technik tabelarycznych HTML</strong>:
+    scalania komórek (<code>rowspan</code> / <code>colspan</code>), grupowania nagłówków oraz osadzania list wewnątrz komórek.
+  </p>
+  <p style="color:var(--text-secondary);line-height:1.8;">
+    Projekt zawiera dwa widoki tej samej dyskografii — <strong style="color:var(--text-primary);">graficzny</strong>
+    (okładki albumów jako duże zdjęcia z podpisami) oraz <strong style="color:var(--text-primary);">tabelaryczny</strong>
+    (szczegółowe dane: wytwórnia, producent, liczba utworów, wyróżnienia). Przełączanie między widokami
+    realizuje lista rozwijana (<code>&lt;select&gt;</code>) obsługiwana przez JavaScript.
+    Projekt spełnia wszystkie wymagania szkolne na ocenę celującą.
+  </p>
+</div>
 
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+<!-- CZEGO UCZY -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="graduation-cap" style="width:20px;height:20px;"></i>
+    Czego uczy ten projekt?
+  </h2>
 
-    <div>
-      <h3 style="font-size:var(--text-sm); color:var(--text-muted); text-transform:uppercase;
-                 letter-spacing:0.08em; margin-bottom:12px;">Linki wewnętrzne (ta strona)</h3>
-      <ul style="list-style:none;">
-        <li style="padding:8px 0; border-bottom:1px solid var(--border);">
-          <a href="#sekcja-tabela" style="color:var(--accent-secondary); display:flex; gap:8px; align-items:center;">
-            <span>📊</span> Przejdź do tabeli
-          </a>
-        </li>
-        <li style="padding:8px 0; border-bottom:1px solid var(--border);">
-          <a href="#sekcja-lacza" style="color:var(--accent-secondary); display:flex; gap:8px; align-items:center;">
-            <span>🔗</span> Przejdź do łączy
-          </a>
-        </li>
-        <li style="padding:8px 0;">
-          <a href="{% url 'minikurs:glowna' %}" style="color:var(--accent-secondary); display:flex; gap:8px; align-items:center;">
-            <span>🏠</span> Strona główna kursu
-          </a>
-        </li>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+
+    <!-- Tabele -->
+    <div style="padding:20px;background:rgba(124,58,237,0.06);border:1px solid rgba(124,58,237,0.15);
+                border-radius:var(--radius-md);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(124,58,237,0.15);
+                    display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i data-lucide="table-2" style="width:16px;height:16px;color:var(--accent-secondary);"></i>
+        </div>
+        <div style="font-weight:700;color:var(--text-primary);">Zaawansowane tabele</div>
+      </div>
+      <ul style="color:var(--text-secondary);font-size:var(--text-sm);line-height:1.8;
+                 padding-left:18px;margin:0;">
+        <li>Scalanie komórek — <code>rowspan</code> i <code>colspan</code></li>
+        <li>Grupowanie nagłówków w wierszach</li>
+        <li>Kolumna z grafikami wewnątrz tabeli</li>
+        <li>Listy <code>&lt;ul&gt;</code> wewnątrz komórek <code>&lt;td&gt;</code></li>
+        <li>Skróty <code>&lt;abbr&gt;</code> w nagłówkach</li>
       </ul>
     </div>
 
-    <div>
-      <h3 style="font-size:var(--text-sm); color:var(--text-muted); text-transform:uppercase;
-                 letter-spacing:0.08em; margin-bottom:12px;">Linki zewnętrzne (nowa karta)</h3>
-      <ul style="list-style:none;">
-        <li style="padding:8px 0; border-bottom:1px solid var(--border);">
-          <a href="https://developer.mozilla.org/pl/"
-             target="_blank" rel="noopener noreferrer"
-             style="color:var(--accent-secondary); display:flex; gap:8px; align-items:center;">
-            <span>🦊</span> MDN Web Docs
-          </a>
-        </li>
-        <li style="padding:8px 0; border-bottom:1px solid var(--border);">
-          <a href="https://www.w3schools.com"
-             target="_blank" rel="noopener noreferrer"
-             style="color:var(--accent-secondary); display:flex; gap:8px; align-items:center;">
-            <span>🏫</span> W3Schools
-          </a>
-        </li>
-        <li style="padding:8px 0; border-bottom:1px solid var(--border);">
-          <a href="https://css-tricks.com"
-             target="_blank" rel="noopener noreferrer"
-             style="color:var(--accent-secondary); display:flex; gap:8px; align-items:center;">
-            <span>🎨</span> CSS-Tricks
-          </a>
-        </li>
-        <li style="padding:8px 0;">
-          <a href="https://github.com"
-             target="_blank" rel="noopener noreferrer"
-             style="color:var(--accent-secondary); display:flex; gap:8px; align-items:center;">
-            <span>🐙</span> GitHub
-          </a>
-        </li>
+    <!-- Listy -->
+    <div style="padding:20px;background:rgba(124,58,237,0.06);border:1px solid rgba(124,58,237,0.15);
+                border-radius:var(--radius-md);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(124,58,237,0.15);
+                    display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i data-lucide="list" style="width:16px;height:16px;color:var(--accent-secondary);"></i>
+        </div>
+        <div style="font-weight:700;color:var(--text-primary);">Listy i nawigacja</div>
+      </div>
+      <ul style="color:var(--text-secondary);font-size:var(--text-sm);line-height:1.8;
+                 padding-left:18px;margin:0;">
+        <li>Lista rozwijana <code>&lt;select&gt;</code> jako przełącznik widoku</li>
+        <li>Nawigacja albumowa przez drugi <code>&lt;select&gt;</code></li>
+        <li>Lista <code>&lt;ul&gt;</code> z linkami do podstron albumów</li>
+        <li>Stylowanie list w CSS</li>
       </ul>
     </div>
 
-  </div><!-- /.grid -->
+    <!-- Łącza -->
+    <div style="padding:20px;background:rgba(124,58,237,0.06);border:1px solid rgba(124,58,237,0.15);
+                border-radius:var(--radius-md);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(124,58,237,0.15);
+                    display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i data-lucide="link-2" style="width:16px;height:16px;color:var(--accent-secondary);"></i>
+        </div>
+        <div style="font-weight:700;color:var(--text-primary);">Hiperlącza</div>
+      </div>
+      <ul style="color:var(--text-secondary);font-size:var(--text-sm);line-height:1.8;
+                 padding-left:18px;margin:0;">
+        <li>Łącza wewnętrzne do podstron (<code>href="podstrony/..."</code>)</li>
+        <li>Łącza zewnętrzne z <code>target="_blank"</code></li>
+        <li>Obrazy jako klikalne łącza (<code>&lt;a&gt;&lt;img&gt;&lt;/a&gt;</code>)</li>
+        <li>Łącze do strony źródeł</li>
+        <li>Favicon i ikona zakładki</li>
+      </ul>
+    </div>
+
+    <!-- CSS i JS -->
+    <div style="padding:20px;background:rgba(124,58,237,0.06);border:1px solid rgba(124,58,237,0.15);
+                border-radius:var(--radius-md);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(124,58,237,0.15);
+                    display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i data-lucide="paintbrush" style="width:16px;height:16px;color:var(--accent-secondary);"></i>
+        </div>
+        <div style="font-weight:700;color:var(--text-primary);">CSS i responsywność</div>
+      </div>
+      <ul style="color:var(--text-secondary);font-size:var(--text-sm);line-height:1.8;
+                 padding-left:18px;margin:0;">
+        <li>Sekcja hero z efektem paralaksy</li>
+        <li>Flexbox — siatka okładek albumów</li>
+        <li>Responsywne tabele z poziomym scrollem</li>
+        <li>CSS Grid dla układu kart</li>
+        <li><code>@media</code> queries dla mobile</li>
+      </ul>
+    </div>
+
+  </div>
 </div>
 
-<!-- TYPY HIPERŁĄCZY -->
-<div class="content-card fade-in" id="sekcja-lacza">
-  <h2 style="color:var(--accent-secondary); margin-bottom:20px;">🔗 Wszystkie typy hiperłączy</h2>
+<!-- WYMAGANIA SZKOLNE — SPEŁNIONE -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="clipboard-check" style="width:20px;height:20px;"></i>
+    Wymagania szkolne — spełnione
+  </h2>
 
-  <div class="table-wrapper">
-    <table>
-      <thead>
-        <tr>
-          <th>Typ łącza</th>
-          <th>Przykład kodu</th>
-          <th>Działanie</th>
-          <th>Demo</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--text-primary); font-weight:600;">Zewnętrzny</td>
-          <td><code>&lt;a href="https://..."&gt;</code></td>
-          <td style="color:var(--text-secondary);">Otwiera zewnętrzną stronę</td>
-          <td>
-            <a href="https://developer.mozilla.org" target="_blank" rel="noopener noreferrer"
-               class="btn btn-outline btn-sm">MDN →</a>
-          </td>
-        </tr>
-        <tr>
-          <td style="color:var(--text-primary); font-weight:600;">Wewnętrzny</td>
-          <td><code>&lt;a href="/kurs/"&gt;</code></td>
-          <td style="color:var(--text-secondary);">Nawigacja w obrębie serwisu</td>
-          <td>
-            <a href="{% url 'minikurs:glowna' %}" class="btn btn-outline btn-sm">Kurs →</a>
-          </td>
-        </tr>
-        <tr>
-          <td style="color:var(--text-primary); font-weight:600;">Kotwica (anchor)</td>
-          <td><code>&lt;a href="#sekcja"&gt;</code></td>
-          <td style="color:var(--text-secondary);">Skroluje do sekcji na stronie</td>
-          <td>
-            <a href="#sekcja-tabela" class="btn btn-outline btn-sm">↑ Do tabeli</a>
-          </td>
-        </tr>
-        <tr>
-          <td style="color:var(--text-primary); font-weight:600;">E-mail (mailto)</td>
-          <td><code>&lt;a href="mailto:..."&gt;</code></td>
-          <td style="color:var(--text-secondary);">Otwiera klienta poczty</td>
-          <td>
-            <!-- ZASTĄP własnymi danymi -->
-            <a href="mailto:kontakt@example.com" class="btn btn-outline btn-sm">✉️ Email</a>
-          </td>
-        </tr>
-        <tr>
-          <td style="color:var(--text-primary); font-weight:600;">Telefon (tel)</td>
-          <td><code>&lt;a href="tel:+48..."&gt;</code></td>
-          <td style="color:var(--text-secondary);">Inicjuje połączenie telefoniczne</td>
-          <td>
-            <!-- ZASTĄP własnymi danymi -->
-            <a href="tel:+48000000000" class="btn btn-outline btn-sm">📱 Zadzwoń</a>
-          </td>
-        </tr>
-        <tr>
-          <td style="color:var(--text-primary); font-weight:600;">Pobieranie (download)</td>
-          <td><code>&lt;a href="plik.pdf" download&gt;</code></td>
-          <td style="color:var(--text-secondary);">Pobiera plik na dysk</td>
-          <td>
-            <a href="#" download class="btn btn-outline btn-sm">⬇️ Pobierz</a>
-          </td>
-        </tr>
-        <tr>
-          <td style="color:var(--text-primary); font-weight:600;">Nowa karta</td>
-          <td><code>target="_blank" rel="noopener"</code></td>
-          <td style="color:var(--text-secondary);">Otwiera w nowej karcie przeglądarki</td>
-          <td>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer"
-               class="btn btn-outline btn-sm">🐙 GitHub ↗</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+
+    {% for item in "12345678901234"|make_list %}{% endfor %}
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:16px;height:16px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+        <strong style="color:var(--text-primary);">Tytuł i wstęp</strong> —
+        sekcja hero z logo + akapit opisujący historię Pink Floyd (7 zdań)
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:16px;height:16px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+        <strong style="color:var(--text-primary);">Footer z autorem</strong> —
+        Krzysztof Januszewski 3F © 2026
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:16px;height:16px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+        <strong style="color:var(--text-primary);">Tabela 1 — graficzna</strong> —
+        25 okładek albumów (duże grafiki) + podpisy w osobnych komórkach = 50 komórek
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:16px;height:16px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+        <strong style="color:var(--text-primary);">Lista rozwijana między tabelami</strong> —
+        dwa <code>&lt;select&gt;</code>: przełącznik widoku + nawigacja do albumów
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:16px;height:16px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+        <strong style="color:var(--text-primary);">Tabela 2 — tabelaryczna</strong> —
+        25 wierszy + nagłówek, 9 kolumn (Lp. + 8 informacyjnych), grupowanie w 2 grupy
+        (<em>Album</em> i <em>Informacje techniczne</em>), kolumna z grafikami,
+        min. 7 scaleń komórek, listy <code>&lt;ul&gt;</code> w 5+ komórkach
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:16px;height:16px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+        <strong style="color:var(--text-primary);">5+ podstron z łączami</strong> —
+        8 podstron albumów (darkside, wishyou, thewall, animals, meddle, divisionBell, ummagumma, sos),
+        każda z min. 2 grafikami
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:16px;height:16px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+        <strong style="color:var(--text-primary);">Podstrona źródeł</strong> —
+        osobna strona <code>sources.html</code> z linkami do wszystkich materiałów
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:16px;height:16px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+        <strong style="color:var(--text-primary);">Responsywność</strong> —
+        tabele z poziomym scrollem na mobile, Flexbox dla siatki okładek,
+        <code>@media</code> queries, <code>font-size: 1.2vw</code> w nawigacji
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PODGLĄD PROJEKTU — IFRAME -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;
+              flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+    <h2 style="color:var(--accent-secondary);margin:0;display:flex;align-items:center;gap:10px;">
+      <i data-lucide="monitor" style="width:20px;height:20px;"></i>
+      Podgląd projektu
+    </h2>
+    <a href="{% static 'projekty/tabele-listy-lacza/index.html' %}"
+       target="_blank"
+       class="btn btn-primary btn-sm">
+      <i data-lucide="external-link" style="width:14px;height:14px;"></i>
+      Otwórz w pełnym oknie
+    </a>
   </div>
 
-  <!-- Kod przykładowy -->
-  <pre class="code-block" data-lang="HTML" style="margin-top:20px"><code><span class="comment">&lt;!-- Zewnętrzny, nowa karta, bezpieczny --&gt;</span>
-<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"https://developer.mozilla.org"</span>
-   <span class="attr">target</span>=<span class="val">"_blank"</span>
-   <span class="attr">rel</span>=<span class="val">"noopener noreferrer"</span><span class="tag">&gt;</span>MDN<span class="tag">&lt;/a&gt;</span>
+  <p style="color:var(--text-muted);font-size:var(--text-sm);margin-bottom:16px;">
+    Poniżej możesz przeglądać projekt bezpośrednio — klikaj w albumy, przełączaj widoki listą rozwijaną
+    i eksploruj podstrony. Aby zobaczyć projekt w pełnym rozmiarze, użyj przycisku powyżej.
+  </p>
 
-<span class="comment">&lt;!-- Kotwica do sekcji --&gt;</span>
-<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#sekcja-tabela"</span><span class="tag">&gt;</span>Przejdź do tabeli<span class="tag">&lt;/a&gt;</span>
+  <!-- Kontrolki iframe -->
+  <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+    <button onclick="setIframeSize('100%','500px')" class="btn btn-outline btn-sm">
+      <i data-lucide="smartphone" style="width:12px;height:12px;"></i> Mobile
+    </button>
+    <button onclick="setIframeSize('100%','600px')" class="btn btn-outline btn-sm">
+      <i data-lucide="tablet" style="width:12px;height:12px;"></i> Tablet
+    </button>
+    <button onclick="setIframeSize('100%','750px')" class="btn btn-outline btn-sm">
+      <i data-lucide="monitor" style="width:12px;height:12px;"></i> Desktop
+    </button>
+  </div>
 
-<span class="comment">&lt;!-- E-mail --&gt;</span>
-<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"mailto:kontakt@example.com"</span><span class="tag">&gt;</span>Napisz do mnie<span class="tag">&lt;/a&gt;</span>
+  <div id="iframe-wrapper"
+       style="width:100%;height:600px;border-radius:var(--radius-md);overflow:hidden;
+              border:2px solid rgba(124,58,237,0.25);transition:height 0.3s ease;
+              background:#000;">
+    <iframe id="project-iframe"
+            src="{% static 'projekty/tabele-listy-lacza/index.html' %}"
+            style="width:100%;height:100%;border:none;"
+            title="Projekt: Tabele, Listy i Łącza — Pink Floyd"
+            loading="lazy">
+      <p>Twoja przeglądarka nie obsługuje ramek.
+         <a href="{% static 'projekty/tabele-listy-lacza/index.html' %}" target="_blank">
+           Otwórz projekt bezpośrednio →
+         </a>
+      </p>
+    </iframe>
+  </div>
 
-<span class="comment">&lt;!-- Telefon --&gt;</span>
-<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"tel:+48123456789"</span><span class="tag">&gt;</span>+48 123 456 789<span class="tag">&lt;/a&gt;</span>
-
-<span class="comment">&lt;!-- Pobieranie pliku --&gt;</span>
-<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"dokument.pdf"</span> <span class="attr">download</span>=<span class="val">"moj-dokument.pdf"</span><span class="tag">&gt;</span>
-  Pobierz PDF
-<span class="tag">&lt;/a&gt;</span></code></pre>
+  <div style="display:flex;justify-content:space-between;align-items:center;
+              margin-top:10px;font-size:var(--text-xs);color:var(--text-muted);">
+    <span>💡 Projekt działa w pełni interaktywnie — możesz klikać linki i przełączać widoki</span>
+    <span id="iframe-size-label">600px</span>
+  </div>
 </div>
+
+<!-- KLUCZOWE TECHNIKI — PRZYKŁADY KODU -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="code-2" style="width:20px;height:20px;"></i>
+    Kluczowe techniki — przykłady kodu
+  </h2>
+
+  <!-- Scalanie komórek -->
+  <div style="margin-bottom:24px;">
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">1</span>
+      Scalanie komórek — rowspan i colspan
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#7c3aed;">&lt;tr&gt;</span>
+  <span style="color:#7c3aed;">&lt;td&gt;</span>1.<span style="color:#7c3aed;">&lt;/td&gt;</span>
+  <span style="color:#7c3aed;">&lt;td&gt;</span>The Piper at the Gates of Dawn<span style="color:#7c3aed;">&lt;/td&gt;</span>
+  <span style="color:#7c3aed;">&lt;td&gt;</span>1967<span style="color:#7c3aed;">&lt;/td&gt;</span>
+  <span style="color:#a78bfa;">&lt;td <span style="color:#34d399;">rowspan="2"</span>&gt;</span>EMI Columbia<span style="color:#a78bfa;">&lt;/td&gt;</span>  <span style="color:#64748b;">← obejmuje 2 wiersze</span>
+  <span style="color:#a78bfa;">&lt;td <span style="color:#34d399;">rowspan="2"</span>&gt;</span>Norman Smith<span style="color:#a78bfa;">&lt;/td&gt;</span>
+<span style="color:#7c3aed;">&lt;/tr&gt;</span>
+<span style="color:#7c3aed;">&lt;tr&gt;</span>
+  <span style="color:#7c3aed;">&lt;td&gt;</span>2.<span style="color:#7c3aed;">&lt;/td&gt;</span>
+  <span style="color:#7c3aed;">&lt;td&gt;</span>A Saucerful of Secrets<span style="color:#7c3aed;">&lt;/td&gt;</span>
+  <span style="color:#7c3aed;">&lt;td&gt;</span>1968<span style="color:#7c3aed;">&lt;/td&gt;</span>
+  <span style="color:#64748b;">← brak td dla wytwórni i producenta — scalono wyżej</span>
+<span style="color:#7c3aed;">&lt;/tr&gt;</span></code></pre>
+  </div>
+
+  <!-- Grupowanie nagłówków -->
+  <div style="margin-bottom:24px;">
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">2</span>
+      Grupowanie nagłówków — colspan w thead
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#7c3aed;">&lt;thead&gt;</span>
+  <span style="color:#7c3aed;">&lt;tr&gt;</span>
+    <span style="color:#a78bfa;">&lt;th <span style="color:#34d399;">rowspan="2"</span>&gt;</span>Lp.<span style="color:#a78bfa;">&lt;/th&gt;</span>
+    <span style="color:#a78bfa;">&lt;th <span style="color:#34d399;">colspan="2"</span>&gt;</span>Album<span style="color:#a78bfa;">&lt;/th&gt;</span>          <span style="color:#64748b;">← grupa: Tytuł + Okładka</span>
+    <span style="color:#a78bfa;">&lt;th <span style="color:#34d399;">rowspan="2"</span>&gt;</span>Rok<span style="color:#a78bfa;">&lt;/th&gt;</span>
+    <span style="color:#a78bfa;">&lt;th <span style="color:#34d399;">colspan="4"</span>&gt;</span>Informacje techniczne<span style="color:#a78bfa;">&lt;/th&gt;</span>  <span style="color:#64748b;">← 4 kolumny</span>
+    <span style="color:#a78bfa;">&lt;th <span style="color:#34d399;">rowspan="2"</span>&gt;</span>Wyróżnienia<span style="color:#a78bfa;">&lt;/th&gt;</span>
+  <span style="color:#7c3aed;">&lt;/tr&gt;</span>
+  <span style="color:#7c3aed;">&lt;tr&gt;</span>
+    <span style="color:#7c3aed;">&lt;th&gt;</span>Tytuł<span style="color:#7c3aed;">&lt;/th&gt;</span>
+    <span style="color:#7c3aed;">&lt;th&gt;</span>Okładka<span style="color:#7c3aed;">&lt;/th&gt;</span>
+    <span style="color:#7c3aed;">&lt;th&gt;</span>Wytwórnia<span style="color:#7c3aed;">&lt;/th&gt;</span>
+    <span style="color:#7c3aed;">&lt;th&gt;</span>Producent<span style="color:#7c3aed;">&lt;/th&gt;</span>
+    <span style="color:#7c3aed;">&lt;th&gt;</span>Liczba utworów<span style="color:#7c3aed;">&lt;/th&gt;</span>
+    <span style="color:#7c3aed;">&lt;th&gt;</span>Długość<span style="color:#7c3aed;">&lt;/th&gt;</span>
+  <span style="color:#7c3aed;">&lt;/tr&gt;</span>
+<span style="color:#7c3aed;">&lt;/thead&gt;</span></code></pre>
+  </div>
+
+  <!-- Lista w komórce -->
+  <div style="margin-bottom:24px;">
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">3</span>
+      Lista ul wewnątrz komórki td
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#7c3aed;">&lt;td&gt;</span>
+  <span style="color:#a78bfa;">&lt;ul&gt;</span>
+    <span style="color:#7c3aed;">&lt;li&gt;</span>RIAA: 15× Platinum (US)<span style="color:#7c3aed;">&lt;/li&gt;</span>
+    <span style="color:#7c3aed;">&lt;li&gt;</span>Grammy Hall of Fame (1999)<span style="color:#7c3aed;">&lt;/li&gt;</span>
+    <span style="color:#7c3aed;">&lt;li&gt;</span>Library of Congress (2012)<span style="color:#7c3aed;">&lt;/li&gt;</span>
+  <span style="color:#a78bfa;">&lt;/ul&gt;</span>
+<span style="color:#7c3aed;">&lt;/td&gt;</span></code></pre>
+  </div>
+
+  <!-- Obraz jako link -->
+  <div>
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">4</span>
+      Obraz jako klikalne łącze
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#64748b;">&lt;!-- Klik w okładkę → przejście do podstrony albumu --&gt;</span>
+<span style="color:#a78bfa;">&lt;a <span style="color:#34d399;">href="podstrony/darkside.html"</span>&gt;</span>
+  <span style="color:#7c3aed;">&lt;img</span>
+    <span style="color:#34d399;">src="img/The_Dark_Side_of_the_Moon.png"</span>
+    <span style="color:#34d399;">alt="The Dark Side of the Moon"</span>
+  <span style="color:#7c3aed;">&gt;</span>
+<span style="color:#a78bfa;">&lt;/a&gt;</span>
+
+<span style="color:#64748b;">&lt;!-- Łącze zewnętrzne — otwiera w nowej karcie --&gt;</span>
+<span style="color:#a78bfa;">&lt;a <span style="color:#34d399;">href="https://en.wikipedia.org/wiki/..."</span>
+   <span style="color:#34d399;">target="_blank"</span>&gt;</span>
+  <span style="color:#7c3aed;">&lt;img</span> <span style="color:#34d399;">src="img/Pulse.png"</span> <span style="color:#34d399;">alt="Pulse"</span><span style="color:#7c3aed;">&gt;</span>
+<span style="color:#a78bfa;">&lt;/a&gt;</span></code></pre>
+  </div>
+
+</div>
+
+<!-- NAWIGACJA DO KOLEJNYCH PROJEKTÓW -->
+<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+  <a href="{% url 'minikurs:lista' %}"
+     class="btn btn-outline"
+     style="display:flex;align-items:center;gap:8px;">
+    <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+    Poprzedni: Lista zadań
+  </a>
+  <a href="{% url 'minikurs:multimedia' %}"
+     class="btn btn-primary"
+     style="display:flex;align-items:center;gap:8px;">
+    Następny: Multimedia
+    <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+  </a>
+</div>
+
+<script>
+  function setIframeSize(width, height) {
+    const wrapper = document.getElementById('iframe-wrapper');
+    const label   = document.getElementById('iframe-size-label');
+    wrapper.style.height = height;
+    label.textContent    = height;
+  }
+</script>
 
 {% endblock %}
-

@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink Floyd - Twórczość</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="img/favicon.ico" type="image/png">
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content" style="margin-top: 50vh;">
+            <img class="hero-logo" src="img/logo.png" alt="Pink Floyd Logo">
+            <div class="hero-scroll">
+                <span>przewiń w dół</span>
+                <div class="scroll-arrow">↓</div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section class="intro">
+            <h2>Pink Floyd – legenda rocka progresywnego</h2>
+            <p>Pink Floyd to brytyjski zespół rockowy, który na zawsze zmienił oblicze muzyki współczesnej. Powstał w Londynie w 1965 roku i szybko stał się pionierem rocka progresywnego oraz psychodelicznego. Zespół znany jest z innowacyjnych eksperymentów dźwiękowych, filozoficznych tekstów oraz spektakularnych koncertów z użyciem zaawansowanych efektów wizualnych. Ich albumy, takie jak <i>The Dark Side of the Moon</i> czy <i>The Wall</i>, stały się kamieniami milowymi w historii muzyki. Pink Floyd sprzedał ponad 250 milionów płyt na całym świecie, co czyni ich jednym z najlepiej sprzedających się zespołów wszech czasów. Ich muzyka nadal inspiruje kolejne pokolenia artystów i fanów na całym świecie. Twórczość Pink Floyd charakteryzuje się głębokim przesłaniem społecznym, krytyką systemu oraz refleksją nad kondycją ludzką i otaczającym nas światem.</p>
+        </section>
+
+        <nav class="navigation">
+            <h2>Najbardziej znane albumy</h2>
+            <ul>
+                <li><a style="font-size: 1.2vw;" href="podstrony/darkside.html">The Dark Side of the Moon</a></li>
+                <li><a style="font-size: 1.2vw;" href="podstrony/wishyou.html">Wish You Were Here</a></li>
+                <li><a style="font-size: 1.2vw;" href="podstrony/thewall.html">The Wall</a></li>
+                <li><a style="font-size: 1.2vw;" href="podstrony/animals.html">Animals</a></li>
+                <li><a style="font-size: 1.2vw;" href="podstrony/meddle.html">Meddle</a></li>
+                <li><a style="font-size: 1.2vw;" href="podstrony/divisionBell.html">The Division Bell</a></li>
+                <li><a style="font-size: 1.2vw;" href="podstrony/ummagumma.html">Ummagumma</a></li>
+                <li><a style="font-size: 1.2vw;" href="podstrony/sos.html">A Saucerful of Secrets</a></li>
+            </ul>
+        </nav>
+
+        <section class="tables-section" id="dyskografia">
+            <h2>Dyskografia Pink Floyd</h2>
+
+            <div class="dropdown-container">
+                <label for="table-select"></label>
+                <select id="table-select">
+                    <option value="" disabled selected>Wybierz widok</option>
+                    <option value="visual">Graficzny</option>
+                    <option value="detailed">Tabelaryczny</option>
+                    <option value="full">Pełny</option>
+                </select>
+            </div>
+
+            <!-- ===== NAWIGACJA DO ALBUMU ===== -->
+            <div class="dropdown-container" style="margin-top: 1vh;">
+                <label for="album-select"></label>
+                <select id="album-select">
+                    <option value="" disabled selected>Wybierz album</option>
+                    <option value="podstrony/darkside.html">The Dark Side of the Moon</option>
+                    <option value="podstrony/wishyou.html">Wish You Were Here</option>
+                    <option value="podstrony/animals.html">Animals</option>
+                    <option value="podstrony/thewall.html">The Wall</option>
+                    <option value="podstrony/meddle.html">Meddle</option>
+                    <option value="podstrony/divisionBell.html">The Division Bell</option>
+                    <option value="podstrony/sos.html">A Saucerful of Secrets</option>
+                    <option value="podstrony/ummagumma.html">Ummagumma</option>
+                    <option value="https://en.wikipedia.org/wiki/The_Piper_at_the_Gates_of_Dawn">The Piper at the Gates of Dawn ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/More_(soundtrack)">More ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/Atom_Heart_Mother">Atom Heart Mother ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/Obscured_by_Clouds">Obscured by Clouds ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/Pink_Floyd:_Live_at_Pompeii">Live at Pompeii ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/The_Final_Cut_(album)">The Final Cut ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/Works_(Pink_Floyd_album)">Works ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/A_Momentary_Lapse_of_Reason">A Momentary Lapse of Reason ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/Delicate_Sound_of_Thunder">Delicate Sound of Thunder ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/Pulse_(Pink_Floyd_album)">Pulse ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/Is_There_Anybody_Out_There%3F_The_Wall_Live_1980%E2%80%9381">Is There Anybody Out There? ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/The_Endless_River">The Endless River ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/Echoes:_The_Best_of_Pink_Floyd">Echoes: The Best of Pink Floyd ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/Oh,_by_the_Way">Oh, By the Way ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/Discovery_(Pink_Floyd_box_set)">Discovery ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/The_Early_Years_1965%E2%80%931972">The Early Years 1965–1972 ↗</option>
+                    <option value="https://en.wikipedia.org/wiki/The_Later_Years_1987%E2%80%932019">The Later Years 1987–2019 ↗</option>
+                </select>
+                <button onclick="przejdzDoAlbumu()">Przejdź</button>
+            </div>
+
+            <!-- ===== WIDOK GRAFICZNY ===== -->
+            <div id="table-visual" class="table-container">
+                <h3>Albumy – widok graficzny</h3>
+                <div class="visual-scroll-box">
+                    <div class="visual-flex visual-flex--3col">
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/The_Piper_at_the_Gates_of_Dawn" target="_blank">
+                                <div class="image-cell"><img src="img/The_Piper_at_the_Gates_of_Dawn.png" alt="The Piper at the Gates of Dawn"></div>
+                                <div class="caption-cell">The Piper at the Gates of Dawn</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/sos.html">
+                                <div class="image-cell"><img src="img/A_Saucerful_of_Secrets.png" alt="A Saucerful of Secrets"></div>
+                                <div class="caption-cell">A Saucerful of Secrets</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/More_(soundtrack)" target="_blank">
+                                <div class="image-cell"><img src="img/More.png" alt="More"></div>
+                                <div class="caption-cell">More</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/ummagumma.html">
+                                <div class="image-cell"><img src="img/Ummagumma.png" alt="Ummagumma"></div>
+                                <div class="caption-cell">Ummagumma</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Atom_Heart_Mother" target="_blank">
+                                <div class="image-cell"><img src="img/Atom_Heart_Mother.png" alt="Atom Heart Mother"></div>
+                                <div class="caption-cell">Atom Heart Mother</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/meddle.html">
+                                <div class="image-cell"><img src="img/Meddle.png" alt="Meddle"></div>
+                                <div class="caption-cell">Meddle</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Obscured_by_Clouds" target="_blank">
+                                <div class="image-cell"><img src="img/Obscured_by_Clouds.png" alt="Obscured by Clouds"></div>
+                                <div class="caption-cell">Obscured by Clouds</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Pink_Floyd:_Live_at_Pompeii" target="_blank">
+                                <div class="image-cell"><img src="img/Live_at_Pompei.png" alt="Live at Pompeii"></div>
+                                <div class="caption-cell">Live at Pompeii</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/darkside.html">
+                                <div class="image-cell"><img src="img/The Dark_Side_of_the_Moon.png" alt="The Dark Side of the Moon"></div>
+                                <div class="caption-cell">The Dark Side of the Moon</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/wishyou.html">
+                                <div class="image-cell"><img src="img/Wish_You_Were_Here.png" alt="Wish You Were Here"></div>
+                                <div class="caption-cell">Wish You Were Here</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/animals.html">
+                                <div class="image-cell"><img src="img/Animals.png" alt="Animals"></div>
+                                <div class="caption-cell">Animals</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/thewall.html">
+                                <div class="image-cell"><img src="img/The_Wall.png" alt="The Wall"></div>
+                                <div class="caption-cell">The Wall</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/The_Final_Cut_(album)" target="_blank">
+                                <div class="image-cell"><img src="img/The_Final_Cut.png" alt="The Final Cut"></div>
+                                <div class="caption-cell">The Final Cut</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Works_(Pink_Floyd_album)" target="_blank">
+                                <div class="image-cell"><img src="img/Works.png" alt="Works"></div>
+                                <div class="caption-cell">Works</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/A_Momentary_Lapse_of_Reason" target="_blank">
+                                <div class="image-cell"><img src="img/A_Momentary_Lapse_of_Reason.png" alt="A Momentary Lapse of Reason"></div>
+                                <div class="caption-cell">A Momentary Lapse of Reason</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Delicate_Sound_of_Thunder" target="_blank">
+                                <div class="image-cell"><img src="img/Delicate_Sound_of_Thunder.png" alt="Delicate Sound of Thunder"></div>
+                                <div class="caption-cell">Delicate Sound of Thunder</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/divisionBell.html">
+                                <div class="image-cell"><img src="img/Division_Bell.png" alt="The Division Bell"></div>
+                                <div class="caption-cell">The Division Bell</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Pulse_(Pink_Floyd_album)" target="_blank">
+                                <div class="image-cell"><img src="img/Pulse.png" alt="Pulse"></div>
+                                <div class="caption-cell">Pulse</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Is_There_Anybody_Out_There%3F_The_Wall_Live_1980%E2%80%9381" target="_blank">
+                                <div class="image-cell"><img src="img/Is_There_Anybody_Out_There.png" alt="Is There Anybody Out There"></div>
+                                <div class="caption-cell">Is There Anybody Out There?</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/The_Endless_River" target="_blank">
+                                <div class="image-cell"><img src="img/The_Endless_River.png" alt="The Endless River"></div>
+                                <div class="caption-cell">The Endless River</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Echoes:_The_Best_of_Pink_Floyd" target="_blank">
+                                <div class="image-cell"><img src="img/Echoes.png" alt="Echoes: The Best of Pink Floyd"></div>
+                                <div class="caption-cell">Echoes: The Best of Pink Floyd</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Oh,_by_the_Way" target="_blank">
+                                <div class="image-cell"><img src="img/Oh_By_The_Way.png" alt="Oh, By the Way"></div>
+                                <div class="caption-cell">Oh, By the Way</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Discovery_(Pink_Floyd_box_set)" target="_blank">
+                                <div class="image-cell"><img src="img/Discovery.png" alt="Discovery"></div>
+                                <div class="caption-cell">Discovery</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/The_Early_Years_1965%E2%80%931972" target="_blank">
+                                <div class="image-cell"><img src="img/Early.png" alt="The Early Years 1965-1972"></div>
+                                <div class="caption-cell">The Early Years 1965–1972</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/The_Later_Years_1987%E2%80%932019" target="_blank">
+                                <div class="image-cell"><img src="img/Later.png" alt="The Later Years 1987-2019"></div>
+                                <div class="caption-cell">The Later Years 1987–2019</div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== WIDOK TABELARYCZNY ===== -->
+            <div id="table-detailed" class="table-container">
+                <h3>Albumy – widok tabelaryczny</h3>
+                <div class="table-wrapper">
+                    <table class="detailed-table">
+                        <thead>
+                            <tr>
+                                <th rowspan="2"><abbr title="Liczba porządkowa" style="text-decoration: none;">Lp.</abbr></th>
+                                <!-- ZMIANA: Nagłówek grupowy ALBUM dzielący się na TYTUŁ i OKŁADKA -->
+                                <th colspan="2">Album</th>
+                                <!-- ZMIANA: Data wydania — tylko ROK (jedna kolumna) -->
+                                <th rowspan="2">Rok<br>wydania</th>
+                                <th colspan="4">Informacje techniczne</th>
+                                <th rowspan="2">Wyróżnienia</th>
+                            </tr>
+                            <tr>
+                                <th>Tytuł</th>
+                                <th>Okładka</th>
+                                <th>Wytwórnia</th>
+                                <th>Producent</th>
+                                <th>Liczba<br>utworów</th>
+                                <th>Długość<br>[<abbr title="minuty" style="text-decoration: none;">min</abbr>:<abbr title="sekundy" style="text-decoration: none;">s</abbr>]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- 1 -->
+                            <tr>
+                                <td>1.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/The_Piper_at_the_Gates_of_Dawn" target="_blank">The Piper at the Gates of Dawn</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/The_Piper_at_the_Gates_of_Dawn" target="_blank"><img src="img/The_Piper_at_the_Gates_of_Dawn.png" alt="Piper"></a></td>
+                                <td>1967</td>
+                                <td rowspan="2">EMI Columbia</td>
+                                <td rowspan="2">Norman Smith</td>
+                                <td>11</td>
+                                <td>42:00</td>
+                                <td><ul><li>BPI: Gold (1994)</li><li>Rolling Stone: 500 Greatest Albums</li></ul></td>
+                            </tr>
+
+                            <!-- 2 -->
+                            <tr>
+                                <td>2.</td>
+                                <td><a href="podstrony/sos.html">A Saucerful of Secrets</a></td>
+                                <td class="mini-image"><a href="podstrony/sos.html"><img src="img/A_Saucerful_of_Secrets.png" alt="Saucerful"></a></td>
+                                <td>1968</td>
+                                <td>7</td>
+                                <td>44:52</td>
+                                <td>BPI: Gold</td>
+                            </tr>
+
+                            <!-- 3 -->
+                            <tr>
+                                <td>3.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/More_(soundtrack)" target="_blank">More</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/More_(soundtrack)" target="_blank"><img src="img/More.png" alt="More"></a></td>
+                                <td rowspan="2">1969</td>
+                                <td colspan="2">EMI Columbia – Soundtrack</td>
+                                <td>13</td>
+                                <td>49:04</td>
+                                <td><ul><li>RIAA: Gold (US, reissue)</li><li>Oficjalna ścieżka dźwiękowa filmu „More"</li></ul></td>
+                            </tr>
+
+                            <!-- 4 -->
+                            <tr>
+                                <td>4.</td>
+                                <td><a href="podstrony/ummagumma.html">Ummagumma</a></td>
+                                <td class="mini-image"><a href="podstrony/ummagumma.html"><img src="img/Ummagumma.png" alt="Ummagumma"></a></td>
+                                <td rowspan="11">Harvest</td>
+                                <td rowspan="9">Pink Floyd</td>
+                                <td>9</td>
+                                <td>86:00</td>
+                                <td><ul><li>RIAA: Platinum (US)</li><li>BPI: Gold (UK)</li></ul></td>
+                            </tr>
+
+                            <!-- 5 -->
+                            <tr>
+                                <td>5.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Atom_Heart_Mother" target="_blank">Atom Heart Mother</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Atom_Heart_Mother" target="_blank"><img src="img/Atom_Heart_Mother.png" alt="Atom"></a></td>
+                                <td>1970</td>
+                                <td>5</td>
+                                <td>52:30</td>
+                                <td><ul><li>BPI: Gold</li><li>Certyfikaty w kilku krajach</li></ul></td>
+                            </tr>
+
+                            <!-- 6 -->
+                            <tr>
+                                <td>6.</td>
+                                <td><a href="podstrony/meddle.html">Meddle</a></td>
+                                <td class="mini-image"><a href="podstrony/meddle.html"><img src="img/Meddle.png" alt="Meddle"></a></td>
+                                <td>1971</td>
+                                <td>6</td>
+                                <td>46:50</td>
+                                <td><ul><li>RIAA: 2× Platinum (US)</li><li>BPI: Gold (UK)</li></ul></td>
+                            </tr>
+
+                            <!-- 7 -->
+                            <tr>
+                                <td>7.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Obscured_by_Clouds" target="_blank">Obscured by Clouds</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Obscured_by_Clouds" target="_blank"><img src="img/Obscured_by_Clouds.png" alt="Obscured"></a></td>
+                                <td rowspan="2">1972</td>
+                                <td>10</td>
+                                <td>40:00</td>
+                                <td><ul><li>RIAA: Gold (US)</li><li>Soundtrack dla filmu „La Vallée"</li></ul></td>
+                            </tr>
+
+                            <!-- 8 -->
+                            <tr>
+                                <td>8.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Pink_Floyd:_Live_at_Pompeii" target="_blank">Live at Pompeii</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Pink_Floyd:_Live_at_Pompeii" target="_blank"><img src="img/Live_at_Pompei.png" alt="Pompeii"></a></td>
+                                <td>7</td>
+                                <td>60:00</td>
+                                <td>Certyfikaty w kilku krajach (wydania video/live)</td>
+                            </tr>
+
+                            <!-- 9 -->
+                            <tr>
+                                <td>9.</td>
+                                <td><a href="podstrony/darkside.html">The Dark Side of the Moon</a></td>
+                                <td class="mini-image"><a href="podstrony/darkside.html"><img src="img/The Dark_Side_of_the_Moon.png" alt="Dark Side"></a></td>
+                                <td>1973</td>
+                                <td>10</td>
+                                <td>42:59</td>
+                                <td><ul><li>RIAA: 15× Platinum (US)</li><li>Grammy Hall of Fame (1999)</li><li>Library of Congress: National Recording Registry (2012)</li></ul></td>
+                            </tr>
+
+                            <!-- 10 -->
+                            <tr>
+                                <td>10.</td>
+                                <td><a href="podstrony/wishyou.html">Wish You Were Here</a></td>
+                                <td class="mini-image"><a href="podstrony/wishyou.html"><img src="img/Wish_You_Were_Here.png" alt="Wish"></a></td>
+                                <td>1975</td>
+                                <td rowspan="2">5</td>
+                                <td>44:28</td>
+                                <td><ul><li>RIAA: 7× Platinum (US)</li><li>BPI: 3× Platinum (UK)</li></ul></td>
+                            </tr>
+
+                            <!-- 11 -->
+                            <tr>
+                                <td>11.</td>
+                                <td><a href="podstrony/animals.html">Animals</a></td>
+                                <td class="mini-image"><a href="podstrony/animals.html"><img src="img/Animals.png" alt="Animals"></a></td>
+                                <td>1977</td>
+                                <td>41:40</td>
+                                <td>RIAA: 4× Platinum (US)</td>
+                            </tr>
+
+                            <!-- 12 -->
+                            <tr>
+                                <td>12.</td>
+                                <td><a href="podstrony/thewall.html">The Wall</a></td>
+                                <td class="mini-image"><a href="podstrony/thewall.html"><img src="img/The_Wall.png" alt="Wall"></a></td>
+                                <td>1979</td>
+                                <td>26</td>
+                                <td>81:00</td>
+                                <td><ul><li>RIAA: 23× Platinum (US, double album)</li><li>Adaptacja filmowa (1982)</li></ul></td>
+                            </tr>
+
+                            <!-- 13 -->
+                            <tr>
+                                <td>13.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/The_Final_Cut_(album)" target="_blank">The Final Cut</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/The_Final_Cut_(album)" target="_blank"><img src="img/The_Final_Cut.png" alt="Final Cut"></a></td>
+                                <td rowspan="2">1983</td>
+                                <td>Roger Waters</td>
+                                <td>12</td>
+                                <td>46:00</td>
+                                <td rowspan="2">–</td>
+                            </tr>
+
+                            <!-- 14 -->
+                            <tr>
+                                <td>14.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Works_(Pink_Floyd_album)" target="_blank">Works</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Works_(Pink_Floyd_album)" target="_blank"><img src="img/Works.png" alt="Works"></a></td>
+                                <td>Kompilacja</td>
+                                <td>18</td>
+                                <td>75:00</td>
+                            </tr>
+
+                            <!-- 15 -->
+                            <tr>
+                                <td>15.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/A_Momentary_Lapse_of_Reason" target="_blank">A Momentary Lapse of Reason</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/A_Momentary_Lapse_of_Reason" target="_blank"><img src="img/A_Momentary_Lapse_of_Reason.png" alt="Momentary"></a></td>
+                                <td>1987</td>
+                                <td rowspan="6">EMI</td>
+                                <td>David Gilmour</td>
+                                <td>11</td>
+                                <td>53:00</td>
+                                <td>RIAA: 4× Platinum (US)</td>
+                            </tr>
+
+                            <!-- 16 -->
+                            <tr>
+                                <td>16.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Delicate_Sound_of_Thunder" target="_blank">Delicate Sound of Thunder</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Delicate_Sound_of_Thunder" target="_blank"><img src="img/Delicate_Sound_of_Thunder.png" alt="Delicate"></a></td>
+                                <td>1988</td>
+                                <td rowspan="4">Live</td>
+                                <td>15</td>
+                                <td>100:00</td>
+                                <td>RIAA: 3× Platinum (US)</td>
+                            </tr>
+
+                            <!-- 17 -->
+                            <tr>
+                                <td>17.</td>
+                                <td><a href="podstrony/divisionBell.html">The Division Bell</a></td>
+                                <td class="mini-image"><a href="podstrony/divisionBell.html"><img src="img/Division_Bell.png" alt="Division"></a></td>
+                                <td>1994</td>
+                                <td>11</td>
+                                <td>66:00</td>
+                                <td><ul><li>RIAA: 3× Platinum (US)</li><li>Grammy: Best Rock Instrumental Performance („Marooned")</li></ul></td>
+                            </tr>
+
+                            <!-- 18 -->
+                            <tr>
+                                <td>18.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Pulse_(Pink_Floyd_album)" target="_blank">Pulse</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Pulse_(Pink_Floyd_album)" target="_blank"><img src="img/Pulse.png" alt="Pulse"></a></td>
+                                <td>1995</td>
+                                <td>22</td>
+                                <td>150:00</td>
+                                <td>RIAA: 2× Platinum (US)</td>
+                            </tr>
+
+                            <!-- 19 -->
+                            <tr>
+                                <td>19.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Is_There_Anybody_Out_There%3F_The_Wall_Live_1980%E2%80%9381" target="_blank">Is There Anybody Out There?</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Is_There_Anybody_Out_There%3F_The_Wall_Live_1980%E2%80%9381" target="_blank"><img src="img/Is_There_Anybody_Out_There.png" alt="Anybody"></a></td>
+                                <td>2000</td>
+                                <td rowspan="2">26</td>
+                                <td>105:00</td>
+                                <td>–</td>
+                            </tr>
+
+                            <!-- 20 -->
+                            <tr>
+                                <td>20.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Echoes:_The_Best_of_Pink_Floyd" target="_blank">Echoes: The Best of Pink Floyd</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Echoes:_The_Best_of_Pink_Floyd" target="_blank"><img src="img/Echoes.png" alt="Echoes"></a></td>
+                                <td>2001</td>
+                                <td>Kompilacja</td>
+                                <td>145:00</td>
+                                <td><ul><li>RIAA: 4× Platinum (US)</li><li>BPI: 3× Platinum (UK)</li></ul></td>
+                            </tr>
+
+                            <!-- 21 -->
+                            <tr>
+                                <td>21.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/The_Endless_River" target="_blank">The Endless River</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/The_Endless_River" target="_blank"><img src="img/The_Endless_River.png" alt="Endless"></a></td>
+                                <td>2014</td>
+                                <td>Parlophone</td>
+                                <td>David Gilmour</td>
+                                <td>18</td>
+                                <td>53:00</td>
+                                <td><ul><li>BPI: Platinum (UK)</li><li>RIAA: Gold (US)</li></ul></td>
+                            </tr>
+
+                            <!-- 22 -->
+                            <tr>
+                                <td>22.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Oh,_by_the_Way" target="_blank">Oh, By the Way</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Oh,_by_the_Way" target="_blank"><img src="img/Oh_By_The_Way.png" alt="OhByTheWay"></a></td>
+                                <td>2007</td>
+                                <td rowspan="2">EMI</td>
+                                <td>Box set 16 CD</td>
+                                <td>167</td>
+                                <td>960:00</td>
+                                <td rowspan="2">–</td>
+                            </tr>
+
+                            <!-- 23 -->
+                            <tr>
+                                <td>23.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Discovery_(Pink_Floyd_box_set)" target="_blank">Discovery</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Discovery_(Pink_Floyd_box_set)" target="_blank"><img src="img/Discovery.png" alt="Discovery"></a></td>
+                                <td>2011</td>
+                                <td>Box set 14 CD</td>
+                                <td>142</td>
+                                <td>840:00</td>
+                            </tr>
+
+                            <!-- 24 -->
+                            <tr>
+                                <td>24.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/The_Early_Years_1965%E2%80%931972" target="_blank">The Early Years 1965–1972</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/The_Early_Years_1965%E2%80%931972" target="_blank"><img src="img/Early.png" alt="EarlyYears"></a></td>
+                                <td>2016</td>
+                                <td rowspan="2">Pink Floyd Records</td>
+                                <td rowspan="2">Box set</td>
+                                <td>130</td>
+                                <td>1440:00</td>
+                                <td><ul><li>Wysoko oceniany box set reissue</li><li>Lista najlepszych reissue (różne źródła)</li></ul></td>
+                            </tr>
+
+                            <!-- 25 -->
+                            <tr>
+                                <td>25.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/The_Later_Years_1987%E2%80%932019" target="_blank">The Later Years 1987–2019</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/The_Later_Years_1987%E2%80%932019" target="_blank"><img src="img/Later.png" alt="LaterYears"></a></td>
+                                <td>2019</td>
+                                <td>105</td>
+                                <td>1080:00</td>
+                                <td><ul><li>BPI: Silver (UK)</li><li>Box set – materiały z lat 1987–2019</li></ul></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ===== WIDOK PEŁNY ===== -->
+            <div id="table-full" class="table-container">
+                <h3>Albumy – widok pełny</h3>
+
+                <!-- CZĘŚĆ 1: cały widok graficzny -->
+                <h4 class="full-view-subtitle">Widok graficzny</h4>
+                <div class="visual-scroll-box">
+                    <div class="visual-flex visual-flex--3col">
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/The_Piper_at_the_Gates_of_Dawn" target="_blank">
+                                <div class="image-cell"><img src="img/The_Piper_at_the_Gates_of_Dawn.png" alt="The Piper at the Gates of Dawn"></div>
+                                <div class="caption-cell">The Piper at the Gates of Dawn</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/sos.html">
+                                <div class="image-cell"><img src="img/A_Saucerful_of_Secrets.png" alt="A Saucerful of Secrets"></div>
+                                <div class="caption-cell">A Saucerful of Secrets</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/More_(soundtrack)" target="_blank">
+                                <div class="image-cell"><img src="img/More.png" alt="More"></div>
+                                <div class="caption-cell">More</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/ummagumma.html">
+                                <div class="image-cell"><img src="img/Ummagumma.png" alt="Ummagumma"></div>
+                                <div class="caption-cell">Ummagumma</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Atom_Heart_Mother" target="_blank">
+                                <div class="image-cell"><img src="img/Atom_Heart_Mother.png" alt="Atom Heart Mother"></div>
+                                <div class="caption-cell">Atom Heart Mother</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/meddle.html">
+                                <div class="image-cell"><img src="img/Meddle.png" alt="Meddle"></div>
+                                <div class="caption-cell">Meddle</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Obscured_by_Clouds" target="_blank">
+                                <div class="image-cell"><img src="img/Obscured_by_Clouds.png" alt="Obscured by Clouds"></div>
+                                <div class="caption-cell">Obscured by Clouds</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Pink_Floyd:_Live_at_Pompeii" target="_blank">
+                                <div class="image-cell"><img src="img/Live_at_Pompei.png" alt="Live at Pompeii"></div>
+                                <div class="caption-cell">Live at Pompeii</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/darkside.html">
+                                <div class="image-cell"><img src="img/The Dark_Side_of_the_Moon.png" alt="The Dark Side of the Moon"></div>
+                                <div class="caption-cell">The Dark Side of the Moon</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/wishyou.html">
+                                <div class="image-cell"><img src="img/Wish_You_Were_Here.png" alt="Wish You Were Here"></div>
+                                <div class="caption-cell">Wish You Were Here</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/animals.html">
+                                <div class="image-cell"><img src="img/Animals.png" alt="Animals"></div>
+                                <div class="caption-cell">Animals</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/thewall.html">
+                                <div class="image-cell"><img src="img/The_Wall.png" alt="The Wall"></div>
+                                <div class="caption-cell">The Wall</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/The_Final_Cut_(album)" target="_blank">
+                                <div class="image-cell"><img src="img/The_Final_Cut.png" alt="The Final Cut"></div>
+                                <div class="caption-cell">The Final Cut</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Works_(Pink_Floyd_album)" target="_blank">
+                                <div class="image-cell"><img src="img/Works.png" alt="Works"></div>
+                                <div class="caption-cell">Works</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/A_Momentary_Lapse_of_Reason" target="_blank">
+                                <div class="image-cell"><img src="img/A_Momentary_Lapse_of_Reason.png" alt="A Momentary Lapse of Reason"></div>
+                                <div class="caption-cell">A Momentary Lapse of Reason</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Delicate_Sound_of_Thunder" target="_blank">
+                                <div class="image-cell"><img src="img/Delicate_Sound_of_Thunder.png" alt="Delicate Sound of Thunder"></div>
+                                <div class="caption-cell">Delicate Sound of Thunder</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="podstrony/divisionBell.html">
+                                <div class="image-cell"><img src="img/Division_Bell.png" alt="The Division Bell"></div>
+                                <div class="caption-cell">The Division Bell</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Pulse_(Pink_Floyd_album)" target="_blank">
+                                <div class="image-cell"><img src="img/Pulse.png" alt="Pulse"></div>
+                                <div class="caption-cell">Pulse</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Is_There_Anybody_Out_There%3F_The_Wall_Live_1980%E2%80%9381" target="_blank">
+                                <div class="image-cell"><img src="img/Is_There_Anybody_Out_There.png" alt="Is There Anybody Out There"></div>
+                                <div class="caption-cell">Is There Anybody Out There?</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/The_Endless_River" target="_blank">
+                                <div class="image-cell"><img src="img/The_Endless_River.png" alt="The Endless River"></div>
+                                <div class="caption-cell">The Endless River</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Echoes:_The_Best_of_Pink_Floyd" target="_blank">
+                                <div class="image-cell"><img src="img/Echoes.png" alt="Echoes: The Best of Pink Floyd"></div>
+                                <div class="caption-cell">Echoes: The Best of Pink Floyd</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Oh,_by_the_Way" target="_blank">
+                                <div class="image-cell"><img src="img/Oh_By_The_Way.png" alt="Oh, By the Way"></div>
+                                <div class="caption-cell">Oh, By the Way</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/Discovery_(Pink_Floyd_box_set)" target="_blank">
+                                <div class="image-cell"><img src="img/Discovery.png" alt="Discovery"></div>
+                                <div class="caption-cell">Discovery</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/The_Early_Years_1965%E2%80%931972" target="_blank">
+                                <div class="image-cell"><img src="img/Early.png" alt="The Early Years 1965-1972"></div>
+                                <div class="caption-cell">The Early Years 1965–1972</div>
+                            </a>
+                        </div>
+
+                        <div class="album">
+                            <a href="https://en.wikipedia.org/wiki/The_Later_Years_1987%E2%80%932019" target="_blank">
+                                <div class="image-cell"><img src="img/Later.png" alt="The Later Years 1987-2019"></div>
+                                <div class="caption-cell">The Later Years 1987–2019</div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- CZĘŚĆ 2: cały widok tabelaryczny -->
+                <h4 class="full-view-subtitle">Widok tabelaryczny</h4>
+                <div class="table-wrapper">
+                    <table class="detailed-table">
+                        <colgroup>
+                            <col style="width: 4%;">       <!-- Lp. -->
+                            <col style="width: 17%;">      <!-- Tytuł -->
+                            <col style="width: 5%;">       <!-- Okładka -->
+                            <col style="width: 7%;">       <!-- Rok wydania -->
+                            <col style="width: 10%;">      <!-- Wytwórnia -->
+                            <col style="width: 10%;">      <!-- Producent -->
+                            <col style="width: 8%;">       <!-- Liczba utworów -->
+                            <col style="width: 7%;">       <!-- Długość -->
+                            <col style="width: 20%;">      <!-- Wyróżnienia -->
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th rowspan="2"><abbr title="Liczba porządkowa" style="text-decoration: none;">Lp.</abbr></th>
+                                <!-- ZMIANA: Nagłówek grupowy ALBUM dzielący się na TYTUŁ i OKŁADKA -->
+                                <th colspan="2">Album</th>
+                                <!-- ZMIANA: Data wydania — tylko ROK (jedna kolumna) -->
+                                <th rowspan="2">Rok<br>wydania</th>
+                                <th colspan="4">Informacje techniczne</th>
+                                <th rowspan="2">Wyróżnienia</th>
+                            </tr>
+                            <tr>
+                                <th>Tytuł</th>
+                                <th>Okładka</th>
+                                <th>Wytwórnia</th>
+                                <th>Producent</th>
+                                <th>Liczba<br>utworów</th>
+                                <th>Długość<br>[<abbr title="minuty" style="text-decoration: none;">min</abbr>:<abbr title="sekundy" style="text-decoration: none;">s</abbr>]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- 1 -->
+                            <tr>
+                                <td>1.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/The_Piper_at_the_Gates_of_Dawn" target="_blank">The Piper at the Gates of Dawn</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/The_Piper_at_the_Gates_of_Dawn" target="_blank"><img src="img/The_Piper_at_the_Gates_of_Dawn.png" alt="Piper"></a></td>
+                                <td>1967</td>
+                                <td rowspan="2">EMI Columbia</td>
+                                <td rowspan="2">Norman Smith</td>
+                                <td>11</td>
+                                <td>42:00</td>
+                                <td><ul><li>BPI: Gold (1994)</li><li>Rolling Stone: 500 Greatest Albums</li></ul></td>
+                            </tr>
+
+                            <!-- 2 -->
+                            <tr>
+                                <td>2.</td>
+                                <td><a href="podstrony/sos.html">A Saucerful of Secrets</a></td>
+                                <td class="mini-image"><a href="podstrony/sos.html"><img src="img/A_Saucerful_of_Secrets.png" alt="Saucerful"></a></td>
+                                <td>1968</td>
+                                <td>7</td>
+                                <td>44:52</td>
+                                <td>BPI: Gold</td>
+                            </tr>
+
+                            <!-- 3 -->
+                            <tr>
+                                <td>3.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/More_(soundtrack)" target="_blank">More</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/More_(soundtrack)" target="_blank"><img src="img/More.png" alt="More"></a></td>
+                                <td rowspan="2">1969</td>
+                                <td colspan="2">EMI Columbia – Soundtrack</td>
+                                <td>13</td>
+                                <td>49:04</td>
+                                <td><ul><li>RIAA: Gold (US, reissue)</li><li>Oficjalna ścieżka dźwiękowa filmu „More"</li></ul></td>
+                            </tr>
+
+                            <!-- 4 -->
+                            <tr>
+                                <td>4.</td>
+                                <td><a href="podstrony/ummagumma.html">Ummagumma</a></td>
+                                <td class="mini-image"><a href="podstrony/ummagumma.html"><img src="img/Ummagumma.png" alt="Ummagumma"></a></td>
+                                <td rowspan="11">Harvest</td>
+                                <td rowspan="9">Pink Floyd</td>
+                                <td>9</td>
+                                <td>86:00</td>
+                                <td><ul><li>RIAA: Platinum (US)</li><li>BPI: Gold (UK)</li></ul></td>
+                            </tr>
+
+                            <!-- 5 -->
+                            <tr>
+                                <td>5.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Atom_Heart_Mother" target="_blank">Atom Heart Mother</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Atom_Heart_Mother" target="_blank"><img src="img/Atom_Heart_Mother.png" alt="Atom"></a></td>
+                                <td>1970</td>
+                                <td>5</td>
+                                <td>52:30</td>
+                                <td><ul><li>BPI: Gold</li><li>Certyfikaty w kilku krajach</li></ul></td>
+                            </tr>
+
+                            <!-- 6 -->
+                            <tr>
+                                <td>6.</td>
+                                <td><a href="podstrony/meddle.html">Meddle</a></td>
+                                <td class="mini-image"><a href="podstrony/meddle.html"><img src="img/Meddle.png" alt="Meddle"></a></td>
+                                <td>1971</td>
+                                <td>6</td>
+                                <td>46:50</td>
+                                <td><ul><li>RIAA: 2× Platinum (US)</li><li>BPI: Gold (UK)</li></ul></td>
+                            </tr>
+
+                            <!-- 7 -->
+                            <tr>
+                                <td>7.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Obscured_by_Clouds" target="_blank">Obscured by Clouds</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Obscured_by_Clouds" target="_blank"><img src="img/Obscured_by_Clouds.png" alt="Obscured"></a></td>
+                                <td rowspan="2">1972</td>
+                                <td>10</td>
+                                <td>40:00</td>
+                                <td><ul><li>RIAA: Gold (US)</li><li>Soundtrack dla filmu „La Vallée"</li></ul></td>
+                            </tr>
+
+                            <!-- 8 -->
+                            <tr>
+                                <td>8.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Pink_Floyd:_Live_at_Pompeii" target="_blank">Live at Pompeii</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Pink_Floyd:_Live_at_Pompeii" target="_blank"><img src="img/Live_at_Pompei.png" alt="Pompeii"></a></td>
+                                <td>7</td>
+                                <td>60:00</td>
+                                <td>Certyfikaty w kilku krajach (wydania video/live)</td>
+                            </tr>
+
+                            <!-- 9 -->
+                            <tr>
+                                <td>9.</td>
+                                <td><a href="podstrony/darkside.html">The Dark Side of the Moon</a></td>
+                                <td class="mini-image"><a href="podstrony/darkside.html"><img src="img/The Dark_Side_of_the_Moon.png" alt="Dark Side"></a></td>
+                                <td>1973</td>
+                                <td>10</td>
+                                <td>42:59</td>
+                                <td><ul><li>RIAA: 15× Platinum (US)</li><li>Grammy Hall of Fame (1999)</li><li>Library of Congress: National Recording Registry (2012)</li></ul></td>
+                            </tr>
+
+                            <!-- 10 -->
+                            <tr>
+                                <td>10.</td>
+                                <td><a href="podstrony/wishyou.html">Wish You Were Here</a></td>
+                                <td class="mini-image"><a href="podstrony/wishyou.html"><img src="img/Wish_You_Were_Here.png" alt="Wish"></a></td>
+                                <td>1975</td>
+                                <td rowspan="2">5</td>
+                                <td>44:28</td>
+                                <td><ul><li>RIAA: 7× Platinum (US)</li><li>BPI: 3× Platinum (UK)</li></ul></td>
+                            </tr>
+
+                            <!-- 11 -->
+                            <tr>
+                                <td>11.</td>
+                                <td><a href="podstrony/animals.html">Animals</a></td>
+                                <td class="mini-image"><a href="podstrony/animals.html"><img src="img/Animals.png" alt="Animals"></a></td>
+                                <td>1977</td>
+                                <td>41:40</td>
+                                <td>RIAA: 4× Platinum (US)</td>
+                            </tr>
+
+                            <!-- 12 -->
+                            <tr>
+                                <td>12.</td>
+                                <td><a href="podstrony/thewall.html">The Wall</a></td>
+                                <td class="mini-image"><a href="podstrony/thewall.html"><img src="img/The_Wall.png" alt="Wall"></a></td>
+                                <td>1979</td>
+                                <td>26</td>
+                                <td>81:00</td>
+                                <td><ul><li>RIAA: 23× Platinum (US, double album)</li><li>Adaptacja filmowa (1982)</li></ul></td>
+                            </tr>
+
+                            <!-- 13 -->
+                            <tr>
+                                <td>13.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/The_Final_Cut_(album)" target="_blank">The Final Cut</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/The_Final_Cut_(album)" target="_blank"><img src="img/The_Final_Cut.png" alt="Final Cut"></a></td>
+                                <td rowspan="2">1983</td>
+                                <td>Roger Waters</td>
+                                <td>12</td>
+                                <td>46:00</td>
+                                <td rowspan="2">–</td>
+                            </tr>
+
+                            <!-- 14 -->
+                            <tr>
+                                <td>14.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Works_(Pink_Floyd_album)" target="_blank">Works</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Works_(Pink_Floyd_album)" target="_blank"><img src="img/Works.png" alt="Works"></a></td>
+                                <td>Kompilacja</td>
+                                <td>18</td>
+                                <td>75:00</td>
+                            </tr>
+
+                            <!-- 15 -->
+                            <tr>
+                                <td>15.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/A_Momentary_Lapse_of_Reason" target="_blank">A Momentary Lapse of Reason</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/A_Momentary_Lapse_of_Reason" target="_blank"><img src="img/A_Momentary_Lapse_of_Reason.png" alt="Momentary"></a></td>
+                                <td>1987</td>
+                                <td rowspan="6">EMI</td>
+                                <td>David Gilmour</td>
+                                <td>11</td>
+                                <td>53:00</td>
+                                <td>RIAA: 4× Platinum (US)</td>
+                            </tr>
+
+                            <!-- 16 -->
+                            <tr>
+                                <td>16.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Delicate_Sound_of_Thunder" target="_blank">Delicate Sound of Thunder</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Delicate_Sound_of_Thunder" target="_blank"><img src="img/Delicate_Sound_of_Thunder.png" alt="Delicate"></a></td>
+                                <td>1988</td>
+                                <td rowspan="4">Live</td>
+                                <td>15</td>
+                                <td>100:00</td>
+                                <td>RIAA: 3× Platinum (US)</td>
+                            </tr>
+
+                            <!-- 17 -->
+                            <tr>
+                                <td>17.</td>
+                                <td><a href="podstrony/divisionBell.html">The Division Bell</a></td>
+                                <td class="mini-image"><a href="podstrony/divisionBell.html"><img src="img/Division_Bell.png" alt="Division"></a></td>
+                                <td>1994</td>
+                                <td>11</td>
+                                <td>66:00</td>
+                                <td><ul><li>RIAA: 3× Platinum (US)</li><li>Grammy: Best Rock Instrumental Performance („Marooned")</li></ul></td>
+                            </tr>
+
+                            <!-- 18 -->
+                            <tr>
+                                <td>18.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Pulse_(Pink_Floyd_album)" target="_blank">Pulse</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Pulse_(Pink_Floyd_album)" target="_blank"><img src="img/Pulse.png" alt="Pulse"></a></td>
+                                <td>1995</td>
+                                <td>22</td>
+                                <td>150:00</td>
+                                <td>RIAA: 2× Platinum (US)</td>
+                            </tr>
+
+                            <!-- 19 -->
+                            <tr>
+                                <td>19.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Is_There_Anybody_Out_There%3F_The_Wall_Live_1980%E2%80%9381" target="_blank">Is There Anybody Out There?</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Is_There_Anybody_Out_There%3F_The_Wall_Live_1980%E2%80%9381" target="_blank"><img src="img/Is_There_Anybody_Out_There.png" alt="Anybody"></a></td>
+                                <td>2000</td>
+                                <td rowspan="2">26</td>
+                                <td>105:00</td>
+                                <td>–</td>
+                            </tr>
+
+                            <!-- 20 -->
+                            <tr>
+                                <td>20.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Echoes:_The_Best_of_Pink_Floyd" target="_blank">Echoes: The Best of Pink Floyd</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Echoes:_The_Best_of_Pink_Floyd" target="_blank"><img src="img/Echoes.png" alt="Echoes"></a></td>
+                                <td>2001</td>
+                                <td>Kompilacja</td>
+                                <td>145:00</td>
+                                <td><ul><li>RIAA: 4× Platinum (US)</li><li>BPI: 3× Platinum (UK)</li></ul></td>
+                            </tr>
+
+                            <!-- 21 -->
+                            <tr>
+                                <td>21.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/The_Endless_River" target="_blank">The Endless River</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/The_Endless_River" target="_blank"><img src="img/The_Endless_River.png" alt="Endless"></a></td>
+                                <td>2014</td>
+                                <td>Parlophone</td>
+                                <td>David Gilmour</td>
+                                <td>18</td>
+                                <td>53:00</td>
+                                <td><ul><li>BPI: Platinum (UK)</li><li>RIAA: Gold (US)</li></ul></td>
+                            </tr>
+
+                            <!-- 22 -->
+                            <tr>
+                                <td>22.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Oh,_by_the_Way" target="_blank">Oh, By the Way</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Oh,_by_the_Way" target="_blank"><img src="img/Oh_By_The_Way.png" alt="OhByTheWay"></a></td>
+                                <td>2007</td>
+                                <td rowspan="2">EMI</td>
+                                <td>Box set 16 CD</td>
+                                <td>167</td>
+                                <td>960:00</td>
+                                <td rowspan="2">–</td>
+                            </tr>
+
+                            <!-- 23 -->
+                            <tr>
+                                <td>23.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Discovery_(Pink_Floyd_box_set)" target="_blank">Discovery</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/Discovery_(Pink_Floyd_box_set)" target="_blank"><img src="img/Discovery.png" alt="Discovery"></a></td>
+                                <td>2011</td>
+                                <td>Box set 14 CD</td>
+                                <td>142</td>
+                                <td>840:00</td>
+                            </tr>
+
+                            <!-- 24 -->
+                            <tr>
+                                <td>24.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/The_Early_Years_1965%E2%80%931972" target="_blank">The Early Years 1965–1972</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/The_Early_Years_1965%E2%80%931972" target="_blank"><img src="img/Early.png" alt="EarlyYears"></a></td>
+                                <td>2016</td>
+                                <td rowspan="2">Pink Floyd Records</td>
+                                <td rowspan="2">Box set</td>
+                                <td>130</td>
+                                <td>1440:00</td>
+                                <td><ul><li>Wysoko oceniany box set reissue</li><li>Lista najlepszych reissue (różne źródła)</li></ul></td>
+                            </tr>
+
+                            <!-- 25 -->
+                            <tr>
+                                <td>25.</td>
+                                <td><a href="https://en.wikipedia.org/wiki/The_Later_Years_1987%E2%80%932019" target="_blank">The Later Years 1987–2019</a></td>
+                                <td class="mini-image"><a href="https://en.wikipedia.org/wiki/The_Later_Years_1987%E2%80%932019" target="_blank"><img src="img/Later.png" alt="LaterYears"></a></td>
+                                <td>2019</td>
+                                <td>105</td>
+                                <td>1080:00</td>
+                                <td><ul><li>BPI: Silver (UK)</li><li>Box set – materiały z lat 1987–2019</li></ul></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+        </section>
+    </main>
+
+    <div class="sources-link-outside">
+        <a style="color: white;" href="sources.html">Źródła</a>
+    </div>
+
+    <footer>
+        <p style="font-size: 1.2vw;">Krzysztof Januszewski 3F © 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
