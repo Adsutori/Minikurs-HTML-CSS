@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel – Kwestionariusz Osobowy</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+
+  <header class="dash-header">
+    <div class="nav-logo">
+      <span class="logo-icon"><i data-lucide="clipboard-list"></i></span>
+      <span class="logo-title">Kwestionariusz osobowy</span>
+    </div>
+    <div class="dash-user-info">
+      <span class="dash-greeting">
+        <i data-lucide="user-circle"></i>
+        Witaj, <strong id="userName">...</strong>
+      </span>
+      <button class="btn-submit btn-logout btn-sm" onclick="logout()">
+        <i data-lucide="log-out"></i> Wyloguj się
+      </button>
+    </div>
+  </header>
+
+  <main class="dash-main container">
+
+    <div id="loadingSpinner" class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Ładowanie danych...</p>
+    </div>
+
+    <div id="dashPanel" style="display:none;">
+
+      <div id="savedBanner" class="alert-banner alert-success" style="display:none;"></div>
+      <div id="errorBanner" class="alert-banner alert-error"   style="display:none;"></div>
+
+      <div class="welcome-banner">
+        <span class="welcome-icon"><i data-lucide="hand-metal"></i></span>
+        <div>
+          <div class="welcome-title" id="welcomeTitle">Ładowanie...</div>
+          <div class="welcome-sub"   id="welcomeSub"></div>
+        </div>
+      </div>
+
+      <div class="dash-tabs">
+        <button class="tab-btn active" data-tab="questionnaire">
+          <i data-lucide="file-text"></i> Kwestionariusz
+        </button>
+        <button class="tab-btn" data-tab="profile">
+          <i data-lucide="user"></i> Mój profil
+        </button>
+      </div>
+
+      <!-- TAB 1: KWESTIONARIUSZ -->
+      <div class="tab-content" id="tab-questionnaire">
+        <p class="tab-description">
+          Wypełnij poniższy kwestionariusz osobowy. Pola oznaczone
+          <span class="required">*</span> są obowiązkowe.
+        </p>
+
+        <form id="questionnaireForm" novalidate>
+
+          <!-- GRUPA 1 -->
+          <fieldset class="group">
+            <legend>1. Dane Osobowe / Profil</legend>
+
+            <fieldset class="subgroup style-a">
+              <legend>Dane osobowe</legend>
+              <div class="form-grid-2">
+                <div class="form-field">
+                  <label for="imie">Imię <span class="required">*</span></label>
+                  <input type="text" id="imie" name="imie" required maxlength="100" />
+                </div>
+                <div class="form-field">
+                  <label for="nazwisko">Nazwisko <span class="required">*</span></label>
+                  <input type="text" id="nazwisko" name="nazwisko" required maxlength="100" />
+                </div>
+                <div class="form-field">
+                  <label for="imie_ojca">Imię ojca <span class="required">*</span></label>
+                  <input type="text" id="imie_ojca" name="imie_ojca" required maxlength="100" />
+                </div>
+                <div class="form-field">
+                  <label for="pesel">
+                    <abbr title="Powszechny Elektroniczny System Ewidencji Ludności">PESEL</abbr>
+                    <span class="required">*</span>
+                  </label>
+                  <input type="text" id="pesel" name="pesel" required
+                    pattern="[0-9]{11}" maxlength="11"
+                    placeholder="11 cyfr" inputmode="numeric" />
+                  <span class="error-msg" id="peselError"></span>
+                </div>
+                <div class="form-field">
+                  <label for="data_urodzenia">Data urodzenia <span class="required">*</span></label>
+                  <input type="date" id="data_urodzenia" name="data_urodzenia" required />
+                </div>
+                <div class="form-field">
+                  <label for="miejsce_urodzenia">Miejsce urodzenia <span class="required">*</span></label>
+                  <input type="text" id="miejsce_urodzenia" name="miejsce_urodzenia"
+                    required maxlength="100" />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label-block">Płeć <span class="required">*</span></label>
+                <div class="radio-group">
+                  <input type="radio" id="plec_m" name="plec" value="M" required />
+                  <label class="radio-label" for="plec_m">Mężczyzna</label>
+                  <input type="radio" id="plec_k" name="plec" value="K" />
+                  <label class="radio-label" for="plec_k">Kobieta</label>
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-field">
+                  <label for="narodowosc">Narodowość</label>
+                  <input type="text" id="narodowosc" name="narodowosc" maxlength="80" />
+                </div>
+                <div class="form-field">
+                  <label for="stan_cywilny">Stan cywilny</label>
+                  <select id="stan_cywilny" name="stan_cywilny">
+                    <option value="">-- wybierz --</option>
+                    <option value="kawaler/panna">Kawaler / Panna</option>
+                    <option value="żonaty/zamężna">Żonaty / Zamężna</option>
+                    <option value="rozwiedziony/a">Rozwiedziony/a</option>
+                    <option value="wdowiec/wdowa">Wdowiec / Wdowa</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="subgroup style-b">
+              <legend>Dane adresowe</legend>
+              <div class="form-grid-2">
+                <div class="form-field float-group">
+                  <select id="wojewodztwo" name="wojewodztwo" required>
+                    <option value="" disabled selected></option>
+                    <option value="dolnośląskie">dolnośląskie</option>
+                    <option value="kujawsko-pomorskie">kujawsko-pomorskie</option>
+                    <option value="lubelskie">lubelskie</option>
+                    <option value="lubuskie">lubuskie</option>
+                    <option value="łódzkie">łódzkie</option>
+                    <option value="małopolskie">małopolskie</option>
+                    <option value="mazowieckie">mazowieckie</option>
+                    <option value="opolskie">opolskie</option>
+                    <option value="podkarpackie">podkarpackie</option>
+                    <option value="podlaskie">podlaskie</option>
+                    <option value="pomorskie">pomorskie</option>
+                    <option value="śląskie">śląskie</option>
+                    <option value="świętokrzyskie">świętokrzyskie</option>
+                    <option value="warmińsko-mazurskie">warmińsko-mazurskie</option>
+                    <option value="wielkopolskie">wielkopolskie</option>
+                    <option value="zachodniopomorskie">zachodniopomorskie</option>
+                  </select>
+                  <label for="wojewodztwo">Województwo <span class="required">*</span></label>
+                </div>
+                <div class="form-field float-group">
+                  <input type="text" id="ulica" name="ulica" maxlength="150" placeholder=" " />
+                  <label for="ulica">Ulica</label>
+                </div>
+
+                <!-- ← ZMIANA: maxlength="4" zamiast 20 -->
+                <div class="form-field float-group">
+                  <input type="text" id="nr_domu" name="nr_domu" required
+                    maxlength="4" placeholder=" " />
+                  <label for="nr_domu">Nr domu <span class="required">*</span></label>
+                </div>
+
+                <!-- ← ZMIANA: inputmode="numeric", pattern tylko cyfry, maxlength="4" -->
+                <div class="form-field float-group">
+                  <input type="text" id="nr_lokalu" name="nr_lokalu"
+                    maxlength="4" inputmode="numeric"
+                    pattern="[0-9]*" placeholder=" " />
+                  <label for="nr_lokalu">Nr lokalu</label>
+                </div>
+
+                <div class="form-field float-group">
+                  <input type="text" id="kod_pocztowy" name="kod_pocztowy" required
+                    pattern="[0-9]{2}-[0-9]{3}" maxlength="6" placeholder=" " />
+                  <label for="kod_pocztowy">Kod pocztowy <span class="required">*</span></label>
+                  <span class="error-msg" id="kodError"></span>
+                </div>
+                <div class="form-field float-group">
+                  <input type="text" id="miejscowosc" name="miejscowosc" required maxlength="100" placeholder=" " />
+                  <label for="miejscowosc">Miejscowość <span class="required">*</span></label>
+                </div>
+                <div class="form-field float-group">
+                  <input type="text" id="kraj" name="kraj" maxlength="80" value="Polska" placeholder=" " />
+                  <label for="kraj">Kraj</label>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="subgroup style-c">
+              <legend>Dane kontaktowe</legend>
+              <div class="form-grid-2">
+                <div class="form-field">
+                  <label for="email">
+                    <i data-lucide="mail"></i> E-mail <span class="required">*</span>
+                  </label>
+                  <input type="email" id="email" name="email" required
+                    maxlength="150" placeholder="adres@email.pl" />
+                  <span class="error-msg" id="emailError"></span>
+                </div>
+                <div class="form-field">
+                  <label for="telefon">
+                    <i data-lucide="smartphone"></i> Telefon komórkowy <span class="required">*</span>
+                  </label>
+                  <input type="tel" id="telefon" name="telefon" required
+                    pattern="[0-9]{9}" maxlength="9"
+                    placeholder="9 cyfr" inputmode="numeric" />
+                  <span class="error-msg" id="telefonError"></span>
+                </div>
+
+                <!-- ← ZMIANA: maxlength="12", inputmode="numeric", placeholder z podpowiedzią -->
+                <div class="form-field">
+                  <label for="telefon_stacjonarny">
+                    <i data-lucide="phone"></i> Telefon stacjonarny
+                  </label>
+                  <input type="tel" id="telefon_stacjonarny" name="telefon_stacjonarny"
+                    maxlength="9" inputmode="numeric"
+                    placeholder="np. 123456789" />
+                </div>
+
+                <div class="form-field">
+                  <label for="komunikator">
+                    <i data-lucide="message-circle"></i> Komunikator
+                  </label>
+                  <input type="text" id="komunikator" name="komunikator"
+                    maxlength="100" placeholder="np. Skype, Teams" />
+                </div>
+              </div>
+            </fieldset>
+          </fieldset>
+
+          <!-- GRUPA 2 -->
+          <fieldset class="group">
+            <legend>2. Wykształcenie i Praca</legend>
+
+            <fieldset class="subgroup style-a">
+              <legend>Wykształcenie</legend>
+              <div class="form-grid-2">
+                <div class="form-field">
+                  <label for="wyksztalcenie">Poziom wykształcenia <span class="required">*</span></label>
+                  <select id="wyksztalcenie" name="wyksztalcenie" required>
+                    <option value="">-- wybierz --</option>
+                    <option value="podstawowe">Podstawowe</option>
+                    <option value="zawodowe">Zawodowe</option>
+                    <option value="średnie">Średnie</option>
+                    <option value="wyższe licencjat">Wyższe – licencjat</option>
+                    <option value="wyższe magisterskie">Wyższe – magisterskie</option>
+                    <option value="doktorat">Doktorat</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="nazwa_szkoly">Nazwa szkoły / uczelni</label>
+                  <input type="text" id="nazwa_szkoly" name="nazwa_szkoly" maxlength="150" />
+                </div>
+                <div class="form-field">
+                  <label for="kierunek">Kierunek / specjalizacja</label>
+                  <input type="text" id="kierunek" name="kierunek" maxlength="150" />
+                </div>
+
+                <!-- ← ZMIANA: max="9999", oninput blokuje >4 cyfry -->
+                <div class="form-field">
+                  <label for="rok_ukonczenia">Rok ukończenia</label>
+                  <input type="number" id="rok_ukonczenia" name="rok_ukonczenia"
+                    min="1950" max="9999" placeholder="np. 2020" />
+                </div>
+
+              </div>
+            </fieldset>
+
+            <fieldset class="subgroup style-b">
+              <legend>Zatrudnienie</legend>
+              <div class="form-grid-2">
+                <div class="form-field float-group">
+                  <select id="status_zawodowy" name="status_zawodowy" required>
+                    <option value="" disabled selected></option>
+                    <option value="pracujący">Pracujący</option>
+                    <option value="bezrobotny">Bezrobotny</option>
+                    <option value="student">Student</option>
+                    <option value="emeryt/rencista">Emeryt / Rencista</option>
+                    <option value="inne">Inne</option>
+                  </select>
+                  <label for="status_zawodowy">Status zawodowy <span class="required">*</span></label>
+                </div>
+                <div class="form-field float-group">
+                  <input type="text" id="pracodawca" name="pracodawca" maxlength="150" placeholder=" " />
+                  <label for="pracodawca">Nazwa pracodawcy</label>
+                </div>
+                <div class="form-field float-group">
+                  <input type="text" id="stanowisko" name="stanowisko" maxlength="100" placeholder=" " />
+                  <label for="stanowisko">Stanowisko</label>
+                </div>
+
+                <!-- ← ZMIANA: max="99", oninput blokuje >2 cyfry -->
+                <div class="form-field float-group">
+                  <input type="number" id="staz_pracy" name="staz_pracy"
+                    min="0" max="99" placeholder=" " />
+                  <label for="staz_pracy">Staż pracy (lata)</label>
+                </div>
+
+              </div>
+            </fieldset>
+          </fieldset>
+
+          <!-- GRUPA 3 -->
+          <fieldset class="group">
+            <legend>3. Dodatkowe Informacje</legend>
+
+            <fieldset class="subgroup style-c">
+              <legend>Dokumenty tożsamości</legend>
+              <div class="form-grid-2">
+                <div class="form-field">
+                  <label for="nr_dowodu">
+                    <i data-lucide="credit-card"></i> Seria i nr dowodu osobistego
+                  </label>
+                  <input type="text" id="nr_dowodu" name="nr_dowodu"
+                    maxlength="20" placeholder="np. ABC123456" />
+                </div>
+                <div class="form-field">
+                  <label for="data_waznosci_dowodu">
+                    <i data-lucide="calendar-clock"></i> Data ważności dowodu
+                  </label>
+                  <input type="date" id="data_waznosci_dowodu" name="data_waznosci_dowodu" />
+                </div>
+                <div class="form-field">
+                  <label for="nr_paszportu">
+                    <i data-lucide="book-open"></i> Nr paszportu
+                  </label>
+                  <input type="text" id="nr_paszportu" name="nr_paszportu"
+                    maxlength="20" placeholder="np. AA1234567" />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="subgroup style-a">
+              <legend>Zgody i preferencje</legend>
+
+              <div class="form-field checkbox-field">
+                <input type="checkbox" id="zgoda_rodo" name="zgoda_rodo" required />
+                <label class="checkbox-label" for="zgoda_rodo">
+                  <span>Zgoda na przetwarzanie danych osobowych zgodnie z
+                    <abbr title="Rozporządzenie o Ochronie Danych Osobowych">RODO</abbr>
+                    <span class="required">*</span>
+                  </span>
+                </label>
+              </div>
+
+              <div class="form-field checkbox-field">
+                <input type="checkbox" id="zgoda_marketing" name="zgoda_marketing" value="1" />
+                <label class="checkbox-label" for="zgoda_marketing">
+                  <span>Zgoda na kontakt marketingowy</span>
+                </label>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label-block">Preferowany kanał kontaktu</label>
+                <div class="radio-group">
+                  <input type="radio" id="kanal_email"   name="kanal_kontaktu" value="email" />
+                  <label class="radio-label" for="kanal_email">E-mail</label>
+                  <input type="radio" id="kanal_telefon" name="kanal_kontaktu" value="telefon" />
+                  <label class="radio-label" for="kanal_telefon">Telefon</label>
+                  <input type="radio" id="kanal_sms"     name="kanal_kontaktu" value="sms" />
+                  <label class="radio-label" for="kanal_sms">SMS</label>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="uwagi">Uwagi dodatkowe</label>
+                <textarea id="uwagi" name="uwagi" rows="4"
+                  placeholder="Wpisz ewentualne uwagi..."></textarea>
+              </div>
+            </fieldset>
+          </fieldset>
+
+          <div class="form-buttons">
+            <button type="reset" class="btn-reset">
+              <i data-lucide="trash-2"></i> Wyczyść
+            </button>
+            <button type="submit" class="btn-submit">
+              <i data-lucide="save"></i> Zapisz dane
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- TAB 2: PROFIL -->
+      <div class="tab-content" id="tab-profile" style="display:none;">
+
+        <div class="user-card">
+          <div class="card-title">
+            <i data-lucide="bar-chart-2"></i> Dane konta
+          </div>
+          <div class="data-grid" id="userDataGrid"></div>
+        </div>
+
+        <div class="user-card" style="margin-top:1.5rem;">
+          <div class="card-title">
+            <i data-lucide="key-round"></i> Zmiana hasła
+          </div>
+
+          <fieldset class="subgroup style-a" style="margin-top:1rem;">
+            <legend>Wprowadź dane</legend>
+
+            <div class="form-field">
+              <label for="cp_login">Login <span class="required">*</span></label>
+              <input type="text" id="cp_login" placeholder="Twój login" autocomplete="username" />
+            </div>
+            <div class="form-field">
+              <label for="cp_stare">Stare hasło <span class="required">*</span></label>
+              <div class="password-wrapper">
+                <input type="password" id="cp_stare" placeholder="Aktualne hasło" />
+                <button type="button" class="toggle-pass" data-target="cp_stare">
+                  <i data-lucide="eye" id="toggleIcon-cp_stare"></i>
+                </button>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="cp_nowe">Nowe hasło <span class="required">*</span></label>
+              <div class="password-wrapper">
+                <input type="password" id="cp_nowe" placeholder="Min. 8 znaków" />
+                <button type="button" class="toggle-pass" data-target="cp_nowe">
+                  <i data-lucide="eye" id="toggleIcon-cp_nowe"></i>
+                </button>
+              </div>
+              <div class="password-strength-bar" id="cpStrengthBar">
+                <div class="bar-fill" id="cpBarFill"></div>
+              </div>
+              <span class="strength-label" id="cpStrengthLabel"></span>
+              <span class="error-msg" id="cpNoweError"></span>
+            </div>
+            <div class="form-field">
+              <label for="cp_potwierdz">Potwierdź nowe hasło <span class="required">*</span></label>
+              <div class="password-wrapper">
+                <input type="password" id="cp_potwierdz" placeholder="Powtórz nowe hasło" />
+                <button type="button" class="toggle-pass" data-target="cp_potwierdz">
+                  <i data-lucide="eye" id="toggleIcon-cp_potwierdz"></i>
+                </button>
+              </div>
+              <span class="error-msg" id="cpPotwierdzError"></span>
+            </div>
+
+            <div id="cpMessage" style="display:none; margin-top:0.75rem;"></div>
+
+            <div class="form-buttons">
+              <button type="button" class="btn-submit" onclick="submitChangePass()">
+                <i data-lucide="check-circle"></i> Zmień hasło
+              </button>
+            </div>
+          </fieldset>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    lucide.createIcons();
+
+    // ── Sprawdź sesję ──────────────────────────────────────────
+    var sessionData = sessionStorage.getItem('user');
+    if (!sessionData) {
+      window.location.href = 'login.html?error=' +
+        encodeURIComponent('Zaloguj się, aby uzyskać dostęp.');
+    }
+    var currentUser = JSON.parse(sessionData);
+
+    // ── Załaduj dane użytkownika ───────────────────────────────
+    document.getElementById('loadingSpinner').style.display = 'none';
+    document.getElementById('dashPanel').style.display      = 'block';
+    document.getElementById('userName').textContent         = currentUser.login;
+
+    var dt    = new Date(currentUser.created_at);
+    var dtStr = dt.toLocaleString('pl-PL', {
+      year: 'numeric', month: 'long', day: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    });
+
+    document.getElementById('welcomeTitle').textContent =
+      'Witaj, ' + currentUser.login + '!';
+    document.getElementById('welcomeSub').textContent =
+      'Zalogowano jako: ' + currentUser.login + ' · Konto od: ' + dtStr;
+
+    document.getElementById('userDataGrid').innerHTML =
+      makeDataItem('user',     'Login',            escHtml(currentUser.login)) +
+      makeDataItem('calendar', 'Data rejestracji', escHtml(dtStr)) +
+      makeDataItem('hash',     'ID użytkownika',   '#' + escHtml(String(currentUser.id)));
+
+    // ── Wczytaj zapisany kwestionariusz ───────────────────────
+    var users = JSON.parse(localStorage.getItem('kq_users') || '[]');
+    var uIdx  = users.findIndex(function(u) { return u.id === currentUser.id; });
+    if (uIdx !== -1 && users[uIdx].questionnaire) {
+      fillForm(users[uIdx].questionnaire);
+    }
+
+    lucide.createIcons();
+
+    // ── Banery z URL ──────────────────────────────────────────
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('saved') === '1') {
+      showBanner('savedBanner', 'Dane kwestionariusza zostały pomyślnie zapisane.');
+      history.replaceState(null, '', 'dashboard.html');
+      setTimeout(function() {
+        document.getElementById('savedBanner').style.display = 'none';
+      }, 5000);
+    }
+
+    // ── Taby ──────────────────────────────────────────────────
+    document.querySelectorAll('.tab-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.tab-btn').forEach(function(b) {
+          b.classList.remove('active');
+        });
+        document.querySelectorAll('.tab-content').forEach(function(c) {
+          c.style.display = 'none';
+        });
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).style.display = 'block';
+      });
+    });
+
+    // ── Toggle hasła ──────────────────────────────────────────
+    document.querySelectorAll('.toggle-pass').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id    = this.getAttribute('data-target');
+        var input = document.getElementById(id);
+        var icon  = document.getElementById('toggleIcon-' + id);
+        input.type = input.type === 'password' ? 'text' : 'password';
+        icon.setAttribute('data-lucide', input.type === 'password' ? 'eye' : 'eye-off');
+        lucide.createIcons();
+      });
+    });
+
+    // ── Walidacja PESEL ───────────────────────────────────────
+    document.getElementById('pesel').addEventListener('input', function() {
+      this.value = this.value.replace(/\D/g, '');
+      document.getElementById('peselError').textContent =
+        (this.value.length > 0 && this.value.length !== 11)
+          ? 'PESEL musi mieć dokładnie 11 cyfr.' : '';
+    });
+
+    // ── Kod pocztowy ──────────────────────────────────────────
+    document.getElementById('kod_pocztowy').addEventListener('input', function() {
+      var val = this.value.replace(/\D/g, '');
+      if (val.length > 2) val = val.substring(0, 2) + '-' + val.substring(2, 5);
+      this.value = val;
+      document.getElementById('kodError').textContent =
+        (val.length > 0 && !/^[0-9]{2}-[0-9]{3}$/.test(val))
+          ? 'Format: XX-XXX (np. 00-001)' : '';
+    });
+
+    // ── Telefon komórkowy ─────────────────────────────────────
+    document.getElementById('telefon').addEventListener('input', function() {
+      this.value = this.value.replace(/\D/g, '');
+      document.getElementById('telefonError').textContent =
+        (this.value.length > 0 && this.value.length !== 9)
+          ? 'Telefon musi mieć 9 cyfr.' : '';
+    });
+
+    // ── Telefon stacjonarny – tylko cyfry ← ZMIANA ────────────
+    document.getElementById('telefon_stacjonarny').addEventListener('input', function() {
+      this.value = this.value.replace(/\D/g, '');
+    });
+
+    // ── Nr lokalu – tylko cyfry ← ZMIANA ─────────────────────
+    document.getElementById('nr_lokalu').addEventListener('input', function() {
+      this.value = this.value.replace(/\D/g, '');
+    });
+
+    // ── Rok ukończenia – max 4 cyfry ← ZMIANA ────────────────
+    document.getElementById('rok_ukonczenia').addEventListener('input', function() {
+      if (this.value.length > 4) {
+        this.value = this.value.slice(0, 4);
+      }
+    });
+
+    // ── Staż pracy – max 2 cyfry ← ZMIANA ────────────────────
+    document.getElementById('staz_pracy').addEventListener('input', function() {
+      if (this.value.length > 2) {
+        this.value = this.value.slice(0, 2);
+      }
+      if (parseInt(this.value) > 99) {
+        this.value = '99';
+      }
+    });
+
+    // ── E-mail ────────────────────────────────────────────────
+    document.getElementById('email').addEventListener('blur', function() {
+      var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      document.getElementById('emailError').textContent =
+        (this.value.length > 0 && !re.test(this.value))
+          ? 'Podaj prawidłowy adres e-mail.' : '';
+    });
+
+    // ── Sync select style-b ───────────────────────────────────
+    document.querySelectorAll('.style-b select').forEach(function(sel) {
+      syncSelect(sel);
+      sel.addEventListener('change', function() { syncSelect(this); });
+    });
+    function syncSelect(sel) {
+      sel.value ? sel.classList.add('has-value') : sel.classList.remove('has-value');
+    }
+
+    // ── Zapis kwestionariusza ─────────────────────────────────
+    document.getElementById('questionnaireForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var ok = true;
+
+      if (!/^[0-9]{11}$/.test(document.getElementById('pesel').value)) {
+        document.getElementById('peselError').textContent = 'PESEL musi mieć dokładnie 11 cyfr.';
+        ok = false;
+      }
+      if (!/^[0-9]{2}-[0-9]{3}$/.test(document.getElementById('kod_pocztowy').value)) {
+        document.getElementById('kodError').textContent = 'Format kodu: XX-XXX';
+        ok = false;
+      }
+      if (!/^[0-9]{9}$/.test(document.getElementById('telefon').value)) {
+        document.getElementById('telefonError').textContent = 'Telefon musi mieć 9 cyfr.';
+        ok = false;
+      }
+      if (!ok) {
+        var firstErr = document.querySelector('.error-msg:not(:empty)');
+        if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      // Zbierz dane z formularza
+      var fields = [
+        'imie','nazwisko','imie_ojca','pesel','data_urodzenia','miejsce_urodzenia',
+        'narodowosc','stan_cywilny','wojewodztwo','ulica','nr_domu','nr_lokalu',
+        'kod_pocztowy','miejscowosc','kraj','email','telefon','telefon_stacjonarny',
+        'komunikator','wyksztalcenie','nazwa_szkoly','kierunek','rok_ukonczenia',
+        'status_zawodowy','pracodawca','stanowisko','staz_pracy','nr_dowodu',
+        'data_waznosci_dowodu','nr_paszportu','uwagi'
+      ];
+      var data = {};
+      fields.forEach(function(f) {
+        var el = document.getElementById(f);
+        data[f] = el ? el.value : '';
+      });
+
+      // Radio
+      var plecEl = document.querySelector('input[name="plec"]:checked');
+      data.plec = plecEl ? plecEl.value : '';
+      var kanalEl = document.querySelector('input[name="kanal_kontaktu"]:checked');
+      data.kanal_kontaktu = kanalEl ? kanalEl.value : '';
+
+      // Checkboxy
+      data.zgoda_rodo      = document.getElementById('zgoda_rodo').checked      ? '1' : '0';
+      data.zgoda_marketing = document.getElementById('zgoda_marketing').checked ? '1' : '0';
+
+      // Zapisz do localStorage
+      var users = JSON.parse(localStorage.getItem('kq_users') || '[]');
+      var idx   = users.findIndex(function(u) { return u.id === currentUser.id; });
+      if (idx !== -1) {
+        users[idx].questionnaire = data;
+        localStorage.setItem('kq_users', JSON.stringify(users));
+      }
+
+      showBanner('savedBanner', 'Dane kwestionariusza zostały pomyślnie zapisane.');
+      setTimeout(function() {
+        document.getElementById('savedBanner').style.display = 'none';
+      }, 5000);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ── Wypełnij formularz zapisanymi danymi ──────────────────
+    function fillForm(data) {
+      var fields = [
+        'imie','nazwisko','imie_ojca','pesel','data_urodzenia','miejsce_urodzenia',
+        'narodowosc','stan_cywilny','wojewodztwo','ulica','nr_domu','nr_lokalu',
+        'kod_pocztowy','miejscowosc','kraj','email','telefon','telefon_stacjonarny',
+        'komunikator','wyksztalcenie','nazwa_szkoly','kierunek','rok_ukonczenia',
+        'status_zawodowy','pracodawca','stanowisko','staz_pracy','nr_dowodu',
+        'data_waznosci_dowodu','nr_paszportu','uwagi'
+      ];
+      fields.forEach(function(f) {
+        var el = document.getElementById(f);
+        if (el && data[f] !== undefined) el.value = data[f];
+      });
+
+      if (data.plec) {
+        var plecEl = document.querySelector('input[name="plec"][value="' + data.plec + '"]');
+        if (plecEl) plecEl.checked = true;
+      }
+      if (data.kanal_kontaktu) {
+        var kanalEl = document.querySelector(
+          'input[name="kanal_kontaktu"][value="' + data.kanal_kontaktu + '"]'
+        );
+        if (kanalEl) kanalEl.checked = true;
+      }
+
+      document.getElementById('zgoda_rodo').checked      = data.zgoda_rodo      === '1';
+      document.getElementById('zgoda_marketing').checked = data.zgoda_marketing === '1';
+
+      document.querySelectorAll('.style-b select').forEach(function(sel) {
+        syncSelect(sel);
+      });
+    }
+
+    // ── Wylogowanie ───────────────────────────────────────────
+    function logout() {
+      sessionStorage.removeItem('user');
+      window.location.href = 'login.html';
+    }
+
+    // ── Ocena siły hasła ──────────────────────────────────────
+    function ocenHaslo(val) {
+      var s = 0;
+      if (val.length >= 8)                                         s++;
+      if (/[A-Z]/.test(val))                                       s++;
+      if (/[0-9]/.test(val))                                       s++;
+      if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(val))     s++;
+      return s;
+    }
+
+    document.getElementById('cp_nowe').addEventListener('input', function() {
+      var val   = this.value;
+      var bar   = document.getElementById('cpStrengthBar');
+      var label = document.getElementById('cpStrengthLabel');
+      bar.classList.remove('strength-weak','strength-medium','strength-strong');
+      if (!val.length) { label.textContent = ''; return; }
+      var s = ocenHaslo(val);
+      if (s <= 1) {
+        bar.classList.add('strength-weak');
+        label.textContent = 'Słabe'; label.style.color = 'var(--error)';
+      } else if (s <= 3) {
+        bar.classList.add('strength-medium');
+        label.textContent = 'Średnie'; label.style.color = 'var(--warning)';
+      } else {
+        bar.classList.add('strength-strong');
+        label.textContent = 'Silne ✓'; label.style.color = 'var(--success)';
+      }
+      var pot = document.getElementById('cp_potwierdz');
+      if (pot.value.length > 0)
+        document.getElementById('cpPotwierdzError').textContent =
+          pot.value !== val ? 'Hasła nie są zgodne!' : '';
+    });
+
+    document.getElementById('cp_potwierdz').addEventListener('input', function() {
+      document.getElementById('cpPotwierdzError').textContent =
+        this.value !== document.getElementById('cp_nowe').value
+          ? 'Hasła nie są zgodne!' : '';
+    });
+
+    // ── Zmiana hasła ──────────────────────────────────────────
+    function submitChangePass() {
+      var login     = document.getElementById('cp_login').value.trim();
+      var stare     = document.getElementById('cp_stare').value;
+      var nowe      = document.getElementById('cp_nowe').value;
+      var potwierdz = document.getElementById('cp_potwierdz').value;
+      var msgBox    = document.getElementById('cpMessage');
+
+      function showMsg(type, text) {
+        msgBox.className = 'alert-banner alert-' + type;
+        msgBox.innerHTML = '<i data-lucide="' +
+          (type === 'success' ? 'check-circle' : 'alert-circle') +
+          '"></i> ' + text;
+        msgBox.style.display    = 'flex';
+        msgBox.style.alignItems = 'center';
+        msgBox.style.gap        = '8px';
+        lucide.createIcons();
+      }
+
+      if (!login || !stare || !nowe || !potwierdz) {
+        showMsg('error', 'Wypełnij wszystkie pola.'); return;
+      }
+      if (ocenHaslo(nowe) < 4) {
+        showMsg('error', 'Nowe hasło jest za słabe (min. 8 znaków, wielka litera, cyfra, znak specjalny).');
+        return;
+      }
+      if (nowe !== potwierdz) {
+        showMsg('error', 'Nowe hasła nie są zgodne.'); return;
+      }
+
+      var users = JSON.parse(localStorage.getItem('kq_users') || '[]');
+      var idx   = users.findIndex(function(u) {
+        return u.login.toLowerCase() === login.toLowerCase() && u.haslo === stare;
+      });
+
+      if (idx === -1) {
+        showMsg('error', 'Nieprawidłowy login lub stare hasło.'); return;
+      }
+
+      users[idx].haslo = nowe;
+      localStorage.setItem('kq_users', JSON.stringify(users));
+      showMsg('success', 'Hasło zostało zmienione pomyślnie.');
+
+      ['cp_login','cp_stare','cp_nowe','cp_potwierdz'].forEach(function(id) {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('cpStrengthBar').classList.remove(
+        'strength-weak','strength-medium','strength-strong'
+      );
+      document.getElementById('cpStrengthLabel').textContent = '';
+    }
+
+    // ── Pomocnicze ────────────────────────────────────────────
+    function makeDataItem(iconName, labelText, valueText) {
+      return '<div class="data-item">' +
+        '<span class="data-label"><i data-lucide="' + iconName + '"></i> ' + labelText + '</span>' +
+        '<span class="data-value">' + valueText + '</span>' +
+        '</div>';
+    }
+
+    function showBanner(id, msg) {
+      var el = document.getElementById(id);
+      el.innerHTML = '<i data-lucide="check-circle"></i> ' + msg;
+      el.style.display    = 'flex';
+      el.style.alignItems = 'center';
+      el.style.gap        = '8px';
+      lucide.createIcons();
+    }
+
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g,  '&amp;')
+        .replace(/</g,  '&lt;')
+        .replace(/>/g,  '&gt;')
+        .replace(/"/g,  '&quot;')
+        .replace(/'/g,  '&#39;');
+    }
+  </script>
+
+</body>
+</html>

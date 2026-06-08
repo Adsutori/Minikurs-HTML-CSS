@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rejestracja – Kwestionariusz Osobowy</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+  <div class="container">
+
+    <a href="index.html" class="back-link">
+      <i data-lucide="arrow-left"></i> Strona główna
+    </a>
+
+    <header class="page-header">
+      <div class="logo-area">
+        <span class="logo-icon"><i data-lucide="clipboard-list"></i></span>
+        <h1 class="logo-title">Kwestionariusz Osobowy</h1>
+      </div>
+      <p class="page-subtitle">Utwórz konto, aby korzystać z systemu</p>
+      <p class="auth-link">Masz już konto? <a href="login.html">Zaloguj się</a></p>
+    </header>
+
+    <div id="errorBanner" class="alert-banner alert-error" style="display:none;"></div>
+
+    <form id="registerForm" novalidate>
+      <fieldset class="group">
+        <legend>Dane logowania</legend>
+        <fieldset class="subgroup style-a">
+          <legend>Utwórz konto</legend>
+
+          <div class="form-field">
+            <label for="login">Login <span class="required">*</span></label>
+            <input type="text" id="login" name="login" required
+              minlength="4" maxlength="80"
+              placeholder="Min. 4 znaki"
+              autocomplete="username" />
+            <span class="error-msg" id="loginError"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="haslo">Hasło <span class="required">*</span></label>
+            <div class="password-wrapper">
+              <input type="password" id="haslo" name="haslo" required
+                autocomplete="new-password" placeholder="Min. 8 znaków" />
+              <button type="button" class="toggle-pass"
+                data-target="haslo" aria-label="Pokaż/ukryj hasło">
+                <i data-lucide="eye" id="toggleIcon-haslo"></i>
+              </button>
+            </div>
+            <div class="password-strength-bar" id="strengthBar">
+              <div class="bar-fill" id="barFill"></div>
+            </div>
+            <span class="strength-label" id="strengthLabel"></span>
+            <span class="error-msg" id="hasloError"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="haslo2">Potwierdź hasło <span class="required">*</span></label>
+            <div class="password-wrapper">
+              <input type="password" id="haslo2" name="haslo2" required
+                autocomplete="new-password" placeholder="Powtórz hasło" />
+              <button type="button" class="toggle-pass"
+                data-target="haslo2" aria-label="Pokaż/ukryj hasło">
+                <i data-lucide="eye" id="toggleIcon-haslo2"></i>
+              </button>
+            </div>
+            <span class="error-msg" id="haslo2Error"></span>
+          </div>
+
+        </fieldset>
+      </fieldset>
+
+      <div class="form-buttons">
+        <button type="reset" class="btn-reset">
+          <i data-lucide="trash-2"></i> Wyczyść formularz
+        </button>
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <i data-lucide="user-check"></i> Zarejestruj się
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    lucide.createIcons();
+
+    // Jeśli już zalogowany → dashboard
+    if (sessionStorage.getItem('user')) {
+      window.location.href = 'dashboard.html';
+    }
+
+    // Toggle hasła
+    document.querySelectorAll('.toggle-pass').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id    = this.getAttribute('data-target');
+        var input = document.getElementById(id);
+        var icon  = document.getElementById('toggleIcon-' + id);
+        input.type = input.type === 'password' ? 'text' : 'password';
+        icon.setAttribute('data-lucide', input.type === 'password' ? 'eye' : 'eye-off');
+        lucide.createIcons();
+      });
+    });
+
+    // Siła hasła
+    var hasloInput    = document.getElementById('haslo');
+    var haslo2Input   = document.getElementById('haslo2');
+    var strengthBar   = document.getElementById('strengthBar');
+    var strengthLabel = document.getElementById('strengthLabel');
+    var hasloError    = document.getElementById('hasloError');
+    var haslo2Error   = document.getElementById('haslo2Error');
+
+    function ocenHaslo(val) {
+      var s = 0;
+      if (val.length >= 8)                                         s++;
+      if (/[A-Z]/.test(val))                                       s++;
+      if (/[0-9]/.test(val))                                       s++;
+      if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(val))     s++;
+      return s;
+    }
+
+    hasloInput.addEventListener('input', function() {
+      var val = this.value;
+      var s   = ocenHaslo(val);
+      strengthBar.classList.remove('strength-weak','strength-medium','strength-strong');
+      if (!val.length) { strengthLabel.textContent = ''; hasloError.textContent = ''; return; }
+      var kom = [];
+      if (val.length < 8)                                        kom.push('min. 8 znaków');
+      if (!/[A-Z]/.test(val))                                    kom.push('wielka litera');
+      if (!/[0-9]/.test(val))                                    kom.push('cyfra');
+      if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(val))  kom.push('znak specjalny');
+      if (s <= 1) {
+        strengthBar.classList.add('strength-weak');
+        strengthLabel.textContent = 'Słabe'; strengthLabel.style.color = 'var(--error)';
+      } else if (s <= 3) {
+        strengthBar.classList.add('strength-medium');
+        strengthLabel.textContent = 'Średnie'; strengthLabel.style.color = 'var(--warning)';
+      } else {
+        strengthBar.classList.add('strength-strong');
+        strengthLabel.textContent = 'Silne ✓'; strengthLabel.style.color = 'var(--success)';
+      }
+      hasloError.textContent = kom.length ? 'Wymagane: ' + kom.join(', ') : '';
+      if (haslo2Input.value.length > 0) sprawdzZgodnosc();
+    });
+
+    function sprawdzZgodnosc() {
+      haslo2Error.textContent =
+        haslo2Input.value !== hasloInput.value ? 'Hasła nie są zgodne!' : '';
+    }
+    haslo2Input.addEventListener('input', sprawdzZgodnosc);
+
+    // Submit – zapis do localStorage
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var ok = true;
+
+      var loginVal = document.getElementById('login').value.trim();
+      if (loginVal.length < 4) {
+        document.getElementById('loginError').textContent = 'Login musi mieć min. 4 znaki.';
+        ok = false;
+      } else {
+        document.getElementById('loginError').textContent = '';
+      }
+
+      if (ocenHaslo(hasloInput.value) < 4) {
+        hasloError.textContent = hasloError.textContent || 'Hasło jest za słabe.';
+        ok = false;
+      }
+      if (hasloInput.value !== haslo2Input.value) {
+        haslo2Error.textContent = 'Hasła nie są zgodne!';
+        ok = false;
+      }
+      if (!ok) return;
+
+      // Sprawdź czy login zajęty
+      var users = JSON.parse(localStorage.getItem('kq_users') || '[]');
+      var exists = users.find(function(u) {
+        return u.login.toLowerCase() === loginVal.toLowerCase();
+      });
+      if (exists) {
+        showError('Ten login jest już zajęty. Wybierz inny.');
+        return;
+      }
+
+      // Zapisz nowego użytkownika
+      var newUser = {
+        id:         Date.now(),
+        login:      loginVal,
+        haslo:      hasloInput.value,   // w wersji lokalnej hasło jako tekst
+        created_at: new Date().toISOString(),
+        questionnaire: null
+      };
+      users.push(newUser);
+      localStorage.setItem('kq_users', JSON.stringify(users));
+
+      // Przekieruj do logowania z komunikatem
+      window.location.href = 'login.html?registered=1';
+    });
+
+    function showError(msg) {
+      var b = document.getElementById('errorBanner');
+      b.innerHTML = '<i data-lucide="alert-circle"></i> ' + msg;
+      b.style.display = 'flex';
+      b.style.alignItems = 'center';
+      b.style.gap = '8px';
+      lucide.createIcons();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kwestionariusz Osobowy</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+
+  <script>
+    if (sessionStorage.getItem('user')) {
+      window.location.href = 'dashboard.html';
+    }
+  </script>
+
+  <nav class="landing-nav">
+    <div class="nav-logo">
+      <span class="logo-icon">
+        <i data-lucide="clipboard-list" style="margin-bottom:0.3vw;"></i>
+      </span>
+      <span class="logo-title">Kwestionariusz osobowy</span>
+    </div>
+    <div class="nav-actions">
+      <a href="login.html" class="btn-ghost">
+        <i data-lucide="log-in" style="margin-right:0.2vw;"></i> Zaloguj się
+      </a>
+      <a href="register.html" class="btn-submit">
+        <i data-lucide="user-plus"></i> Zarejestruj się
+      </a>
+    </div>
+  </nav>
+
+  <main class="landing-main">
+    <section class="hero">
+      <div class="hero-badge">
+        <i data-lucide="shield-check"></i>
+        Bezpieczny system ewidencji
+      </div>
+      <h1 class="hero-title">
+        Cyfrowy<br>
+        <span class="gradient-text">kwestionariusz osobowy</span>
+      </h1>
+      <div class="hero-cta">
+        <a href="register.html" class="btn-submit btn-lg">
+          Rozpocznij <i data-lucide="arrow-right"></i>
+        </a>
+        <a href="login.html" class="btn-ghost btn-lg">
+          <i data-lucide="log-in" style="margin-right:0.2vw;"></i> Mam już konto
+        </a>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature-card">
+        <span class="feature-icon"><i data-lucide="lock-keyhole"></i></span>
+        <h3>Bezpieczne</h3>
+        <p>Dane chronione hasłem i przechowywane lokalnie</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon"><i data-lucide="zap"></i></span>
+        <h3>Szybkie</h3>
+        <p>Wypełnij formularz w kilka minut</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon"><i data-lucide="monitor-smartphone"></i></span>
+        <h3>Dostępne</h3>
+        <p>Działa na każdym urządzeniu</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="landing-footer">
+    <p>Krzysztof Januszewski 3F © 2026</p>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

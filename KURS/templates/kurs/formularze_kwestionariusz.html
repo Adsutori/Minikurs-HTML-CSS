@@ -4,208 +4,889 @@
 {% block title %}Kwestionariusz Osobowy | Minikurs HTML5 i CSS3{% endblock %}
 
 {% block content %}
-<meta name="chapter" content="formularze_kwestionariusz">
 
+<!-- NAGŁÓWEK -->
 <div class="page-header">
-  <h1>📋 Kwestionariusz Osobowy</h1>
-  <p>Rozbudowany formularz HTML z walidacją i różnymi typami pól.</p>
+  <h1>
+    <i data-lucide="clipboard-list" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;"></i>
+    Kwestionariusz Osobowy
+  </h1>
+  <p>Projekt szkolny — system logowania, rejestracji i wielogrupowego formularza HTML5 z walidacją JavaScript.</p>
 </div>
 
-<div class="content-card fade-in" style="max-width:720px; margin:0 auto;">
+<!-- BREADCRUMB -->
+<div style="display:flex;align-items:center;gap:8px;font-size:var(--text-xs);
+            color:var(--text-muted);margin-bottom:24px;">
+  <a href="{% url 'minikurs:glowna' %}" style="color:var(--text-muted);text-decoration:none;">O platformie</a>
+  <i data-lucide="chevron-right" style="width:12px;height:12px;"></i>
+  <span style="color:var(--accent-secondary);">Kwestionariusz Osobowy</span>
+</div>
 
-  <form method="GET" action="#" novalidate>
+<!-- KARTY INFO -->
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:16px;margin-bottom:28px;">
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="files" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">3</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Pliki HTML</div>
+  </div>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="layers" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">3</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Grupy pól</div>
+  </div>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="git-branch" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">7</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Podgrup</div>
+  </div>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="lock" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">3</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Pola hasła</div>
+  </div>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="shield-check" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">JS</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Walidacja</div>
+  </div>
+</div>
 
-    <!-- DANE PODSTAWOWE -->
-    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
-                     padding: 24px; margin-bottom: 28px;">
-      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
-                     font-size:var(--text-sm);">👤 Dane podstawowe</legend>
+<!-- OPIS PROJEKTU -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:16px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="info" style="width:20px;height:20px;"></i>
+    O projekcie
+  </h2>
+  <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:16px;">
+    Projekt składa się z <strong style="color:var(--text-primary);">trzech plików HTML</strong>:
+    strony głównej (<code>index.html</code>), formularza logowania (<code>login.html</code>)
+    i rejestracji (<code>register.html</code>) oraz panelu z kwestionariuszem (<code>dashboard.html</code>).
+    Dane przechowywane są w <code>localStorage</code> przeglądarki — bez backendu.
+  </p>
+  <p style="color:var(--text-secondary);line-height:1.8;">
+    Formularz kwestionariusza podzielony jest na <strong style="color:var(--text-primary);">3 grupy</strong>
+    i <strong style="color:var(--text-primary);">7 podgrup</strong> z użyciem <code>&lt;fieldset&gt;</code>
+    i <code>&lt;legend&gt;</code>. Każda podgrupa stosuje inny styl etykiet —
+    klasyczne <code>&lt;label&gt;</code>, pływające etykiety CSS lub etykiety inline przy radio/checkbox.
+  </p>
+</div>
 
-      <div class="grid-2" style="gap:16px;">
-        <div class="form-group">
-          <label for="kw_imie">Imię</label>
-          <input type="text" id="kw_imie" name="imie" class="form-control"
-                 placeholder="Twoje imię" required>
-        </div>
-        <div class="form-group">
-          <label for="kw_nazwisko">Nazwisko</label>
-          <input type="text" id="kw_nazwisko" name="nazwisko" class="form-control"
-                 placeholder="Twoje nazwisko" required>
-        </div>
-      </div>
+<!-- WYMAGANIA SZKOLNE -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:24px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="clipboard-check" style="width:20px;height:20px;"></i>
+    Wymagania — szczegółowa checklista
+  </h2>
 
-      <div class="form-group">
-        <label for="kw_wiek">Wiek</label>
-        <input type="number" id="kw_wiek" name="wiek" class="form-control"
-               min="10" max="100" placeholder="np. 17">
-      </div>
-    </fieldset>
+  <!-- STRUKTURA PLIKÓW -->
+  <div style="margin-bottom:28px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;
+                padding-bottom:10px;border-bottom:1px solid rgba(124,58,237,0.15);">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--gradient-btn);
+                  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+                  font-weight:800;font-size:0.75rem;color:white;">P</div>
+      <h3 style="margin:0;color:var(--text-primary);font-size:var(--text-base);">Struktura plików</h3>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
 
-    <!-- PŁEĆ -->
-    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
-                     padding: 24px; margin-bottom: 28px;">
-      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
-                     font-size:var(--text-sm);">⚧ Płeć</legend>
-
-      <div style="display:flex; gap:24px; flex-wrap:wrap;">
-        <label class="form-check">
-          <input type="radio" name="plec" value="kobieta"> Kobieta
-        </label>
-        <label class="form-check">
-          <input type="radio" name="plec" value="mezczyzna"> Mężczyzna
-        </label>
-        <label class="form-check">
-          <input type="radio" name="plec" value="inne"> Inne
-        </label>
-        <label class="form-check">
-          <input type="radio" name="plec" value="brak"> Wolę nie podawać
-        </label>
-      </div>
-    </fieldset>
-
-    <!-- ZAINTERESOWANIA -->
-    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
-                     padding: 24px; margin-bottom: 28px;">
-      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
-                     font-size:var(--text-sm);">🎯 Zainteresowania</legend>
-
-      <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-        <label class="form-check">
-          <input type="checkbox" name="zainteresowania" value="programowanie"> 💻 Programowanie
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="zainteresowania" value="muzyka"> 🎵 Muzyka
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="zainteresowania" value="sport"> ⚽ Sport
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="zainteresowania" value="gry"> 🎮 Gry komputerowe
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="zainteresowania" value="filmy"> 🎬 Filmy i seriale
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="zainteresowania" value="ksiazki"> 📚 Książki
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="zainteresowania" value="podroze"> ✈️ Podróże
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="zainteresowania" value="gotowanie"> 🍳 Gotowanie
-        </label>
-      </div>
-    </fieldset>
-
-    <!-- ULUBIONY KOLOR + OCENA KURSU -->
-    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
-                     padding: 24px; margin-bottom: 28px;">
-      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
-                     font-size:var(--text-sm);">🎨 Preferencje</legend>
-
-      <div class="form-group">
-        <label for="kolor">Ulubiony kolor</label>
-        <div style="display:flex; align-items:center; gap:12px;">
-          <input type="color" id="kolor" name="kolor"
-                 value="#7c3aed"
-                 style="width:60px; height:40px; border:none; border-radius:var(--radius-sm);
-                        background:none; cursor:pointer; padding:0;">
-          <span style="font-size:var(--text-sm); color:var(--text-secondary);"
-                id="kolor-label">Wybrany: #7c3aed</span>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">3 pliki HTML</strong> —
+          <code>index.html</code> (landing), <code>login.html</code> (logowanie),
+          <code>register.html</code> (rejestracja) + <code>dashboard.html</code> (panel z kwestionariuszem)
         </div>
       </div>
 
-      <div class="form-group" style="margin-bottom:0;">
-        <label for="ocena_kursu">
-          Ocena kursu: <strong style="color:var(--accent-secondary);"
-                               id="ocena-display">5</strong>/10
-        </label>
-        <div style="display:flex; align-items:center; gap:16px; margin-top:8px;">
-          <span style="font-size:var(--text-xs); color:var(--text-muted);">1</span>
-          <input type="range" id="ocena_kursu" name="ocena_kursu"
-                 min="1" max="10" value="5"
-                 data-output="ocena-display"
-                 style="flex:1; accent-color: var(--accent-primary);">
-          <span style="font-size:var(--text-xs); color:var(--text-muted);">10</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; margin-top:4px;
-                    font-size:var(--text-xs); color:var(--text-muted);">
-          <span>Słaby</span>
-          <span>Świetny!</span>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Po rejestracji — automatyczne przejście do logowania</strong> —
+          <code>window.location.href = 'login.html'</code> po zapisaniu konta
         </div>
       </div>
-    </fieldset>
 
-    <!-- KOMENTARZ -->
-    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
-                     padding: 24px; margin-bottom: 28px;">
-      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
-                     font-size:var(--text-sm);">💬 Komentarz</legend>
-
-      <div class="form-group" style="margin-bottom:0;">
-        <label for="komentarz">Twój komentarz do kursu</label>
-        <textarea id="komentarz" name="komentarz" class="form-control"
-                  rows="4"
-                  placeholder="Co sądzisz o kursie? Co można poprawić?"></textarea>
-      </div>
-    </fieldset>
-
-    <!-- SKĄD DOWIEDZIAŁEŚ SIĘ + NEWSLETTER -->
-    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
-                     padding: 24px; margin-bottom: 28px;">
-      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
-                     font-size:var(--text-sm);">📢 Informacje dodatkowe</legend>
-
-      <div class="form-group">
-        <label for="skad">Skąd dowiedziałeś się o kursie?</label>
-        <select id="skad" name="skad" class="form-control">
-          <option value="">-- Wybierz --</option>
-          <option value="szkola">Ze szkoły / od nauczyciela</option>
-          <option value="znajomy">Od znajomego</option>
-          <option value="google">Wyszukiwarka Google</option>
-          <option value="youtube">YouTube</option>
-          <option value="facebook">Facebook / Instagram</option>
-          <option value="inne">Inne</option>
-        </select>
-      </div>
-
-      <div class="form-group" style="margin-bottom:0;">
-        <label style="display:block; margin-bottom:10px; font-size:var(--text-sm);
-                      color:var(--text-secondary);">
-          Czy chcesz otrzymywać newsletter z nowościami?
-        </label>
-        <div style="display:flex; gap:24px;">
-          <label class="form-check">
-            <input type="radio" name="newsletter" value="tak"> ✅ Tak, chcę
-          </label>
-          <label class="form-check">
-            <input type="radio" name="newsletter" value="nie" checked> ❌ Nie, dziękuję
-          </label>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="plus-circle" style="width:15px;height:15px;color:#3b82f6;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Okno zmiany hasła</strong> —
+          w zakładce „Mój profil" na dashboardzie; wymaga podania loginu, starego i nowego hasła
         </div>
       </div>
-    </fieldset>
 
-    <!-- PRZYCISKI -->
-    <div style="display:flex; gap:16px; flex-wrap:wrap;">
-      <button type="submit" class="btn btn-primary btn-lg">
-        ✅ Wyślij kwestionariusz
-      </button>
-      <button type="reset" class="btn btn-outline btn-lg">
-        🔄 Resetuj
-      </button>
+    </div>
+  </div>
+
+  <!-- LOGOWANIE I REJESTRACJA -->
+  <div style="margin-bottom:28px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;
+                padding-bottom:10px;border-bottom:1px solid rgba(124,58,237,0.15);">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--gradient-btn);
+                  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+                  font-weight:800;font-size:0.75rem;color:white;">L</div>
+      <h3 style="margin:0;color:var(--text-primary);font-size:var(--text-base);">🔐 Logowanie i rejestracja</h3>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Uwidacznianie / ukrywanie hasła</strong> —
+          przycisk z ikoną 👁 przy każdym polu <code>type="password"</code>;
+          przełącza między <code>type="password"</code> a <code>type="text"</code>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Checkbox „Akceptuję warunki"</strong> —
+          wymagany przy rejestracji (<code>required</code>); bez zaznaczenia formularz się nie wyśle
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Silne hasło — walidacja JS</strong> —
+          pasek siły hasła (słabe / średnie / silne); komunikat błędu jeśli hasło nie spełnia wymagań
+          (min. 8 znaków, wielka litera, cyfra, znak specjalny)
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">3 pola typu password przy rejestracji</strong> —
+          „Hasło", „Potwierdź hasło" + pole „Podaj hasło" przy logowaniu
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FORMULARZ — STRUKTURA -->
+  <div style="margin-bottom:28px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;
+                padding-bottom:10px;border-bottom:1px solid rgba(124,58,237,0.15);">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--gradient-btn);
+                  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+                  font-weight:800;font-size:0.75rem;color:white;">F</div>
+      <h3 style="margin:0;color:var(--text-primary);font-size:var(--text-base);">📋 Formularz — struktura</h3>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Minimum 3 grupy</strong> —
+          każda to <code>&lt;fieldset class="group"&gt;</code> z <code>&lt;legend&gt;</code>;
+          projekt ma 3 grupy: Dane Osobowe/Profil, Wykształcenie i Praca, Dodatkowe Informacje
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Po 2 podgrupy w każdej grupie</strong> —
+          zagnieżdżone <code>&lt;fieldset class="subgroup"&gt;</code>;
+          każda podgrupa ma minimum 3 pola
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Różne style etykiet w podgrupach</strong> —
+          <code>style-a</code>: klasyczne <code>&lt;label&gt;</code> nad polem;
+          <code>style-b</code>: pływające etykiety CSS (<em>floating labels</em>);
+          <code>style-c</code>: etykiety z ikonami Lucide
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Przyciski — Wyczyść i Zapisz</strong> —
+          <code>&lt;button type="reset"&gt;</code> i <code>&lt;button type="submit"&gt;</code>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Oznaczenie pól wymaganych</strong> —
+          gwiazdka <code><span style="color:#ef4444;">*</span></code> przy każdym obowiązkowym polu;
+          atrybut <code>required</code> w HTML
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Używamy: label, fieldset, legend</strong> —
+          każde pole ma <code>&lt;label for="..."&gt;</code> powiązany przez <code>id</code>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GRUPA 1 -->
+  <div style="margin-bottom:28px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;
+                padding-bottom:10px;border-bottom:1px solid rgba(124,58,237,0.15);">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--gradient-btn);
+                  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+                  font-weight:800;font-size:0.75rem;color:white;">1</div>
+      <h3 style="margin:0;color:var(--text-primary);font-size:var(--text-base);">Grupa 1 — Dane Osobowe / Profil</h3>
     </div>
 
-  </form>
+    <!-- Podgrupa 1 -->
+    <div style="margin-left:16px;margin-bottom:16px;">
+      <div style="font-size:var(--text-sm);font-weight:700;color:var(--accent-secondary);
+                  margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+        <i data-lucide="chevron-right" style="width:14px;height:14px;"></i>
+        Podgrupa 1 — Dane osobowe
+        <span style="font-size:var(--text-xs);color:var(--text-muted);font-weight:400;">
+          (styl: klasyczne label nad polem)
+        </span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        {% for field in "1234567"|make_list %}{% endfor %}
+
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;
+                    background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                    border-radius:var(--radius-sm);font-size:var(--text-sm);">
+          <i data-lucide="check-circle" style="width:13px;height:13px;color:#22c55e;flex-shrink:0;"></i>
+          <span style="color:var(--text-secondary);">
+            <strong style="color:var(--text-primary);">Imię</strong> —
+            <code>type="text"</code>, required
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;
+                    background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                    border-radius:var(--radius-sm);font-size:var(--text-sm);">
+          <i data-lucide="check-circle" style="width:13px;height:13px;color:#22c55e;flex-shrink:0;"></i>
+          <span style="color:var(--text-secondary);">
+            <strong style="color:var(--text-primary);">Nazwisko</strong> —
+            <code>type="text"</code>, required
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;
+                    background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                    border-radius:var(--radius-sm);font-size:var(--text-sm);">
+          <i data-lucide="check-circle" style="width:13px;height:13px;color:#22c55e;flex-shrink:0;"></i>
+          <span style="color:var(--text-secondary);">
+            <strong style="color:var(--text-primary);">Imię ojca</strong> —
+            <code>type="text"</code>, required
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;
+                    background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                    border-radius:var(--radius-sm);font-size:var(--text-sm);">
+          <i data-lucide="check-circle" style="width:13px;height:13px;color:#22c55e;flex-shrink:0;"></i>
+          <span style="color:var(--text-secondary);">
+            <strong style="color:var(--text-primary);"><abbr title="Powszechny Elektroniczny System Ewidencji Ludności" style="text-decoration:none;">PESEL</abbr></strong> —
+            dużymi literami bo skrót; <code>&lt;abbr&gt;</code> z pełnym rozwinięciem;
+            <code>pattern="[0-9]{11}"</code>, walidacja JS
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;
+                    background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                    border-radius:var(--radius-sm);font-size:var(--text-sm);">
+          <i data-lucide="check-circle" style="width:13px;height:13px;color:#22c55e;flex-shrink:0;"></i>
+          <span style="color:var(--text-secondary);">
+            <strong style="color:var(--text-primary);">Data urodzenia</strong> —
+            <code>type="date"</code>, required
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;
+                    background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                    border-radius:var(--radius-sm);font-size:var(--text-sm);">
+          <i data-lucide="check-circle" style="width:13px;height:13px;color:#22c55e;flex-shrink:0;"></i>
+          <span style="color:var(--text-secondary);">
+            <strong style="color:var(--text-primary);">Miejsce urodzenia</strong> —
+            <code>type="text"</code>, required
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;
+                    background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                    border-radius:var(--radius-sm);font-size:var(--text-sm);">
+          <i data-lucide="check-circle" style="width:13px;height:13px;color:#22c55e;flex-shrink:0;"></i>
+          <span style="color:var(--text-secondary);">
+            <strong style="color:var(--text-primary);">Płeć</strong> —
+            <code>type="radio"</code>: Mężczyzna / Kobieta; etykiety <code>radio-label</code>
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;
+                    background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.15);
+                    border-radius:var(--radius-sm);font-size:var(--text-sm);">
+          <i data-lucide="plus-circle" style="width:13px;height:13px;color:#3b82f6;flex-shrink:0;"></i>
+          <span style="color:var(--text-secondary);">
+            <strong style="color:var(--text-primary);">Narodowość, Stan cywilny</strong> —
+            opcjonalne; stan cywilny jako <code>&lt;select&gt;</code>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Podgrupa 2 -->
+    <div style="margin-left:16px;margin-bottom:16px;">
+      <div style="font-size:var(--text-sm);font-weight:700;color:var(--accent-secondary);
+                  margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+        <i data-lucide="chevron-right" style="width:14px;height:14px;"></i>
+        Podgrupa 2 — Dane adresowe
+        <span style="font-size:var(--text-xs);color:var(--text-muted);font-weight:400;">
+          (styl: pływające etykiety CSS — floating labels)
+        </span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;
+                    background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                    border-radius:var(--radius-sm);font-size:var(--text-sm);">
+          <i data-lucide="check-circle" style="width:13px;height:13px;color:#22c55e;flex-shrink:0;"></i>
+          <span style="color:var(--text-secondary);">
+            <strong style="color:var(--text-primary);">Województwo</strong> —
+            <code>&lt;select&gt;</code> alfabetycznie, wszystkie 16 województw, required
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;
+                    background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                    border-radius:var(--radius-sm);font-size:var(--text-sm);">
+          <i data-lucide="check-circle" style="width:13px;height:13px;color:#22c55e;flex-shrink:0;"></i>
+          <span style="color:var(--text-secondary);">
+            <strong style="color:var(--text-primary);">Ulica, Nr domu</strong> (required)<strong>, Nr lokalu, Kod pocztowy</strong> (required, format XX-XXX)<strong>, Miejscowość</strong> (required)<strong>, Kraj</strong>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Podgrupa 3 -->
+    <div style="margin-left:16px;">
+      <div style="font-size:var(--text-sm);font-weight:700;color:var(--accent-secondary);
+                  margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+        <i data-lucide="chevron-right" style="width:14px;height:14px;"></i>
+        Podgrupa 3 — Dane kontaktowe
+        <span style="font-size:var(--text-xs);color:var(--text-muted);font-weight:400;">
+          (styl: etykiety z ikonami Lucide)
+        </span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;
+                    background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                    border-radius:var(--radius-sm);font-size:var(--text-sm);">
+          <i data-lucide="check-circle" style="width:13px;height:13px;color:#22c55e;flex-shrink:0;"></i>
+          <span style="color:var(--text-secondary);">
+            <strong style="color:var(--text-primary);">E-mail</strong> —
+            <code>type="email"</code>, required, walidacja regex
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;
+                    background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                    border-radius:var(--radius-sm);font-size:var(--text-sm);">
+          <i data-lucide="check-circle" style="width:13px;height:13px;color:#22c55e;flex-shrink:0;"></i>
+          <span style="color:var(--text-secondary);">
+            <strong style="color:var(--text-primary);">Telefon komórkowy</strong> —
+            <code>type="tel"</code>, required, 9 cyfr, walidacja JS
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;
+                    background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.15);
+                    border-radius:var(--radius-sm);font-size:var(--text-sm);">
+          <i data-lucide="plus-circle" style="width:13px;height:13px;color:#3b82f6;flex-shrink:0;"></i>
+          <span style="color:var(--text-secondary);">
+            <strong style="color:var(--text-primary);">Telefon stacjonarny, Komunikator</strong> —
+            opcjonalne
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRUPA 2 -->
+  <div style="margin-bottom:28px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;
+                padding-bottom:10px;border-bottom:1px solid rgba(124,58,237,0.15);">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--gradient-btn);
+                  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+                  font-weight:800;font-size:0.75rem;color:white;">2</div>
+      <h3 style="margin:0;color:var(--text-primary);font-size:var(--text-base);">Grupa 2 — Wykształcenie i Praca</h3>
+    </div>
+    <div style="margin-left:16px;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Podgrupa: Wykształcenie</strong> —
+          poziom wykształcenia (<code>&lt;select&gt;</code>), nazwa szkoły/uczelni, kierunek, rok ukończenia
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Podgrupa: Zatrudnienie</strong> —
+          status zawodowy (required), pracodawca, stanowisko, staż pracy (lata)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRUPA 3 -->
+  <div style="margin-bottom:28px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;
+                padding-bottom:10px;border-bottom:1px solid rgba(124,58,237,0.15);">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--gradient-btn);
+                  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+                  font-weight:800;font-size:0.75rem;color:white;">3</div>
+      <h3 style="margin:0;color:var(--text-primary);font-size:var(--text-base);">Grupa 3 — Dodatkowe Informacje</h3>
+    </div>
+    <div style="margin-left:16px;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Podgrupa: Dokumenty tożsamości</strong> —
+          seria i nr dowodu, data ważności, nr paszportu
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Podgrupa: Zgody i preferencje</strong> —
+          zgoda RODO (required, <code>&lt;abbr&gt;</code>), zgoda marketingowa,
+          preferowany kanał kontaktu (radio), pole uwag (<code>&lt;textarea&gt;</code>)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEGENDA -->
+  <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;
+              padding:12px 16px;background:rgba(124,58,237,0.04);
+              border-radius:var(--radius-sm);border:1px solid rgba(124,58,237,0.1);">
+    <div style="display:flex;align-items:center;gap:8px;font-size:var(--text-sm);color:var(--text-secondary);">
+      <i data-lucide="check-circle" style="width:16px;height:16px;color:#22c55e;"></i>
+      Wymaganie obowiązkowe
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:var(--text-sm);color:var(--text-secondary);">
+      <i data-lucide="plus-circle" style="width:16px;height:16px;color:#3b82f6;"></i>
+      Dodatkowe / opcjonalne
+    </div>
+  </div>
+
+</div>
+
+<!-- STRUKTURA PLIKÓW -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="folder-tree" style="width:20px;height:20px;"></i>
+    Struktura projektu
+  </h2>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:20px;">
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;
+                background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.12);
+                border-radius:var(--radius-sm);">
+      <span style="font-size:1.3rem;">🏠</span>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">Landing page</div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">index.html</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;
+                background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.12);
+                border-radius:var(--radius-sm);">
+      <span style="font-size:1.3rem;">🔑</span>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">Logowanie</div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">login.html</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;
+                background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.12);
+                border-radius:var(--radius-sm);">
+      <span style="font-size:1.3rem;">📝</span>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">Rejestracja</div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">register.html</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;
+                background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.12);
+                border-radius:var(--radius-sm);">
+      <span style="font-size:1.3rem;">📋</span>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">Panel + kwestionariusz</div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">dashboard.html</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;
+                background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.12);
+                border-radius:var(--radius-sm);">
+      <span style="font-size:1.3rem;">🎨</span>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">Style</div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">style.css</div>
+      </div>
+    </div>
+  </div>
+
+  <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+              border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+              font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+              color:#e2e8f0;line-height:1.7;margin:0;"><code><span style="color:#7c3aed;">kwestionariusz/</span>
+├── <span style="color:#34d399;">index.html</span>       <span style="color:#64748b;">← landing: hero, karty cech, nawigacja</span>
+├── <span style="color:#34d399;">login.html</span>       <span style="color:#64748b;">← formularz logowania + toggle hasła</span>
+├── <span style="color:#34d399;">register.html</span>    <span style="color:#64748b;">← rejestracja + siła hasła + checkbox warunki</span>
+├── <span style="color:#34d399;">dashboard.html</span>   <span style="color:#64748b;">← panel: kwestionariusz + zmiana hasła</span>
+├── <span style="color:#34d399;">style.css</span>        <span style="color:#64748b;">← wspólne style + floating labels</span>
+└── <span style="color:#7c3aed;">images/</span>
+    └── <span style="color:#a78bfa;">favicon.ico</span></code></pre>
+</div>
+
+<!-- PODGLĄD PROJEKTU — IFRAME -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;
+              flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+    <h2 style="color:var(--accent-secondary);margin:0;display:flex;align-items:center;gap:10px;">
+      <i data-lucide="monitor" style="width:20px;height:20px;"></i>
+      Podgląd projektu
+    </h2>
+    <a href="{% static 'projekty/kwestionariusz/index.html' %}"
+       target="_blank"
+       class="btn btn-primary btn-sm">
+      <i data-lucide="external-link" style="width:14px;height:14px;"></i>
+      Otwórz w pełnym oknie
+    </a>
+  </div>
+
+  <p style="color:var(--text-muted);font-size:var(--text-sm);margin-bottom:16px;">
+    Możesz zarejestrować konto testowe i wypełnić kwestionariusz — dane zapisują się
+    w <code>localStorage</code> Twojej przeglądarki i nie są nigdzie wysyłane.
+  </p>
+
+  <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+    <button onclick="setIframeSize('360px','650px','Mobile 360px')" class="btn btn-outline btn-sm">
+      <i data-lucide="smartphone" style="width:12px;height:12px;"></i> Mobile
+    </button>
+    <button onclick="setIframeSize('768px','680px','Tablet 768px')" class="btn btn-outline btn-sm">
+      <i data-lucide="tablet" style="width:12px;height:12px;"></i> Tablet
+    </button>
+    <button onclick="setIframeSize('100%','720px','Desktop')" class="btn btn-outline btn-sm">
+      <i data-lucide="monitor" style="width:12px;height:12px;"></i> Desktop
+    </button>
+  </div>
+
+  <div style="overflow:hidden;border-radius:var(--radius-md);">
+    <div id="iframe-wrapper"
+         style="width:100%;height:500px;border-radius:var(--radius-md);overflow:hidden;
+                border:2px solid rgba(124,58,237,0.25);transition:all 0.3s ease;
+                background:#0f0f1a;margin:0 auto;">
+      <iframe id="project-iframe"
+              src="{% static 'projekty/kwestionariusz/index.html' %}"
+              style="width:100%;height:100%;border:none;"
+              title="Projekt: Kwestionariusz Osobowy"
+              loading="lazy">
+        <p>Twoja przeglądarka nie obsługuje ramek.
+           <a href="{% static 'projekty/kwestionariusz/index.html' %}" target="_blank">
+             Otwórz projekt bezpośrednio →
+           </a>
+        </p>
+      </iframe>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;
+              margin-top:10px;font-size:var(--text-xs);color:var(--text-muted);">
+    <span>💡 Projekt w pełni interaktywny — rejestracja i logowanie działają przez localStorage</span>
+    <span id="iframe-size-label">Desktop</span>
+  </div>
+</div>
+
+<!-- KLUCZOWE TECHNIKI -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="code-2" style="width:20px;height:20px;"></i>
+    Kluczowe techniki — przykłady kodu
+  </h2>
+
+  <!-- fieldset + legend -->
+  <div style="margin-bottom:24px;">
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">1</span>
+      Grupowanie pól — fieldset, legend, label
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#64748b;">&lt;!-- Grupa główna --&gt;</span>
+<span style="color:#a78bfa;">&lt;fieldset <span style="color:#34d399;">class="group"</span>&gt;</span>
+  <span style="color:#7c3aed;">&lt;legend&gt;</span>1. Dane Osobowe / Profil<span style="color:#7c3aed;">&lt;/legend&gt;</span>
+
+  <span style="color:#64748b;">&lt;!-- Podgrupa — styl A: klasyczne label --&gt;</span>
+  <span style="color:#a78bfa;">&lt;fieldset <span style="color:#34d399;">class="subgroup style-a"</span>&gt;</span>
+    <span style="color:#7c3aed;">&lt;legend&gt;</span>Dane osobowe<span style="color:#7c3aed;">&lt;/legend&gt;</span>
+
+    <span style="color:#7c3aed;">&lt;div <span style="color:#34d399;">class="form-field"</span>&gt;</span>
+      <span style="color:#a78bfa;">&lt;label <span style="color:#34d399;">for="imie"</span>&gt;</span>
+        Imię <span style="color:#7c3aed;">&lt;span <span style="color:#34d399;">class="required"</span>&gt;</span>*<span style="color:#7c3aed;">&lt;/span&gt;</span>
+      <span style="color:#a78bfa;">&lt;/label&gt;</span>
+      <span style="color:#7c3aed;">&lt;input <span style="color:#34d399;">type="text"</span> <span style="color:#34d399;">id="imie"</span> <span style="color:#34d399;">name="imie"</span> <span style="color:#34d399;">required</span>&gt;</span>
+    <span style="color:#7c3aed;">&lt;/div&gt;</span>
+
+  <span style="color:#a78bfa;">&lt;/fieldset&gt;</span>
+
+  <span style="color:#64748b;">&lt;!-- Podgrupa — styl B: pływające etykiety --&gt;</span>
+  <span style="color:#a78bfa;">&lt;fieldset <span style="color:#34d399;">class="subgroup style-b"</span>&gt;</span>
+    <span style="color:#7c3aed;">&lt;legend&gt;</span>Dane adresowe<span style="color:#7c3aed;">&lt;/legend&gt;</span>
+
+    <span style="color:#7c3aed;">&lt;div <span style="color:#34d399;">class="form-field float-group"</span>&gt;</span>
+      <span style="color:#a78bfa;">&lt;input <span style="color:#34d399;">type="text"</span> <span style="color:#34d399;">id="ulica"</span> <span style="color:#34d399;">placeholder=" "</span>&gt;</span>
+      <span style="color:#a78bfa;">&lt;label <span style="color:#34d399;">for="ulica"</span>&gt;</span>Ulica<span style="color:#a78bfa;">&lt;/label&gt;</span>
+      <span style="color:#64748b;">&lt;!-- label PO input — kluczowe dla CSS floating label! --&gt;</span>
+    <span style="color:#7c3aed;">&lt;/div&gt;</span>
+
+  <span style="color:#a78bfa;">&lt;/fieldset&gt;</span>
+<span style="color:#a78bfa;">&lt;/fieldset&gt;</span></code></pre>
+  </div>
+
+  <!-- Toggle hasła -->
+  <div style="margin-bottom:24px;">
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">2</span>
+      Toggle hasła — uwidacznianie / ukrywanie
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#64748b;">&lt;!-- HTML --&gt;</span>
+<span style="color:#7c3aed;">&lt;div <span style="color:#34d399;">class="password-wrapper"</span>&gt;</span>
+  <span style="color:#a78bfa;">&lt;input <span style="color:#34d399;">type="password"</span> <span style="color:#34d399;">id="haslo"</span>&gt;</span>
+  <span style="color:#7c3aed;">&lt;button <span style="color:#34d399;">type="button"</span> <span style="color:#34d399;">class="toggle-pass"</span>
+          <span style="color:#34d399;">data-target="haslo"</span>&gt;</span>
+    <span style="color:#a78bfa;">&lt;i <span style="color:#34d399;">data-lucide="eye"</span> <span style="color:#34d399;">id="toggleIcon-haslo"</span>&gt;&lt;/i&gt;</span>
+  <span style="color:#7c3aed;">&lt;/button&gt;</span>
+<span style="color:#7c3aed;">&lt;/div&gt;</span>
+
+<span style="color:#64748b;">// JavaScript</span>
+<span style="color:#a78bfa;">document</span>.querySelectorAll(<span style="color:#34d399;">'.toggle-pass'</span>).forEach(<span style="color:#7c3aed;">function</span>(btn) {
+  btn.addEventListener(<span style="color:#34d399;">'click'</span>, <span style="color:#7c3aed;">function</span>() {
+    <span style="color:#7c3aed;">var</span> id    = <span style="color:#7c3aed;">this</span>.getAttribute(<span style="color:#34d399;">'data-target'</span>);
+    <span style="color:#7c3aed;">var</span> input = <span style="color:#a78bfa;">document</span>.getElementById(id);
+    <span style="color:#7c3aed;">var</span> icon  = <span style="color:#a78bfa;">document</span>.getElementById(<span style="color:#34d399;">'toggleIcon-'</span> + id);
+    input.type = input.type === <span style="color:#34d399;">'password'</span> ? <span style="color:#34d399;">'text'</span> : <span style="color:#34d399;">'password'</span>;
+    icon.setAttribute(<span style="color:#34d399;">'data-lucide'</span>,
+      input.type === <span style="color:#34d399;">'password'</span> ? <span style="color:#34d399;">'eye'</span> : <span style="color:#34d399;">'eye-off'</span>);
+    lucide.createIcons();
+  });
+});</code></pre>
+  </div>
+
+  <!-- Siła hasła -->
+  <div style="margin-bottom:24px;">
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">3</span>
+      Walidacja siły hasła — pasek postępu
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#7c3aed;">function</span> ocenHaslo(val) {
+    <span style="color:#7c3aed;">var</span> s = <span style="color:#34d399;">0</span>;
+    <span style="color:#7c3aed;">if</span> (val.length >= <span style="color:#34d399;">8</span>)                                     s++;
+    <span style="color:#7c3aed;">if</span> (<span style="color:#a78bfa;">/[A-Z]/</span>.test(val))                                   s++;
+    <span style="color:#7c3aed;">if</span> (<span style="color:#a78bfa;">/[0-9]/</span>.test(val))                                   s++;
+    <span style="color:#7c3aed;">if</span> (<span style="color:#a78bfa;">/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/</span>.test(val)) s++;
+    <span style="color:#7c3aed;">return</span> s; <span style="color:#64748b;">// 0-4: im więcej tym silniejsze</span>
+  }
+
+  <span style="color:#a78bfa;">document</span>.getElementById(<span style="color:#34d399;">'haslo'</span>).addEventListener(<span style="color:#34d399;">'input'</span>, <span style="color:#7c3aed;">function</span>() {
+    <span style="color:#7c3aed;">var</span> s     = ocenHaslo(<span style="color:#7c3aed;">this</span>.value);
+    <span style="color:#7c3aed;">var</span> bar   = <span style="color:#a78bfa;">document</span>.getElementById(<span style="color:#34d399;">'strengthBar'</span>);
+    <span style="color:#7c3aed;">var</span> label = <span style="color:#a78bfa;">document</span>.getElementById(<span style="color:#34d399;">'strengthLabel'</span>);
+    bar.className = <span style="color:#34d399;">'password-strength-bar'</span>;
+    <span style="color:#7c3aed;">if</span>      (s <= <span style="color:#34d399;">1</span>) { bar.classList.add(<span style="color:#34d399;">'strength-weak'</span>);
+                       label.textContent = <span style="color:#34d399;">'Słabe'</span>; }
+    <span style="color:#7c3aed;">else if</span> (s <= <span style="color:#34d399;">3</span>) { bar.classList.add(<span style="color:#34d399;">'strength-medium'</span>);
+                       label.textContent = <span style="color:#34d399;">'Średnie'</span>; }
+    <span style="color:#7c3aed;">else</span>            { bar.classList.add(<span style="color:#34d399;">'strength-strong'</span>);
+                       label.textContent = <span style="color:#34d399;">'Silne ✓'</span>; }
+  });</code></pre>
+  </div>
+
+  <!-- ABBR i PESEL -->
+  <div style="margin-bottom:24px;">
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">4</span>
+      Skrót PESEL — abbr + walidacja cyfr
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#64748b;">&lt;!-- abbr rozwijający skrót po najechaniu --&gt;</span>
+<span style="color:#a78bfa;">&lt;label <span style="color:#34d399;">for="pesel"</span>&gt;</span>
+  <span style="color:#7c3aed;">&lt;abbr <span style="color:#34d399;">title="Powszechny Elektroniczny System Ewidencji Ludności"</span>&gt;</span>
+    PESEL
+  <span style="color:#7c3aed;">&lt;/abbr&gt;</span>
+  <span style="color:#7c3aed;">&lt;span <span style="color:#34d399;">class="required"</span>&gt;</span>*<span style="color:#7c3aed;">&lt;/span&gt;</span>
+<span style="color:#a78bfa;">&lt;/label&gt;</span>
+<span style="color:#a78bfa;">&lt;input <span style="color:#34d399;">type="text"</span> <span style="color:#34d399;">id="pesel"</span>
+       <span style="color:#34d399;">pattern="[0-9]{11}"</span>
+       <span style="color:#34d399;">maxlength="11"</span>
+       <span style="color:#34d399;">inputmode="numeric"</span>
+       <span style="color:#34d399;">required</span>&gt;</span>
+
+<span style="color:#64748b;">// Walidacja JS — tylko cyfry, dokładnie 11</span>
+<span style="color:#a78bfa;">document</span>.getElementById(<span style="color:#34d399;">'pesel'</span>).addEventListener(<span style="color:#34d399;">'input'</span>, <span style="color:#7c3aed;">function</span>() {
+  <span style="color:#7c3aed;">this</span>.value = <span style="color:#7c3aed;">this</span>.value.replace(<span style="color:#a78bfa;">/\D/g</span>, <span style="color:#34d399;">''</span>);
+  <span style="color:#a78bfa;">document</span>.getElementById(<span style="color:#34d399;">'peselError'</span>).textContent =
+    (<span style="color:#7c3aed;">this</span>.value.length > <span style="color:#34d399;">0</span> && <span style="color:#7c3aed;">this</span>.value.length !== <span style="color:#34d399;">11</span>)
+      ? <span style="color:#34d399;">'PESEL musi mieć dokładnie 11 cyfr.'</span> : <span style="color:#34d399;">''</span>;
+});</code></pre>
+  </div>
+
+  <!-- Floating label CSS -->
+  <div style="margin-bottom:24px;">
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">5</span>
+      Pływające etykiety — floating labels CSS
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#64748b;">/* CSS — label unosi się gdy pole ma focus lub wartość */</span>
+<span style="color:#a78bfa;">.float-group</span> {
+  <span style="color:#34d399;">position</span>: relative;
+}
+<span style="color:#a78bfa;">.float-group input</span> {
+  <span style="color:#34d399;">padding-top</span>: 1.4rem;   <span style="color:#64748b;">/* miejsce na etykietę */</span>
+}
+<span style="color:#a78bfa;">.float-group label</span> {
+  <span style="color:#34d399;">position</span>:   absolute;
+  <span style="color:#34d399;">top</span>:        1rem;
+  <span style="color:#34d399;">left</span>:       0.75rem;
+  <span style="color:#34d399;">transition</span>: all 0.2s ease;
+  <span style="color:#34d399;">pointer-events</span>: none;
+  <span style="color:#34d399;">color</span>:      var(--text-muted);
+}
+<span style="color:#64748b;">/* Gdy input ma focus LUB nie jest pusty (placeholder=" ") */</span>
+<span style="color:#a78bfa;">.float-group input:focus + label,
+.float-group input:not(:placeholder-shown) + label</span> {
+  <span style="color:#34d399;">top</span>:       0.3rem;
+  <span style="color:#34d399;">font-size</span>: 0.7rem;
+  <span style="color:#34d399;">color</span>:     var(--accent-secondary);
+}
+
+<span style="color:#64748b;">&lt;!-- HTML — label MUSI być po input, placeholder=" " (spacja!) --&gt;</span>
+<span style="color:#7c3aed;">&lt;div <span style="color:#34d399;">class="form-field float-group"</span>&gt;</span>
+  <span style="color:#a78bfa;">&lt;input <span style="color:#34d399;">type="text"</span> <span style="color:#34d399;">id="ulica"</span> <span style="color:#34d399;">placeholder=" "</span>&gt;</span>
+  <span style="color:#a78bfa;">&lt;label <span style="color:#34d399;">for="ulica"</span>&gt;</span>Ulica<span style="color:#a78bfa;">&lt;/label&gt;</span>
+<span style="color:#7c3aed;">&lt;/div&gt;</span></code></pre>
+  </div>
+
+  <!-- localStorage -->
+  <div>
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">6</span>
+      Rejestracja i sesja — localStorage + sessionStorage
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#64748b;">// Zapis nowego użytkownika przy rejestracji</span>
+<span style="color:#7c3aed;">var</span> users = JSON.parse(localStorage.getItem(<span style="color:#34d399;">'kq_users'</span>) || <span style="color:#34d399;">'[]'</span>);
+users.push({
+  id:         Date.now(),
+  login:      loginValue,
+  haslo:      hasloValue,
+  created_at: <span style="color:#7c3aed;">new</span> Date().toISOString()
+});
+localStorage.setItem(<span style="color:#34d399;">'kq_users'</span>, JSON.stringify(users));
+
+<span style="color:#64748b;">// Po rejestracji → przejście do logowania</span>
+window.location.href = <span style="color:#34d399;">'login.html'</span>;
+
+<span style="color:#64748b;">// Sesja po zalogowaniu (ginie po zamknięciu karty)</span>
+sessionStorage.setItem(<span style="color:#34d399;">'user'</span>, JSON.stringify(currentUser));
+
+<span style="color:#64748b;">// Ochrona dashboardu — redirect jeśli brak sesji</span>
+<span style="color:#7c3aed;">if</span> (!sessionStorage.getItem(<span style="color:#34d399;">'user'</span>)) {
+  window.location.href = <span style="color:#34d399;">'login.html'</span>;
+}</code></pre>
+  </div>
+
+</div>
+
+<!-- NAWIGACJA DO KOLEJNYCH PROJEKTÓW -->
+<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+  <a href="{% url 'minikurs:formularze_resumo' %}"
+     class="btn btn-outline"
+     style="display:flex;align-items:center;gap:8px;">
+    <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+    Poprzedni: Resumo — CV
+  </a>
+  <a href="{% url 'minikurs:sprawdzian' %}"
+     class="btn btn-primary"
+     style="display:flex;align-items:center;gap:8px;">
+    Następny: Sprawdzian
+    <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+  </a>
 </div>
 
 <script>
-  // Aktualizacja etykiety koloru
-  const kolorInput = document.getElementById('kolor');
-  const kolorLabel = document.getElementById('kolor-label');
-  if (kolorInput && kolorLabel) {
-    kolorInput.addEventListener('input', function () {
-      kolorLabel.textContent = 'Wybrany: ' + this.value;
-    });
+  function setIframeSize(width, height, label) {
+    const wrapper = document.getElementById('iframe-wrapper');
+    const lbl     = document.getElementById('iframe-size-label');
+    wrapper.style.width  = width;
+    wrapper.style.height = height;
+    lbl.textContent      = label;
   }
 </script>
+
 {% endblock %}
+

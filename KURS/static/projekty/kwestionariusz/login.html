@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logowanie – Kwestionariusz Osobowy</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+  <div class="container container-narrow">
+
+    <a href="index.html" class="back-link">
+      <i data-lucide="arrow-left"></i> Strona główna
+    </a>
+
+    <header class="page-header">
+      <div class="logo-area">
+        <span class="logo-icon"><i data-lucide="clipboard-list"></i></span>
+        <h1 class="logo-title">Kwestionariusz Osobowy</h1>
+      </div>
+      <p class="page-subtitle">Zaloguj się do swojego konta</p>
+      <p class="auth-link">Nie masz konta? <a href="register.html">Zarejestruj się</a></p>
+    </header>
+
+    <div id="successBanner" class="alert-banner alert-success" style="display:none;"></div>
+    <div id="errorBanner"   class="alert-banner alert-error"   style="display:none;"></div>
+
+    <form id="loginForm" novalidate>
+      <fieldset class="group">
+        <legend>Logowanie</legend>
+        <fieldset class="subgroup style-a">
+          <legend>Dane dostępowe</legend>
+
+          <div class="form-field">
+            <label for="login">Login <span class="required">*</span></label>
+            <input type="text" id="login" name="login" required
+              autocomplete="username" placeholder="Twój login" />
+          </div>
+
+          <div class="form-field">
+            <label for="haslo">Hasło <span class="required">*</span></label>
+            <div class="password-wrapper">
+              <input type="password" id="haslo" name="haslo" required
+                autocomplete="current-password" placeholder="Twoje hasło" />
+              <button type="button" class="toggle-pass"
+                data-target="haslo" aria-label="Pokaż/ukryj hasło">
+                <i data-lucide="eye" id="toggleIcon-haslo"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-buttons">
+            <button type="submit" class="btn-submit" style="width:100%;">
+              <i data-lucide="log-in"></i> Zaloguj się
+            </button>
+          </div>
+
+        </fieldset>
+      </fieldset>
+    </form>
+
+    <!-- Zmiana hasła -->
+    <div class="change-pass-toggle">
+      <button type="button" id="toggleChangePass" class="btn-link">
+        <i data-lucide="key-round"></i> Zmień hasło
+      </button>
+    </div>
+
+    <div id="changePassSection" style="display:none;">
+      <fieldset class="group">
+        <legend>Zmiana hasła</legend>
+        <fieldset class="subgroup style-a">
+          <legend>Wprowadź dane</legend>
+
+          <div class="form-field">
+            <label for="cp_login">Login <span class="required">*</span></label>
+            <input type="text" id="cp_login" placeholder="Twój login" autocomplete="username" />
+          </div>
+
+          <div class="form-field">
+            <label for="cp_stare">Stare hasło <span class="required">*</span></label>
+            <div class="password-wrapper">
+              <input type="password" id="cp_stare" placeholder="Aktualne hasło" />
+              <button type="button" class="toggle-pass" data-target="cp_stare">
+                <i data-lucide="eye" id="toggleIcon-cp_stare"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="cp_nowe">Nowe hasło <span class="required">*</span></label>
+            <div class="password-wrapper">
+              <input type="password" id="cp_nowe" placeholder="Min. 8 znaków" />
+              <button type="button" class="toggle-pass" data-target="cp_nowe">
+                <i data-lucide="eye" id="toggleIcon-cp_nowe"></i>
+              </button>
+            </div>
+            <div class="password-strength-bar" id="cpStrengthBar">
+              <div class="bar-fill" id="cpBarFill"></div>
+            </div>
+            <span class="strength-label" id="cpStrengthLabel"></span>
+            <span class="error-msg" id="cpNoweError"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="cp_potwierdz">Potwierdź nowe hasło <span class="required">*</span></label>
+            <div class="password-wrapper">
+              <input type="password" id="cp_potwierdz" placeholder="Powtórz nowe hasło" />
+              <button type="button" class="toggle-pass" data-target="cp_potwierdz">
+                <i data-lucide="eye" id="toggleIcon-cp_potwierdz"></i>
+              </button>
+            </div>
+            <span class="error-msg" id="cpPotwierdzError"></span>
+          </div>
+
+          <div id="cpMessage" style="display:none; margin-top:0.75rem;"></div>
+
+          <div class="form-buttons">
+            <button type="button" class="btn-submit"
+              onclick="submitChangePass()" style="width:100%;">
+              <i data-lucide="check-circle"></i> Zmień hasło
+            </button>
+          </div>
+
+        </fieldset>
+      </fieldset>
+    </div>
+
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    lucide.createIcons();
+
+    // Jeśli już zalogowany → dashboard
+    if (sessionStorage.getItem('user')) {
+      window.location.href = 'dashboard.html';
+    }
+
+    // Banery z URL
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('registered') === '1') {
+        var sb = document.getElementById('successBanner');
+        sb.innerHTML = '<i data-lucide="check-circle"></i> Rejestracja zakończona! Możesz się zalogować.';
+        sb.style.display = 'flex'; sb.style.alignItems = 'center'; sb.style.gap = '8px';
+        lucide.createIcons();
+      }
+      var err = params.get('error');
+      if (err) {
+        var eb = document.getElementById('errorBanner');
+        eb.innerHTML = '<i data-lucide="alert-circle"></i> ' + decodeURIComponent(err);
+        eb.style.display = 'flex'; eb.style.alignItems = 'center'; eb.style.gap = '8px';
+        lucide.createIcons();
+      }
+    })();
+
+    // Toggle hasła
+    document.querySelectorAll('.toggle-pass').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id    = this.getAttribute('data-target');
+        var input = document.getElementById(id);
+        var icon  = document.getElementById('toggleIcon-' + id);
+        input.type = input.type === 'password' ? 'text' : 'password';
+        icon.setAttribute('data-lucide', input.type === 'password' ? 'eye' : 'eye-off');
+        lucide.createIcons();
+      });
+    });
+
+    // Toggle sekcji zmiany hasła
+    document.getElementById('toggleChangePass').addEventListener('click', function() {
+      var section  = document.getElementById('changePassSection');
+      var isHidden = section.style.display === 'none';
+      section.style.display = isHidden ? 'block' : 'none';
+      var icon = this.querySelector('[data-lucide]');
+      icon.setAttribute('data-lucide', isHidden ? 'x-circle' : 'key-round');
+      this.childNodes[this.childNodes.length - 1].textContent =
+        isHidden ? ' Zamknij' : ' Zmień hasło';
+      lucide.createIcons();
+    });
+
+    // Logowanie
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var loginVal = document.getElementById('login').value.trim();
+      var hasloVal = document.getElementById('haslo').value;
+
+      var users = JSON.parse(localStorage.getItem('kq_users') || '[]');
+      var user  = users.find(function(u) {
+        return u.login.toLowerCase() === loginVal.toLowerCase()
+          && u.haslo === hasloVal;
+      });
+
+      if (!user) {
+        showError('Nieprawidłowy login lub hasło.');
+        return;
+      }
+
+      // Zapisz sesję
+      sessionStorage.setItem('user', JSON.stringify({
+        id:         user.id,
+        login:      user.login,
+        created_at: user.created_at
+      }));
+      window.location.href = 'dashboard.html';
+    });
+
+    function showError(msg) {
+      var eb = document.getElementById('errorBanner');
+      eb.innerHTML = '<i data-lucide="alert-circle"></i> ' + msg;
+      eb.style.display = 'flex'; eb.style.alignItems = 'center'; eb.style.gap = '8px';
+      lucide.createIcons();
+    }
+
+    // Ocena siły hasła
+    function ocenHaslo(val) {
+      var s = 0;
+      if (val.length >= 8)                                         s++;
+      if (/[A-Z]/.test(val))                                       s++;
+      if (/[0-9]/.test(val))                                       s++;
+      if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(val))     s++;
+      return s;
+    }
+
+    document.getElementById('cp_nowe').addEventListener('input', function() {
+      var val   = this.value;
+      var bar   = document.getElementById('cpStrengthBar');
+      var label = document.getElementById('cpStrengthLabel');
+      bar.classList.remove('strength-weak','strength-medium','strength-strong');
+      if (!val.length) { label.textContent = ''; return; }
+      var s = ocenHaslo(val);
+      if (s <= 1) {
+        bar.classList.add('strength-weak');
+        label.textContent = 'Słabe'; label.style.color = 'var(--error)';
+      } else if (s <= 3) {
+        bar.classList.add('strength-medium');
+        label.textContent = 'Średnie'; label.style.color = 'var(--warning)';
+      } else {
+        bar.classList.add('strength-strong');
+        label.textContent = 'Silne ✓'; label.style.color = 'var(--success)';
+      }
+      var pot = document.getElementById('cp_potwierdz');
+      if (pot.value.length > 0)
+        document.getElementById('cpPotwierdzError').textContent =
+          pot.value !== val ? 'Hasła nie są zgodne!' : '';
+    });
+
+    document.getElementById('cp_potwierdz').addEventListener('input', function() {
+      document.getElementById('cpPotwierdzError').textContent =
+        this.value !== document.getElementById('cp_nowe').value ? 'Hasła nie są zgodne!' : '';
+    });
+
+    // Zmiana hasła
+    function submitChangePass() {
+      var login     = document.getElementById('cp_login').value.trim();
+      var stare     = document.getElementById('cp_stare').value;
+      var nowe      = document.getElementById('cp_nowe').value;
+      var potwierdz = document.getElementById('cp_potwierdz').value;
+      var msgBox    = document.getElementById('cpMessage');
+
+      function showMsg(type, text) {
+        msgBox.className = 'alert-banner alert-' + type;
+        msgBox.innerHTML = '<i data-lucide="' +
+          (type === 'success' ? 'check-circle' : 'alert-circle') +
+          '"></i> ' + text;
+        msgBox.style.display = 'flex';
+        msgBox.style.alignItems = 'center';
+        msgBox.style.gap = '8px';
+        lucide.createIcons();
+      }
+
+      if (!login || !stare || !nowe || !potwierdz) {
+        showMsg('error', 'Wypełnij wszystkie pola.'); return;
+      }
+      if (ocenHaslo(nowe) < 4) {
+        showMsg('error', 'Nowe hasło jest za słabe.'); return;
+      }
+      if (nowe !== potwierdz) {
+        showMsg('error', 'Nowe hasła nie są zgodne.'); return;
+      }
+
+      var users = JSON.parse(localStorage.getItem('kq_users') || '[]');
+      var idx   = users.findIndex(function(u) {
+        return u.login.toLowerCase() === login.toLowerCase() && u.haslo === stare;
+      });
+
+      if (idx === -1) {
+        showMsg('error', 'Nieprawidłowy login lub stare hasło.'); return;
+      }
+
+      users[idx].haslo = nowe;
+      localStorage.setItem('kq_users', JSON.stringify(users));
+      showMsg('success', 'Hasło zostało zmienione. Możesz się zalogować.');
+      ['cp_login','cp_stare','cp_nowe','cp_potwierdz'].forEach(function(id) {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('cpStrengthBar').classList.remove(
+        'strength-weak','strength-medium','strength-strong'
+      );
+      document.getElementById('cpStrengthLabel').textContent = '';
+    }
+  </script>
+</body>
+</html>
