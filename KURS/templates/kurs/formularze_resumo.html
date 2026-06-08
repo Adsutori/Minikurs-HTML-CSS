@@ -1,205 +1,769 @@
 {% extends 'kurs/base.html' %}
 {% load static %}
 
-{% block title %}Resumo — Formularz CV | Minikurs HTML5 i CSS3{% endblock %}
+{% block title %}Resumo — Kreator CV | Minikurs HTML5 i CSS3{% endblock %}
 
 {% block content %}
-<meta name="chapter" content="formularze_resumo">
 
+<!-- NAGŁÓWEK -->
 <div class="page-header">
-  <h1>📝 Resumo — Formularz CV</h1>
-  <p>Kompletny formularz HTML z wszystkimi typami pól wejściowych.</p>
+  <h1>
+    <i data-lucide="file-text" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;"></i>
+    Resumo — Kreator CV
+  </h1>
+  <p>Projekt szkolny — nowoczesna aplikacja Django do tworzenia, edytowania i pobierania CV w formacie PDF.</p>
 </div>
 
-<div class="content-card fade-in" style="max-width:720px; margin:0 auto;">
-
-  <form method="GET" action="#" novalidate>
-
-    <!-- DANE OSOBOWE -->
-    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
-                     padding: 24px; margin-bottom: 28px;">
-      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
-                     font-size:var(--text-sm);">👤 Dane osobowe</legend>
-
-      <div class="grid-2" style="gap:16px;">
-        <div class="form-group">
-          <label for="imie">Imię</label>
-          <input type="text" id="imie" name="imie" class="form-control"
-                 placeholder="Jan" required minlength="2">
-        </div>
-        <div class="form-group">
-          <label for="nazwisko">Nazwisko</label>
-          <input type="text" id="nazwisko" name="nazwisko" class="form-control"
-                 placeholder="Kowalski" required minlength="2">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="data_urodzenia">Data urodzenia</label>
-        <input type="date" id="data_urodzenia" name="data_urodzenia" class="form-control">
-      </div>
-    </fieldset>
-
-    <!-- ADRES -->
-    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
-                     padding: 24px; margin-bottom: 28px;">
-      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
-                     font-size:var(--text-sm);">📍 Adres</legend>
-
-      <div class="form-group">
-        <label for="ulica">Ulica i numer</label>
-        <input type="text" id="ulica" name="ulica" class="form-control"
-               placeholder="ul. Przykładowa 1/2">
-      </div>
-      <div class="grid-2" style="gap:16px;">
-        <div class="form-group">
-          <label for="miasto">Miasto</label>
-          <input type="text" id="miasto" name="miasto" class="form-control"
-                 placeholder="Warszawa">
-        </div>
-        <div class="form-group">
-          <label for="kod">Kod pocztowy</label>
-          <input type="text" id="kod" name="kod" class="form-control"
-                 placeholder="00-000" pattern="\d{2}-\d{3}">
-        </div>
-      </div>
-    </fieldset>
-
-    <!-- KONTAKT -->
-    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
-                     padding: 24px; margin-bottom: 28px;">
-      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
-                     font-size:var(--text-sm);">📞 Kontakt</legend>
-
-      <div class="form-group">
-        <label for="email_cv">Adres e-mail</label>
-        <input type="email" id="email_cv" name="email" class="form-control"
-               placeholder="jan.kowalski@example.com" required>
-      </div>
-      <div class="form-group">
-        <label for="telefon">Numer telefonu</label>
-        <input type="tel" id="telefon" name="telefon" class="form-control"
-               placeholder="+48 123 456 789">
-      </div>
-    </fieldset>
-
-    <!-- WYKSZTAŁCENIE I DOŚWIADCZENIE -->
-    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
-                     padding: 24px; margin-bottom: 28px;">
-      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
-                     font-size:var(--text-sm);">🎓 Wykształcenie i doświadczenie</legend>
-
-      <div class="form-group">
-        <label for="wyksztalcenie">Wykształcenie</label>
-        <select id="wyksztalcenie" name="wyksztalcenie" class="form-control">
-          <option value="">-- Wybierz --</option>
-          <option value="podstawowe">Podstawowe</option>
-          <option value="srednie">Średnie</option>
-          <option value="wyzsze_lic">Wyższe — licencjat</option>
-          <option value="wyzsze_mgr">Wyższe — magister</option>
-          <option value="doktorat">Doktorat</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="doswiadczenie">Doświadczenie zawodowe</label>
-        <textarea id="doswiadczenie" name="doswiadczenie" class="form-control"
-                  rows="5"
-                  placeholder="Opisz swoje dotychczasowe doświadczenie zawodowe..."></textarea>
-      </div>
-    </fieldset>
-
-    <!-- UMIEJĘTNOŚCI -->
-    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
-                     padding: 24px; margin-bottom: 28px;">
-      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
-                     font-size:var(--text-sm);">💻 Umiejętności techniczne</legend>
-
-      <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom:20px;">
-        <label class="form-check">
-          <input type="checkbox" name="umiejetnosci" value="html"> HTML5
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="umiejetnosci" value="css"> CSS3
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="umiejetnosci" value="js"> JavaScript
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="umiejetnosci" value="python"> Python
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="umiejetnosci" value="django"> Django
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="umiejetnosci" value="git"> Git / GitHub
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="umiejetnosci" value="sql"> SQL
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="umiejetnosci" value="inne"> Inne
-        </label>
-      </div>
-
-      <div class="form-group" style="margin-bottom:0;">
-        <label style="display:block; margin-bottom:8px; font-size:var(--text-sm); color:var(--text-secondary);">
-          Poziom zaawansowania
-        </label>
-        <div style="display:flex; gap:24px; flex-wrap:wrap;">
-          <label class="form-check">
-            <input type="radio" name="poziom" value="junior"> Junior
-          </label>
-          <label class="form-check">
-            <input type="radio" name="poziom" value="mid"> Mid
-          </label>
-          <label class="form-check">
-            <input type="radio" name="poziom" value="senior"> Senior
-          </label>
-        </div>
-      </div>
-    </fieldset>
-
-    <!-- ZDJĘCIE -->
-    <fieldset style="border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius-md);
-                     padding: 24px; margin-bottom: 28px;">
-      <legend style="color:var(--accent-secondary); font-weight:700; padding:0 8px;
-                     font-size:var(--text-sm);">🖼️ Zdjęcie profilowe</legend>
-
-      <div class="form-group" style="margin-bottom:0;">
-        <label for="zdjecie">Wybierz zdjęcie (JPG, PNG, WebP)</label>
-        <input type="file" id="zdjecie" name="zdjecie" class="form-control"
-               accept="image/*">
-        <p style="font-size:var(--text-xs); color:var(--text-muted); margin-top:6px;">
-          Maksymalny rozmiar: 5 MB. Zalecany format: JPG lub PNG.
-        </p>
-      </div>
-    </fieldset>
-
-    <!-- ZGODA RODO -->
-    <div style="background: rgba(124,58,237,0.05); border: 1px solid rgba(124,58,237,0.2);
-                border-radius: var(--radius-md); padding: 20px; margin-bottom: 28px;">
-      <label class="form-check" style="align-items:flex-start; gap:12px;">
-        <input type="checkbox" name="rodo" required
-               style="margin-top:3px; flex-shrink:0;">
-        <span style="font-size:var(--text-sm); color:var(--text-secondary); line-height:1.6;">
-          Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w niniejszym
-          formularzu CV w celu rekrutacji, zgodnie z Rozporządzeniem Parlamentu
-          Europejskiego i Rady (UE) 2016/679 (RODO). <strong style="color:var(--text-primary)">*</strong>
-        </span>
-      </label>
-    </div>
-
-    <!-- PRZYCISKI -->
-    <div style="display:flex; gap:16px; flex-wrap:wrap;">
-      <button type="submit" class="btn btn-primary btn-lg">
-        📤 Wyślij CV
-      </button>
-      <button type="reset" class="btn btn-outline btn-lg">
-        🗑️ Wyczyść formularz
-      </button>
-    </div>
-
-  </form>
+<!-- BREADCRUMB -->
+<div style="display:flex;align-items:center;gap:8px;font-size:var(--text-xs);
+            color:var(--text-muted);margin-bottom:24px;">
+  <a href="{% url 'minikurs:glowna' %}" style="color:var(--text-muted);text-decoration:none;">O platformie</a>
+  <i data-lucide="chevron-right" style="width:12px;height:12px;"></i>
+  <span style="color:var(--accent-secondary);">Resumo — Kreator CV</span>
 </div>
+
+<!-- BANER RENDER.COM -->
+<div style="display:flex;align-items:flex-start;gap:14px;padding:16px 20px;
+            background:rgba(234,179,8,0.07);border:1px solid rgba(234,179,8,0.3);
+            border-radius:var(--radius-md);margin-bottom:28px;">
+  <i data-lucide="clock" style="width:22px;height:22px;color:#eab308;flex-shrink:0;margin-top:2px;"></i>
+  <div>
+    <div style="font-weight:700;color:#eab308;margin-bottom:6px;font-size:var(--text-sm);">
+      ⏳ Aplikacja może potrzebować chwili na uruchomienie
+    </div>
+    <p style="font-size:var(--text-sm);color:var(--text-secondary);margin:0;line-height:1.7;">
+      Projekt jest hostowany na <strong style="color:var(--text-primary);">Render.com</strong>
+      w planie darmowym. Po dłuższej nieaktywności (ok. 15 minut) serwer
+      <strong style="color:var(--text-primary);">zasypia</strong> i pierwsze wejście
+      może zająć <strong style="color:var(--text-primary);">30–60 sekund</strong>.
+      Jeśli strona nie odpowiada od razu — poczekaj chwilę i odśwież.
+      To normalne zachowanie darmowego hostingu.
+    </p>
+  </div>
+</div>
+
+<!-- KARTY INFO -->
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:16px;margin-bottom:28px;">
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="layout-template" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">3</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Szablony CV</div>
+  </div>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="form-input" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">10+</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Typów formularzy</div>
+  </div>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="database" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">PG</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">PostgreSQL / Neon</div>
+  </div>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="file-down" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">PDF</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Eksport WeasyPrint</div>
+  </div>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="mail-check" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);margin-top:4px;">Weryfikacja</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">e-mail</div>
+  </div>
+</div>
+
+<!-- OPIS PROJEKTU -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:16px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="info" style="width:20px;height:20px;"></i>
+    O projekcie
+  </h2>
+  <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:16px;">
+    <strong style="color:var(--text-primary);">Resumo</strong> to pełnoprawna aplikacja webowa
+    zbudowana w <strong style="color:var(--text-primary);">Django</strong> — nowoczesny kreator CV
+    w stylu SaaS. Użytkownik rejestruje konto (z weryfikacją e-mail), wypełnia kreator CV
+    krok po kroku, wybiera jeden z trzech szablonów wizualnych i pobiera gotowy dokument
+    jako <strong style="color:var(--text-primary);">plik PDF</strong>.
+  </p>
+  <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:16px;">
+    Projekt wykracza poza statyczny HTML — używa backendu Django, bazy danych
+    <strong style="color:var(--text-primary);">PostgreSQL</strong> hostowanej na Neon,
+    wysyłki e-maili przez SMTP oraz generowania PDF przez bibliotekę
+    <strong style="color:var(--text-primary);">WeasyPrint</strong>.
+  </p>
+  <p style="color:var(--text-secondary);line-height:1.8;">
+    Z perspektywy wymagań projekt zawiera
+    <strong style="color:var(--text-primary);">ponad 10 różnych typów formularzy HTML</strong>
+    rozmieszczonych w różnych częściach aplikacji — od rejestracji i logowania,
+    przez kreator CV, aż po ustawienia konta.
+  </p>
+</div>
+
+<!-- WYMAGANIA -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:24px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="clipboard-check" style="width:20px;height:20px;"></i>
+    Wymagania — 10 typów formularzy HTML
+  </h2>
+
+  <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:20px;line-height:1.7;">
+    Jedynym formalnym wymaganiem było zastosowanie
+    <strong style="color:var(--text-primary);">minimum 10 różnych typów pól formularzy HTML</strong>.
+    Poniżej lista wszystkich zastosowanych typów wraz z miejscem ich użycia w projekcie.
+  </p>
+
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <code style="background:rgba(124,58,237,0.15);padding:1px 8px;border-radius:4px;
+                     color:var(--accent-secondary);font-size:0.75rem;">type="text"</code>
+        <span>— imię, nazwisko, tytuł zawodowy, nazwa firmy, stanowisko, miasto, kraj, szkoła, kierunek</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <code style="background:rgba(124,58,237,0.15);padding:1px 8px;border-radius:4px;
+                     color:var(--accent-secondary);font-size:0.75rem;">type="email"</code>
+        <span>— rejestracja, logowanie, dane kontaktowe w CV</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <code style="background:rgba(124,58,237,0.15);padding:1px 8px;border-radius:4px;
+                     color:var(--accent-secondary);font-size:0.75rem;">type="password"</code>
+        <span>— rejestracja (hasło + potwierdzenie), logowanie, zmiana hasła, reset hasła</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <code style="background:rgba(124,58,237,0.15);padding:1px 8px;border-radius:4px;
+                     color:var(--accent-secondary);font-size:0.75rem;">&lt;textarea&gt;</code>
+        <span>— podsumowanie zawodowe w CV, opis obowiązków, opis projektu</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <code style="background:rgba(124,58,237,0.15);padding:1px 8px;border-radius:4px;
+                     color:var(--accent-secondary);font-size:0.75rem;">&lt;select&gt;</code>
+        <span>— wybór szablonu CV (Klasyczny / Minimalistyczny / Nowoczesny), poziom języka, poziom umiejętności</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <code style="background:rgba(124,58,237,0.15);padding:1px 8px;border-radius:4px;
+                     color:var(--accent-secondary);font-size:0.75rem;">type="checkbox"</code>
+        <span>— „Zapamiętaj mnie" przy logowaniu, „Praca do teraz" (brak daty końcowej), zgoda na regulamin</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <code style="background:rgba(124,58,237,0.15);padding:1px 8px;border-radius:4px;
+                     color:var(--accent-secondary);font-size:0.75rem;">type="radio"</code>
+        <span>— wybór widoczności CV (publiczne / prywatne), wybór koloru akcentu szablonu</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <code style="background:rgba(124,58,237,0.15);padding:1px 8px;border-radius:4px;
+                     color:var(--accent-secondary);font-size:0.75rem;">type="date"</code>
+        <span>— daty zatrudnienia (od / do), daty edukacji, daty projektów</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <code style="background:rgba(124,58,237,0.15);padding:1px 8px;border-radius:4px;
+                     color:var(--accent-secondary);font-size:0.75rem;">type="tel"</code>
+        <span>— numer telefonu w danych kontaktowych CV</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <code style="background:rgba(124,58,237,0.15);padding:1px 8px;border-radius:4px;
+                     color:var(--accent-secondary);font-size:0.75rem;">type="url"</code>
+        <span>— link do LinkedIn, GitHub, portfolio, strony projektu</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="plus-circle" style="width:15px;height:15px;color:#3b82f6;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <code style="background:rgba(59,130,246,0.12);padding:1px 8px;border-radius:4px;
+                     color:#3b82f6;font-size:0.75rem;">type="file"</code>
+        <span>— upload zdjęcia profilowego do CV</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="plus-circle" style="width:15px;height:15px;color:#3b82f6;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <code style="background:rgba(59,130,246,0.12);padding:1px 8px;border-radius:4px;
+                     color:#3b82f6;font-size:0.75rem;">type="range"</code>
+        <span>— suwak poziomu umiejętności (0–100%) w sekcji Skills</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="plus-circle" style="width:15px;height:15px;color:#3b82f6;flex-shrink:0;margin-top:2px;"></i>
+      <div style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <code style="background:rgba(59,130,246,0.12);padding:1px 8px;border-radius:4px;
+                     color:#3b82f6;font-size:0.75rem;">type="search"</code>
+        <span>— wyszukiwanie szablonów i CV na dashboardzie</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Legenda -->
+  <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;
+              padding:12px 16px;background:rgba(124,58,237,0.04);
+              border-radius:var(--radius-sm);border:1px solid rgba(124,58,237,0.1);">
+    <div style="display:flex;align-items:center;gap:8px;font-size:var(--text-sm);color:var(--text-secondary);">
+      <i data-lucide="check-circle" style="width:16px;height:16px;color:#22c55e;"></i>
+      Wymagane minimum (10 typów)
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:var(--text-sm);color:var(--text-secondary);">
+      <i data-lucide="plus-circle" style="width:16px;height:16px;color:#3b82f6;"></i>
+      Dodatkowe typy ponad minimum
+    </div>
+  </div>
+
+</div>
+
+<!-- TECH STACK -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="layers" style="width:20px;height:20px;"></i>
+    Tech Stack
+  </h2>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;
+                background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.12);
+                border-radius:var(--radius-sm);">
+      <span style="font-size:1.4rem;">🐍</span>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">Backend</div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">Django 6.0, Python 3.14</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;
+                background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.12);
+                border-radius:var(--radius-sm);">
+      <span style="font-size:1.4rem;">🐘</span>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">Baza danych</div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">PostgreSQL — Neon (serverless)</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;
+                background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.12);
+                border-radius:var(--radius-sm);">
+      <span style="font-size:1.4rem;">🎨</span>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">Frontend</div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">HTML5, CSS3 (BEM), Vanilla JS</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;
+                background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.12);
+                border-radius:var(--radius-sm);">
+      <span style="font-size:1.4rem;">📄</span>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">Generowanie PDF</div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">WeasyPrint</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;
+                background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.12);
+                border-radius:var(--radius-sm);">
+      <span style="font-size:1.4rem;">✉️</span>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">E-mail</div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">SMTP Gmail — weryfikacja konta</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;
+                background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.12);
+                border-radius:var(--radius-sm);">
+      <span style="font-size:1.4rem;">☁️</span>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">Hosting</div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">Render.com (plan darmowy)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FUNKCJE APLIKACJI -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="sparkles" style="width:20px;height:20px;"></i>
+    Funkcje aplikacji
+  </h2>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;">
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle-2" style="width:18px;height:18px;color:#22c55e;flex-shrink:0;margin-top:1px;"></i>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:3px;">
+          Rejestracja z weryfikacją e-mail
+        </div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">
+          Link aktywacyjny wysyłany przez SMTP; niezweryfikowane konta usuwane po 15 min
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle-2" style="width:18px;height:18px;color:#22c55e;flex-shrink:0;margin-top:1px;"></i>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:3px;">
+          Logowanie z „Zapamiętaj mnie"
+        </div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">
+          Sesja trwała lub tymczasowa; reset hasła przez e-mail
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle-2" style="width:18px;height:18px;color:#22c55e;flex-shrink:0;margin-top:1px;"></i>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:3px;">
+          Kreator CV krok po kroku
+        </div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">
+          Dane osobowe → Doświadczenie → Edukacja → Umiejętności → Języki → Projekty
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle-2" style="width:18px;height:18px;color:#22c55e;flex-shrink:0;margin-top:1px;"></i>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:3px;">
+          3 szablony wizualne
+        </div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">
+          Klasyczny, Minimalistyczny, Nowoczesny — podgląd na żywo
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle-2" style="width:18px;height:18px;color:#22c55e;flex-shrink:0;margin-top:1px;"></i>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:3px;">
+          Eksport do PDF
+        </div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">
+          Gotowe CV pobierane jednym kliknięciem przez WeasyPrint
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle-2" style="width:18px;height:18px;color:#22c55e;flex-shrink:0;margin-top:1px;"></i>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:3px;">
+          Publiczny link do CV
+        </div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">
+          Udostępnianie CV przez unikalny URL bez logowania
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;
+                background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="check-circle-2" style="width:18px;height:18px;color:#22c55e;flex-shrink:0;margin-top:1px;"></i>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:3px;">
+          Dashboard
+        </div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">
+          Zarządzanie wszystkimi CV, statystyki, szybkie akcje
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;
+                background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.12);
+                border-radius:var(--radius-sm);">
+      <i data-lucide="clock" style="width:18px;height:18px;color:var(--accent-secondary);flex-shrink:0;margin-top:1px;"></i>
+      <div>
+        <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:3px;">
+          Analiza AI <em style="font-size:var(--text-xs);font-weight:400;">(planowane)</em>
+        </div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">
+          Ocena i sugestie poprawy CV przez OpenAI API
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- KLUCZOWE TECHNIKI -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="code-2" style="width:20px;height:20px;"></i>
+    Kluczowe techniki — przykłady kodu
+  </h2>
+
+  <!-- Django Form -->
+  <div style="margin-bottom:24px;">
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">1</span>
+      Formularz Django — forms.py + CSRF token
+    </h3>
+    {% verbatim %}
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#64748b;"># forms.py — Django Form z walidacją</span>
+<span style="color:#7c3aed;">from</span> django <span style="color:#7c3aed;">import</span> forms
+
+<span style="color:#7c3aed;">class</span> <span style="color:#a78bfa;">RegisterForm</span>(forms.Form):
+    username = forms.CharField(
+        max_length=<span style="color:#34d399;">150</span>,
+        widget=forms.TextInput(attrs={
+            <span style="color:#34d399;">'placeholder'</span>: <span style="color:#34d399;">'Nazwa użytkownika'</span>,
+            <span style="color:#34d399;">'class'</span>: <span style="color:#34d399;">'form-input'</span>
+        })
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={
+            <span style="color:#34d399;">'placeholder'</span>: <span style="color:#34d399;">'adres@email.pl'</span>
+        })
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            <span style="color:#34d399;">'placeholder'</span>: <span style="color:#34d399;">'Min. 8 znaków'</span>
+        })
+    )
+
+<span style="color:#64748b;">&lt;!-- Template HTML — {% csrf_token %} obowiązkowy! --&gt;</span>
+<span style="color:#a78bfa;">&lt;form <span style="color:#34d399;">method="POST"</span> <span style="color:#34d399;">action="{% url 'users:register' %}"</span>&gt;</span>
+  <span style="color:#7c3aed;">{% csrf_token %}</span>
+  <span style="color:#64748b;">&lt;!-- Bez tego Django odrzuci żądanie POST (403 Forbidden) --&gt;</span>
+  {{ form.as_p }}
+  <span style="color:#7c3aed;">&lt;button <span style="color:#34d399;">type="submit"</span>&gt;</span>Zarejestruj się<span style="color:#7c3aed;">&lt;/button&gt;</span>
+<span style="color:#a78bfa;">&lt;/form&gt;</span></code></pre>
+    {% endverbatim %}
+  </div>
+
+
+  <!-- Weryfikacja e-mail -->
+  <div style="margin-bottom:24px;">
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">2</span>
+      Weryfikacja e-mail — token w URL
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#64748b;"># views.py — generowanie tokenu i wysyłka e-maila</span>
+<span style="color:#7c3aed;">import</span> secrets
+<span style="color:#7c3aed;">from</span> django.core.mail <span style="color:#7c3aed;">import</span> send_mail
+
+<span style="color:#7c3aed;">def</span> <span style="color:#a78bfa;">register</span>(request):
+    <span style="color:#7c3aed;">if</span> request.method == <span style="color:#34d399;">'POST'</span>:
+        token = secrets.token_urlsafe(<span style="color:#34d399;">32</span>)
+        user.verification_token = token
+        user.save()
+
+        verify_url = request.build_absolute_uri(
+            <span style="color:#34d399;">f'/users/verify/{token}/'</span>
+        )
+        send_mail(
+            subject=<span style="color:#34d399;">'Potwierdź konto w Resumo'</span>,
+            message=<span style="color:#34d399;">f'Kliknij: {verify_url}'</span>,
+            from_email=<span style="color:#34d399;">'noreply@resumo.pl'</span>,
+            recipient_list=[user.email]
+        )
+
+<span style="color:#64748b;"># urls.py</span>
+path(<span style="color:#34d399;">'verify/&lt;str:token&gt;/'</span>, views.verify_email,
+     name=<span style="color:#34d399;">'verify'</span>),</code></pre>
+  </div>
+
+  <!-- Generowanie PDF -->
+  <div style="margin-bottom:24px;">
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">3</span>
+      Generowanie PDF — WeasyPrint + Django
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#7c3aed;">from</span> weasyprint <span style="color:#7c3aed;">import</span> HTML
+<span style="color:#7c3aed;">from</span> django.template.loader <span style="color:#7c3aed;">import</span> render_to_string
+<span style="color:#7c3aed;">from</span> django.http <span style="color:#7c3aed;">import</span> HttpResponse
+
+<span style="color:#7c3aed;">def</span> <span style="color:#a78bfa;">download_pdf</span>(request, cv_id):
+    cv = CV.objects.get(id=cv_id, user=request.user)
+
+    <span style="color:#64748b;"># Renderuj szablon HTML do stringa</span>
+    html_string = render_to_string(
+        <span style="color:#34d399;">f'cv/templates/{cv.template}.html'</span>,
+        {<span style="color:#34d399;">'cv'</span>: cv}
+    )
+
+    <span style="color:#64748b;"># Konwertuj HTML → PDF przez WeasyPrint</span>
+    pdf_file = HTML(string=html_string).write_pdf()
+
+    <span style="color:#64748b;"># Zwróć jako plik do pobrania</span>
+    response = HttpResponse(
+        pdf_file,
+        content_type=<span style="color:#34d399;">'application/pdf'</span>
+    )
+    response[<span style="color:#34d399;">'Content-Disposition'</span>] = \
+        <span style="color:#34d399;">f'attachment; filename="cv_{cv.id}.pdf"'</span>
+    <span style="color:#7c3aed;">return</span> response</code></pre>
+  </div>
+
+  <!-- APScheduler -->
+  <div>
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">4</span>
+      Automatyczne usuwanie kont — APScheduler
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#64748b;"># management/commands/delete_unverified_users.py</span>
+<span style="color:#64748b;"># Niezweryfikowane konta usuwane automatycznie po 15 min</span>
+
+<span style="color:#7c3aed;">from</span> django.utils <span style="color:#7c3aed;">import</span> timezone
+<span style="color:#7c3aed;">from</span> datetime <span style="color:#7c3aed;">import</span> timedelta
+
+<span style="color:#7c3aed;">def</span> <span style="color:#a78bfa;">delete_unverified</span>():
+    cutoff = timezone.now() - timedelta(minutes=<span style="color:#34d399;">15</span>)
+    deleted = CustomUser.objects.filter(
+        is_verified=<span style="color:#34d399;">False</span>,
+        date_joined__lt=cutoff
+    ).delete()
+    <span style="color:#7c3aed;">print</span>(<span style="color:#34d399;">f'Usunięto {deleted[0]} niezweryfikowanych kont'</span>)
+
+<span style="color:#64748b;"># APScheduler uruchamia tę funkcję co 5 minut</span>
+scheduler.add_job(
+    delete_unverified,
+    <span style="color:#34d399;">'interval'</span>,
+    minutes=<span style="color:#34d399;">5</span>
+)</code></pre>
+  </div>
+
+</div>
+
+<!-- PODGLĄD PROJEKTU — IFRAME Z BANEREM -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;
+              flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+    <h2 style="color:var(--accent-secondary);margin:0;display:flex;align-items:center;gap:10px;">
+      <i data-lucide="monitor" style="width:20px;height:20px;"></i>
+      Podgląd projektu
+    </h2>
+    <a href="https://resumo-4q9f.onrender.com"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn btn-primary btn-sm">
+      <i data-lucide="external-link" style="width:14px;height:14px;"></i>
+      Otwórz w pełnym oknie
+    </a>
+  </div>
+
+  <!-- Ostrzeżenie o Render cold start -->
+  <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
+              background:rgba(234,179,8,0.07);border:1px solid rgba(234,179,8,0.25);
+              border-radius:var(--radius-sm);margin-bottom:16px;">
+    <i data-lucide="alert-triangle" style="width:16px;height:16px;color:#eab308;flex-shrink:0;margin-top:1px;"></i>
+    <p style="font-size:var(--text-xs);color:var(--text-secondary);margin:0;line-height:1.6;">
+      <strong style="color:#eab308;">Cold start:</strong>
+      jeśli aplikacja nie była używana przez ok. 15 minut, serwer Render.com zasypia.
+      Pierwsze wejście może zająć <strong style="color:var(--text-primary);">30–60 sekund</strong>
+      — poczekaj na załadowanie. Ramka poniżej może wyświetlić pusty ekran przez chwilę.
+    </p>
+  </div>
+
+  <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+    <button onclick="setIframeSize('360px','650px','Mobile 360px')" class="btn btn-outline btn-sm">
+      <i data-lucide="smartphone" style="width:12px;height:12px;"></i> Mobile
+    </button>
+    <button onclick="setIframeSize('768px','680px','Tablet 768px')" class="btn btn-outline btn-sm">
+      <i data-lucide="tablet" style="width:12px;height:12px;"></i> Tablet
+    </button>
+    <button onclick="setIframeSize('100%','720px','Desktop')" class="btn btn-outline btn-sm">
+      <i data-lucide="monitor" style="width:12px;height:12px;"></i> Desktop
+    </button>
+    <button onclick="reloadIframe()" class="btn btn-outline btn-sm">
+      <i data-lucide="refresh-cw" style="width:12px;height:12px;"></i> Odśwież ramkę
+    </button>
+  </div>
+
+  <div style="overflow:hidden;border-radius:var(--radius-md);position:relative;">
+
+    <!-- Overlay ładowania -->
+    <div id="iframe-loading"
+         style="position:absolute;inset:0;background:rgba(15,15,26,0.92);
+                display:flex;flex-direction:column;align-items:center;justify-content:center;
+                z-index:10;border-radius:var(--radius-md);gap:16px;">
+      <div style="width:40px;height:40px;border:3px solid rgba(124,58,237,0.3);
+                  border-top-color:var(--accent-secondary);border-radius:50%;
+                  animation:spin 1s linear infinite;"></div>
+      <div style="text-align:center;">
+        <div style="color:var(--text-primary);font-weight:600;margin-bottom:4px;">
+          Uruchamianie aplikacji…
+        </div>
+        <div style="color:var(--text-muted);font-size:var(--text-xs);">
+          Render.com cold start — może potrwać do 60 sekund
+        </div>
+      </div>
+    </div>
+
+    <div id="iframe-wrapper"
+         style="width:100%;height:720px;border-radius:var(--radius-md);overflow:hidden;
+                border:2px solid rgba(124,58,237,0.25);transition:all 0.3s ease;
+                background:#0f0f1a;margin:0 auto;">
+      <iframe id="project-iframe"
+              src="https://resumo-4q9f.onrender.com"
+              style="width:100%;height:100%;border:none;"
+              title="Resumo — Kreator CV"
+              loading="lazy"
+              onload="iframeLoaded()">
+      </iframe>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;
+              margin-top:10px;font-size:var(--text-xs);color:var(--text-muted);">
+    <span>💡 Możesz założyć testowe konto — dane nie są nigdzie wysyłane poza Render.com</span>
+    <span id="iframe-size-label">Desktop</span>
+  </div>
+</div>
+
+<!-- NAWIGACJA -->
+<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+  <a href="{% url 'minikurs:multimedia' %}"
+     class="btn btn-outline"
+     style="display:flex;align-items:center;gap:8px;">
+    <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+    Poprzedni: Multimedia
+  </a>
+  <a href="{% url 'minikurs:formularze_kwestionariusz' %}"
+     class="btn btn-primary"
+     style="display:flex;align-items:center;gap:8px;">
+    Następny: Kwestionariusz Osobowy
+    <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+  </a>
+</div>
+
+<style>
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
+
+<script>
+  function setIframeSize(width, height, label) {
+    const wrapper = document.getElementById('iframe-wrapper');
+    const lbl     = document.getElementById('iframe-size-label');
+    wrapper.style.width  = width;
+    wrapper.style.height = height;
+    lbl.textContent      = label;
+  }
+
+  function iframeLoaded() {
+    const overlay = document.getElementById('iframe-loading');
+    if (overlay) overlay.style.display = 'none';
+  }
+
+  function reloadIframe() {
+    const iframe  = document.getElementById('project-iframe');
+    const overlay = document.getElementById('iframe-loading');
+    if (overlay) overlay.style.display = 'flex';
+    iframe.src = iframe.src;
+  }
+
+  /* Fallback — ukryj overlay po 90 sekundach nawet bez onload */
+  setTimeout(function() {
+    const overlay = document.getElementById('iframe-loading');
+    if (overlay) overlay.style.display = 'none';
+  }, 90000);
+</script>
+
 {% endblock %}
