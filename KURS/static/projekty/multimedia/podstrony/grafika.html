@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <!-- ============================================================
+       MULTIMEDIA — Sekcja 3: Grafika (grafika.html)
+       ============================================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Grafika w internecie – formaty JPEG, PNG, GIF, SVG, WebP, BMP, TIFF. Grafika rastrowa i wektorowa.">
+  <title>Grafika — Multimedia</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/x-icon" href="../media/img/favicon.ico">
+
+  <style>
+    .skrot {
+      text-decoration: underline dotted;
+      cursor: help;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--kolor-powierzchnia); }
+    ::-webkit-scrollbar-thumb { background: var(--akcent-grafika); border-radius: var(--radius-s); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--kolor-tekst-slaby); }
+    * { scrollbar-width: thin; scrollbar-color: var(--akcent-grafika) var(--kolor-powierzchnia); }
+
+    .btn-powrot-gora {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+      background: var(--kolor-karta); color: var(--kolor-tekst);
+      border: 1px solid var(--kolor-obramowanie); border-radius: var(--radius-m);
+      padding: 0.6rem 1.1rem; font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      display: flex; align-items: center; gap: 0.4rem;
+      transition: var(--przejscie); box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+    .btn-powrot-gora:hover {
+      background: var(--akcent-grafika); color: #ffffff;
+      border-color: var(--akcent-grafika); transform: translateY(-2px);
+      box-shadow: 0 4px 18px rgba(181,123,238,0.25);
+    }
+    .btn-powrot-gora:active { transform: translateY(0); }
+
+    /* ============================================================
+       GRAFIKA 3D — kontener na canvas Three.js
+       ============================================================ */
+    #canvas-3d-wrapper {
+      width: 60vw;
+      height: 33.75vw;
+      max-width: 800px;
+      max-height: 450px;
+      border-radius: 0.5vw;
+      overflow: hidden;
+      background: #0d1117;
+      cursor: grab;
+    }
+    #canvas-3d-wrapper:active { cursor: grabbing; }
+    #canvas-3d-wrapper canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  </style>
+</head>
+<body class="strona-grafika">
+
+  <nav class="nav-glowna" role="navigation" aria-label="Nawigacja główna">
+    <a href="../index.html" class="nav-logo">🎬 Multi<span>media</span></a>
+    <ul class="nav-linki">
+      <li><a href="../index.html">🏠 Strona główna</a></li>
+      <li><a href="wideo.html">🎥 Wideo</a></li>
+      <li><a href="audio.html">🎵 Audio</a></li>
+      <li><a href="grafika.html">🖼️ Grafika</a></li>
+      <li><a href="mapy.html">🗺️ Mapy</a></li>
+      <li><a href="bledy.html">⚠️ Błędy</a></li>
+      <li><a href="zrodla.html">📚 Źródła</a></li>
+    </ul>
+  </nav>
+
+  <main class="kontener" role="main">
+
+    <h1 class="naglowek-strony">🖼️ Grafika</h1>
+
+    <section class="wstep" aria-labelledby="grafika-wstep">
+      <h2 id="grafika-wstep" style="font-size:var(--font-duzy);margin-bottom:var(--odstep-s);color:var(--akcent-grafika);">Grafika rastrowa i wektorowa</h2>
+      <p style="text-align:justify;">
+        Grafika komputerowa – dyscyplina zajmująca się cyfrową syntezą i manipulacją treści wizualnych. Ze względu na reprezentację danych dzieli się na grafikę rastrową i wektorową, a ze względu na charakter danych na grafikę dwuwymiarową, trójwymiarową i ruchomą.<br>
+        <strong>Grafika rastrowa</strong> (bitmapowa) składa się z siatki pikseli – każdy piksel ma określony kolor. Skalowanie w górę powoduje utratę ostrości (pikselizację). Formaty rastrowe to JPEG, PNG, GIF, WebP, BMP, TIFF.
+      </p>
+      <p style="text-align:justify;">
+        <strong>Grafika wektorowa</strong> opisuje obraz za pomocą równań matematycznych (krzywe Béziera, okręgi, wielokąty). Można ją skalować do dowolnego rozmiaru bez utraty jakości. Głównym formatem wektorowym w internecie jest SVG. Grafika wektorowa jest idealna dla logotypów, ikon i ilustracji, natomiast rastrowa – dla fotografii.
+      </p>
+      <p style="text-align:justify;">
+        Wybór formatu zależy od treści obrazu, wymaganej jakości, rozmiaru pliku i potrzeby obsługi przezroczystości. Poniżej omówiono wszystkie najważniejsze formaty stosowane na stronach internetowych.
+      </p>
+    </section>
+
+    <!-- ========================================================
+         ELEMENT 1 - JPEG
+         ======================================================== -->
+    <article class="blok-media" id="grafika1" aria-labelledby="grafika1-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="grafika1-tytul">Format <abbr class="skrot" title="Joint Photographic Experts Group">JPEG</abbr></h2>
+        <span class="badge badge-dysk">📁 Plik z dysku</span>
+      </div>
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <a href="https://pl.wikipedia.org/wiki/JPEG" target="_blank" rel="noopener"><strong>JPEG</strong></a>
+          (<abbr title="Język angielski">ang.</abbr> Joint Photographic Experts Group) – nazwa pochodzi od komitetu, który opracował ten standard w 1992 roku.
+          Rozszerzenie pliku: <code class="inline">.jpg</code> lub <code class="inline">.jpeg</code>.
+        </p>
+        <p style="text-align:justify;">
+          <strong>Typ kompresji:</strong> stratna (lossy) – przy zapisie odrzucane są szczegóły trudno dostrzegalne dla ludzkiego oka. Im wyższy stopień kompresji, tym mniejszy plik, ale gorsza jakość (artefakty blokowe).
+          <strong>Kanał alfa (przezroczystość):</strong> nie obsługuje.
+          <strong>Typowe zastosowania:</strong> fotografie, zdjęcia, obrazy z dużą liczbą kolorów i gradientów. JPEG obok PNG i GIF jest jednym z najczęściej stosowanych formatów graficznych w internecie.
+        </p>
+        <p style="text-align:justify;">
+          Atrybuty <code class="inline">alt</code> i <code class="inline">title</code>:
+          <code class="inline">alt</code> to tekst alternatywny wyświetlany gdy obraz nie może być załadowany – <strong>obowiązkowy</strong> ze względów dostępności (<abbr title="Web Content Accessibility Guidelines">WCAG</abbr>). <code class="inline">title</code> to podpowiedź (tooltip) wyświetlana po najechaniu kursorem – opcjonalna.
+        </p>
+      </div>
+      <div class="media-wrapper">
+        <img
+          src="../media/img/grafika1.jpg"
+          alt="Przykładowe zdjęcie w formacie JPEG – krajobraz górski"
+          title="Przykład formatu JPEG – zdjęcie z serwisu Picsum Photos"
+          width="600" height="400"
+          style="width:40vw; height:auto; border-radius:0.5vw;">
+      </div>
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-grafika1" onclick="toggleCode('kod-grafika1')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-grafika1" onclick="copyCode('kod-grafika1')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-grafika1">
+          <pre><code>&lt;!-- PLIK Z DYSKU: zastąp własnym plikiem JPEG --&gt;
+&lt;img
+  src="../media/img/grafika1.jpg"
+  alt="Krótki opis obrazu – wymagany dla dostępności"
+  title="Podpowiedź wyświetlana po najechaniu kursorem (opcjonalna)"
+  width="600"
+  height="400"&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 2 - PNG Z PRZEZROCZYSTOŚCIĄ
+         ======================================================== -->
+    <article class="blok-media" id="grafika2" aria-labelledby="grafika2-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="grafika2-tytul">Format <abbr class="skrot" title="Portable Network Graphics">PNG</abbr></h2>
+        <span class="badge badge-dysk">📁 Plik z dysku</span>
+      </div>
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <a href="https://pl.wikipedia.org/wiki/Portable_Network_Graphics" target="_blank" rel="noopener"><strong>PNG</strong></a>
+          (<abbr title="Język angielski">ang.</abbr> Portable Network Graphics) – format opracowany w 1996 roku jako wolna od patentów alternatywa dla GIF.
+          Rozszerzenie pliku: <code class="inline">.png</code>.
+        </p>
+        <p style="text-align:justify;">
+          <strong>Typ kompresji:</strong> bezstratna (lossless) – żadne dane obrazu nie są tracone przy zapisie.
+          <strong>Kanał alfa:</strong> pełna obsługa 8-bitowego kanału alfa (256 poziomów przezroczystości).
+          <strong>Typowe zastosowania:</strong> logotypy, ikony, grafiki z przezroczystym tłem, zrzuty ekranu, grafiki z ostrymi krawędziami i tekstem.
+        </p>
+        <p style="text-align:justify;">
+          Poniższy obraz PNG posiada przezroczyste tło – widoczne jest tło kontenera (ciemny kolor strony) prześwitujące przez obraz.
+        </p>
+      </div>
+      <div class="media-wrapper">
+        <img
+          src="../media/img/grafika2.png"
+          alt="Logo Wikimedia Commons – PNG z przezroczystym tłem"
+          title="Przykład formatu PNG z kanałem alfa (przezroczyste tło)"
+          width="300"
+          style="width:15vw; height:auto;">
+      </div>
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-grafika2" onclick="toggleCode('kod-grafika2')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-grafika2" onclick="copyCode('kod-grafika2')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-grafika2">
+          <pre><code>&lt;!-- PLIK Z DYSKU: zastąp własnym plikiem PNG z przezroczystością --&gt;
+&lt;img
+  src="../media/img/grafika2.png"
+  alt="Logo firmy – PNG z przezroczystym tłem"
+  title="Przykład PNG z kanałem alfa"
+  width="300"
+  height="300"&gt;
+
+&lt;!-- Uwaga: przezroczystość PNG widoczna jest tylko gdy
+     kontener ma inne tło niż białe --&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 3 - GIF
+         ======================================================== -->
+    <article class="blok-media" id="grafika3" aria-labelledby="grafika3-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="grafika3-tytul">Format <abbr class="skrot" title="Graphics Interchange Format">GIF</abbr></h2>
+        <span class="badge badge-dysk">📁 Plik z dysku</span>
+      </div>
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <a href="https://pl.wikipedia.org/wiki/GIF" target="_blank" rel="noopener"><strong>GIF</strong></a>
+          (<abbr title="Język angielski">ang.</abbr> Graphics Interchange Format) – format opracowany przez CompuServe w 1987 roku.
+          Rozszerzenie pliku: <code class="inline">.gif</code>.
+        </p>
+        <p style="text-align:justify;">
+          <strong>Typ kompresji:</strong> bezstratna (LZW), ale z poważnym ograniczeniem: <strong>paleta zaledwie 256 kolorów</strong>.
+          <strong>Kanał alfa:</strong> 1-bitowa przezroczystość.
+          <strong>Obsługa animacji:</strong> tak – GIF może zawierać sekwencję klatek.
+          <strong>Typowe zastosowania:</strong> krótkie animacje, memy internetowe, proste grafiki z małą liczbą kolorów.
+        </p>
+      </div>
+      <div class="media-wrapper">
+        <img
+          src="../media/img/grafika3.gif"
+          alt="Animowany GIF – obracająca się kula ziemska"
+          title="Przykład GIF – 256 kolorów, animacja klatek"
+          width="400"
+          style="width:20vw; height:auto; border-radius:0.5vw;">
+      </div>
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-grafika3" onclick="toggleCode('kod-grafika3')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-grafika3" onclick="copyCode('kod-grafika3')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-grafika3">
+          <pre><code>&lt;!-- PLIK Z DYSKU: zastąp własnym animowanym plikiem GIF --&gt;
+&lt;img
+  src="../media/img/grafika3.gif"
+  alt="Opis animacji GIF"
+  title="Animowany GIF"
+  width="400"
+  height="400"&gt;
+
+&lt;!-- Uwaga: GIF obsługuje tylko 256 kolorów.
+     Do animacji lepszej jakości używaj CSS animations
+     lub formatu WebP/APNG --&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 3b - GIF Z PRZEZROCZYSTYM TŁEM
+         ======================================================== -->
+    <article class="blok-media" id="grafika3b" aria-labelledby="grafika3b-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="grafika3b-tytul">GIF z przezroczystym tłem</h2>
+        <span class="badge badge-dysk">📁 Plik z dysku</span>
+      </div>
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Format GIF obsługuje przezroczystość, ale w sposób ograniczony – jest to przezroczystość <strong>1-bitowa</strong>: każdy piksel jest albo w pełni przezroczysty (0), albo w pełni nieprzezroczysty (1). Nie ma możliwości ustawienia częściowej przezroczystości (półprzezroczystości), jak w formacie PNG z 8-bitowym kanałem alfa.
+        </p>
+        <p style="text-align:justify;">
+          Efektem tego ograniczenia są postrzępione krawędzie przy obiektach z wygładzonymi brzegami (antyaliasing). Poniższy GIF ma przezroczyste tło – widoczne jest ciemne tło strony prześwitujące przez obraz.
+        </p>
+      </div>
+      <div class="media-wrapper">
+        <img
+          src="../media/img/grafika4.gif"
+          alt="Animowany GIF z przezroczystym tłem"
+          title="GIF z 1-bitową przezroczystością – widoczne postrzępione krawędzie"
+          width="300"
+          style="width:15vw; height:auto;">
+      </div>
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-grafika3b" onclick="toggleCode('kod-grafika3b')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-grafika3b" onclick="copyCode('kod-grafika3b')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-grafika3b">
+          <pre><code>&lt;!-- PLIK Z DYSKU: GIF z przezroczystym tłem (1-bitowy kanał alfa) --&gt;
+&lt;img
+  src="../media/img/grafika4.gif"
+  alt="Animacja GIF z przezroczystym tłem"
+  width="300"
+  height="300"&gt;
+
+&lt;!-- Uwaga: GIF obsługuje tylko przezroczystość 1-bitową.
+     Dla lepszej przezroczystości używaj PNG (8-bit alfa)
+     lub WebP (pełny kanał alfa + animacja) --&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 4 - OBRAZ Z SIECI
+         ======================================================== -->
+    <article class="blok-media" id="grafika4" aria-labelledby="grafika4-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="grafika4-tytul">Obraz z zewnętrznego serwisu</h2>
+        <span class="badge badge-siec">🌐 Plik z sieci</span>
+      </div>
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Element <code class="inline">&lt;img&gt;</code> może wskazywać na zasób hostowany na zewnętrznym serwerze – wystarczy podać pełny <abbr title="Uniform Resource Locator – adres zasobu w sieci">URL</abbr> w atrybucie <code class="inline">src</code>. Poniżej obraz pobrany bezpośrednio z serwisu <strong>Wikimedia Commons</strong> – największego repozytorium wolnych mediów na świecie, prowadzonego przez Wikimedia Foundation.
+        </p>
+        <p style="text-align:justify;">
+          <strong>Autor:</strong> Rich Niewiroski Jr. ·
+          <strong>Źródło:</strong> Wikimedia Commons ·
+          <strong>Licencja:</strong> <abbr title="Creative Commons Attribution 2.5">CC BY 2.5</abbr>
+        </p>
+      </div>
+      <div class="media-wrapper">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1280px-GoldenGateBridge-001.jpg"
+          alt="Most Golden Gate w San Francisco – zdjęcie z Wikimedia Commons"
+          title="Most Golden Gate, San Francisco, USA – fot. Rich Niewiroski Jr., CC BY 2.5"
+          width="1280" height="853"
+          style="width:50vw; height:auto; border-radius:0.5vw;">
+      </div>
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-grafika4" onclick="toggleCode('kod-grafika4')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-grafika4" onclick="copyCode('kod-grafika4')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-grafika4">
+          <pre><code>&lt;!-- Obraz z zewnętrznego serwisu (URL absolutny) --&gt;
+&lt;img
+  src="https://upload.wikimedia.org/wikipedia/commons/
+       thumb/0/0c/GoldenGateBridge-001.jpg/1280px-GoldenGateBridge-001.jpg"
+  alt="Most Golden Gate w San Francisco"
+  title="Autor: Rich Niewiroski Jr., CC BY 2.5"
+  width="1280"
+  height="853"
+  loading="lazy"&gt;
+
+&lt;!-- Atrybut loading="lazy" opóźnia ładowanie obrazu
+     do momentu gdy znajdzie się w pobliżu widocznego obszaru --&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 5 - FORMAT SVG
+         ======================================================== -->
+    <article class="blok-media" id="grafika5" aria-labelledby="grafika5-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="grafika5-tytul">Format <abbr class="skrot" title="Scalable Vector Graphics">SVG</abbr></h2>
+        <span class="badge badge-webm">✏️ Grafika wektorowa</span>
+      </div>
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <a href="https://pl.wikipedia.org/wiki/Scalable_Vector_Graphics" target="_blank" rel="noopener"><strong>SVG</strong></a>
+          (<abbr title="Język angielski">ang.</abbr> Scalable Vector Graphics, pol. „skalowalna grafika wektorowa") – format grafiki wektorowej oparty na języku <abbr title="Extensible Markup Language">XML</abbr>, opracowany przez <abbr title="World Wide Web Consortium">W3C</abbr> w 1999 roku.
+          Rozszerzenie pliku: <code class="inline">.svg</code>.
+        </p>
+        <p style="text-align:justify;">
+          <strong>Typ:</strong> wektorowy – obraz opisany równaniami matematycznymi, skaluje się bez utraty jakości do dowolnego rozmiaru.
+          <strong>Kanał alfa:</strong> pełna obsługa przezroczystości.
+          <strong>Animacje:</strong> obsługuje animacje <abbr title="Cascading Style Sheets">CSS</abbr> i <abbr title="Synchronized Multimedia Integration Language">SMIL</abbr>.
+          <strong>Typowe zastosowania:</strong> logotypy, ikony, wykresy, mapy, ilustracje, interfejsy użytkownika.
+        </p>
+        <p style="text-align:justify;">
+          SVG można osadzić na trzy sposoby: jako zewnętrzny plik (<code class="inline">&lt;img src="plik.svg"&gt;</code>), jako inline SVG bezpośrednio w <abbr title="HyperText Markup Language">HTML</abbr> (poniżej), lub przez <code class="inline">&lt;object&gt;</code>/<code class="inline">&lt;embed&gt;</code>.
+        </p>
+      </div>
+      <div class="media-wrapper">
+        <svg
+          width="400" height="300" viewBox="0 0 400 300"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-label="Przykładowa grafika SVG – kolorowe kształty geometryczne"
+          style="width:30vw; height:auto; border-radius:0.5vw;">
+          <title>Przykładowa grafika SVG</title>
+          <desc>Kolorowe kształty geometryczne demonstrujące możliwości formatu SVG</desc>
+          <rect width="400" height="300" fill="#1a1d27" rx="8"/>
+          <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#4a9eff;stop-opacity:1"/>
+              <stop offset="100%" style="stop-color:#b57bee;stop-opacity:1"/>
+            </linearGradient>
+            <radialGradient id="grad2" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" style="stop-color:#3ecf8e;stop-opacity:0.9"/>
+              <stop offset="100%" style="stop-color:#3ecf8e;stop-opacity:0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="200" cy="150" r="100" fill="url(#grad1)" opacity="0.85"/>
+          <circle cx="200" cy="150" r="60" fill="url(#grad2)"/>
+          <polygon points="200,60 280,200 120,200" fill="none" stroke="#f7c948" stroke-width="2.5" opacity="0.7"/>
+          <line x1="50"  y1="150" x2="150" y2="150" stroke="#ff9f43" stroke-width="2" opacity="0.5"/>
+          <line x1="250" y1="150" x2="350" y2="150" stroke="#ff9f43" stroke-width="2" opacity="0.5"/>
+          <line x1="200" y1="30"  x2="200" y2="80"  stroke="#ff9f43" stroke-width="2" opacity="0.5"/>
+          <line x1="200" y1="220" x2="200" y2="270" stroke="#ff9f43" stroke-width="2" opacity="0.5"/>
+          <circle cx="60"  cy="60"  r="12" fill="#ff6b6b" opacity="0.8"/>
+          <circle cx="340" cy="60"  r="12" fill="#3ecf8e" opacity="0.8"/>
+          <circle cx="60"  cy="240" r="12" fill="#4a9eff" opacity="0.8"/>
+          <circle cx="340" cy="240" r="12" fill="#f7c948" opacity="0.8"/>
+          <text x="200" y="155" text-anchor="middle" dominant-baseline="middle"
+                font-family="'Segoe UI', Arial, sans-serif" font-size="18"
+                font-weight="bold" fill="white" opacity="0.95">SVG</text>
+          <text x="200" y="280" text-anchor="middle"
+                font-family="'Segoe UI', Arial, sans-serif" font-size="10"
+                fill="#8892b0">Scalable Vector Graphics</text>
+        </svg>
+      </div>
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-grafika5" onclick="toggleCode('kod-grafika5')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-grafika5" onclick="copyCode('kod-grafika5')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-grafika5">
+          <pre><code>&lt;!-- Sposób 1: SVG inline (bezpośrednio w HTML) --&gt;
+&lt;svg width="400" height="300" viewBox="0 0 400 300"
+     xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-label="Opis grafiki SVG"&gt;
+  &lt;title&gt;Tytuł grafiki SVG&lt;/title&gt;
+  &lt;circle cx="200" cy="150" r="100" fill="#4a9eff"/&gt;
+  &lt;text x="200" y="155" text-anchor="middle" fill="white"&gt;SVG&lt;/text&gt;
+&lt;/svg&gt;
+
+&lt;!-- Sposób 2: SVG jako zewnętrzny plik --&gt;
+&lt;img src="grafika/logo.svg"
+     alt="Logo firmy w formacie SVG"
+     width="200" height="200"&gt;
+
+&lt;!-- Sposób 3: SVG przez &lt;object&gt; (zachowuje interaktywność) --&gt;
+&lt;object type="image/svg+xml" data="grafika/diagram.svg"
+        width="400" height="300"
+        aria-label="Diagram SVG"&gt;
+  Twoja przeglądarka nie obsługuje SVG.
+&lt;/object&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 6 - FORMAT WebP z FALLBACK
+         ======================================================== -->
+    <article class="blok-media" id="grafika6" aria-labelledby="grafika6-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="grafika6-tytul">Format <abbr class="skrot" title="Web Picture">WebP</abbr></h2>
+        <span class="badge badge-siec">🌐 Plik z sieci</span>
+      </div>
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <a href="https://pl.wikipedia.org/wiki/WebP" target="_blank" rel="noopener"><strong>WebP</strong></a>
+          (<abbr title="Język angielski">ang.</abbr> <em>Web Picture</em>, <abbr title="Język polski">pol.</abbr> <em>obraz sieciowy</em>) – nowoczesny format graficzny opracowany przez Google i udostępniony w 2010 roku.
+          Rozszerzenie pliku: <code class="inline">.webp</code>.
+        </p>
+        <p style="text-align:justify;">
+          <strong>Typ kompresji:</strong> zarówno stratna, jak i bezstratna – do wyboru.
+          <strong>Kanał alfa:</strong> pełna obsługa.
+          <strong>Animacje:</strong> obsługuje (jako alternatywa dla GIF).
+          <strong>Zalety:</strong> pliki WebP są przeciętnie 25–35% mniejsze niż JPEG przy tej samej jakości wizualnej, i 26% mniejsze niż PNG.
+          <strong>Wsparcie przeglądarek:</strong> wszystkie nowoczesne przeglądarki (od Safari 14).
+        </p>
+        <p style="text-align:justify;">
+          Element <code class="inline">&lt;picture&gt;</code> z <code class="inline">&lt;source&gt;</code> umożliwia podanie WebP jako preferowanego formatu z automatycznym fallbackiem do JPEG dla starszych przeglądarek.
+        </p>
+      </div>
+      <div class="media-wrapper">
+        <picture>
+          <source srcset="https://www.gstatic.com/webp/gallery/1.webp" type="image/webp">
+          <img
+            src="https://picsum.photos/seed/webp-fallback/600/400"
+            alt="Przykładowy obraz w formacie WebP z fallbackiem do JPEG"
+            title="WebP (Web Picture Format, Google 2010) – lepsza kompresja niż JPEG/PNG"
+            width="600" height="400"
+            style="width:40vw; height:auto; border-radius:0.5vw;">
+        </picture>
+      </div>
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-grafika6" onclick="toggleCode('kod-grafika6')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-grafika6" onclick="copyCode('kod-grafika6')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-grafika6">
+          <pre><code>&lt;!-- Element &lt;picture&gt; z automatycznym fallbackiem formatu --&gt;
+&lt;picture&gt;
+
+  &lt;!-- 1. WebP jako preferowany format (lepsza kompresja niż JPEG/PNG) --&gt;
+  &lt;source srcset="obrazy/zdjecie.webp" type="image/webp"&gt;
+
+  &lt;!-- 2. Fallback JPEG – ładowany gdy przeglądarka nie obsługuje WebP --&gt;
+  &lt;img
+    src="obrazy/zdjecie.jpg"
+    alt="Opis obrazu – wymagany dla dostępności"
+    width="600"
+    height="400"&gt;
+
+&lt;/picture&gt;
+
+&lt;!-- Jak działa mechanizm fallback:
+     Przeglądarka sprawdza elementy &lt;source&gt; od góry.
+     Wybiera PIERWSZY obsługiwany format.
+     Jeśli żaden &lt;source&gt; nie pasuje – używa &lt;img&gt; (fallback). --&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 7 - GRAFIKA 3D (Three.js / WebGL)
+         ======================================================== -->
+    <article class="blok-media" id="grafika7" aria-labelledby="grafika7-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="grafika7-tytul">Grafika 3D – <abbr class="skrot" title="Web Graphics Library">WebGL</abbr> / Three.js</h2>
+        <span class="badge badge-webm">🧊 Grafika 3D</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <strong>Grafika 3D</strong>, <strong>grafika trójwymiarowa</strong>
+          (<abbr title="Język angielski">ang.</abbr> <em>3D graphics</em>,
+          <abbr title="Język angielski">ang.</abbr> <em>three-dimensional graphics</em>)
+          – dziedzina <a href="https://pl.wikipedia.org/wiki/Grafika_komputerowa" target="_blank" rel="noopener">grafiki komputerowej</a>
+          zajmująca się głównie wizualizacją trójwymiarową danych geometrycznych,
+          pozwalających na przedstawienie dowolnego obiektu lub powierzchni
+          w technice trójwymiarowej. Obiekty 3D opisywane są za pomocą siatek
+          wielokątów (<abbr title="Język angielski">ang.</abbr> <em>polygon mesh</em>),
+          krzywych <abbr title="Krzywe opisane równaniami matematycznymi, nazwane od Pierre'a Béziera">Béziera</abbr>
+          lub brył parametrycznych, a następnie rzutowane na płaszczyznę ekranu
+          w procesie zwanym <em>renderowaniem</em>
+          (<abbr title="Język angielski">ang.</abbr> <em>rendering</em>).
+        </p>
+        <p style="text-align:justify;">
+          W przeglądarkach internetowych grafika 3D jest możliwa dzięki technologii
+          <a href="https://pl.wikipedia.org/wiki/WebGL" target="_blank" rel="noopener"><strong><abbr title="Web Graphics Library – biblioteka grafiki sieciowej, API oparte na OpenGL ES">WebGL</abbr></strong></a>
+          – niskopoziomowego <abbr title="Application Programming Interface – interfejs programowania aplikacji">API</abbr>
+          opartego na standardzie <abbr title="OpenGL for Embedded Systems – uproszczona wersja OpenGL dla urządzeń mobilnych i przeglądarek">OpenGL ES</abbr>,
+          wbudowanego w każdą nowoczesną przeglądarkę. WebGL umożliwia renderowanie
+          trójwymiarowej grafiki bezpośrednio na elemencie
+          <code class="inline">&lt;canvas&gt;</code> z wykorzystaniem karty graficznej
+          (<abbr title="Graphics Processing Unit – procesor graficzny">GPU</abbr>), bez żadnych wtyczek.
+        </p>
+        <p style="text-align:justify;">
+          <a href="https://threejs.org/" target="_blank" rel="noopener"><strong>Three.js</strong></a>
+          to najpopularniejsza biblioteka <abbr title="JavaScript – skryptowy język programowania">JS</abbr>
+          upraszczająca pracę z WebGL. Zamiast pisać niskopoziomowe shadery
+          w języku <abbr title="OpenGL Shading Language – język programowania shaderów dla OpenGL">GLSL</abbr>,
+          programista operuje gotowymi obiektami: siatkami
+          (<abbr title="Język angielski">ang.</abbr> <em>mesh</em>),
+          materiałami, światłami i kamerami. Biblioteka jest używana m.in.
+          do wizualizacji naukowych, gier przeglądarkowych, interaktywnych
+          prezentacji produktów i efektów wizualnych na stronach.
+        </p>
+        <p style="text-align:justify;">
+          Poniższa scena 3D renderowana jest w czasie rzeczywistym przez
+          <abbr title="Graphics Processing Unit – procesor graficzny">GPU</abbr>.
+          <strong>Możesz obracać scenę klikając i przeciągając myszą.</strong>
+        </p>
+      </div>
+
+      <!-- Element multimedialny — scena 3D Three.js -->
+      <div class="media-wrapper">
+        <div id="canvas-3d-wrapper"
+             role="img"
+             aria-label="Interaktywna scena 3D – obracający się sześcian z orbitującą sferą i pierścieniem">
+        </div>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-grafika7" onclick="toggleCode('kod-grafika7')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-grafika7" onclick="copyCode('kod-grafika7')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-grafika7">
+          <pre><code>&lt;!-- Grafika 3D z Three.js przez CDN --&gt;
+&lt;div id="canvas-wrapper"&gt;&lt;/div&gt;
+
+&lt;script type="importmap"&gt;
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.163/build/three.module.js" } }
+&lt;/script&gt;
+
+&lt;script type="module"&gt;
+  import * as THREE from 'three';
+
+  const wrapper = document.getElementById('canvas-wrapper');
+  const W = wrapper.clientWidth, H = wrapper.clientHeight;
+
+  // Renderer
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(W, H);
+  wrapper.appendChild(renderer.domElement);
+
+  // Scena i kamera
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 100);
+  camera.position.set(0, 0, 5);
+
+  // Siatka (mesh) — sześcian
+  const geometry = new THREE.BoxGeometry(1.2, 1.2, 1.2);
+  const material = new THREE.MeshStandardMaterial({ color: 0x4a9eff });
+  const cube     = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  // Pierścień (torus)
+  const torus = new THREE.Mesh(
+    new THREE.TorusGeometry(1.8, 0.04, 16, 80),
+    new THREE.MeshStandardMaterial({ color: 0x3ecf8e })
+  );
+  scene.add(torus);
+
+  // Oświetlenie
+  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+  const light = new THREE.DirectionalLight(0xffffff, 1.5);
+  light.position.set(5, 8, 5);
+  scene.add(light);
+
+  // Pętla animacji
+  function animate() {
+    requestAnimationFrame(animate);
+    cube.rotation.x += 0.004;
+    cube.rotation.y += 0.007;
+    torus.rotation.y += 0.003;
+    renderer.render(scene, camera);
+  }
+  animate();
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- ========================================================
+         ELEMENT 8 - BMP i TIFF (sekcja informacyjna)
+         ======================================================== -->
+    <article class="blok-media" id="grafika8" aria-labelledby="grafika8-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="grafika8-tytul">Formaty <abbr class="skrot" title="Bitmap / Device Independent Bitmap">BMP</abbr> i <abbr class="skrot" title="Tagged Image File Format">TIFF</abbr> – dlaczego nie stosujemy ich w sieci?</h2>
+        <span class="badge" style="background:rgba(160,174,192,0.15);color:var(--akcent-zrodla);">ℹ️ Informacja</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <a href="https://pl.wikipedia.org/wiki/BMP_(format_pliku)" target="_blank" rel="noopener"><strong>BMP</strong></a>
+          (<abbr title="Język angielski">ang.</abbr> <em>Bitmap</em> lub <em>Device Independent Bitmap</em>) – format rastrowy
+          opracowany przez Microsoft w 1988 roku jako natywny format graficzny systemu Windows.
+          Rozszerzenie pliku: <code class="inline">.bmp</code>.
+          BMP przechowuje dane pikselowe <strong>bez kompresji</strong> (lub z opcjonalną,
+          rzadko stosowaną kompresją <abbr title="Run-Length Encoding">RLE</abbr>),
+          co oznacza, że każdy piksel zajmuje pełne 3 lub 4 bajty w pliku.
+          Obraz o rozdzielczości 1920×1080 pikseli w formacie BMP zajmuje około <strong>6 MB</strong>,
+          podczas gdy ten sam obraz w JPEG to zaledwie 200–500 KB.
+          Format BMP był powszechnie stosowany w systemach Windows do ikon, tapet
+          i grafik interfejsu, jednak w internecie jest praktycznie nieużywany
+          ze względu na ogromne rozmiary plików.
+        </p>
+        <p style="text-align:justify;">
+          <a href="https://pl.wikipedia.org/wiki/TIFF" target="_blank" rel="noopener"><strong>TIFF</strong></a>
+          (<abbr title="Język angielski">ang.</abbr> <em>Tagged Image File Format</em>) – elastyczny format rastrowy
+          opracowany przez firmę Aldus (dziś Adobe) w 1986 roku.
+          Rozszerzenie pliku: <code class="inline">.tif</code> lub <code class="inline">.tiff</code>.
+          TIFF obsługuje wiele trybów kompresji (bezstratna LZW, ZIP, lub brak),
+          głębię kolorów do 32 bitów na kanał, pełny kanał alfa oraz wiele warstw
+          i stron w jednym pliku. Jest to format <strong>profesjonalny</strong> –
+          stosowany w poligrafii, fotografii studyjnej, skanowaniu dokumentów
+          archiwalnych i medycynie (obrazy DICOM). Jego główną wadą w kontekście
+          webowym jest brak wsparcia w przeglądarkach – żadna popularna przeglądarka
+          nie wyświetla plików TIFF bezpośrednio na stronie.
+        </p>
+        <p style="text-align:justify;">
+          Nie wszystkie formaty graficzne nadają się do zastosowań webowych.
+          Dwa formaty – BMP i TIFF – są technicznie obsługiwane przez przeglądarki
+          jedynie częściowo, ale z praktycznych powodów
+          <strong>nie powinny być używane na stronach <abbr title="World Wide Web">WWW</abbr></strong>.
+        </p>
+      </div>
+
+      <!-- Tabela porównawcza -->
+      <div class="info-box">
+        <table class="tabela-formaty" aria-label="Porównanie formatów BMP i TIFF">
+          <thead>
+            <tr>
+              <th scope="col">Cecha</th>
+              <th scope="col"><abbr class="skrot" title="Bitmap / Device Independent Bitmap">BMP</abbr></th>
+              <th scope="col"><abbr class="skrot" title="Tagged Image File Format">TIFF</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Pełna nazwa</strong></td>
+              <td>Device Independent Bitmap</td>
+              <td>Tagged Image File Format</td>
+            </tr>
+            <tr>
+              <td><strong>Twórca / rok</strong></td>
+              <td>Microsoft, 1988</td>
+              <td>Aldus (Adobe), 1986</td>
+            </tr>
+            <tr>
+              <td><strong>Rozszerzenie</strong></td>
+              <td><code class="inline">*.bmp</code></td>
+              <td><code class="inline">*.tif</code>, <code class="inline">*.tiff</code></td>
+            </tr>
+            <tr>
+              <td><strong>Kompresja</strong></td>
+              <td>Brak (lub opcjonalna <abbr title="Run-Length Encoding – kodowanie długości serii">RLE</abbr>) – surowe dane pikselowe</td>
+              <td>Bezstratna (<abbr title="Lempel–Ziv–Welch – algorytm kompresji bezstratnej">LZW</abbr>, ZIP) lub brak – wiele trybów</td>
+            </tr>
+            <tr>
+              <td><strong>Rozmiar pliku</strong></td>
+              <td>Ogromny – zdjęcie 1920×1080 to ok. 6 MB</td>
+              <td>Bardzo duży – wielokrotnie większy niż JPEG/PNG</td>
+            </tr>
+            <tr>
+              <td><strong>Kanał alfa</strong></td>
+              <td>Ograniczona obsługa</td>
+              <td>Pełna obsługa</td>
+            </tr>
+            <tr>
+              <td><strong>Głębia kolorów</strong></td>
+              <td>1–32 bity na piksel</td>
+              <td>Do 32 bitów na kanał (HDR)</td>
+            </tr>
+            <tr>
+              <td><strong>Wsparcie przeglądarek</strong></td>
+              <td>Częściowe (Chrome, Edge) – nie wszystkie</td>
+              <td>Bardzo ograniczone – większość przeglądarek nie obsługuje</td>
+            </tr>
+            <tr>
+              <td><strong>Typowe zastosowania</strong></td>
+              <td>Ikony systemowe Windows, stare aplikacje graficzne</td>
+              <td>Profesjonalna fotografia, poligrafia, skanowanie dokumentów</td>
+            </tr>
+            <tr>
+              <td><strong>Czy używać w sieci?</strong></td>
+              <td style="color:var(--akcent-bledy);font-weight:700;">❌ NIE – zbyt duże pliki</td>
+              <td style="color:var(--akcent-bledy);font-weight:700;">❌ NIE – brak wsparcia przeglądarek</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top:var(--odstep-m); padding:var(--odstep-m);
+                    background:rgba(255,107,107,0.07); border-radius:var(--radius-m);
+                    border:0.1vw solid rgba(255,107,107,0.2);">
+          <h3 style="color:var(--akcent-bledy); margin-top:0;">⚠️ Dlaczego NIE stosujemy BMP i TIFF na stronach www?</h3>
+          <ul style="color:var(--kolor-tekst-slaby); font-size:var(--font-maly);
+                     line-height:1.8; padding-left:2vw;">
+            <li style="text-align:justify;">
+              <strong>BMP:</strong> brak kompresji oznacza gigantyczne pliki –
+              obraz 1920×1080 px to ok. 6 MB w BMP, a tylko 200–500 KB w JPEG.
+              Drastycznie wydłuża czas ładowania strony.
+            </li>
+            <li style="text-align:justify;">
+              <strong>TIFF:</strong> większość przeglądarek internetowych w ogóle
+              nie obsługuje tego formatu – użytkownik zobaczy ikonę błędu zamiast obrazu.
+            </li>
+            <li style="text-align:justify;">
+              <strong>Alternatywy:</strong> zamiast BMP używaj PNG (bezstratny, mniejszy),
+              zamiast TIFF używaj PNG lub WebP (bezstratny z lepszą kompresją).
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-grafika8" onclick="toggleCode('kod-grafika8')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-grafika8" onclick="copyCode('kod-grafika8')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-grafika8">
+          <pre><code>&lt;!-- BMP — technicznie możliwe, ale NIE zalecane --&gt;
+&lt;img src="obrazy/plik.bmp"
+     alt="Obraz BMP – bardzo duży plik, brak kompresji"
+     width="800" height="600"&gt;
+
+&lt;!-- TIFF — NIE obsługiwany przez przeglądarki --&gt;
+&lt;img src="obrazy/skan.tiff"
+     alt="Skan dokumentu TIFF – nie wyświetli się w przeglądarce"
+     width="800" height="600"&gt;
+
+&lt;!-- ZALECANE alternatywy: --&gt;
+
+&lt;!-- Zamiast BMP → PNG (bezstratny, mniejszy plik) --&gt;
+&lt;img src="obrazy/plik.png"
+     alt="Obraz PNG – bezstratny, znacznie mniejszy niż BMP"
+     width="800" height="600"&gt;
+
+&lt;!-- Zamiast TIFF → WebP bezstratny (pełna obsługa przeglądarek) --&gt;
+&lt;img src="obrazy/skan.webp"
+     alt="Obraz WebP – bezstratny, obsługiwany przez wszystkie przeglądarki"
+     width="800" height="600"&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="stopka" role="contentinfo">
+    <p>🎬 <strong>Multimedia</strong> – Krzysztof Januszewski 3F © 2026</p>
+  </footer>
+
+  <button
+    class="btn-powrot-gora"
+    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    aria-label="Powrót na górę strony"
+    title="Powrót na górę">
+    ↑ Powrót na górę
+  </button>
+
+  <script src="../script.js"></script>
+
+  <!-- ============================================================
+       THREE.JS — scena 3D dla Elementu 7
+       Ładowane na końcu body żeby canvas-3d-wrapper już istniał
+       ============================================================ -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.163/build/three.module.js"
+      }
+    }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+
+    const wrapper = document.getElementById('canvas-3d-wrapper');
+    const W = wrapper.clientWidth;
+    const H = wrapper.clientHeight;
+
+    /* ---- Renderer ---- */
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(W, H);
+    renderer.shadowMap.enabled = true;
+    wrapper.appendChild(renderer.domElement);
+
+    /* ---- Scena i kamera ---- */
+    const scene  = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 100);
+    camera.position.set(0, 0.5, 3.5);
+
+    /* ---- Geometrie ---- */
+    // Główny sześcian
+    const cubeGeo = new THREE.BoxGeometry(1.2, 1.2, 1.2);
+    const cubeMat = new THREE.MeshStandardMaterial({
+      color: 0x4a9eff,
+      metalness: 0.3,
+      roughness: 0.4
+    });
+    const cube = new THREE.Mesh(cubeGeo, cubeMat);
+    cube.castShadow = true;
+    scene.add(cube);
+
+    // Mała sfera orbitalana
+    const sphereGeo = new THREE.SphereGeometry(0.25, 32, 32);
+    const sphereMat = new THREE.MeshStandardMaterial({
+      color: 0xf7c948,
+      metalness: 0.5,
+      roughness: 0.3
+    });
+    const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+    sphere.castShadow = true;
+    scene.add(sphere);
+
+    // Pierścień (torus)
+    const torusGeo = new THREE.TorusGeometry(1.8, 0.04, 16, 80);
+    const torusMat = new THREE.MeshStandardMaterial({
+      color: 0x3ecf8e,
+      metalness: 0.6,
+      roughness: 0.3
+    });
+    const torus = new THREE.Mesh(torusGeo, torusMat);
+    torus.rotation.x = Math.PI / 2;
+    scene.add(torus);
+
+    // Podłoga (płaszczyzna z cieniem)
+    const floorGeo = new THREE.PlaneGeometry(10, 10);
+    const floorMat = new THREE.ShadowMaterial({ opacity: 0.25 });
+    const floor    = new THREE.Mesh(floorGeo, floorMat);
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = -1.2;
+    floor.receiveShadow = true;
+    scene.add(floor);
+
+    /* ---- Oświetlenie ---- */
+    const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambient);
+
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    dirLight.position.set(5, 8, 5);
+    dirLight.castShadow = true;
+    scene.add(dirLight);
+
+    const pointLight = new THREE.PointLight(0xb57bee, 2, 8);
+    pointLight.position.set(-3, 2, 2);
+    scene.add(pointLight);
+
+    /* ---- Obsługa myszy (obracanie) ---- */
+    let isDragging = false;
+    let prevX = 0, prevY = 0;
+
+    wrapper.addEventListener('mousedown', e => {
+      isDragging = true;
+      prevX = e.clientX;
+      prevY = e.clientY;
+    });
+    window.addEventListener('mouseup',   () => { isDragging = false; });
+    window.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      const dx = e.clientX - prevX;
+      const dy = e.clientY - prevY;
+      cube.rotation.y   += dx * 0.01;
+      cube.rotation.x   += dy * 0.01;
+      torus.rotation.z  += dx * 0.005;
+      prevX = e.clientX;
+      prevY = e.clientY;
+    });
+
+    /* ---- Responsywność ---- */
+    const ro = new ResizeObserver(() => {
+      const nW = wrapper.clientWidth;
+      const nH = wrapper.clientHeight;
+      camera.aspect = nW / nH;
+      camera.updateProjectionMatrix();
+      renderer.setSize(nW, nH);
+    });
+    ro.observe(wrapper);
+
+    /* ---- Pętla animacji ---- */
+    let t = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      t += 0.016;
+
+      if (!isDragging) {
+        cube.rotation.x += 0.004;
+        cube.rotation.y += 0.007;
+      }
+
+      // Sfera orbituje wokół sześcianu
+      sphere.position.x = Math.cos(t * 0.8) * 1.8;
+      sphere.position.z = Math.sin(t * 0.8) * 1.8;
+      sphere.position.y = Math.sin(t * 1.2) * 0.4;
+
+      // Pierścień lekko pulsuje
+      torus.rotation.y += 0.003;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+
+</body>
+</html>

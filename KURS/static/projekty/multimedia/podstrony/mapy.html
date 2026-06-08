@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <!-- ============================================================
+       MULTIMEDIA — Sekcja 4: Mapy (mapy.html)
+       ============================================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mapy internetowe – Google Maps, OpenStreetMap, Mapy.com. Trasy, widok satelitarny, Street View.">
+  <title>Mapy — Multimedia</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/x-icon" href="../media/img/favicon.ico">
+
+  <style>
+    /* ============================================================
+       SCROLLBAR — nowa kolorystyka i cieńszy (akcent mapy)
+       ============================================================ */
+
+    /* Webkit (Chrome, Edge, Safari) */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--kolor-powierzchnia);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--akcent-mapy);
+      border-radius: var(--radius-s);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--kolor-tekst-slaby);
+    }
+
+    /* Firefox */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--akcent-mapy) var(--kolor-powierzchnia);
+    }
+
+    /* ============================================================
+       PRZYCISK POWRÓT NA GÓRĘ
+       ============================================================ */
+    .btn-powrot-gora {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+
+      background: var(--kolor-karta);
+      color: var(--kolor-tekst);
+      border: 1px solid var(--kolor-obramowanie);
+      border-radius: var(--radius-m);
+
+      padding: 0.6rem 1.1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+
+      transition: var(--przejscie);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+
+    .btn-powrot-gora:hover {
+      background: var(--akcent-mapy);
+      color: #1a1d27;
+      border-color: var(--akcent-mapy);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 18px rgba(255,159,67,0.25);
+    }
+
+    .btn-powrot-gora:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="strona-mapy">
+
+  <!-- ============================================================
+       NAWIGACJA GÓRNA
+       ============================================================ -->
+  <nav class="nav-glowna" role="navigation" aria-label="Nawigacja główna">
+    <a href="../index.html" class="nav-logo">🎬 Multi<span>media</span></a>
+    <ul class="nav-linki">
+      <li><a href="../index.html">🏠 Strona główna</a></li>
+      <li><a href="wideo.html">🎥 Wideo</a></li>
+      <li><a href="audio.html">🎵 Audio</a></li>
+      <li><a href="grafika.html">🖼️ Grafika</a></li>
+      <li><a href="mapy.html">🗺️ Mapy</a></li>
+      <li><a href="bledy.html">⚠️ Błędy</a></li>
+      <li><a href="zrodla.html">📚 Źródła</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+       TREŚĆ GŁÓWNA
+       ============================================================ -->
+  <main class="kontener" role="main">
+
+    <h1 class="naglowek-strony">🗺️ Mapy</h1>
+
+    <!-- --------------------------------------------------------
+         WSTĘP SEKCJI
+         -------------------------------------------------------- -->
+    <section class="wstep" aria-labelledby="mapy-wstep">
+      <h2 id="mapy-wstep" style="font-size:var(--font-duzy);margin-bottom:var(--odstep-s);color:var(--akcent-mapy);">Mapy internetowe na stronach <abbr title="World Wide Web">WWW</abbr></h2>
+
+      <!-- ZMIANA 1 — nowy akapit z definicją mapy -->
+      <p style="text-align:justify;">
+        Mapa (<abbr title="Język łaciński">łac.</abbr> <em>mappa</em> – obrus) – graficzny obraz powierzchni Ziemi lub jej części (także nieba lub planety czy innego ciała niebieskiego), wykonywany na płaszczyźnie, w skali, według zasad odwzorowania kartograficznego, przy użyciu umownych znaków graficznych. Mapa stanowi podstawowe narzędzie badań i prezentacji wyników w historii, geografii i geodezji.
+      </p>
+
+      <p style="text-align:justify;">
+        Mapy internetowe – interaktywne narzędzia kartograficzne dostępne przez
+        przeglądarkę, umożliwiające przeglądanie geografii, wyznaczanie tras,
+        wyszukiwanie miejsc i eksplorację widoków satelitarnych. Najpopularniejsze
+        serwisy mapowe to <strong>Google Maps</strong>, <strong>OpenStreetMap</strong>,
+        <strong>Mapy.com</strong>, <strong>Bing Maps</strong> (Microsoft)
+        oraz <strong>HERE Maps</strong>.
+      </p>
+      <p style="text-align:justify;">
+        Mapy osadza się na stronach internetowych za pomocą elementu
+        <code class="inline">&lt;iframe&gt;</code> – każdy serwis udostępnia
+        specjalny adres <abbr title="Uniform Resource Locator – adres zasobu w sieci">URL</abbr> embeda, który można skopiować z opcji
+        „Udostępnij – Osadź mapę". <strong>Google Maps</strong> to serwis
+        kartograficzny Google <abbr title="Limited Liability Company – spółka z ograniczoną odpowiedzialnością">LLC</abbr>, uruchomiony w 2005 roku, oferujący mapy
+        drogowe, widok satelitarny, Street View, wyznaczanie tras i wiele
+        warstw tematycznych – dostępny bezpłatnie dla użytkowników końcowych.
+      </p>
+      <p style="text-align:justify;">
+        Przy osadzaniu map należy pamiętać o atrybucie
+        <code class="inline">title</code> w elemencie
+        <code class="inline">&lt;iframe&gt;</code> – jest on wymagany
+        ze względów dostępności (<abbr title="Web Content Accessibility Guidelines – wytyczne dostępności treści internetowych">WCAG</abbr> 2.1, kryterium 4.1.2).
+      </p>
+    </section>
+
+    <!-- ========================================================
+         MAPA 1 — WIELE OBIEKTÓW NA DUŻYM TERENIE
+         ======================================================== -->
+    <article class="blok-media" id="mapa1" aria-labelledby="mapa1-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="mapa1-tytul">
+          <img src="https://maps.gstatic.com/mapfiles/maps_lite/pwa/icons/maps15_bnuw3a_round_192x192.png"
+               alt="Google Maps"
+               style="height:1.1em;vertical-align:middle;margin-right:6px;border-radius:4px;">
+          Atrakcje turystyczne Polski – muzea, zabytki, parki
+        </h2>
+        <span class="badge badge-embed">🌐 Google Maps</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Poniżej osadzono interaktywną mapę Google My Maps <em>Odznaka Krajoznawcza Polski <abbr title="Polskie Towarzystwo Turystyczno-Krajoznawcze">PTTK</abbr></em> – przykład prezentacji dziesiątek obiektów
+          rozsianych na dużym obszarze geograficznym. Każdy znacznik można kliknąć, aby uzyskać
+          opis i wskazówki dojazdu.
+        </p>
+        <p>
+          <strong>Dane kartograficzne:</strong> © Google ·
+          <strong>Opracowanie mapy:</strong> Kamil Zimnicki
+        </p>
+      </div>
+
+      <!-- Element multimedialny -->
+      <div class="media-wrapper" style="padding:0; overflow:hidden; border-radius:var(--radius-m);">
+        <iframe
+          src="https://www.google.com/maps/d/embed?mid=18qZlKKz3zNpldh4gseMXliHxxRY&ehbc=2E312F"
+          style="width:70vw; height:40vw; border:none; display:block; margin:2vw auto;"
+          title="Atrakcje turystyczne Polski – Google My Maps"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-mapa1" onclick="toggleCode('kod-mapa1')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-mapa1" onclick="copyCode('kod-mapa1')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-mapa1">
+          <pre><code>&lt;!-- Embed Google My Maps — mapa z wieloma obiektami --&gt;
+&lt;!-- Jak uzyskać embed z Google My Maps:
+     1. Otwórz mymaps.google.com i utwórz/otwórz mapę
+     2. Kliknij trzy kropki (...) obok tytułu mapy
+     3. Wybierz "Osadź na mojej stronie"
+     4. Skopiuj wygenerowany kod &lt;iframe&gt;
+     Mapa musi być ustawiona jako publiczna lub "każdy z linkiem" --&gt;
+&lt;iframe
+  src="https://www.google.com/maps/d/u/0/embed?mid=[ID_MAPY]&amp;ehbc=2E312F"
+  style="width:70vw; height:40vw; border:none; display:block;"
+  title="Opis mapy z wieloma obiektami"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+
+&lt;!-- Parametry URL maps/d/embed:
+     mid=   - unikalny ID mapy My Maps
+     ehbc=  - kolor tła embeda (hex bez #)
+     z=     - poziom zoomu (1-21)
+     ll=    - środek widoku (szer.,dług.) --&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         MAPA 2 — TRASA PIESZA W WARSZAWIE
+         ======================================================== -->
+    <article class="blok-media" id="mapa2" aria-labelledby="mapa2-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="mapa2-tytul">
+          <img src="https://maps.gstatic.com/mapfiles/maps_lite/pwa/icons/maps15_bnuw3a_round_192x192.png"
+               alt="Google Maps"
+               style="height:1.1em;vertical-align:middle;margin-right:6px;border-radius:4px;">
+          Trasa piesza: <abbr title="Pałac Kultury i Nauki">PKiN</abbr> – Rynek Starego Miasta w Warszawie
+        </h2>
+        <span class="badge badge-embed">🌐 Google Maps</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Trasa piesza między dwoma ikonicznymi punktami centrum Warszawy:
+          <strong>Pałacem Kultury i Nauki</strong> (pl. Defilad 1) a
+          <strong>Rynkiem Starego Miasta</strong>. Dystans wynosi ok. 2,5 km,
+          czas przejścia ok. 30 minut. Trasa prowadzi przez Krakowskie Przedmieście –
+          jeden z najpiękniejszych deptaków Warszawy.
+        </p>
+      </div>
+
+      <!-- Element multimedialny -->
+      <div class="media-wrapper" style="padding:0; overflow:hidden; border-radius:var(--radius-m);">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d23247.4951207701!2d20.99787754800556!3d52.23263157424531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x471ecc8c92692e49%3A0xc2e97ae5311f2dc2!2sPa%C5%82ac%20Kultury%20i%20Nauki%2C%20pl.%20Defilad%201%2C%2000-901%20Warszawa!3m2!1d52.231837999999996!2d21.005995!4m5!1s0x471ecd006537ca8d%3A0x1568d0e55b5460ae!2sRynek%20Starego%20Miasta%2C%2000-279%20Warszawa!3m2!1d52.249753999999996!2d21.012086099999998!5e0!3m2!1spl!2spl!4v1777142920538!5m2!1spl!2spl"
+          style="width:70vw; height:40vw; border:none; display:block; margin:2vw auto;"
+          title="Trasa piesza: Pałac Kultury i Nauki do Rynku Starego Miasta w Warszawie"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-mapa2" onclick="toggleCode('kod-mapa2')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-mapa2" onclick="copyCode('kod-mapa2')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-mapa2">
+          <pre><code>&lt;!-- Embed Google Maps — trasa piesza (tryb !3e2 = pieszo) --&gt;
+&lt;iframe
+  src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!
+       1d19545.132!2d21.00113!3d52.24081!2m3!1f0!2f0!3f0!
+       3m2!1i1024!2i768!4f13.1!4m13!3e2
+       !4m5!1s[ID_PKIN]!2sPalace%20of%20Culture...
+       !4m5!1s[ID_RYNEK]!2sRynek%20Starego%20Miasta..."
+  width="800"
+  height="450"
+  style="border:0;"
+  title="Trasa piesza: PKiN do Rynku Starego Miasta w Warszawie"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+
+&lt;!-- Kody trybów tras w URL Google Maps embed:
+     !3e0 = jazda samochodem
+     !3e1 = rower
+     !3e2 = pieszo
+     !3e3 = transport publiczny --&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         MAPA 3 — TRASA ROWEROWA DO KASPRZAKA
+         ======================================================== -->
+    <article class="blok-media" id="mapa3" aria-labelledby="mapa3-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="mapa3-tytul">
+          <img src="https://maps.gstatic.com/mapfiles/maps_lite/pwa/icons/maps15_bnuw3a_round_192x192.png"
+               alt="Google Maps"
+               style="height:1.1em;vertical-align:middle;margin-right:6px;border-radius:4px;">
+          Trasa rowerowa: W. Bartniaka 9, Grodzisk Mazowiecki – „Kasprzak"
+        </h2>
+        <span class="badge badge-embed">🌐 Google Maps</span>
+      </div>
+
+      <!-- ZMIANA 4 — zaktualizowany opis trasy rowerowej -->
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Trasa rowerowa z mojego fikcyjnego miejsca zamieszkania
+          (<strong>W. Bartniaka 9, Grodzisk Mazowiecki</strong>) do
+          <strong>Technikum Elektronicznego nr 1 im. Marcina Kasprzaka</strong>
+          przy Marcina Kasprzaka 19/21 w Warszawie. Dystans wynosi ok. 31 km,
+          szacowany czas jazdy rowerem ok. 1 godz. 41 min.
+          Trasa prowadzi przez Milanówek, Piastów i Ursus.
+        </p>
+      </div>
+
+      <!-- Element multimedialny -->
+      <div class="media-wrapper" style="padding:0; overflow:hidden; border-radius:var(--radius-m);">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d78289.91908151559!2d20.71663789117663!3d52.17869339973487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e1!4m5!1s0x471948bfb636b2c9%3A0x1b7a25a4a9f06d67!2sW.%20Bartniaka%209%2C%2005-825%20Grodzisk%20Mazowiecki!3m2!1d52.105815199999995!2d20.6300368!4m5!1s0x471ecb61f83e4b81%3A0x326f47958eb8ca46!2sTechnikum%20Elektroniczne%20nr%201%2C%20Marcina%20Kasprzaka%2019%2F21%2C%2001-211%20Warszawa!3m2!1d52.228474899999995!2d20.970634!5e0!3m2!1sen!2spl!4v1778253536283!5m2!1sen!2spl"
+          style="width:70vw; height:40vw; border:none; display:block; margin:2vw auto;"
+          title="Trasa rowerowa: Grodzisk Mazowiecki do „Kasprzaka""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-mapa3" onclick="toggleCode('kod-mapa3')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-mapa3" onclick="copyCode('kod-mapa3')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-mapa3">
+          <pre><code>&lt;!-- Embed Google Maps — trasa rowerowa (tryb !3e1 = rower) --&gt;
+&lt;iframe
+  src="https://www.google.com/maps/embed?pb=!1m28!...!3e1
+       !4m5!1s[ID_START]!2sGrodzisk%20Mazowiecki...
+       !4m5!1s[ID_CEL]!2sMarcina%20Kasprzaka%2019%2F21..."
+  width="800"
+  height="450"
+  style="border:0;"
+  title="Trasa rowerowa: Grodzisk Mazowiecki do „Kasprzaka" Warszawa"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         MAPA 4 — PINEZKA + 3 SERWISY
+         ======================================================== -->
+    <article class="blok-media" id="mapa4" aria-labelledby="mapa4-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="mapa4-tytul">Lokalizacja „Kasprzaka" – porównanie serwisów mapowych</h2>
+        <span class="badge badge-embed">🌐 Google Maps | Mapy.com | OpenStreetMap</span>
+      </div>
+
+      <!-- ZMIANA 2 — rozbudowane opisy serwisów mapowych -->
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Poniżej ten sam punkt – <strong>Technikum Elektroniczne nr 1</strong>, Marcina Kasprzaka 19/21, Warszawa – pokazany w trzech różnych serwisach mapowych. Pozwala to porównać interfejs, szczegółowość danych i możliwości każdego z nich.
+        </p>
+        <p style="text-align:justify;">
+          <strong>Mapy Google</strong> (<abbr title="Język angielski">ang.</abbr> <em>Google Maps</em>) – internetowa platforma mapowa i aplikacja konsumencka oferowana przez Google umożliwiająca między innymi oglądanie zdjęć satelitarnych, zdjęć lotniczych, planów i interaktywnych, panoramicznych widoków ulic (Street View). Platforma oferuje także informacje o ruchu drogowym w czasie rzeczywistym oraz umożliwia planowanie tras pieszych, rowerowych, samochodowych oraz z transportem publicznym, w tym lotniczych.
+        </p>
+        <p style="text-align:justify;">
+          <strong>Mapy.com</strong> (do marca 2025 Mapy.cz) – czeski serwis internetowy oraz darmowe aplikacje umożliwiające korzystanie z map webowych. Ich właścicielem jest czeski portal Seznam.cz. Projekt został zapoczątkowany pod koniec XX wieku, niedługo po powstaniu samej firmy Seznam.cz (w tamtym czasie zawierał jednak wyłącznie mapę Republiki Czeskiej oraz plany wybranych czeskich miast).
+        </p>
+        <p style="text-align:justify;">
+          <strong>OpenStreetMap</strong> (<abbr title="OpenStreetMap">OSM</abbr>) – projekt społeczności internetowej mający na celu stworzenie darmowej, swobodnie dostępnej mapy całej kuli ziemskiej. Jest ona edytowalna przez zarejestrowanych użytkowników. Stworzenie i rozwój OSM było motywowane ograniczeniami w dostępności i wykorzystywaniu map oraz pojawieniem się niedrogich przenośnych urządzeń do nawigacji satelitarnej.
+        </p>
+      </div>
+
+      <!-- Trzy kolumny: Google Maps + Mapy.com + OpenStreetMap -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--odstep-m);">
+
+        <!-- ZMIANA 3 — Google Maps z logo -->
+        <div>
+          <span class="czesc-label">
+            <img src="https://maps.gstatic.com/mapfiles/maps_lite/pwa/icons/maps15_bnuw3a_round_192x192.png"
+                 alt="Google Maps"
+                 style="height:1.1em;vertical-align:middle;margin-right:5px;border-radius:3px;">
+            Google Maps
+          </span>
+          <div style="overflow:hidden; border-radius:var(--radius-m);">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.8203255395442!2d20.968053877373517!3d52.22848207198629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecb61f83e4b81%3A0x326f47958eb8ca46!2sTechnikum%20Elektroniczne%20nr%201!5e0!3m2!1sen!2spl!4v1775497797256!5m2!1sen!2spl"
+              style="width:100%; height:32vw; border:none; display:block;"
+              title="Pinezka: Technikum Elektroniczne nr 1, ul. Marcina Kasprzaka 19/21, Warszawa – Google Maps"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+        <!-- ZMIANA 3 — Mapy.com z logo -->
+        <div>
+          <span class="czesc-label">
+            <img src="https://mapy.com/favicon.ico"
+                 alt="Mapy.com"
+                 style="height:1.1em;vertical-align:middle;margin-right:5px;border-radius:3px;">
+            Mapy.com
+          </span>
+          <div style="overflow:hidden; border-radius:var(--radius-m);">
+            <iframe
+              src="https://mapy.com/s/cagobezala"
+              style="width:100%; height:32vw; border:none; display:block;"
+              title="Technikum Elektroniczne nr 1, ul. Marcina Kasprzaka 19/21, Warszawa – Mapy.com"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+        <!-- ZMIANA 3 — OpenStreetMap z logo -->
+        <div>
+          <span class="czesc-label">
+            <img src="https://www.openstreetmap.org/favicon.ico"
+                 alt="OpenStreetMap"
+                 style="height:1.1em;vertical-align:middle;margin-right:5px;border-radius:3px;">
+            OpenStreetMap
+          </span>
+          <div style="overflow:hidden; border-radius:var(--radius-m);">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=20.9580%2C52.2220%2C20.9830%2C52.2350&layer=mapnik&marker=52.2285%2C20.9706"
+              style="width:100%; height:32vw; border:none; display:block;"
+              title="Technikum Elektroniczne nr 1, ul. Marcina Kasprzaka 19/21, Warszawa – OpenStreetMap"
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-mapa4" onclick="toggleCode('kod-mapa4')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-mapa4" onclick="copyCode('kod-mapa4')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-mapa4">
+          <pre><code>&lt;!-- Google Maps — pinezka na konkretnym adresie --&gt;
+&lt;iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!...
+       !3m3!1m2!1s[PLACE_ID]!2sMarcina%20Kasprzaka%2019..."
+  width="600" height="450" style="border:0;"
+  title="Lokalizacja: Technikum „Kasprzak", Warszawa"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+
+&lt;!-- Mapy.com embed --&gt;
+&lt;!-- Jak uzyskać embed z Mapy.com:
+     1. Otwórz mapy.com i znajdź miejsce
+     2. Kliknij ikonę "Udostępnij" (strzałka w górę)
+     3. Wybierz "Vložit do stránek" (Osadź na stronie)
+     4. Skopiuj wygenerowany kod &lt;iframe&gt; --&gt;
+&lt;iframe
+  src="https://mapy.com/s/[KOD_SKROCONY]"
+  width="600" height="450" style="border:0;"
+  title="Lokalizacja w serwisie Mapy.com"
+  loading="lazy" allowfullscreen&gt;
+&lt;/iframe&gt;
+
+&lt;!-- OpenStreetMap embed --&gt;
+&lt;!-- Format URL: openstreetmap.org/export/embed.html
+     bbox=   zachód,południe,wschód,północ
+     layer=  mapnik / cycle / transport / hot
+     marker= szerokość,długość (pinezka) --&gt;
+&lt;iframe
+  src="https://www.openstreetmap.org/export/embed.html
+       ?bbox=20.958%2C52.222%2C20.983%2C52.235
+       &amp;layer=mapnik
+       &amp;marker=52.2285%2C20.9706"
+  width="600" height="450" style="border:0;"
+  title="Lokalizacja – OpenStreetMap"
+  loading="lazy"&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         MAPA 5 — PIRAMIDY W GIZIE — PORÓWNANIE WIDOKÓW
+         ======================================================== -->
+    <article class="blok-media" id="mapa5" aria-labelledby="mapa5-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="mapa5-tytul">
+          <img src="https://maps.gstatic.com/mapfiles/maps_lite/pwa/icons/maps15_bnuw3a_round_192x192.png"
+               alt="Google Maps"
+               style="height:1.1em;vertical-align:middle;margin-right:6px;border-radius:4px;">
+          Piramidy w Gizie
+        </h2>
+        <span class="badge badge-embed">🌐 Google Maps</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Kompleks piramid w Gizie (Egipt) – jeden z najbardziej rozpoznawalnych
+          obiektów na świecie, widoczny wyraźnie z orbity. Poniżej ten sam obszar
+          przedstawiony w dwóch widokach dostępnych w Google Maps Embed
+          <abbr title="Application Programming Interface – interfejs programowania aplikacji">API</abbr>:
+          standardowym (drogowym) oraz satelitarnym.
+          Kompleks wpisany jest na Listę Światowego Dziedzictwa
+          <abbr title="United Nations Educational, Scientific and Cultural Organization – Organizacja Narodów Zjednoczonych do spraw Oświaty, Nauki i Kultury">UNESCO</abbr> (1979).
+        </p>
+        <p style="text-align:justify;">
+          Widok satelitarny aktywuje się przez parametr
+          <code class="inline">!5e1</code> w <abbr title="Uniform Resource Locator – adres zasobu w sieci">URL</abbr>
+          embeda, a widok drogowy przez <code class="inline">!5e0</code> —
+          to jedyne dwie warstwy obsługiwane przez Google Maps Embed
+          <abbr title="Application Programming Interface – interfejs programowania aplikacji">API</abbr>.
+          Widok terenu (<em>Terrain</em>) istnieje w pełnej aplikacji Google Maps
+          i pokazuje ukształtowanie powierzchni z poziomicami, jednak
+          <strong>nie jest dostępny w osadzonym embedzie</strong> —
+          Google celowo go tam nie udostępnia.
+        </p>
+      </div>
+
+      <!-- Dwie kolumny: widok standardowy + satelitarny -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--odstep-m);">
+
+        <!-- Widok standardowy -->
+        <div>
+          <span class="czesc-label">
+            <img src="https://maps.gstatic.com/mapfiles/maps_lite/pwa/icons/maps15_bnuw3a_round_192x192.png"
+                 alt="Google Maps"
+                 style="height:1.1em;vertical-align:middle;margin-right:5px;border-radius:3px;">
+            Widok standardowy
+          </span>
+          <div style="overflow:hidden; border-radius:var(--radius-m);">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3453.8!2d31.1342!3d29.9792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spl!2spl!4v1711200000010!5m2!1spl!2spl"
+              style="width:100%; height:32vw; border:none; display:block;"
+              title="Piramidy w Gizie, Egipt – widok standardowy Google Maps"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Widok satelitarny -->
+        <div>
+          <span class="czesc-label">
+            <img src="https://maps.gstatic.com/mapfiles/maps_lite/pwa/icons/maps15_bnuw3a_round_192x192.png"
+                 alt="Google Maps"
+                 style="height:1.1em;vertical-align:middle;margin-right:5px;border-radius:3px;">
+            Widok satelitarny
+          </span>
+          <div style="overflow:hidden; border-radius:var(--radius-m);">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3453.8!2d31.1342!3d29.9792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1spl!2spl!4v1711200000004!5m2!1spl!2spl"
+              style="width:100%; height:32vw; border:none; display:block;"
+              title="Piramidy w Gizie, Egipt – widok satelitarny Google Maps"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-mapa5" onclick="toggleCode('kod-mapa5')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-mapa5" onclick="copyCode('kod-mapa5')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-mapa5">
+          <pre><code>&lt;!-- Google Maps Embed — porównanie widoków (parametr !5e) --&gt;
+&lt;!-- Google Maps Embed API obsługuje wyłącznie dwie warstwy:
+     !5e0 = widok drogowy/standardowy (domyślny)
+     !5e1 = widok satelitarny
+     Widok Terrain (teren/poziomice) dostępny jest tylko
+     w pełnej aplikacji maps.google.com — nie w embedzie. --&gt;
+
+&lt;!-- Widok standardowy (drogowy) --&gt;
+&lt;iframe
+  src="https://www.google.com/maps/embed?pb=!1m14!...!5e0!..."
+  width="600" height="450" style="border:0;"
+  title="Piramidy w Gizie – widok standardowy"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+
+&lt;!-- Widok satelitarny --&gt;
+&lt;iframe
+  src="https://www.google.com/maps/embed?pb=!1m14!...!5e1!..."
+  width="600" height="450" style="border:0;"
+  title="Piramidy w Gizie – widok satelitarny"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- ========================================================
+         MAPA 8 — KOMUNIKACJA MIEJSKA Z PRZESIADKAMI
+         (ZMIANA 6 — przeniesiona po mapa5)
+         ======================================================== -->
+    <article class="blok-media" id="mapa8" aria-labelledby="mapa8-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="mapa8-tytul">
+          <img src="https://maps.gstatic.com/mapfiles/maps_lite/pwa/icons/maps15_bnuw3a_round_192x192.png"
+               alt="Google Maps"
+               style="height:1.1em;vertical-align:middle;margin-right:6px;border-radius:4px;">
+          Trasa komunikacją miejską z przesiadką: „Kasprzak" – Lotnisko Chopina
+        </h2>
+        <span class="badge badge-embed">🌐 Google Maps | OpenTopoMap</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Trasa komunikacją miejską z
+          <strong>Technikum Elektronicznego nr 1 im. Marcina Kasprzaka</strong>
+          (ul. Marcina Kasprzaka 19/21, Warszawa) do
+          <strong>Lotniska Chopina w Warszawie</strong>
+          (<abbr title="Lotnisko Chopina w Warszawie – kod IATA">WAW</abbr>).
+          Trasa obejmuje co najmniej jedną przesiadkę i łączy kilka linii
+          komunikacji miejskiej (<abbr title="Zarząd Transportu Miejskiego">ZTM</abbr> Warszawa).
+          Szacowany czas przejazdu ok. 40–60 minut.
+        </p>
+      </div>
+
+      <!-- Element multimedialny -->
+      <div class="media-wrapper" style="padding:0; overflow:hidden; border-radius:var(--radius-m);">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d27667.163341696807!2d20.94961532183087!3d52.19878121261891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e3!4m5!1s0x471ecb61f83e4b81%3A0x326f47958eb8ca46!2sTechnikum%20Elektroniczne%20nr%201%2C%20Marcina%20Kasprzaka%2019%2F21%2C%2001-211%20Warszawa!3m2!1d52.228474899999995!2d20.970634!4m5!1s0x4719331c42e95ce3%3A0x22c5f5a26843e8d1!2sLotnisko%20Chopina%20Warszawa%2C%20%C5%BBwirki%20i%20Wigury%201%2C%2002-143%20Warszawa!3m2!1d52.1648675!2d20.9691628!5e0!3m2!1spl!2spl!4v1777143442269!5m2!1spl!2spl"
+          style="width:70vw; height:40vw; border:none; display:block; margin:2vw auto;"
+          title="Trasa komunikacją miejską z przesiadką: „Kasprzaka" – Lotnisko Chopina, Warszawa"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-mapa8" onclick="toggleCode('kod-mapa8')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-mapa8" onclick="copyCode('kod-mapa8')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-mapa8">
+          <pre><code>&lt;!-- Embed Google Maps — komunikacja miejska (tryb !3e3 = transit) --&gt;
+&lt;iframe
+  src="https://www.google.com/maps/embed?pb=!1m28!...!3e3
+       !4m5!1s[ID_START]!2sMarcina%20Kasprzaka%2019%2F21...
+       !4m5!1s[ID_CEL]!2sLotnisko%20Chopina%2C%20Warszawa..."
+  width="800"
+  height="450"
+  style="border:0;"
+  title="Trasa komunikacją miejską z przesiadką: „Kasprzaka" – Lotnisko Chopina"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+
+&lt;!-- Tryb !3e3 = transport publiczny (transit).
+     Google Maps automatycznie wyznacza trasę
+     z przesiadkami na podstawie rozkładów jazdy. --&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         MAPA 7 — TRASA LOTNICZA
+         (ZMIANA 6 — przeniesiona na koniec)
+         ======================================================== -->
+    <article class="blok-media" id="mapa7" aria-labelledby="mapa7-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="mapa7-tytul">
+          <img src="https://maps.gstatic.com/mapfiles/maps_lite/pwa/icons/maps15_bnuw3a_round_192x192.png"
+               alt="Google Maps"
+               style="height:1.1em;vertical-align:middle;margin-right:6px;border-radius:4px;">
+          Trasa lotnicza: Warszawa – Nowy Jork
+        </h2>
+        <span class="badge badge-embed">🌐 Google Maps</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Trasa lotnicza z <strong>Lotniska Chopina w Warszawie</strong>
+          (<abbr title="Lotnisko Chopina w Warszawie – kod IATA">WAW</abbr>)
+          do <strong>Lotniska im. Johna F. Kennedy'ego w Nowym Jorku</strong>
+          (<abbr title="John F. Kennedy International Airport – kod IATA">JFK</abbr>).
+          Dystans wynosi ok. 7 500 km, szacowany czas lotu ok. 10 godzin.
+          Trasa przebiega nad Europą Zachodnią i Atlantykiem.
+        </p>
+      </div>
+
+      <!-- Element multimedialny -->
+      <div class="media-wrapper" style="padding:0; overflow:hidden; border-radius:var(--radius-m);">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d19174989.123!2d-19.5!3d52.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e4!4m5!1s0x471ecc0a4f2d6b1f%3A0x4d4a2b4b0c5a2b0e!2sWarsaw%20Chopin%20Airport%2C%20Warszawa!3m2!1d52.1657!2d20.9671!4m5!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sJFK%20Airport%2C%20New%20York!3m2!1d40.6413!2d-73.7781!5e0!3m2!1spl!2spl!4v1775500000001!5m2!1spl!2spl"
+          style="width:70vw; height:40vw; border:none; display:block; margin:2vw auto;"
+          title="Trasa lotnicza: Lotnisko Chopina Warszawa – JFK Nowy Jork – Google Maps"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <p style="text-align:justify; margin-top:var(--odstep-s);">
+        Wyznaczenie trasy lotniczej było możliwe, ponieważ w pobliżu punktu
+        początkowego i docelowego znajduje się lotnisko. W innym przypadku
+        Google Maps blokuje taką możliwość.
+      </p>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-mapa7" onclick="toggleCode('kod-mapa7')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-mapa7" onclick="copyCode('kod-mapa7')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-mapa7">
+          <pre><code>&lt;!-- Embed Google Maps — trasa lotnicza (tryb !3e4 = samolot) --&gt;
+&lt;iframe
+  src="https://www.google.com/maps/embed?pb=!1m28!...!3e4
+       !4m5!1s[ID_START]!2sWarsaw%20Chopin%20Airport...
+       !4m5!1s[ID_CEL]!2sJFK%20Airport%2C%20New%20York..."
+  width="800"
+  height="450"
+  style="border:0;"
+  title="Trasa lotnicza: Warszawa WAW – Nowy Jork JFK"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+
+&lt;!-- Kody trybów tras w URL Google Maps embed:
+     !3e0 = jazda samochodem
+     !3e1 = rower
+     !3e2 = pieszo
+     !3e3 = transport publiczny
+     !3e4 = samolot (tylko między lotniskami) --&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         MAPA 6 — ZDJĘCIE SFERYCZNE 360° (STREET VIEW)
+         (ZMIANA 6 — przeniesiona na koniec)
+         ======================================================== -->
+    <article class="blok-media" id="mapa6" aria-labelledby="mapa6-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="mapa6-tytul">
+          <img src="https://maps.gstatic.com/mapfiles/maps_lite/pwa/icons/maps15_bnuw3a_round_192x192.png"
+               alt="Google Maps"
+               style="height:1.1em;vertical-align:middle;margin-right:6px;border-radius:4px;">
+          Zdjęcie sferyczne 360° (Street View)
+        </h2>
+        <span class="badge badge-embed">🌐 Street View</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <strong>Google Street View</strong> to usługa Google Maps umożliwiająca
+          wirtualne spacery w panoramach sferycznych 360°. Zdjęcia wykonywane są
+          przez specjalne pojazdy wyposażone w kamery sferyczne, a także przez
+          użytkowników za pomocą smartfonów. Street View obejmuje ponad 220 krajów
+          i terytoriów oraz miliardy kilometrów tras.
+        </p>
+      </div>
+
+      <div style="overflow:hidden; border-radius:var(--radius-m);">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!4v1711200000005!6m8!1m7!1sCAoSLEFGMVFpcE5fMzRfMzRfMzRfMzRfMzRfMzRfMzRfMzRfMzRfMzRf!2m2!1d52.2172!2d20.9860!3f180!4f0!5f0.7820865974627469"
+          style="width:100%; height:40vw; border:none; display:block;"
+          title="Zdjęcie sferyczne 360° (Street View) – ul. Wawelska, Warszawa"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-mapa6" onclick="toggleCode('kod-mapa6')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-mapa6" onclick="copyCode('kod-mapa6')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-mapa6">
+          <pre><code>&lt;!-- Google Street View embed --&gt;
+&lt;!-- Jak uzyskać embed Street View:
+     1. Otwórz Google Maps i przejdź do Street View
+        (przeciągnij żółtego ludzika na ulicę)
+     2. Kliknij "Udostępnij" – "Osadź mapę"
+     3. Upewnij się, że aktywny jest widok Street View
+     4. Skopiuj wygenerowany kod &lt;iframe&gt;
+     Klucz to prefix !4v w URL – odróżnia Street View
+     od zwykłej mapy (która ma prefix !1m) --&gt;
+&lt;iframe
+  src="https://www.google.com/maps/embed?pb=!4v[ID]!6m8!1m7!..."
+  width="800" height="450" style="border:0;"
+  title="Zdjęcie sferyczne 360° (Street View) – opis miejsca"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- ============================================================
+       STOPKA
+       ============================================================ -->
+  <footer class="stopka" role="contentinfo">
+    <p>
+      🎬 <strong>Multimedia</strong> – Krzysztof Januszewski 3F © 2026
+    </p>
+  </footer>
+
+  <!-- ============================================================
+       PRZYCISK POWRÓT NA GÓRĘ
+       ============================================================ -->
+  <button
+    class="btn-powrot-gora"
+    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    aria-label="Powrót na górę strony"
+    title="Powrót na górę">
+    ↑ Powrót na górę
+  </button> 
+
+  <script src="../script.js"></script>
+</body>
+</html>

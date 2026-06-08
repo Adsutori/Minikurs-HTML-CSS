@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Typowe błędy przy osadzaniu multimediów na stronach internetowych – przykłady złego i poprawnego kodu.">
+  <title>Błędy — Multimedia</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/x-icon" href="../media/img/favicon.ico">
+
+  <style>
+    .blad-numer {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5vw;
+      height: 2.5vw;
+      min-width: 28px;
+      min-height: 28px;
+      background-color: var(--akcent-bledy);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: var(--font-maly);
+      flex-shrink: 0;
+    }
+
+    .efekt-bledu {
+      background-color: rgba(255,107,107,0.05);
+      border: 0.15vw dashed rgba(255,107,107,0.4);
+      border-radius: var(--radius-m);
+      padding: var(--odstep-m);
+      margin-bottom: var(--odstep-m);
+    }
+
+    .efekt-bledu-naglowek {
+      font-size: var(--font-maly);
+      font-weight: 700;
+      color: var(--akcent-bledy);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--odstep-s);
+      display: flex;
+      align-items: center;
+      gap: 0.5vw;
+    }
+
+    .porownanie-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--odstep-m);
+      margin-bottom: var(--odstep-m);
+    }
+
+    .porownanie-kolumna {
+      border-radius: var(--radius-m);
+      padding: var(--odstep-m);
+      display: flex;
+      flex-direction: column;
+      gap: var(--odstep-s);
+    }
+
+    .porownanie-kolumna.blad {
+      background: rgba(255,107,107,0.06);
+      border: 0.15vw solid rgba(255,107,107,0.3);
+    }
+
+    .porownanie-kolumna.ok {
+      background: rgba(62,207,142,0.06);
+      border: 0.15vw solid rgba(62,207,142,0.3);
+    }
+
+    .porownanie-naglowek {
+      font-weight: 700;
+      font-size: var(--font-sredni);
+      margin-bottom: var(--odstep-xs);
+    }
+
+    .porownanie-naglowek.blad { color: var(--akcent-bledy); }
+    .porownanie-naglowek.ok   { color: var(--akcent-audio);  }
+
+    .podglad-etykieta {
+      font-size: var(--font-maly);
+      color: var(--kolor-tekst-slaby);
+      font-style: italic;
+      margin-bottom: 0.2vw;
+    }
+
+    .podglad-wizualny {
+      background: rgba(255,255,255,0.03);
+      border-radius: var(--radius-s);
+      padding: var(--odstep-s);
+      min-height: 4vw;
+      display: flex;
+      align-items: center;
+    }
+
+    /* ============================================================
+       SCROLLBAR
+       ============================================================ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--kolor-powierzchnia); }
+    ::-webkit-scrollbar-thumb { background: var(--akcent-bledy); border-radius: var(--radius-s); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--kolor-tekst-slaby); }
+    * { scrollbar-width: thin; scrollbar-color: var(--akcent-bledy) var(--kolor-powierzchnia); }
+
+    /* ============================================================
+       PRZYCISK POWRÓT NA GÓRĘ
+       ============================================================ */
+    .btn-powrot-gora {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      background: var(--kolor-karta);
+      color: var(--kolor-tekst);
+      border: 1px solid var(--kolor-obramowanie);
+      border-radius: var(--radius-m);
+      padding: 0.6rem 1.1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: var(--przejscie);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+    .btn-powrot-gora:hover {
+      background: var(--akcent-bledy);
+      color: #ffffff;
+      border-color: var(--akcent-bledy);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 18px rgba(255,107,107,0.25);
+    }
+    .btn-powrot-gora:active { transform: translateY(0); }
+
+    /* ============================================================
+       DEMO — odtwarzacz bez controls (błąd 5)
+       ============================================================ */
+    .demo-video-brak-controls {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      border-radius: 0.3vw;
+      display: block;
+      cursor: not-allowed;
+    }
+
+    /* ============================================================
+       DEMO — zły rozmiar odtwarzacza (błąd 6)
+       ============================================================ */
+    .demo-zly-rozmiar {
+      width: 120px !important;
+      height: 68px !important;
+      border: 0.15vw dashed rgba(255,107,107,0.5);
+      border-radius: 0.3vw;
+      overflow: hidden;
+    }
+    .demo-dobry-rozmiar {
+      width: 100%;
+      max-width: 300px;
+      aspect-ratio: 16/9;
+      border-radius: 0.3vw;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="strona-bledy">
+
+  <!-- ============================================================
+       NAWIGACJA GÓRNA
+       ============================================================ -->
+  <nav class="nav-glowna" role="navigation" aria-label="Nawigacja główna">
+    <a href="../index.html" class="nav-logo">🎬 Multi<span>media</span></a>
+    <ul class="nav-linki">
+      <li><a href="../index.html">🏠 Strona główna</a></li>
+      <li><a href="wideo.html">🎥 Wideo</a></li>
+      <li><a href="audio.html">🎵 Audio</a></li>
+      <li><a href="grafika.html">🖼️ Grafika</a></li>
+      <li><a href="mapy.html">🗺️ Mapy</a></li>
+      <li><a href="bledy.html">⚠️ Błędy</a></li>
+      <li><a href="zrodla.html">📚 Źródła</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+       TREŚĆ GŁÓWNA
+       ============================================================ -->
+  <main class="kontener" role="main">
+
+    <h1 class="naglowek-strony">⚠️ Typowe błędy przy osadzaniu multimediów</h1>
+
+    <!-- --------------------------------------------------------
+         WSTĘP SEKCJI
+         -------------------------------------------------------- -->
+    <section class="wstep" aria-labelledby="bledy-wstep">
+      <h2 id="bledy-wstep" style="font-size:var(--font-duzy);margin-bottom:var(--odstep-s);color:var(--akcent-bledy);">Czego unikać przy osadzaniu multimediów?</h2>
+      <p style="text-align:justify;">
+        Osadzanie multimediów na stronach internetowych wiąże się z wieloma
+        pułapkami – zarówno technicznymi, jak i związanymi z dostępnością
+        (<abbr title="Język angielski">ang.</abbr> <em>accessibility</em>).
+        Błędy w kodzie <abbr title="HyperText Markup Language">HTML</abbr>
+        mogą powodować niedziałające media, problemy dla użytkowników
+        z niepełnosprawnościami, słabą wydajność strony lub niezgodność
+        z walidatorem <abbr title="HyperText Markup Language 5">HTML5</abbr>.
+      </p>
+      <p style="text-align:justify;">
+        Poniżej przedstawiono najczęstsze błędy wraz z przykładami
+        złego kodu, wyjaśnieniem problemu i poprawną wersją.
+        Każdy przykład zawiera wizualny efekt błędu tam gdzie jest to możliwe.
+        Omówiono błędy dotyczące kompatybilności formatów, dostępności,
+        użyteczności oraz poprawności adresów <abbr title="Uniform Resource Locator – adres zasobu w sieci">URL</abbr> przy osadzaniu zewnętrznych serwisów.
+      </p>
+    </section>
+
+    <!-- ========================================================
+         BŁĄD 1 — WIDEO — BRAK FALLBACK DLA VIDEO
+         ======================================================== -->
+    <article class="blok-media" id="blad1" aria-labelledby="blad1-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="blad1-tytul" style="display:flex;align-items:center;gap:1vw;">
+          <span class="blad-numer">1</span>
+          🎥 Wideo – brak fallbacku dla elementu <code style="font-size:0.85em;">&lt;video&gt;</code>
+        </h2>
+        <span class="badge badge-blad">🎥 Kompatybilność</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Jeśli przeglądarka nie obsługuje danego formatu wideo lub elementu
+          <code class="inline">&lt;video&gt;</code> w ogóle, użytkownik
+          zobaczy pustą przestrzeń bez żadnej informacji. Dobra praktyka
+          to podanie kilku formatów przez <code class="inline">&lt;source&gt;</code>
+          oraz tekstu z linkiem fallback dla przeglądarek bez obsługi
+          <abbr title="HyperText Markup Language 5">HTML5</abbr> video.
+        </p>
+      </div>
+
+      <div class="porownanie-grid">
+        <div class="porownanie-kolumna blad">
+          <div class="porownanie-naglowek blad">❌ Błąd</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny">
+            <span style="font-size:var(--font-maly);color:var(--akcent-bledy);">
+              Tylko jeden format, brak tekstu fallback –
+              użytkownik ze starą przeglądarką nie wie co się stało.
+              Widzi pustą przestrzeń bez żadnej informacji.
+            </span>
+          </div>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;video controls&gt;
+  &lt;source src="film.mp4"
+          type="video/mp4"&gt;
+&lt;/video&gt;</code></pre>
+          </div>
+        </div>
+
+        <div class="porownanie-kolumna ok">
+          <div class="porownanie-naglowek ok">✅ Poprawnie</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny">
+            <video controls style="width:100%; max-width:300px; height:auto; border-radius:0.3vw;">
+              <source src="../media/video/mov_bbb.mp4" type="video/mp4">
+              <p>Przeglądarka nie obsługuje wideo.
+                <a href="../media/video/mov_bbb.mp4">Pobierz film</a>.
+              </p>
+            </video>
+          </div>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;video controls&gt;
+  &lt;source src="film.webm"
+          type="video/webm"&gt;
+  &lt;source src="film.mp4"
+          type="video/mp4"&gt;
+  &lt;p&gt;Przeglądarka nie obsługuje
+  wideo. &lt;a href="film.mp4"&gt;
+  Pobierz film&lt;/a&gt;.&lt;/p&gt;
+&lt;/video&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-blad1" onclick="toggleCode('kod-blad1')">👁️ Pokaż pełny kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-blad1" onclick="copyCode('kod-blad1')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-blad1">
+          <pre><code>&lt;!-- ❌ ŹLE — jeden format, brak fallbacku --&gt;
+&lt;video controls&gt;
+  &lt;source src="film.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+&lt;!-- ✅ DOBRZE — wiele formatów + fallback tekstowy --&gt;
+&lt;video controls width="640" height="360"
+       poster="miniatura.jpg"
+       aria-label="Opis wideo dla czytników ekranu"&gt;
+  &lt;source src="film.webm" type="video/webm"&gt;
+  &lt;source src="film.mp4"  type="video/mp4"&gt;
+  &lt;source src="film.ogv"  type="video/ogg"&gt;
+  &lt;p&gt;Twoja przeglądarka nie obsługuje wideo HTML5.
+     &lt;a href="film.mp4"&gt;Pobierz film (MP4)&lt;/a&gt;.&lt;/p&gt;
+&lt;/video&gt;</code></pre>
+        </div>
+        <div class="info-rozmiar">
+          <strong>💡 Zasada:</strong>
+          Zawsze podawaj co najmniej dwa formaty
+          (<abbr title="Web Media – otwarty format wideo Google">WebM</abbr> +
+          <abbr title="MPEG-4 Part 14 – format kontenera multimedialnego">MP4</abbr>)
+          i tekst fallback.
+          Atrybut <code>poster</code> pokazuje miniaturę przed odtworzeniem.
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         BŁĄD 2 — AUDIO — BRAK FALLBACKU FORMATÓW AUDIO
+         ======================================================== -->
+    <article class="blok-media" id="blad2" aria-labelledby="blad2-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="blad2-tytul" style="display:flex;align-items:center;gap:1vw;">
+          <span class="blad-numer">2</span>
+          🎵 Audio – brak fallbacku formatów w elemencie <code style="font-size:0.85em;">&lt;audio&gt;</code>
+        </h2>
+        <span class="badge badge-blad">🎵 Kompatybilność</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Analogicznie jak przy wideo – element
+          <code class="inline">&lt;audio&gt;</code> z tylko jednym formatem
+          może nie zadziałać w starszych przeglądarkach lub na niektórych
+          urządzeniach mobilnych. Dobrą praktyką jest podanie co najmniej
+          dwóch formatów:
+          <abbr title="MPEG-1 Audio Layer III">MP3</abbr> (najlepsza kompatybilność)
+          oraz <abbr title="Ogg Vorbis – otwarty format audio">OGG</abbr>
+          (otwarty, wolny od patentów) jako fallback,
+          a także tekstu informacyjnego wewnątrz elementu.
+        </p>
+      </div>
+
+      <div class="porownanie-grid">
+        <div class="porownanie-kolumna blad">
+          <div class="porownanie-naglowek blad">❌ Błąd</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny">
+            <span style="font-size:var(--font-maly);color:var(--akcent-bledy);">
+              Tylko format OGG – nie obsługiwany przez starsze wersje
+              Safari i Edge. Użytkownik widzi pusty odtwarzacz lub
+              komunikat błędu bez żadnej alternatywy.
+            </span>
+          </div>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;audio controls&gt;
+  &lt;source src="muzyka.ogg"
+          type="audio/ogg"&gt;
+&lt;/audio&gt;</code></pre>
+          </div>
+        </div>
+
+        <div class="porownanie-kolumna ok">
+          <div class="porownanie-naglowek ok">✅ Poprawnie</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny">
+            <audio controls style="width:100%; max-width:300px;">
+              <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/6/68/Kevin_MacLeod_-_Erik_Satie_Gymnopedie_No_1.ogg/Kevin_MacLeod_-_Erik_Satie_Gymnopedie_No_1.ogg.mp3" type="audio/mpeg">
+              <source src="https://upload.wikimedia.org/wikipedia/commons/6/68/Kevin_MacLeod_-_Erik_Satie_Gymnopedie_No_1.ogg" type="audio/ogg">
+              Twoja przeglądarka nie obsługuje elementu audio.
+            </audio>
+          </div>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;audio controls&gt;
+  &lt;source src="muzyka.mp3"
+          type="audio/mpeg"&gt;
+  &lt;source src="muzyka.ogg"
+          type="audio/ogg"&gt;
+  Twoja przeglądarka nie obsługuje
+  elementu audio.
+&lt;/audio&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-blad2" onclick="toggleCode('kod-blad2')">👁️ Pokaż pełny kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-blad2" onclick="copyCode('kod-blad2')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-blad2">
+          <pre><code>&lt;!-- ❌ ŹLE — jeden format audio, brak fallbacku --&gt;
+&lt;audio controls&gt;
+  &lt;source src="muzyka.ogg" type="audio/ogg"&gt;
+  &lt;!-- Nie działa w starszym Safari i Edge --&gt;
+&lt;/audio&gt;
+
+&lt;!-- ✅ DOBRZE — MP3 + OGG + tekst fallback --&gt;
+&lt;audio controls aria-label="Odtwarzacz muzyki"&gt;
+  &lt;source src="muzyka.mp3" type="audio/mpeg"&gt;
+  &lt;source src="muzyka.ogg" type="audio/ogg"&gt;
+  Twoja przeglądarka nie obsługuje elementu audio.
+  &lt;a href="muzyka.mp3"&gt;Pobierz plik MP3&lt;/a&gt;.
+&lt;/audio&gt;</code></pre>
+        </div>
+        <div class="info-rozmiar">
+          <strong>💡 Zasada:</strong>
+          Dla audio zawsze podawaj
+          <abbr title="MPEG-1 Audio Layer III">MP3</abbr> jako pierwszy (najlepsza kompatybilność),
+          <abbr title="Ogg Vorbis – otwarty format audio">OGG</abbr> jako fallback
+          i tekst informacyjny wewnątrz elementu <code>&lt;audio&gt;</code>.
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         BŁĄD 3 — GRAFIKA — BRAK ALT W IMG
+         ======================================================== -->
+    <article class="blok-media" id="blad3" aria-labelledby="blad3-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="blad3-tytul" style="display:flex;align-items:center;gap:1vw;">
+          <span class="blad-numer">3</span>
+          🖼️ Grafika – brak atrybutu <code style="font-size:0.85em;">alt</code> w elemencie <code style="font-size:0.85em;">&lt;img&gt;</code>
+        </h2>
+        <span class="badge badge-blad">♿ Dostępność</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Atrybut <code class="inline">alt</code> (tekst alternatywny) jest
+          <strong>obowiązkowy</strong> w każdym elemencie
+          <code class="inline">&lt;img&gt;</code>.
+          Jego brak to błąd walidacji <abbr title="HyperText Markup Language 5">HTML5</abbr> oraz poważne naruszenie standardów
+          dostępności <abbr title="Web Content Accessibility Guidelines – wytyczne dostępności treści internetowych">WCAG</abbr> 2.1
+          (kryterium 1.1.1 – Non-text Content).
+          Czytniki ekranu używane przez osoby niewidome odczytują wartość
+          <code class="inline">alt</code> zamiast obrazu.
+        </p>
+      </div>
+
+      <div class="porownanie-grid">
+        <div class="porownanie-kolumna blad">
+          <div class="porownanie-naglowek blad">❌ Błąd</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny">
+            <img src="nieistniejacy-plik-bez-alt.jpg"
+                 style="width:8vw; height:6vw; border:0.1vw solid rgba(255,107,107,0.3); border-radius:0.3vw; display:block;">
+          </div>
+          <p style="font-size:var(--font-maly);color:var(--kolor-tekst-slaby);">
+            Obraz bez <code class="inline">alt</code> – gdy nie załaduje się,
+            użytkownik nie wie co miało tu być. Czytnik ekranu pomija obraz
+            lub odczytuje nazwę pliku.
+          </p>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;img src="zdjecie.jpg"&gt;</code></pre>
+          </div>
+        </div>
+
+        <div class="porownanie-kolumna ok">
+          <div class="porownanie-naglowek ok">✅ Poprawnie</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny">
+            <img src="../media/img/grafika1.jpg"
+                 alt="Przykładowe zdjęcie krajobrazowe w formacie JPEG"
+                 style="width:8vw; height:6vw; object-fit:cover; border-radius:0.3vw; display:block;">
+          </div>
+          <p style="font-size:var(--font-maly);color:var(--kolor-tekst-slaby);">
+            Atrybut <code class="inline">alt</code> opisuje treść obrazu.
+            Dla obrazów dekoracyjnych użyj <code class="inline">alt=""</code>.
+          </p>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;img src="zdjecie.jpg"
+     alt="Zachód słońca nad morzem"&gt;
+
+&lt;!-- Obraz dekoracyjny: --&gt;
+&lt;img src="dekoracja.png"
+     alt=""&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-blad3" onclick="toggleCode('kod-blad3')">👁️ Pokaż pełny kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-blad3" onclick="copyCode('kod-blad3')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-blad3">
+          <pre><code>&lt;!-- ❌ ŹLE — brak atrybutu alt --&gt;
+&lt;img src="zdjecie.jpg"&gt;
+
+&lt;!-- ❌ ŹLE — title NIE zastępuje alt! --&gt;
+&lt;img src="logo.png" title="Logo firmy"&gt;
+
+&lt;!-- ✅ DOBRZE — obraz informacyjny z opisem --&gt;
+&lt;img src="zdjecie.jpg"
+     alt="Zachód słońca nad Bałtykiem widziany z plaży"
+     title="Fot. Jan Kowalski, CC BY 4.0"&gt;
+
+&lt;!-- ✅ DOBRZE — obraz dekoracyjny (pusty alt) --&gt;
+&lt;img src="separator.png" alt="" role="presentation"&gt;</code></pre>
+        </div>
+        <div class="info-rozmiar">
+          <strong>💡 Zasada:</strong>
+          Jeśli obraz niesie informację – opisz go w <code>alt</code>.
+          Jeśli jest dekoracyjny – użyj <code>alt=""</code> (pusty, ale obecny).
+          Nigdy nie pomijaj atrybutu <code>alt</code> całkowicie.
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         BŁĄD 4 — MAPY — BRAK TITLE W IFRAME
+         ======================================================== -->
+    <article class="blok-media" id="blad4" aria-labelledby="blad4-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="blad4-tytul" style="display:flex;align-items:center;gap:1vw;">
+          <span class="blad-numer">4</span>
+          🗺️ Mapy – brak atrybutu <code style="font-size:0.85em;">title</code> w elemencie <code style="font-size:0.85em;">&lt;iframe&gt;</code>
+        </h2>
+        <span class="badge badge-blad">♿ Dostępność</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Element <code class="inline">&lt;iframe&gt;</code> bez atrybutu
+          <code class="inline">title</code> to naruszenie standardu dostępności
+          <abbr title="Web Content Accessibility Guidelines – wytyczne dostępności treści internetowych">WCAG</abbr> 2.1
+          (kryterium 4.1.2 – Name, Role, Value). Czytniki ekranu
+          nie potrafią poinformować użytkownika co zawiera ramka –
+          odczytują jedynie adres <abbr title="Uniform Resource Locator – adres zasobu w sieci">URL</abbr>, który jest niezrozumiały.
+          Dotyczy to wszystkich embedów: YouTube, Spotify, Google Maps,
+          SoundCloud, <abbr title="Centrum Dystrybucji Audiowizualnej">CDA</abbr> i innych.
+        </p>
+      </div>
+
+      <div class="porownanie-grid">
+        <div class="porownanie-kolumna blad">
+          <div class="porownanie-naglowek blad">❌ Błąd</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny">
+            <span style="font-size:var(--font-maly);color:var(--akcent-bledy);">
+              Czytnik ekranu ogłasza: „ramka,
+              www.google.com/maps/embed?pb=!1m18…"
+              – użytkownik nie wie, że to mapa szkoły.
+            </span>
+          </div>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;iframe
+  src="https://www.google.com/
+       maps/embed?pb=!1m18..."
+  width="600"
+  height="450"&gt;
+&lt;/iframe&gt;</code></pre>
+          </div>
+        </div>
+
+        <div class="porownanie-kolumna ok">
+          <div class="porownanie-naglowek ok">✅ Poprawnie</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny" style="flex-direction:column; align-items:flex-start;">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.8203255395442!2d20.968053877373517!3d52.22848207198629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecb61f83e4b81%3A0x326f47958eb8ca46!2sTechnikum%20Elektroniczne%20nr%201!5e0!3m2!1sen!2spl!4v1775497797256!5m2!1sen!2spl"
+              style="width:100%; height:12vw; border:none; border-radius:0.3vw; display:block;"
+              title="Lokalizacja: Technikum Elektroniczne nr 1, ul. Marcina Kasprzaka 19/21, Warszawa – Google Maps"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;iframe
+  src="https://www.google.com/
+       maps/embed?pb=!1m18..."
+  width="600"
+  height="450"
+  title="Lokalizacja: Technikum
+    Elektroniczne nr 1,
+    ul. Kasprzaka, Warszawa"
+  loading="lazy"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-blad4" onclick="toggleCode('kod-blad4')">👁️ Pokaż pełny kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-blad4" onclick="copyCode('kod-blad4')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-blad4">
+          <pre><code>&lt;!-- ❌ ŹLE — brak atrybutu title --&gt;
+&lt;iframe src="https://www.google.com/maps/embed?pb=..."
+        width="600" height="450"&gt;
+&lt;/iframe&gt;
+
+&lt;!-- ❌ ŹLE — brak title w YouTube --&gt;
+&lt;iframe src="https://www.youtube.com/embed/ID"
+        width="560" height="315"
+        allowfullscreen&gt;
+&lt;/iframe&gt;
+
+&lt;!-- ✅ DOBRZE — mapa z opisowym title --&gt;
+&lt;iframe
+  src="https://www.google.com/maps/embed?pb=..."
+  width="600" height="450"
+  title="Lokalizacja: Technikum Elektroniczne nr 1,
+         ul. Marcina Kasprzaka 19/21, Warszawa"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+
+&lt;!-- ✅ DOBRZE — YouTube z opisowym title --&gt;
+&lt;iframe
+  src="https://www.youtube.com/embed/vrj9BZIQtCg"
+  width="560" height="315"
+  title="Elephant Dream — animowany film Blender Foundation (YouTube)"
+  allow="accelerometer; autoplay; clipboard-write;
+         encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+        <div class="info-rozmiar">
+          <strong>💡 Zasada:</strong>
+          Każdy <code>&lt;iframe&gt;</code> musi mieć atrybut <code>title</code>
+          z opisem zawartości. Tytuł powinien być unikalny na stronie
+          i opisywać <em>co</em> zawiera ramka, nie <em>skąd</em> pochodzi.
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         BŁĄD 5 — WIDEO — BRAK ATRYBUTU CONTROLS
+         ======================================================== -->
+    <article class="blok-media" id="blad5" aria-labelledby="blad5-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="blad5-tytul" style="display:flex;align-items:center;gap:1vw;">
+          <span class="blad-numer">5</span>
+          🎥 Wideo – brak atrybutu <code style="font-size:0.85em;">controls</code>
+        </h2>
+        <span class="badge badge-blad">🖱️ Użyteczność</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Pominięcie atrybutu <code class="inline">controls</code> w elemencie
+          <code class="inline">&lt;video&gt;</code> sprawia, że użytkownik
+          <strong>nie ma żadnej kontroli nad odtwarzaniem</strong> – nie może
+          zatrzymać, przewinąć ani wyciszyć wideo. Jest to poważne naruszenie
+          standardów dostępności <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.1
+          (kryterium 2.1.1 – Keyboard oraz 2.4.3 – Focus Order) wszędzie tam,
+          gdzie wideo niesie treść informacyjną.
+        </p>
+        <p style="text-align:justify;">
+          Brak <code class="inline">controls</code> jest dopuszczalny
+          <strong>wyłącznie</strong> gdy wideo pełni funkcję dekoracyjną
+          (np. animowane tło z atrybutami
+          <code class="inline">autoplay muted loop</code>) lub gdy programista
+          dostarcza własny, w pełni dostępny interfejs sterowania w JavaScript.
+        </p>
+      </div>
+
+      <div class="porownanie-grid">
+        <div class="porownanie-kolumna blad">
+          <div class="porownanie-naglowek blad">❌ Błąd</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny" style="flex-direction:column; gap:0.5vw;">
+            <video class="demo-video-brak-controls"
+                   muted loop autoplay
+                   aria-label="Demo: wideo bez kontrolek – użytkownik nie może zatrzymać odtwarzania">
+              <source src="../media/video/mov_bbb.mp4" type="video/mp4">
+            </video>
+            <span style="font-size:var(--font-maly);color:var(--akcent-bledy);">
+              ⚠️ Wideo gra – ale nie możesz go zatrzymać, przewinąć ani wyciszyć.
+            </span>
+          </div>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;video autoplay muted loop&gt;
+  &lt;source src="film.mp4"
+          type="video/mp4"&gt;
+&lt;/video&gt;
+&lt;!-- Brak controls — użytkownik
+     nie ma kontroli nad wideo! --&gt;</code></pre>
+          </div>
+        </div>
+
+        <div class="porownanie-kolumna ok">
+          <div class="porownanie-naglowek ok">✅ Poprawnie</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny">
+            <video controls style="width:100%; max-width:300px; height:auto; border-radius:0.3vw;"
+                   aria-label="Demo: wideo z kontrolkami odtwarzania">
+              <source src="../media/video/mov_bbb.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;video controls&gt;
+  &lt;source src="film.mp4"
+          type="video/mp4"&gt;
+&lt;/video&gt;
+&lt;!-- Atrybut controls daje
+     użytkownikowi pełną kontrolę --&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-blad5" onclick="toggleCode('kod-blad5')">👁️ Pokaż pełny kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-blad5" onclick="copyCode('kod-blad5')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-blad5">
+          <pre><code>&lt;!-- ❌ ŹLE — brak controls przy wideo informacyjnym --&gt;
+&lt;video autoplay&gt;
+  &lt;source src="film.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+&lt;!-- ✅ DOBRZE — wideo informacyjne z controls --&gt;
+&lt;video controls width="640" height="360"
+       aria-label="Instrukcja obsługi urządzenia"&gt;
+  &lt;source src="film.webm" type="video/webm"&gt;
+  &lt;source src="film.mp4"  type="video/mp4"&gt;
+&lt;/video&gt;
+
+&lt;!-- ✅ DOBRZE — wideo dekoracyjne (tło) BEZ controls --&gt;
+&lt;video autoplay muted loop playsinline
+       aria-hidden="true"
+       style="position:fixed; top:0; left:0;
+              width:100%; height:100%;
+              object-fit:cover; z-index:-1;"&gt;
+  &lt;source src="tlo.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</code></pre>
+        </div>
+        <div class="info-rozmiar">
+          <strong>💡 Zasada:</strong>
+          Każde wideo niosące treść informacyjną <strong>musi</strong> mieć
+          atrybut <code>controls</code>. Wideo dekoracyjne (tło strony)
+          powinno mieć <code>aria-hidden="true"</code> i nigdy nie powinno
+          zawierać dźwięku bez zgody użytkownika.
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         BŁĄD 6 — WIDEO — NIEWŁAŚCIWE WYMIARY ODTWARZACZA
+         ======================================================== -->
+    <article class="blok-media" id="blad6" aria-labelledby="blad6-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="blad6-tytul" style="display:flex;align-items:center;gap:1vw;">
+          <span class="blad-numer">6</span>
+          🎥 Wideo – niewłaściwe wymiary odtwarzacza
+        </h2>
+        <span class="badge badge-blad">📐 Układ strony</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Podanie sztywnych wymiarów w pikselach (<code class="inline">width="120" height="68"</code>)
+          zamiast responsywnych jednostek powoduje, że odtwarzacz jest
+          <strong>zbyt mały na dużych ekranach</strong> lub
+          <strong>wychodzi poza obszar strony</strong> na urządzeniach mobilnych.
+          Właściwa praktyka to użycie jednostek relatywnych
+          (<code class="inline">vw</code>, <code class="inline">%</code>)
+          lub właściwości CSS <code class="inline">aspect-ratio</code>
+          zapewniającej zachowanie proporcji 16:9.
+        </p>
+        <p style="text-align:justify;">
+          Dodatkowym błędem jest podanie atrybutów
+          <code class="inline">width</code> i <code class="inline">height</code>
+          w <abbr title="HyperText Markup Language">HTML</abbr> bez
+          odpowiadających im reguł <abbr title="Cascading Style Sheets">CSS</abbr>
+          – przeglądarka rezerwuje miejsce według atrybutów HTML,
+          ale po załadowaniu pliku wideo może zmienić rozmiar elementu,
+          powodując przeskok układu strony
+          (<abbr title="Cumulative Layout Shift – skumulowane przesunięcie układu, metryka wydajności">CLS</abbr>).
+        </p>
+      </div>
+
+      <div class="porownanie-grid">
+        <div class="porownanie-kolumna blad">
+          <div class="porownanie-naglowek blad">❌ Błąd</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny" style="flex-direction:column; gap:0.5vw; align-items:flex-start;">
+            <div class="demo-zly-rozmiar">
+              <video controls muted style="width:100%; height:100%; object-fit:cover;">
+                <source src="../media/video/mov_bbb.mp4" type="video/mp4">
+              </video>
+            </div>
+            <span style="font-size:var(--font-maly);color:var(--akcent-bledy);">
+              ⚠️ Odtwarzacz 120×68 px – zbyt mały, kontrolki nieczytelne.
+            </span>
+          </div>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;video controls
+  width="120"
+  height="68"&gt;
+  &lt;source src="film.mp4"
+          type="video/mp4"&gt;
+&lt;/video&gt;
+&lt;!-- Sztywne piksele — nieresponsywne --&gt;</code></pre>
+          </div>
+        </div>
+
+        <div class="porownanie-kolumna ok">
+          <div class="porownanie-naglowek ok">✅ Poprawnie</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny">
+            <div class="demo-dobry-rozmiar">
+              <video controls muted style="width:100%; height:100%; object-fit:cover; border-radius:0.3vw;">
+                <source src="../media/video/mov_bbb.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;video controls
+  style="width:60vw;
+         aspect-ratio:16/9;
+         height:auto;"&gt;
+  &lt;source src="film.mp4"
+          type="video/mp4"&gt;
+&lt;/video&gt;
+&lt;!-- Responsywne — skaluje się
+     z oknem przeglądarki --&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-blad6" onclick="toggleCode('kod-blad6')">👁️ Pokaż pełny kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-blad6" onclick="copyCode('kod-blad6')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-blad6">
+          <pre><code>&lt;!-- ❌ ŹLE — sztywne wymiary pikselowe --&gt;
+&lt;video controls width="120" height="68"&gt;
+  &lt;source src="film.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+&lt;!-- ❌ ŹLE — brak height powoduje CLS (przeskok układu) --&gt;
+&lt;video controls width="640"&gt;
+  &lt;source src="film.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+&lt;!-- ✅ DOBRZE — responsywne jednostki vw + aspect-ratio --&gt;
+&lt;video controls
+       style="width:60vw; aspect-ratio:16/9; height:auto;
+              display:block; border-radius:0.5vw;"
+       aria-label="Opis wideo"&gt;
+  &lt;source src="film.webm" type="video/webm"&gt;
+  &lt;source src="film.mp4"  type="video/mp4"&gt;
+&lt;/video&gt;
+
+&lt;!-- ✅ DOBRZE — przez CSS (zalecane dla wielu elementów) --&gt;
+&lt;style&gt;
+  .odtwarzacz {
+    width: 60vw;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    border-radius: 0.5vw;
+    display: block;
+  }
+&lt;/style&gt;
+&lt;video controls class="odtwarzacz"&gt;
+  &lt;source src="film.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</code></pre>
+        </div>
+        <div class="info-rozmiar">
+          <strong>💡 Zasada:</strong>
+          Używaj jednostek relatywnych (<code>vw</code>, <code>%</code>)
+          i właściwości <code>aspect-ratio: 16/9</code> zamiast sztywnych
+          pikseli. Zawsze podawaj zarówno <code>width</code> jak i
+          <code>height</code> (lub <code>aspect-ratio</code>) aby zapobiec
+          <abbr title="Cumulative Layout Shift – skumulowane przesunięcie układu">CLS</abbr>.
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         BŁĄD 7 — WIDEO — BŁĘDNY URL: watch?v= ZAMIAST embed/
+         ======================================================== -->
+    <article class="blok-media" id="blad7" aria-labelledby="blad7-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="blad7-tytul" style="display:flex;align-items:center;gap:1vw;">
+          <span class="blad-numer">7</span>
+          🎥 Wideo – błędny adres <abbr class="skrot" title="Uniform Resource Locator – adres zasobu w sieci">URL</abbr> YouTube: <code style="font-size:0.85em;">watch?v=</code> zamiast <code style="font-size:0.85em;">embed/</code>
+        </h2>
+        <span class="badge badge-blad">🔗 Błąd URL</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Najczęstszy błąd przy osadzaniu filmów z YouTube polega na wklejeniu
+          do atrybutu <code class="inline">src</code> adresu strony oglądania
+          (<code class="inline">youtube.com/watch?v=ID</code>) zamiast
+          specjalnego adresu embed
+          (<code class="inline">youtube.com/embed/ID</code>).
+          Przeglądarka zablokuje taki iframe z powodu nagłówka
+          <code class="inline">X-Frame-Options: SAMEORIGIN</code>
+          ustawionego przez YouTube – użytkownik zobaczy
+          <strong>pustą ramkę lub komunikat o odmowie dostępu</strong>.
+        </p>
+        <p style="text-align:justify;">
+          Adres embed różni się od adresu oglądania:
+          zamiast <code class="inline">/watch?v=</code> używamy
+          <code class="inline">/embed/</code>, a parametry
+          (np. <code class="inline">autoplay=1</code>) dodajemy po znaku
+          <code class="inline">?</code> za identyfikatorem filmu.
+        </p>
+      </div>
+
+      <div class="porownanie-grid">
+        <div class="porownanie-kolumna blad">
+          <div class="porownanie-naglowek blad">❌ Błąd</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny" style="flex-direction:column; gap:0.4vw;">
+            <iframe
+              src="https://www.youtube.com/watch?v=Yxzz4KaBhN0"
+              style="width:100%; max-width:300px; height:10vw; border:none; border-radius:0.3vw; background:#1a1d27;"
+              title="Demo błędu: watch?v= zamiast embed/">
+            </iframe>
+            <span style="font-size:var(--font-maly);color:var(--akcent-bledy);">
+              ⚠️ Pusta ramka – YouTube blokuje osadzanie przez <code>watch?v=</code>.
+            </span>
+          </div>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;iframe
+  src="https://www.youtube.com/
+       watch?v=Yxzz4KaBhN0"&gt;
+&lt;/iframe&gt;
+&lt;!-- ❌ Adres strony oglądania —
+     YouTube blokuje w iframe! --&gt;</code></pre>
+          </div>
+        </div>
+
+        <div class="porownanie-kolumna ok">
+          <div class="porownanie-naglowek ok">✅ Poprawnie</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny">
+            <iframe
+              src="https://www.youtube.com/embed/Yxzz4KaBhN0"
+              style="width:100%; max-width:300px; height:10vw; border:none; border-radius:0.3vw;"
+              title="Elephant Dream – Blender Foundation (YouTube embed)"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;iframe
+  src="https://www.youtube.com/
+       embed/Yxzz4KaBhN0"
+  title="Elephant Dream"
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+&lt;!-- ✅ Adres embed — działa! --&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-blad7" onclick="toggleCode('kod-blad7')">👁️ Pokaż pełny kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-blad7" onclick="copyCode('kod-blad7')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-blad7">
+          <pre><code>&lt;!-- ❌ ŹLE — adres strony oglądania (blokowany przez YouTube) --&gt;
+&lt;iframe src="https://www.youtube.com/watch?v=Yxzz4KaBhN0"
+        width="560" height="315"&gt;
+&lt;/iframe&gt;
+
+&lt;!-- ❌ ŹLE — skrócony adres youtu.be (też blokowany) --&gt;
+&lt;iframe src="https://youtu.be/Yxzz4KaBhN0"
+        width="560" height="315"&gt;
+&lt;/iframe&gt;
+
+&lt;!-- ✅ DOBRZE — poprawny adres embed --&gt;
+&lt;iframe
+  src="https://www.youtube.com/embed/Yxzz4KaBhN0"
+  width="560" height="315"
+  title="Elephant Dream — Blender Foundation (YouTube)"
+  allow="accelerometer; autoplay; clipboard-write;
+         encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+
+&lt;!-- ✅ DOBRZE — embed z parametrami (autoplay, start od 30s) --&gt;
+&lt;iframe
+  src="https://www.youtube.com/embed/Yxzz4KaBhN0?autoplay=1&amp;start=30"
+  width="560" height="315"
+  title="Elephant Dream — od 30. sekundy"
+  allow="accelerometer; autoplay; clipboard-write;
+         encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+        <div class="info-rozmiar">
+          <strong>💡 Zasada:</strong>
+          Zawsze używaj adresu
+          <code>youtube.com/<strong>embed</strong>/ID</code>,
+          nigdy <code>youtube.com/<strong>watch?v=</strong>ID</code>.
+          Identyfikator filmu (ID) to ciąg znaków po
+          <code>v=</code> w adresie strony – np.
+          <code>watch?v=<strong>Yxzz4KaBhN0</strong></code>
+          → <code>embed/<strong>Yxzz4KaBhN0</strong></code>.
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         BŁĄD 8 — MAPY — BŁĘDNY URL: viewer ZAMIAST embed
+         ======================================================== -->
+    <article class="blok-media" id="blad8" aria-labelledby="blad8-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="blad8-tytul" style="display:flex;align-items:center;gap:1vw;">
+          <span class="blad-numer">8</span>
+          🗺️ Mapy – błędny adres <abbr class="skrot" title="Uniform Resource Locator – adres zasobu w sieci">URL</abbr> Google Maps: <code style="font-size:0.85em;">viewer</code> zamiast <code style="font-size:0.85em;">embed</code>
+        </h2>
+        <span class="badge badge-blad">🔗 Błąd URL</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;"> 
+          Analogiczny błąd jak przy YouTube dotyczy Google Maps.
+          Adres strony przeglądarki map
+          (<code class="inline">google.com/maps/place/...</code> lub
+          <code class="          inline">maps.google.com/maps?q=...</code>)
+          jest blokowany przez Google w elemencie
+          <code class="inline">&lt;iframe&gt;</code>.
+          Jedynym poprawnym adresem do osadzania map jest
+          <code class="inline">google.com/maps/<strong>embed</strong>?pb=...</code>
+          – generowany wyłącznie przez przycisk
+          <em>„Udostępnij → Umieść mapę"</em> w interfejsie Google Maps.
+        </p>
+        <p style="text-align:justify;">
+          Częstym wariantem tego błędu jest użycie adresu z parametrem
+          <code class="inline">/viewer</code> lub skopiowanie adresu
+          z paska przeglądarki podczas przeglądania mapy –
+          oba przypadki skutkują <strong>pustą ramką lub komunikatem
+          o odmowie dostępu</strong>.
+        </p>
+      </div>
+
+      <div class="porownanie-grid">
+        <div class="porownanie-kolumna blad">
+          <div class="porownanie-naglowek blad">❌ Błąd</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny" style="flex-direction:column; gap:0.4vw;">
+            <iframe
+              src="https://maps.google.com/maps?q=Warszawa&output=viewer"
+              style="width:100%; max-width:300px; height:10vw; border:none; border-radius:0.3vw; background:#1a1d27;"
+              title="Demo błędu: viewer zamiast embed">
+            </iframe>
+            <span style="font-size:var(--font-maly);color:var(--akcent-bledy);">
+              ⚠️ Pusta ramka – Google blokuje adres z <code>viewer</code> / <code>?q=</code> w iframe.
+            </span>
+          </div>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;iframe
+  src="https://maps.google.com/
+       maps?q=Warszawa
+       &amp;output=viewer"&gt;
+&lt;/iframe&gt;
+&lt;!-- ❌ Adres przeglądarki map —
+     Google blokuje w iframe! --&gt;</code></pre>
+          </div>
+        </div>
+
+        <div class="porownanie-kolumna ok">
+          <div class="porownanie-naglowek ok">✅ Poprawnie</div>
+          <p class="podglad-etykieta">Widzę tak, bo jest taki kod:</p>
+          <div class="podglad-wizualny">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.8203255395442!2d20.968053877373517!3d52.22848207198629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecb61f83e4b81%3A0x326f47958eb8ca46!2sTechnikum%20Elektroniczne%20nr%201!5e0!3m2!1sen!2spl!4v1775497797256!5m2!1sen!2spl"
+              style="width:100%; max-width:300px; height:10vw; border:none; border-radius:0.3vw;"
+              title="Lokalizacja: Technikum Elektroniczne nr 1, Warszawa – Google Maps embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="kod-blok widoczny" style="margin:0;">
+            <pre><code>&lt;iframe
+  src="https://www.google.com/
+       maps/embed?pb=!1m18..."
+  title="Mapa: Warszawa"
+  loading="lazy"
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+&lt;!-- ✅ Adres embed — działa! --&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-blad8" onclick="toggleCode('kod-blad8')">👁️ Pokaż pełny kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-blad8" onclick="copyCode('kod-blad8')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-blad8">
+          <pre><code>&lt;!-- ❌ ŹLE — adres z paska przeglądarki (blokowany) --&gt;
+&lt;iframe src="https://www.google.com/maps/place/Warszawa/@52.2,21.0,12z"
+        width="600" height="450"&gt;
+&lt;/iframe&gt;
+
+&lt;!-- ❌ ŹLE — adres z parametrem viewer (blokowany) --&gt;
+&lt;iframe src="https://maps.google.com/maps?q=Warszawa&amp;output=viewer"
+        width="600" height="450"&gt;
+&lt;/iframe&gt;
+
+&lt;!-- ❌ ŹLE — skrócony adres mapy (blokowany) --&gt;
+&lt;iframe src="https://goo.gl/maps/XXXXXXXXXXX"
+        width="600" height="450"&gt;
+&lt;/iframe&gt;
+
+&lt;!-- ✅ DOBRZE — poprawny adres embed (z przycisku "Udostępnij → Umieść mapę") --&gt;
+&lt;iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!..."
+  width="600" height="450"
+  title="Lokalizacja: Technikum Elektroniczne nr 1,
+         ul. Marcina Kasprzaka 19/21, Warszawa"
+  style="border:none; border-radius:0.5vw;"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+        <div class="info-rozmiar">
+          <strong>💡 Jak uzyskać poprawny adres embed Google Maps:</strong>
+          <ol style="color:var(--kolor-tekst-slaby); font-size:var(--font-maly);
+                     line-height:1.8; padding-left:2vw; margin-top:var(--odstep-s);">
+            <li>Otwórz <strong>Google Maps</strong> i znajdź lokalizację.</li>
+            <li>Kliknij przycisk <strong>„Udostępnij"</strong> (ikona łańcucha).</li>
+            <li>Wybierz zakładkę <strong>„Umieść mapę"</strong>.</li>
+            <li>Skopiuj kod <code>&lt;iframe&gt;</code> – zawiera poprawny adres
+                <code>google.com/maps/<strong>embed</strong>?pb=...</code>.</li>
+          </ol>
+          Adres embed zawsze zawiera słowo <code><strong>embed</strong></code>
+          i długi ciąg parametrów <code>pb=</code> –
+          nigdy nie jest to adres z paska przeglądarki.
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         PODSUMOWANIE — TABELA BŁĘDÓW
+         ======================================================== -->
+    <section aria-labelledby="bledy-podsumowanie">
+      <h2 id="bledy-podsumowanie" class="naglowek-sekcji">
+        📋 Podsumowanie – lista kontrolna
+      </h2>
+
+      <div class="info-box">
+        <table class="tabela-formaty" aria-label="Lista kontrolna błędów przy osadzaniu multimediów">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Sekcja</th>
+              <th scope="col">Błąd</th>
+              <th scope="col">Dotyczy</th>
+              <th scope="col">Kategoria</th>
+              <th scope="col">Rozwiązanie</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>🎥 Wideo</td>
+              <td>Brak fallbacku formatów</td>
+              <td><code class="inline">&lt;video&gt;</code></td>
+              <td>Kompatybilność</td>
+              <td>Podaj kilka <code class="inline">&lt;source&gt;</code> + tekst fallback</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>🎵 Audio</td>
+              <td>Brak fallbacku formatów audio</td>
+              <td><code class="inline">&lt;audio&gt;</code></td>
+              <td>Kompatybilność</td>
+              <td>Podaj <abbr title="MPEG-1 Audio Layer III">MP3</abbr> + <abbr title="Ogg Vorbis – otwarty format audio">OGG</abbr> + tekst fallback</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>🖼️ Grafika</td>
+              <td>Brak atrybutu <code class="inline">alt</code></td>
+              <td><code class="inline">&lt;img&gt;</code></td>
+              <td>Dostępność</td>
+              <td>Zawsze dodaj <code class="inline">alt=""</code> lub opis</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>🗺️ Mapy</td>
+              <td>Brak <code class="inline">title</code> w iframe</td>
+              <td><code class="inline">&lt;iframe&gt;</code></td>
+              <td>Dostępność</td>
+              <td>Każdy iframe musi mieć opisowy atrybut <code class="inline">title</code></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>🎥 Wideo</td>
+              <td>Brak atrybutu <code class="inline">controls</code></td>
+              <td><code class="inline">&lt;video&gt;</code></td>
+              <td>Użyteczność</td>
+              <td>Dodaj <code class="inline">controls</code> do każdego wideo informacyjnego</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>🎥 Wideo</td>
+              <td>Niewłaściwe wymiary odtwarzacza</td>
+              <td><code class="inline">&lt;video&gt;</code>, <code class="inline">&lt;iframe&gt;</code></td>
+              <td>Układ strony</td>
+              <td>Używaj <code class="inline">vw</code> / <code class="inline">%</code> i <code class="inline">aspect-ratio:16/9</code></td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>🎥 Wideo</td>
+              <td>Błędny URL YouTube: <code class="inline">watch?v=</code> zamiast <code class="inline">embed/</code></td>
+              <td><code class="inline">&lt;iframe&gt;</code></td>
+              <td>Błąd URL</td>
+              <td>Użyj <code class="inline">youtube.com/<strong>embed</strong>/ID</code></td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>🗺️ Mapy</td>
+              <td>Błędny URL Google Maps: <code class="inline">viewer</code> zamiast <code class="inline">embed</code></td>
+              <td><code class="inline">&lt;iframe&gt;</code></td>
+              <td>Błąd URL</td>
+              <td>Użyj adresu z przycisku <em>„Udostępnij → Umieść mapę"</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       STOPKA
+       ============================================================ -->
+  <footer class="stopka" role="contentinfo">
+    <p>
+      🎬 <strong>Multimedia</strong> – Krzysztof Januszewski 3F © 2026
+    </p>
+  </footer>
+
+  <!-- ============================================================
+       PRZYCISK POWRÓT NA GÓRĘ
+       ============================================================ -->
+  <button
+    class="btn-powrot-gora"
+    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    aria-label="Powrót na górę strony"
+    title="Powrót na górę">
+    ↑ Powrót na górę
+  </button>
+
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <!-- ============================================================
+       MULTIMEDIA — Sekcja 1: Wideo (wideo.html)
+       ============================================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wideo w internecie – formaty MP4, WebM, OGG, osadzanie z dysku i serwisów YouTube, CDA.">
+  <title>Wideo — Multimedia</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/x-icon" href="../media/img/favicon.ico">
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <style>
+    /* ============================================================
+       SCROLLBAR — nowa kolorystyka i cieńszy (akcent wideo)
+       ============================================================ */
+
+    /* Webkit (Chrome, Edge, Safari) */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--kolor-powierzchnia);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--akcent-wideo);
+      border-radius: var(--radius-s);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--kolor-tekst-slaby);
+    }
+
+    /* Firefox */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--akcent-wideo) var(--kolor-powierzchnia);
+    }
+
+    /* ============================================================
+       PRZYCISK POWRÓT NA GÓRĘ
+       ============================================================ */
+    .btn-powrot-gora {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+
+      background: var(--kolor-karta);
+      color: var(--kolor-tekst);
+      border: 1px solid var(--kolor-obramowanie);
+      border-radius: var(--radius-m);
+
+      padding: 0.6rem 1.1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+
+      transition: var(--przejscie);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+
+    .btn-powrot-gora:hover {
+      background: var(--akcent-wideo);
+      color: #ffffff;
+      border-color: var(--akcent-wideo);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 18px rgba(74,158,255,0.25);
+    }
+
+    .btn-powrot-gora:active {
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       UJEDNOLICONA SZEROKOŚĆ ODTWARZACZY
+       ============================================================ */
+
+    /* Wszystkie odtwarzacze (video + iframe) mają tę samą szerokość */
+    .media-wrapper video,
+    .media-wrapper iframe {
+      width: 60vw !important;
+      max-width: 60vw !important;
+    }
+
+    /* Wysokość iframe zachowuje proporcje 16:9 */
+    .media-wrapper iframe {
+      height: 33.75vw !important;
+    }
+
+    /* Wysokość video — auto (zachowuje proporcje oryginału) */
+    .media-wrapper video {
+      height: auto !important;
+    }
+
+    /* ============================================================
+      TIKTOK
+      ============================================================ */
+    .tiktok-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+      /* wysokość = aktualna skala × 740px — żeby wrapper nie zachodził na inne elementy */
+      height: calc(20vw * (740 / 325));
+      overflow: hidden;
+    }
+
+    .tiktok-wrapper iframe {
+      /* stałe wymiary natywne TikToka */
+      width: 325px !important;
+      max-width: 325px !important;
+      height: 740px !important;
+      border: none !important;
+      border-radius: 12px;
+      transform-origin: top center;
+      /* skala = 20vw / 325px */
+      transform: scale(calc(20vw / 325px));
+    }
+
+  </style>
+</head>
+<body class="strona-wideo">
+
+  <!-- ============================================================
+       NAWIGACJA GÓRNA
+       ============================================================ -->
+  <nav class="nav-glowna" role="navigation" aria-label="Nawigacja główna">
+    <a href="../index.html" class="nav-logo">🎬 Multi<span>media</span></a>
+    <ul class="nav-linki">
+      <li><a href="../index.html">🏠 Strona główna</a></li>
+      <li><a href="wideo.html">🎥 Wideo</a></li>
+      <li><a href="audio.html">🎵 Audio</a></li>
+      <li><a href="grafika.html">🖼️ Grafika</a></li>
+      <li><a href="mapy.html">🗺️ Mapy</a></li>
+      <li><a href="bledy.html">⚠️ Błędy</a></li>
+      <li><a href="zrodla.html">📚 Źródła</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+       TREŚĆ GŁÓWNA
+       ============================================================ -->
+  <main class="kontener" role="main">
+
+    <h1 class="naglowek-strony">🎥 Wideo</h1>
+
+    <!-- --------------------------------------------------------
+         WSTĘP SEKCJI
+         -------------------------------------------------------- -->
+    <section class="wstep" aria-labelledby="wideo-wstep">
+      <h2 id="wideo-wstep" style="font-size:var(--font-duzy);margin-bottom:var(--odstep-s);color:var(--akcent-wideo);">Wideo jako medium cyfrowe</h2>
+      <p style="text-align:justify;">
+        Wideo (<abbr title="Łacina, język łaciński">łac.</abbr> <em>video</em>, <abbr title="Język angielski">ang.</abbr> – <em>widzę</em>)
+        cyfrowe to sekwencja obrazów (klatek) zapisana w postaci danych binarnych,
+        odtwarzana z określoną częstotliwością (zazwyczaj 24–60 klatek na sekundę),
+        której towarzyszy zsynchronizowana ścieżka dźwiękowa. W internecie wideo
+        przesyłane jest strumieniowo (<em>streaming</em>) lub pobierane progresywnie,
+        co pozwala na odtwarzanie jeszcze przed zakończeniem pobierania całego pliku.
+      </p>
+      <p style="text-align:justify;">
+        Najpopularniejszym formatem wideo w sieci jest
+        <a href="https://pl.wikipedia.org/wiki/MPEG-4" target="_blank" rel="noopener"><abbr title="MPEG-4 Part 14 — format kontenera multimedialnego">MP4</abbr></a>
+        (kontener <abbr title="Moving Picture Experts Group 4">MPEG-4</abbr> Part 14), który zazwyczaj przechowuje obraz skompresowany kodekiem
+        H.264 lub H.265 oraz dźwięk w formacie <abbr title="Advanced Audio Coding">AAC</abbr>. Format
+        <a href="https://pl.wikipedia.org/wiki/WebM" target="_blank" rel="noopener"><abbr title="Web Media">WebM</abbr></a>
+        to otwarty format stworzony przez Google, oparty na kodekach <abbr title="Video Processor 8 — kodek wideo Google">VP8</abbr>/<abbr title="Video Processor 9 — kodek wideo Google">VP9</abbr> (obraz)
+        i Vorbis/Opus (dźwięk) – jest wolny od opłat licencyjnych i dobrze obsługiwany
+        przez nowoczesne przeglądarki. Format <abbr title="Ogg — otwarty format kontenera multimedialnego">OGG</abbr> (Theora + Vorbis) jest starszą
+        alternatywą open-source, dziś rzadziej stosowaną.
+      </p>
+      <p style="text-align:justify;">
+        Element <abbr title="HyperText Markup Language 5">HTML5</abbr> <code class="inline">&lt;video&gt;</code> umożliwia osadzanie
+        wideo bezpośrednio na stronie bez potrzeby stosowania wtyczek (jak dawny Flash).
+        Dzięki atrybutowi <code class="inline">&lt;source&gt;</code> można podać
+        kilka formatów jako fallback – przeglądarka wybierze pierwszy obsługiwany.
+      </p>
+    </section>
+
+    <!-- ========================================================
+         ELEMENT 1 - WIDEO Z DYSKU
+         ======================================================== -->
+    <article class="blok-media" id="wideo1" aria-labelledby="wideo1-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="wideo1-tytul">Wideo z dysku</h2>
+        <span class="badge badge-dysk">📁 Plik z dysku</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Poniższy element <code class="inline">&lt;video&gt;</code> został osadzony
+          <strong>bez atrybutu <code class="inline">controls</code></strong>.
+          Oznacza to, że przeglądarka nie wyświetla wbudowanego paska sterowania
+          (przycisku play/pause, suwaka czasu, regulacji głośności).
+        </p>
+        <p style="text-align:justify;">
+          Pomijanie atrybutu <code class="inline">controls</code> stosuje się celowo
+          w kilku sytuacjach: gdy wideo ma być odtwarzane automatycznie jako tło strony
+          (atrybut <code class="inline">autoplay muted loop</code>), gdy programista
+          tworzy własny, niestandardowy interfejs sterowania w JavaScript, lub gdy
+          wideo pełni wyłącznie funkcję dekoracyjną i nie powinno być obsługiwane
+          przez użytkownika.
+        </p>
+        <p style="text-align:justify;">
+          <strong>Autor pliku:</strong> Blender Foundation – film „Big Buck Bunny"
+          (licencja Creative Commons Attribution 3.0).
+        </p>
+      </div>
+
+      <!-- Element multimedialny -->
+      <div class="media-wrapper">
+        <video
+          width="640"
+          height="360"
+          muted
+          loop
+          style="border-radius:0.5vw;"
+          aria-label="Fragment animowanego filmu Big Buck Bunny – wideo bez kontrolek">
+          <source src="../media/video/mov_bbb.mp4" type="video/mp4">
+          Twoja przeglądarka nie obsługuje elementu video.
+        </video>
+      </div>
+
+      <p style="text-align:justify; margin-top:var(--odstep-s);">
+        <strong>⚠️ Jeśli nie możesz odtworzyć filmu, kliknij prawym przyciskiem myszy
+        na obrazie i wybierz „Pokaż wszystkie elementy sterujące".</strong>
+      </p>
+
+      <p style="text-align:justify; margin-top:var(--odstep-s);">
+        W celu zmiany wielkości odtwarzacza należy nadać odpowiednie wartości
+        dla atrybutów <code>width</code> i <code>height</code>.
+      </p>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle"
+                  data-toggle="kod-wideo1"
+                  onclick="toggleCode('kod-wideo1')">
+            👁️ Pokaż kod
+          </button>
+          <button class="btn btn-kopiuj"
+                  data-copy="kod-wideo1"
+                  onclick="copyCode('kod-wideo1')">
+            📋 Kopiuj kod
+          </button>
+        </div>
+        <div class="kod-blok" id="kod-wideo1">
+          <pre><code>&lt;!-- PLIK Z DYSKU: mov_bbb.mp4 --&gt;
+&lt;video
+  width="640"
+  height="360"
+  muted
+  loop
+  aria-label="Opis wideo dla czytników ekranu"&gt;
+  &lt;source src="../media/video/mov_bbb.mp4" type="video/mp4"&gt;
+  Twoja przeglądarka nie obsługuje elementu video.
+&lt;/video&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 2 - WIDEO Z DYSKU Z CONTROLS
+         ======================================================== -->
+    <article class="blok-media" id="wideo2" aria-labelledby="wideo2-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="wideo2-tytul">Wideo z dysku</h2>
+        <span class="badge badge-dysk">📁 Plik z dysku</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Ten sam plik wideo, tym razem z atrybutem <code class="inline">controls</code>.
+          Przeglądarka automatycznie renderuje pasek sterowania zawierający:
+          przycisk play/pause, suwak postępu odtwarzania, wskaźnik czasu,
+          regulację głośności oraz przycisk pełnego ekranu.
+        </p>
+        <p style="text-align:justify;">
+          <strong>Różnica między wersją z <code class="inline">controls</code>
+          a bez:</strong> wersja bez <code class="inline">controls</code> jest
+          „niema" z perspektywy użytkownika – nie może on zatrzymać, przewinąć
+          ani wyciszyć wideo. Wersja z <code class="inline">controls</code>
+          daje pełną kontrolę i jest <strong>wymagana ze względu na dostępność
+          (<abbr title="Web Content Accessibility Guidelines">WCAG</abbr>)</strong> wszędzie tam, gdzie wideo niesie treść informacyjną.
+        </p>
+      </div>
+
+      <!-- Element multimedialny -->
+      <div class="media-wrapper">
+        <video
+          controls
+          style="border-radius:0.5vw;"
+          aria-label="Fragment animowanego filmu Big Buck Bunny z kontrolkami odtwarzania">
+          <source src="../media/video/277042_medium.mp4" type="video/mp4">
+          Twoja przeglądarka nie obsługuje elementu video.
+        </video>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle"
+                  data-toggle="kod-wideo2"
+                  onclick="toggleCode('kod-wideo2')">
+            👁️ Pokaż kod
+          </button>
+          <button class="btn btn-kopiuj"
+                  data-copy="kod-wideo2"
+                  onclick="copyCode('kod-wideo2')">
+            📋 Kopiuj kod
+          </button>
+        </div>
+        <div class="kod-blok" id="kod-wideo2">
+          <pre><code>&lt;!-- PLIK Z DYSKU: 277042_medium.mp4 --&gt;
+&lt;video
+  controls
+  width="640"
+  height="360"
+  aria-label="Opis wideo dla czytników ekranu"&gt;
+  &lt;source src="../media/video/277042_medium.mp4" type="video/mp4"&gt;
+  Twoja przeglądarka nie obsługuje elementu video.
+&lt;/video&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- ========================================================
+         ELEMENT 3 — YOUTUBE EMBED (długi film)
+         ======================================================== -->
+    <article class="blok-media" id="wideo3" aria-labelledby="wideo3-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="wideo3-tytul">Film <em>Jak rozpętałem drugą wojnę światową</em></h2>
+        <span class="badge badge-embed">🌐 Embed zewnętrzny</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p>
+          <strong>YouTube</strong> to największa na świecie platforma do udostępniania
+          i strumieniowania wideo, założona w 2005 roku, od 2006 roku należąca do Google.
+          Serwis umożliwia bezpłatne przesyłanie, oglądanie i komentowanie filmów
+          w rozdzielczościach od 144p do 8K, a jego miesięczna baza użytkowników
+          przekracza 2 miliardy osób.
+        </p>
+        <p>
+          YouTube oferuje mechanizm osadzania filmów na zewnętrznych stronach
+          poprzez element <code class="inline">&lt;iframe&gt;</code> z domeną
+          <code class="inline">youtube.com/embed/ID_FILMU</code>.
+          Poniżej osadzono pełnometrażowy film animowany
+          <strong>„Elephant Dream"</strong> (2006) — pierwszy otwarty film
+          animowany Blender Foundation, dostępny w domenie publicznej na licencji
+          Creative Commons Attribution 2.5.
+        </p>
+      </div>
+
+      <!-- Element multimedialny -->
+      <div class="media-wrapper" style="flex-direction:column; gap:1vw;">
+        <iframe
+          referrerpolicy="strict-origin-when-cross-origin"
+          style="border-radius:0.5vw; border:none;"
+          src="https://www.youtube.com/embed/Yxzz4KaBhN0"
+          title="Elephant Dream — pełnometrażowy film animowany Blender Foundation (YouTube)"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle"
+                  data-toggle="kod-wideo3"
+                  onclick="toggleCode('kod-wideo3')">
+            👁️ Pokaż kod
+          </button>
+          <button class="btn btn-kopiuj"
+                  data-copy="kod-wideo3"
+                  onclick="copyCode('kod-wideo3')">
+            📋 Kopiuj kod
+          </button>
+        </div>
+        <div class="kod-blok" id="kod-wideo3">
+          <pre><code>&lt;iframe
+  width="854"
+  height="480"
+  src="https://www.youtube.com/embed/Yxzz4KaBhN0"
+  title="Elephant Dream — Blender Foundation"
+  allow="accelerometer; autoplay; clipboard-write;
+         encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 4 - FILM "MONKEY KING: HERO IS BACK" - YouTube
+         ======================================================== -->
+    <article class="blok-media" id="wideo4b" aria-labelledby="wideo4b-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="wideo4b-tytul">Film <em style="color: gold;">Monkey King: Hero is Back</em> – YouTube</h2>
+        <span class="badge badge-embed">🌐 Embed zewnętrzny</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <strong>YouTube</strong> – największa na świecie platforma do udostępniania
+          i strumieniowania wideo, założona w 2005 roku, od 2006 roku należąca do Google.
+          Serwis umożliwia bezpłatne przesyłanie, oglądanie i komentowanie filmów
+          w rozdzielczościach od 144p do 8K, a jego miesięczna baza użytkowników
+          przekracza 2 miliardy osób.
+        </p>
+        <p style="text-align:justify;">
+          YouTube oferuje mechanizm osadzania filmów na zewnętrznych stronach
+          poprzez element <code class="inline">&lt;iframe&gt;</code> z domeną
+          <code class="inline">youtube.com/embed/ID_FILMU</code>.
+          Poniżej osadzono pełnometrażowy film animowany
+          <strong><em style="color: gold;">Monkey King: Hero is Back</em></strong> (2015) – epicka animacja
+          akcji inspirowana klasyczną mitologią wschodnią.
+        </p>
+      </div>
+
+      <!-- Element multimedialny -->
+      <div class="media-wrapper" style="flex-direction:column; gap:1vw;">
+        <iframe
+          referrerpolicy="strict-origin-when-cross-origin"
+          style="border-radius:0.5vw; border:none;"
+          src="https://www.youtube.com/embed/lP_pjjPxi6I"
+          title="Monkey King: Hero is Back – pełnometrażowy film animowany (YouTube)"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle"
+                  data-toggle="kod-wideo4b"
+                  onclick="toggleCode('kod-wideo4b')">
+            👁️ Pokaż kod
+          </button>
+          <button class="btn btn-kopiuj"
+                  data-copy="kod-wideo4b"
+                  onclick="copyCode('kod-wideo4b')">
+            📋 Kopiuj kod
+          </button>
+        </div>
+        <div class="kod-blok" id="kod-wideo4b">
+          <pre><code>&lt;iframe
+  width="854"
+  height="480"
+  src="https://www.youtube.com/embed/lP_pjjPxi6I"
+  title="Monkey King: Hero is Back – YouTube"
+  allow="accelerometer; autoplay; clipboard-write;
+         encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 5 - FILM Z INNEGO SERWISU (CDA.pl)
+         ======================================================== -->
+    <article class="blok-media" id="wideo5b" aria-labelledby="wideo5b-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="wideo5b-tytul">Film <em>Big Buck Bunny</em> – CDA.pl</h2>
+        <span class="badge badge-embed">🌐 Embed zewnętrzny</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <strong>🎬 CDA.pl</strong> (Centrum Dystrybucji Audiowizualnej) to największy
+          polski serwis wideo, działający od 2006 roku. Oferuje filmy, seriale,
+          bajki i programy telewizyjne zarówno w modelu bezpłatnym (z reklamami),
+          jak i w subskrypcji premium (CDA Premium). Serwis umożliwia osadzanie
+          filmów na zewnętrznych stronach przez <code class="inline">&lt;iframe&gt;</code>,
+          podobnie jak YouTube.
+        </p>
+        <p style="text-align:justify;">
+          Poniżej osadzono film <em>Big Buck Bunny</em> – publicznie dostępny
+          na serwisie CDA.pl.
+          Adres embed CDA ma postać:
+          <code class="inline">https://ebd.cda.pl/620x395/ID_FILMU</code>.
+        </p>
+      </div>
+
+      <!-- Element multimedialny -->
+      <div class="media-wrapper">
+        <iframe
+          style="border-radius:0.5vw; border:none;"
+          src="https://ebd.cda.pl/620x395/4063471fc"
+          title="Big Buck Bunny – film animowany Blender Foundation (CDA.pl)"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle"
+                  data-toggle="kod-wideo5b"
+                  onclick="toggleCode('kod-wideo5b')">
+            👁️ Pokaż kod
+          </button>
+          <button class="btn btn-kopiuj"
+                  data-copy="kod-wideo5b"
+                  onclick="copyCode('kod-wideo5b')">
+            📋 Kopiuj kod
+          </button>
+        </div>
+        <div class="kod-blok" id="kod-wideo5b">
+          <pre><code>&lt;!-- Embed CDA.pl - format URL: https://ebd.cda.pl/SZERxWYS/ID_FILMU --&gt;
+&lt;iframe
+  width="620"
+  height="395"
+  src="https://ebd.cda.pl/620x395/4063471fc"
+  title="Big Buck Bunny – CDA.pl"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 6 - FORMAT WebM
+         ======================================================== -->
+    <article class="blok-media" id="wideo6b" aria-labelledby="wideo6b-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="wideo6b-tytul">Format <abbr title="Web Media">WebM</abbr></h2>
+        <span class="badge badge-webm">🌐 Format WebM</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <a href="https://pl.wikipedia.org/wiki/WebM" target="_blank" rel="noopener">
+            <strong>WebM</strong>
+          </a>
+          (<abbr title="Język angielski">ang.</abbr> <em>Web Media</em>, <abbr title="Język polski">pol.</abbr> <em>film sieciowy</em>) – otwarty, wolny od opłat licencyjnych format
+          wideo stworzony przez Google i udostępniony w 2010 roku. Nazwa pochodzi
+          od przeznaczenia formatu – jest to kontener multimedialny zaprojektowany
+          specjalnie z myślą o strumieniowaniu w sieci Web. Kontener WebM przechowuje
+          obraz zakodowany kodekiem <strong><abbr title="Video Processor 8 — kodek wideo Google">VP8</abbr></strong> lub <strong><abbr title="Video Processor 9 — kodek wideo Google">VP9</abbr></strong>
+          (nowszy, lepsza kompresja) oraz dźwięk w formacie
+          <strong>Vorbis</strong> lub <strong>Opus</strong>.
+        </p>
+        <p style="text-align:justify;">
+          WebM jest wspierany przez wszystkie nowoczesne przeglądarki
+          (Chrome, Firefox, Edge, Opera) z wyjątkiem starszych wersji Safari
+          (pełne wsparcie od Safari 14.1). Dlatego dobrą praktyką jest
+          podanie pliku WebM jako pierwszego źródła (lepsza kompresja),
+          a <abbr title="MPEG-4 Part 14 — format kontenera multimedialnego">MP4</abbr> jako fallbacku dla starszych przeglądarek.
+        </p>
+      </div>
+
+      <!-- Element multimedialny -->
+      <div class="media-wrapper">
+        <video
+          controls
+          style="border-radius:0.5vw;"
+          aria-label="Film Big Buck Bunny w formacie WebM z fallbackiem MP4">
+          <source src="../media/video/mov_bbb.webm" type="video/webm">
+          <source src="../media/video/mov_bbb.mp4"  type="video/mp4">
+          Twoja przeglądarka nie obsługuje elementu &lt;video&gt;.
+        </video>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle"
+                  data-toggle="kod-wideo6b"
+                  onclick="toggleCode('kod-wideo6b')">
+            👁️ Pokaż kod
+          </button>
+          <button class="btn btn-kopiuj"
+                  data-copy="kod-wideo6b"
+                  onclick="copyCode('kod-wideo6b')">
+            📋 Kopiuj kod
+          </button>
+        </div>
+        <div class="kod-blok" id="kod-wideo6b">
+          <pre><code>&lt;video controls width="640" height="360"&gt;
+
+  &lt;!-- Format WebM (Web Media) jako preferowany
+       - lepsza kompresja, brak licencji --&gt;
+  &lt;source src="../media/video/mov_bbb.webm" type="video/webm"&gt;
+
+  &lt;!-- Fallback MP4 dla przeglądarek bez obsługi WebM
+       (np. stary Safari) --&gt;
+  &lt;source src="../media/video/mov_bbb.mp4" type="video/mp4"&gt;
+
+  &lt;!-- Tekst gdy żaden format nie jest obsługiwany --&gt;
+  Twoja przeglądarka nie obsługuje elementu &amp;lt;video&amp;gt;.
+
+&lt;/video&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 7 - EMBED Z DAILYMOTION (dodatkowy streaming)
+         ======================================================== -->
+    <article class="blok-media" id="wideo7" aria-labelledby="wideo7-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="wideo7-tytul">Film <em>America's Most Successful Small-Caps: The Little-Known Companies Powering The AI Revolution</em> – Dailymotion</h2>
+        <span class="badge badge-embed">🌐 Embed zewnętrzny</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <strong>🎞️ Dailymotion</strong> to francuski serwis streamingowy założony
+          w 2005 roku, będący jedną z największych platform wideo na świecie poza
+          YouTube. Serwis jest dostępny w ponad 35 językach i obsługuje ponad
+          300 milionów użytkowników miesięcznie. Dailymotion specjalizuje się
+          w treściach informacyjnych, sportowych i rozrywkowych, oferując zarówno
+          materiały amatorskie, jak i profesjonalne treści od partnerów medialnych.
+          Poniżej osadzono film <em>Big Buck Bunny</em> dostępny publicznie
+          w serwisie Dailymotion.
+        </p>
+      </div>
+
+      <!-- Element multimedialny -->
+      <div class="media-wrapper">
+        <iframe
+          style="border-radius:0.5vw; border:none;"
+          src="https://www.dailymotion.com/embed/video/x9veyo2"
+          title="Big Buck Bunny – Dailymotion"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle"
+                  data-toggle="kod-wideo7"
+                  onclick="toggleCode('kod-wideo7')">
+            👁️ Pokaż kod
+          </button>
+          <button class="btn btn-kopiuj"
+                  data-copy="kod-wideo7"
+                  onclick="copyCode('kod-wideo7')">
+            📋 Kopiuj kod
+          </button>
+        </div>
+        <div class="kod-blok" id="kod-wideo7">
+          <pre><code>&lt;!-- Embed Dailymotion
+     Format URL: https://www.dailymotion.com/embed/video/ID_FILMU --&gt;
+&lt;iframe
+  width="640"
+  height="360"
+  src="https://www.dailymotion.com/embed/video/x9veyo2"
+  title="Big Buck Bunny – Dailymotion"
+  allow="autoplay; fullscreen; picture-in-picture"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+        ELEMENT 8 - EMBED Z TIKTOKA
+        ======================================================== -->
+    <article class="blok-media" id="wideo8" aria-labelledby="wideo8-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="wideo8-tytul">Film z serwisu TikTok</h2>
+        <span class="badge badge-embed">🌐 Embed zewnętrzny</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <strong>🎵 TikTok</strong> to platforma społecznościowa oparta na krótkich
+          filmach wideo, uruchomiona przez chińską firmę ByteDance w 2016 roku.
+          Serwis zdobył ogromną popularność na całym świecie, szczególnie wśród
+          młodszych użytkowników, oferując filmy trwające od kilku sekund do
+          kilku minut. TikTok umożliwia osadzanie filmów na zewnętrznych stronach
+          za pomocą oficjalnego kodu embed opartego na elemencie
+          <code class="inline">&lt;blockquote class="tiktok-embed"&gt;</code>
+          wraz z dołączonym skryptem platformy.
+        </p>
+      </div>
+
+      <!-- Element multimedialny — TikTok -->
+      <div class="tiktok-wrapper">
+        <iframe
+          src="https://www.tiktok.com/embed/v2/6718335390845095173"
+          allow="encrypted-media"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle"
+                  data-toggle="kod-wideo8"
+                  onclick="toggleCode('kod-wideo8')">
+            👁️ Pokaż kod
+          </button>
+          <button class="btn btn-kopiuj"
+                  data-copy="kod-wideo8"
+                  onclick="copyCode('kod-wideo8')">
+            📋 Kopiuj kod
+          </button>
+        </div>
+        <div class="kod-blok" id="kod-wideo8">
+          <pre><code>&lt;!-- Oficjalny embed TikTok --&gt;
+    &lt;blockquote
+      class="tiktok-embed"
+      cite="https://www.tiktok.com/@tiktok/video/6718335390845095173"
+      data-video-id="6718335390845095173"
+      style="max-width:325px; min-width:325px;"&gt;
+      &lt;section&gt;
+        &lt;a target="_blank"
+          href="https://www.tiktok.com/@tiktok?refer=embed"&gt;
+          @tiktok
+        &lt;/a&gt;
+      &lt;/section&gt;
+    &lt;/blockquote&gt;
+    &lt;script async src="https://www.tiktok.com/embed.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+
+
+  </main>
+
+  <!-- ============================================================
+       STOPKA
+       ============================================================ -->
+  <footer class="stopka" role="contentinfo">
+    <p>
+      🎬 <strong>Multimedia</strong> – Krzysztof Januszewski 3F © 2026
+    </p>
+  </footer>
+
+  <!-- ============================================================
+       PRZYCISK POWRÓT NA GÓRĘ
+       ============================================================ -->
+  <button
+    class="btn-powrot-gora"
+    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    aria-label="Powrót na górę strony"
+    title="Powrót na górę">
+    ↑ Powrót na górę
+  </button>
+
+
+
+</body>
+</html>

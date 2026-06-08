@@ -1,0 +1,831 @@
+/* ============================================================
+   MULTIMEDIA — Wspólny arkusz stylów
+   Autor: Projekt edukacyjny
+   Opis: Spójny design dla wszystkich podstron projektu
+   ============================================================ */
+
+/* --- Zmienne CSS (kolory akcentów sekcji + paleta ogólna) --- */
+:root {
+  --kolor-tlo:          #0f1117;
+  --kolor-powierzchnia: #1a1d27;
+  --kolor-karta:        #22263a;
+  --kolor-obramowanie:  #2e3350;
+  --kolor-tekst:        #e8eaf6;
+  --kolor-tekst-slaby:  #8892b0;
+  --kolor-bialy:        #ffffff;
+
+  /* Kolory akcentów poszczególnych sekcji */
+  --akcent-wideo:    #4a9eff;   /* niebieski   */
+  --akcent-audio:    #3ecf8e;   /* zielony     */
+  --akcent-grafika:  #b57bee;   /* fioletowy   */
+  --akcent-mapy:     #ff9f43;   /* pomarańczowy*/
+  --akcent-bledy:    #ff6b6b;   /* czerwony    */
+  --akcent-zrodla:   #a0aec0;   /* szary       */
+  --akcent-glowna:   #f7c948;   /* złoty       */
+
+  /* Typografia */
+    --font-bazowy:     1.35vw;   /* było: 1.8vw  */
+    --font-maly:       1.05vw;   /* było: 1.4vw  */
+    --font-duzy:       1.8vw;    /* było: 2.4vw  */
+    --font-naglowek:   2.4vw;    /* było: 3.2vw  */
+    --font-hero:       3.4vw;    /* było: 4.5vw  */
+
+    /* Odstępy */
+    --odstep-xs:  0.35vw;   /* było: 0.5vw  */
+    --odstep-s:   0.7vw;    /* było: 1vw    */
+    --odstep-m:   1.4vw;    /* było: 2vw    */
+    --odstep-l:   2.1vw;    /* było: 3vw    */
+    --odstep-xl:  3.5vw;    /* było: 5vw    */
+
+    /* Promień zaokrąglenia */
+    --radius-s:  0.35vw;   /* było: 0.5vw  */
+    --radius-m:  0.75vw;   /* było: 1vw    */
+    --radius-l:  1.1vw;    /* było: 1.5vw  */
+
+    /* Przejścia */
+    --przejscie: 0.25s ease;
+}
+
+/* ============================================================
+   RESET I PODSTAWY
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--kolor-tlo);
+  color: var(--kolor-tekst);
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--font-bazowy);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   PASEK NAWIGACYJNY (górny)
+   ============================================================ */
+.nav-glowna {
+  background-color: var(--kolor-powierzchnia);
+  border-bottom: 0.15vw solid var(--kolor-obramowanie);
+  padding: var(--odstep-s) var(--odstep-l);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: var(--odstep-m);
+  flex-wrap: wrap;
+}
+
+.nav-logo {
+  font-size: var(--font-duzy);
+  font-weight: 700;
+  color: var(--akcent-glowna);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.nav-logo span {
+  color: var(--kolor-tekst);
+  font-weight: 300;
+}
+
+.nav-linki {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--odstep-s);
+  list-style: none;
+  margin-left: auto;
+}
+
+.nav-linki a {
+  color: var(--kolor-tekst-slaby);
+  text-decoration: none;
+  font-size: var(--font-maly);
+  padding: var(--odstep-xs) var(--odstep-s);
+  border-radius: var(--radius-s);
+  border: 0.1vw solid transparent;
+  transition: color var(--przejscie), border-color var(--przejscie),
+              background-color var(--przejscie);
+  white-space: nowrap;
+}
+
+.nav-linki a:hover {
+  color: var(--kolor-bialy);
+  background-color: var(--kolor-karta);
+  border-color: var(--kolor-obramowanie);
+}
+
+/* Aktywny link nawigacyjny — klasa dodawana przez JS */
+.nav-linki a.active {
+  color: var(--kolor-bialy);
+  font-weight: 600;
+  border-color: currentColor;
+}
+
+/* Kolory aktywnych linków per sekcja */
+.nav-linki a.active[href*="wideo"]   { color: var(--akcent-wideo);   border-color: var(--akcent-wideo); }
+.nav-linki a.active[href*="audio"]   { color: var(--akcent-audio);   border-color: var(--akcent-audio); }
+.nav-linki a.active[href*="grafika"] { color: var(--akcent-grafika); border-color: var(--akcent-grafika); }
+.nav-linki a.active[href*="mapy"]    { color: var(--akcent-mapy);    border-color: var(--akcent-mapy); }
+.nav-linki a.active[href*="bledy"]   { color: var(--akcent-bledy);   border-color: var(--akcent-bledy); }
+.nav-linki a.active[href*="zrodla"]  { color: var(--akcent-zrodla);  border-color: var(--akcent-zrodla); }
+.nav-linki a.active[href*="index"],
+.nav-linki a.active[href="../index"] { color: var(--akcent-glowna);  border-color: var(--akcent-glowna); }
+
+/* ============================================================
+   KONTENER GŁÓWNY
+   ============================================================ */
+.kontener {
+  max-width: 90vw;
+  margin: 0 auto;
+  padding: var(--odstep-l) var(--odstep-m);
+}
+
+/* ============================================================
+   SEKCJA HERO (strona główna)
+   ============================================================ */
+.hero {
+  text-align: center;
+  padding: var(--odstep-xl) var(--odstep-m);
+  background-image: url(media/img/hero_background.png);
+  background-size: cover;
+  border-bottom: 0.15vw solid var(--kolor-obramowanie);
+}
+
+.hero-tytul {
+  font-size: var(--font-hero);
+  font-weight: 800;
+  color: var(--kolor-bialy);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--odstep-s);
+  text-shadow: 2px 2px 2px black;
+}
+
+.hero-tytul .akcent {
+  color: var(--akcent-glowna);
+}
+
+.hero-podtytul {
+  font-size: var(--font-duzy);
+  color: var(--kolor-tekst-slaby);
+  font-weight: 300;
+  margin-bottom: var(--odstep-m);
+}
+
+/* ============================================================
+   WSTĘP / OPIS SEKCJI
+   ============================================================ */
+.wstep {
+  background-color: var(--kolor-powierzchnia);
+  border-left: 0.4vw solid var(--akcent-glowna);
+  border-radius: 0 var(--radius-m) var(--radius-m) 0;
+  padding: var(--odstep-m) var(--odstep-l);
+  margin-bottom: var(--odstep-l);
+  font-size: var(--font-bazowy);
+  line-height: 1.8;
+}
+
+.wstep p + p {
+  margin-top: var(--odstep-s);
+}
+
+/* Kolor lewej krawędzi wstępu per sekcja */
+.strona-wideo   .wstep { border-left-color: var(--akcent-wideo); }
+.strona-audio   .wstep { border-left-color: var(--akcent-audio); }
+.strona-grafika .wstep { border-left-color: var(--akcent-grafika); }
+.strona-mapy    .wstep { border-left-color: var(--akcent-mapy); }
+.strona-bledy   .wstep { border-left-color: var(--akcent-bledy); }
+.strona-zrodla  .wstep { border-left-color: var(--akcent-zrodla); }
+
+/* ============================================================
+   NAGŁÓWKI SEKCJI
+   ============================================================ */
+h1, h2, h3, h4 {
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.naglowek-strony {
+  font-size: var(--font-naglowek);
+  color: var(--kolor-bialy);
+  margin-bottom: var(--odstep-m);
+  padding-bottom: var(--odstep-s);
+  border-bottom: 0.15vw solid var(--kolor-obramowanie);
+}
+
+.naglowek-sekcji {
+  font-size: var(--font-duzy);
+  color: var(--kolor-bialy);
+  margin-bottom: var(--odstep-m);
+  margin-top: var(--odstep-l);
+  display: flex;
+  align-items: center;
+  gap: var(--odstep-s);
+}
+
+.naglowek-sekcji .ikona {
+  font-size: calc(var(--font-duzy) * 1.1);
+}
+
+.naglowek-sekcji .numer {
+  font-size: var(--font-maly);
+  color: var(--kolor-tekst-slaby);
+  font-weight: 400;
+  margin-left: auto;
+}
+
+/* Kolory nagłówków per sekcja */
+.strona-wideo   .naglowek-sekcji { color: var(--akcent-wideo); }
+.strona-audio   .naglowek-sekcji { color: var(--akcent-audio); }
+.strona-grafika .naglowek-sekcji { color: var(--akcent-grafika); }
+.strona-mapy    .naglowek-sekcji { color: var(--akcent-mapy); }
+.strona-bledy   .naglowek-sekcji { color: var(--akcent-bledy); }
+.strona-zrodla  .naglowek-sekcji { color: var(--akcent-zrodla); }
+
+h3 {
+  font-size: calc(var(--font-bazowy) * 1.2);
+  color: var(--kolor-tekst);
+  margin-bottom: var(--odstep-s);
+  margin-top: var(--odstep-m);
+}
+
+h4 {
+  font-size: var(--font-bazowy);
+  color: var(--kolor-tekst-slaby);
+  margin-bottom: var(--odstep-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ============================================================
+   KARTY NAWIGACYJNE (index.html)
+   ============================================================ */
+.siatka-kart {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--odstep-m);
+  margin-top: var(--odstep-l);
+}
+
+.karta-nav {
+  background-color: var(--kolor-karta);
+  border: 0.15vw solid var(--kolor-obramowanie);
+  border-radius: var(--radius-l);
+  padding: var(--odstep-l) var(--odstep-m);
+  text-decoration: none;
+  color: var(--kolor-tekst);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--odstep-s);
+  transition: transform var(--przejscie), border-color var(--przejscie),
+              box-shadow var(--przejscie), background-color var(--przejscie);
+  position: relative;
+  overflow: hidden;
+}
+
+.karta-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.4vw;
+  background-color: var(--akcent-karta, var(--akcent-glowna));
+  border-radius: var(--radius-l) var(--radius-l) 0 0;
+}
+
+.karta-nav:hover {
+  transform: translateY(-0.5vw);
+  border-color: var(--akcent-karta, var(--akcent-glowna));
+  box-shadow: 0 1vw 3vw rgba(0,0,0,0.4);
+  background-color: #2a2f4a;
+}
+
+.karta-nav .karta-ikona {
+  font-size: 4vw;
+  line-height: 1;
+}
+
+.karta-nav .karta-tytul {
+  font-size: var(--font-duzy);
+  font-weight: 700;
+  color: var(--kolor-bialy);
+}
+
+.karta-nav .karta-opis {
+  font-size: var(--font-maly);
+  color: var(--kolor-tekst-slaby);
+  line-height: 1.5;
+}
+
+/* Kolory akcentów kart */
+.karta-wideo   { --akcent-karta: var(--akcent-wideo); }
+.karta-audio   { --akcent-karta: var(--akcent-audio); }
+.karta-grafika { --akcent-karta: var(--akcent-grafika); }
+.karta-mapy    { --akcent-karta: var(--akcent-mapy); }
+.karta-bledy   { --akcent-karta: var(--akcent-bledy); }
+.karta-zrodla  { --akcent-karta: var(--akcent-zrodla); }
+
+/* ============================================================
+   BLOK ELEMENTU MULTIMEDIALNEGO
+   ============================================================ */
+.blok-media {
+  background-color: var(--kolor-powierzchnia);
+  border: 0.15vw solid var(--kolor-obramowanie);
+  border-radius: var(--radius-l);
+  padding: var(--odstep-m);
+  margin-bottom: var(--odstep-l);
+}
+
+.blok-media-naglowek {
+  display: flex;
+  align-items: baseline;
+  gap: var(--odstep-s);
+  margin-bottom: var(--odstep-m);
+  padding-bottom: var(--odstep-s);
+  border-bottom: 0.1vw solid var(--kolor-obramowanie);
+}
+
+.blok-media-naglowek h2 {
+  font-size: var(--font-duzy);
+  color: var(--kolor-bialy);
+}
+
+.blok-media-naglowek .badge {
+  font-size: var(--font-maly);
+  padding: 0.2vw 0.7vw;
+  border-radius: 10vw;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-dysk    { background: rgba(74,158,255,0.15); color: var(--akcent-wideo); }
+.badge-siec    { background: rgba(62,207,142,0.15); color: var(--akcent-audio); }
+.badge-embed   { background: rgba(255,159,67,0.15); color: var(--akcent-mapy); }
+.badge-webm    { background: rgba(181,123,238,0.15); color: var(--akcent-grafika); }
+.badge-blad    { background: rgba(255,107,107,0.15); color: var(--akcent-bledy); }
+.badge-ok      { background: rgba(62,207,142,0.15); color: var(--akcent-audio); }
+
+.blok-media-opis {
+  font-size: var(--font-maly);
+  color: var(--kolor-tekst-slaby);
+  margin-bottom: var(--odstep-m);
+  line-height: 1.7;
+}
+
+.blok-media-opis p + p {
+  margin-top: var(--odstep-xs);
+}
+
+.blok-media-opis a {
+  color: var(--akcent-wideo);
+  text-decoration: none;
+  border-bottom: 0.1vw solid transparent;
+  transition: border-color var(--przejscie);
+}
+
+.blok-media-opis a:hover {
+  border-bottom-color: var(--akcent-wideo);
+}
+
+/* Kontener na element multimedialny */
+.media-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--odstep-m);
+  background-color: var(--kolor-tlo);
+  border-radius: var(--radius-m);
+  padding: var(--odstep-m);
+  min-height: 8vw;
+}
+
+.media-wrapper video,
+.media-wrapper audio {
+  width: 40vw;
+  min-width: 40vw;
+}
+.media-wrapper img,
+.media-wrapper iframe,
+.media-wrapper svg {
+  max-width: 100%;
+  width: 100%; 
+  border-radius: var(--radius-s);
+}
+
+/* Podpis autora */
+.media-autor {
+  font-size: var(--font-maly);
+  color: var(--kolor-tekst-slaby);
+  text-align: center;
+  margin-top: calc(var(--odstep-xs) * -1);
+  margin-bottom: var(--odstep-s);
+  font-style: italic;
+}
+
+/* ============================================================
+   BLOKI KODU (toggle + kopiuj)
+   ============================================================ */
+.kod-sekcja {
+  margin-top: var(--odstep-m);
+  border-top: 0.1vw solid var(--kolor-obramowanie);
+  padding-top: var(--odstep-m);
+}
+
+.kod-przyciski {
+  display: flex;
+  gap: var(--odstep-s);
+  margin-bottom: var(--odstep-s);
+  flex-wrap: wrap;
+}
+
+/* Przycisk bazowy */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5vw;
+  padding: 0.6vw 1.4vw;
+  border: 0.1vw solid var(--kolor-obramowanie);
+  border-radius: var(--radius-s);
+  background-color: var(--kolor-karta);
+  color: var(--kolor-tekst);
+  font-size: var(--font-maly);
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color var(--przejscie), border-color var(--przejscie),
+              color var(--przejscie), transform var(--przejscie);
+  user-select: none;
+}
+
+.btn:hover {
+  background-color: #2e3350;
+  border-color: var(--kolor-tekst-slaby);
+  transform: translateY(-0.1vw);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-toggle {
+  border-color: var(--akcent-wideo);
+  color: var(--akcent-wideo);
+}
+.btn-toggle:hover {
+  background-color: rgba(74,158,255,0.1);
+  border-color: var(--akcent-wideo);
+  color: var(--akcent-wideo);
+}
+
+.btn-kopiuj {
+  border-color: var(--akcent-audio);
+  color: var(--akcent-audio);
+}
+.btn-kopiuj:hover {
+  background-color: rgba(62,207,142,0.1);
+  border-color: var(--akcent-audio);
+  color: var(--akcent-audio);
+}
+
+.btn-kopiuj.skopiowano {
+  border-color: var(--akcent-audio);
+  background-color: rgba(62,207,142,0.15);
+  color: var(--akcent-audio);
+}
+
+/* Blok pre/code — styl "terminal" */
+.kod-blok {
+  display: none; /* domyślnie ukryty, JS pokazuje */
+  background-color: #0d1117;
+  border: 0.1vw solid #30363d;
+  border-radius: var(--radius-m);
+  padding: var(--odstep-m);
+  overflow-x: auto;
+  position: relative;
+}
+
+.kod-blok.widoczny {
+  display: block;
+}
+
+.kod-blok pre {
+  margin: 0;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.kod-blok code {
+  font-family: 'Consolas', 'Courier New', 'Lucida Console', monospace;
+  font-size: var(--font-maly);
+  color: #e6edf3;
+  line-height: 1.6;
+}
+
+/* Podświetlanie składni — ręczne klasy */
+.kod-blok .tag    { color: #7ee787; }  /* tagi HTML */
+.kod-blok .atr    { color: #79c0ff; }  /* atrybuty */
+.kod-blok .val    { color: #a5d6ff; }  /* wartości */
+.kod-blok .kom    { color: #8b949e; font-style: italic; } /* komentarze */
+.kod-blok .str    { color: #a5d6ff; }  /* stringi */
+
+/* Info o zmianie rozmiaru */
+.info-rozmiar {
+  margin-top: var(--odstep-s);
+  padding: var(--odstep-s) var(--odstep-m);
+  background-color: rgba(247,201,72,0.07);
+  border-left: 0.3vw solid var(--akcent-glowna);
+  border-radius: 0 var(--radius-s) var(--radius-s) 0;
+  font-size: var(--font-maly);
+  color: var(--kolor-tekst-slaby);
+}
+
+.info-rozmiar strong {
+  color: var(--akcent-glowna);
+}
+
+.info-rozmiar code {
+  font-family: 'Consolas', monospace;
+  background-color: rgba(255,255,255,0.08);
+  padding: 0.1vw 0.4vw;
+  border-radius: 0.3vw;
+  font-size: 0.9em;
+  color: var(--kolor-tekst);
+}
+
+/* ============================================================
+   SEKCJA BŁĘDÓW — specjalne style
+   ============================================================ */
+.blad-vs-ok {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--odstep-m);
+  margin-bottom: var(--odstep-m);
+}
+
+.blad-panel {
+  border-radius: var(--radius-m);
+  padding: var(--odstep-m);
+}
+
+.blad-panel.zly {
+  background-color: rgba(255,107,107,0.07);
+  border: 0.15vw solid rgba(255,107,107,0.3);
+}
+
+.blad-panel.dobry {
+  background-color: rgba(62,207,142,0.07);
+  border: 0.15vw solid rgba(62,207,142,0.3);
+}
+
+.blad-panel-naglowek {
+  display: flex;
+  align-items: center;
+  gap: var(--odstep-s);
+  margin-bottom: var(--odstep-s);
+  font-weight: 700;
+  font-size: var(--font-bazowy);
+}
+
+.blad-panel.zly    .blad-panel-naglowek { color: var(--akcent-bledy); }
+.blad-panel.dobry  .blad-panel-naglowek { color: var(--akcent-audio); }
+
+.blad-opis {
+  font-size: var(--font-maly);
+  color: var(--kolor-tekst-slaby);
+  margin-bottom: var(--odstep-s);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   TABELA ŹRÓDEŁ
+   ============================================================ */
+.tabela-zrodla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-maly);
+  margin-bottom: var(--odstep-l);
+}
+
+.tabela-zrodla th {
+  background-color: var(--kolor-karta);
+  color: var(--kolor-tekst);
+  padding: var(--odstep-s) var(--odstep-m);
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 0.2vw solid var(--kolor-obramowanie);
+  font-size: var(--font-maly);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tabela-zrodla td {
+  padding: var(--odstep-s) var(--odstep-m);
+  border-bottom: 0.1vw solid var(--kolor-obramowanie);
+  color: var(--kolor-tekst-slaby);
+  vertical-align: top;
+}
+
+.tabela-zrodla tr:hover td {
+  background-color: var(--kolor-karta);
+  color: var(--kolor-tekst);
+}
+
+.tabela-zrodla a {
+  color: var(--akcent-wideo);
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.tabela-zrodla a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   STOPKA
+   ============================================================ */
+.stopka {
+  background-color: var(--kolor-powierzchnia);
+  border-top: 0.15vw solid var(--kolor-obramowanie);
+  padding: var(--odstep-l) var(--odstep-xl);
+  text-align: center;
+  color: var(--kolor-tekst-slaby);
+  font-size: var(--font-maly);
+  margin-top: var(--odstep-xl);
+}
+
+.stopka a {
+  color: var(--akcent-glowna);
+  text-decoration: none;
+}
+
+.stopka a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   ELEMENTY POMOCNICZE
+   ============================================================ */
+
+/* Kursywa dla słów obcojęzycznych */
+em {
+  font-style: italic;
+  color: var(--akcent-glowna);
+}
+
+/* Linki w treści */
+a {
+  color: var(--akcent-wideo);
+  text-decoration: none;
+  transition: color var(--przejscie);
+}
+
+a:hover {
+  color: var(--kolor-bialy);
+}
+
+/* Separator poziomy */
+hr.separator {
+  border: none;
+  border-top: 0.1vw solid var(--kolor-obramowanie);
+  margin: var(--odstep-l) 0;
+}
+
+/* Tag "dla chętnych" */
+.dla-chetnych {
+  display: inline-block;
+  font-size: calc(var(--font-maly) * 0.85);
+  background-color: rgba(181,123,238,0.15);
+  color: var(--akcent-grafika);
+  padding: 0.2vw 0.8vw;
+  border-radius: 10vw;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-left: var(--odstep-s);
+  vertical-align: middle;
+}
+
+/* Tabela formatów */
+.tabela-formaty {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-maly);
+  margin: var(--odstep-m) 0;
+}
+
+.tabela-formaty th {
+  background-color: var(--kolor-karta);
+  color: var(--kolor-tekst);
+  padding: var(--odstep-s) var(--odstep-m);
+  text-align: left;
+  border-bottom: 0.2vw solid var(--kolor-obramowanie);
+  font-size: var(--font-maly);
+}
+
+.tabela-formaty td {
+  padding: var(--odstep-s) var(--odstep-m);
+  border-bottom: 0.1vw solid var(--kolor-obramowanie);
+  color: var(--kolor-tekst-slaby);
+}
+
+.tabela-formaty tr:hover td {
+  background-color: var(--kolor-karta);
+  color: var(--kolor-tekst);
+}
+
+/* Ikona "broken" dla błędnych mediów */
+.media-broken {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--odstep-s);
+  padding: var(--odstep-l);
+  background-color: rgba(255,107,107,0.05);
+  border: 0.15vw dashed rgba(255,107,107,0.3);
+  border-radius: var(--radius-m);
+  color: var(--akcent-bledy);
+  font-size: var(--font-bazowy);
+}
+
+.media-broken .ikona-broken {
+  font-size: 4vw;
+}
+
+/* Podświetlenie inline kodu */
+code.inline {
+  font-family: 'Consolas', monospace;
+  background-color: rgba(255,255,255,0.08);
+  padding: 0.1vw 0.5vw;
+  border-radius: 0.3vw;
+  font-size: 0.9em;
+  color: #e6edf3;
+}
+
+/* Sekcja informacyjna (np. BMP/TIFF) */
+.info-box {
+  background-color: var(--kolor-karta);
+  border: 0.15vw solid var(--kolor-obramowanie);
+  border-radius: var(--radius-m);
+  padding: var(--odstep-m);
+  margin-bottom: var(--odstep-l);
+}
+
+.info-box h3 {
+  margin-top: 0;
+}
+
+/* Dwie kolumny dla map (część A i B) */
+.dwie-kolumny {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--odstep-m);
+}
+
+/* Etykieta "Część A / B" */
+.czesc-label {
+  font-size: var(--font-maly);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--akcent-mapy);
+  margin-bottom: var(--odstep-s);
+  display: block;
+}
+
+/* ============================================================
+   ANIMACJE
+   ============================================================ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(1vw); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.blok-media {
+  animation: fadeIn 0.4s ease both;
+}
+
+.karta-nav {
+  animation: fadeIn 0.4s ease both;
+}
+
+/* Opóźnienia animacji dla kart */
+.karta-nav:nth-child(1) { animation-delay: 0.05s; }
+.karta-nav:nth-child(2) { animation-delay: 0.10s; }
+.karta-nav:nth-child(3) { animation-delay: 0.15s; }
+.karta-nav:nth-child(4) { animation-delay: 0.20s; }
+.karta-nav:nth-child(5) { animation-delay: 0.25s; }
+.karta-nav:nth-child(6) { animation-delay: 0.30s; }

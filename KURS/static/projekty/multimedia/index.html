@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projekt edukacyjny omawiający multimedia w internecie: wideo, audio, grafika, mapy i więcej.">
+  <meta name="author" content="Projekt edukacyjny">
+  <title>Multimedia</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="media/img/favicon.ico">
+
+  <!-- Wspólny arkusz stylów -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ============================================================
+       SCROLLBAR — nowa kolorystyka i cieńszy
+       ============================================================ */
+
+    /* Webkit (Chrome, Edge, Safari) */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--kolor-powierzchnia);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--akcent-glowna);
+      border-radius: var(--radius-s);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--kolor-tekst-slaby);
+    }
+
+    /* Firefox */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--akcent-glowna) var(--kolor-powierzchnia);
+    }
+
+    /* ============================================================
+       PRZYCISK POWRÓT NA GÓRĘ
+       ============================================================ */
+    .btn-powrot-gora {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+
+      background: var(--kolor-karta);
+      color: var(--kolor-tekst);
+      border: 1px solid var(--kolor-obramowanie);
+      border-radius: var(--radius-m);
+
+      padding: 0.6rem 1.1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+
+      transition: var(--przejscie);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+
+    .btn-powrot-gora:hover {
+      background: var(--akcent-glowna);
+      color: #1a1d27;
+      border-color: var(--akcent-glowna);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 18px rgba(247,201,72,0.25);
+    }
+
+    .btn-powrot-gora:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAWIGACJA GÓRNA
+       ============================================================ -->
+  <nav class="nav-glowna" role="navigation" aria-label="Nawigacja główna">
+    <!-- Logo / tytuł projektu -->
+    <a href="index.html" class="nav-logo">
+      🎬 Multi<span>media</span>
+    </a>
+
+    <!-- Lista linków do podstron -->
+    <ul class="nav-linki">
+      <li><a href="index.html">🏠 Strona główna</a></li>
+      <li><a href="podstrony/wideo.html">🎥 Wideo</a></li>
+      <li><a href="podstrony/audio.html">🎵 Audio</a></li>
+      <li><a href="podstrony/grafika.html">🖼️ Grafika</a></li>
+      <li><a href="podstrony/mapy.html">🗺️ Mapy</a></li>
+      <li><a href="podstrony/bledy.html">⚠️ Błędy</a></li>
+      <li><a href="podstrony/zrodla.html">📚 Źródła</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+       SEKCJA HERO
+       ============================================================ -->
+  <header class="hero" role="banner">
+    <h1 class="hero-tytul">
+      <span class="akcent">Multi</span>media
+    </h1>
+  </header>
+
+  <!-- ============================================================
+       TREŚĆ GŁÓWNA
+       ============================================================ -->
+  <main class="kontener" role="main">
+
+    <!-- --------------------------------------------------------
+         WSTĘP - pojęcie "multimedia"
+         -------------------------------------------------------- -->
+    <section class="wstep" aria-labelledby="tytul-wstep">
+      <h2 id="tytul-wstep" class="naglowek-strony">Czym są multimedia?</h2>
+
+      <p style="text-align: justify;">
+        <span style="color: gold;">Multimedia</span> (<abbr title="Łacina, język łaciński">łac.</abbr> <em>multum</em> – wiele, <em>medium</em> – pośrednik) –
+        termin, który wszedł do powszechnego użycia w latach 80. i 90. XX wieku wraz
+        z rozwojem komputerów osobistych zdolnych do jednoczesnego przetwarzania
+        różnych typów danych. W dosłownym tłumaczeniu oznacza „wiele nośników"
+        lub „wiele środków przekazu".
+      </p>
+
+      <p style="text-align: justify;">
+        W informatyce i komunikacji <em>multimedia</em> definiuje się jako
+        zintegrowane połączenie co najmniej dwóch różnych form przekazu
+        informacji – takich jak tekst, dźwięk, obraz statyczny, animacja,
+        wideo czy grafika interaktywna – prezentowanych za pośrednictwem
+        urządzeń cyfrowych. Kluczową cechą <em>multimediów</em> jest ich
+        interaktywność: użytkownik może aktywnie wpływać na przebieg
+        prezentacji, co odróżnia je od tradycyjnych <em>mediów</em>
+        jednokierunkowych, takich jak telewizja czy radio.
+      </p>
+
+      <p style="text-align: justify;">
+        Pojęcie <em>medium</em> (<abbr title="Liczba mnoga">lm.</abbr> <em>media</em>) w kontekście
+        komunikacji oznacza każdy kanał lub nośnik służący do przekazywania
+        informacji. Prasa, radio, telewizja i internet to przykłady
+        <em>mediów masowych</em>. W przypadku <em>multimediów</em> chodzi
+        jednak o jednoczesne lub naprzemienne wykorzystanie wielu takich
+        kanałów w obrębie jednego systemu lub przekazu.
+      </p>
+
+      <p style="text-align: justify;">
+        Na stronach internetowych <em>multimedia</em> obejmują przede
+        wszystkim: osadzone pliki wideo (np. w formacie MP4 lub WebM),
+        pliki audio (MP3, OGG, WAV), grafikę rastrową i wektorową
+        (JPG, PNG, GIF, SVG, WebP), a także interaktywne mapy, animacje
+        CSS i JavaScript oraz treści osadzane z zewnętrznych serwisów
+        (YouTube, Spotify, Google Maps). Właściwe stosowanie
+        <em>multimediów</em> na stronach www wymaga znajomości formatów,
+        licencji, dostępności (<abbr title="Język angielski">ang.</abbr> <em>accessibility</em>) oraz
+        optymalizacji wydajności – zagadnień omawianych szczegółowo
+        w kolejnych sekcjach tego projektu.
+      </p>
+    </section>
+
+    <!-- --------------------------------------------------------
+         KAFELKOWA NAWIGACJA DO SEKCJI
+         -------------------------------------------------------- -->
+    <section aria-labelledby="tytul-sekcje">
+      <h2 id="tytul-sekcje" class="naglowek-sekcji">
+        <span class="ikona">📂</span>
+        Sekcje
+      </h2>
+
+      <nav class="siatka-kart" aria-label="Nawigacja do sekcji projektu">
+
+        <!-- Karta: Wideo -->
+        <a href="podstrony/wideo.html" class="karta-nav karta-wideo">
+          <span class="karta-ikona">🎥</span>
+          <span class="karta-tytul">Wideo</span>
+          <span class="karta-opis" style="color: #c8d0e8;">
+            Formaty MP4, WebM, OGG. Osadzanie wideo z dysku
+            i z serwisów YouTube, CDA. Element <code>&lt;video&gt;</code>.
+          </span>
+        </a>
+
+        <!-- Karta: Audio -->
+        <a href="podstrony/audio.html" class="karta-nav karta-audio">
+          <span class="karta-ikona">🎵</span>
+          <span class="karta-tytul">Audio</span>
+          <span class="karta-opis" style="color: #c8d0e8;">
+            Formaty MP3, OGG, WAV, FLAC. Element <code>&lt;audio&gt;</code>.
+            Spotify, SoundCloud, Deezer – embedowanie dźwięku.
+          </span>
+        </a>
+
+        <!-- Karta: Grafika -->
+        <a href="podstrony/grafika.html" class="karta-nav karta-grafika">
+          <span class="karta-ikona">🖼️</span>
+          <span class="karta-tytul">Grafika</span>
+          <span class="karta-opis" style="color: #c8d0e8;">
+            JPG, PNG, GIF, SVG, WebP, BMP, TIFF.
+            Grafika rastrowa vs wektorowa. Przezroczystość i animacje.
+          </span>
+        </a>
+
+        <!-- Karta: Mapy -->
+        <a href="podstrony/mapy.html" class="karta-nav karta-mapy">
+          <span class="karta-ikona">🗺️</span>
+          <span class="karta-tytul">Mapy</span>
+          <span class="karta-opis" style="color: #c8d0e8;">
+            Google Maps, OpenStreetMap, Mapy.com.
+            Trasy piesze i rowerowe, widok satelitarny, Street View.
+          </span>
+        </a>
+
+        <!-- Karta: Błędy -->
+        <a href="podstrony/bledy.html" class="karta-nav karta-bledy">
+          <span class="karta-ikona">⚠️</span>
+          <span class="karta-tytul">Błędy</span>
+          <span class="karta-opis" style="color: #c8d0e8;">
+            Typowe błędy przy osadzaniu multimediów: brak <code>alt</code>,
+            brak fallbacku, błędne URL-e, brak <code>controls</code> i inne.
+          </span>
+        </a>
+
+        <!-- Karta: Źródła -->
+        <a href="podstrony/zrodla.html" class="karta-nav karta-zrodla">
+          <span class="karta-ikona">📚</span>
+          <span class="karta-tytul">Źródła</span>
+          <span class="karta-opis" style="color: #c8d0e8;">
+            Pełna bibliografia projektu: źródła wideo, audio, graficzne,
+            mapowe oraz informacyjne z datami dostępu i licencjami.
+          </span>
+        </a>
+
+      </nav>
+    </section>
+
+    <hr class="separator">
+
+  </main>
+
+  <!-- ============================================================
+       STOPKA
+       ============================================================ -->
+  <footer class="stopka" role="contentinfo">
+    <p>
+      🎬 <strong>Multimedia</strong> – Krzysztof Januszewski 3F © 2026
+    </p>
+  </footer>
+
+  <!-- ============================================================
+       PRZYCISK POWRÓT NA GÓRĘ
+       ============================================================ -->
+  <button
+    class="btn-powrot-gora"
+    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    aria-label="Powrót na górę strony"
+    title="Powrót na górę">
+    ↑ Powrót na górę
+  </button>
+
+  <!-- Wspólny plik JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>

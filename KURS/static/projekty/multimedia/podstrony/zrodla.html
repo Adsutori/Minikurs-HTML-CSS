@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <!-- ============================================================
+       MULTIMEDIA — Sekcja 6: Źródła (zrodla.html)
+       ============================================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pełna bibliografia projektu Multimedia — źródła wideo, audio, graficzne, mapowe oraz informacyjne.">
+  <title>Źródła — Multimedia</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/x-icon" href="../media/img/favicon.ico">
+
+  <style>
+    /* ============================================================
+       STYLE SPECYFICZNE DLA STRONY ŹRÓDEŁ
+       ============================================================ */
+
+    .zrodla-sekcja {
+      margin-bottom: var(--odstep-xl);
+    }
+
+    .zrodla-naglowek {
+      display: flex;
+      align-items: center;
+      gap: 1vw;
+      font-size: var(--font-duzy);
+      font-weight: 700;
+      color: var(--kolor-tekst);
+      margin-bottom: var(--odstep-m);
+      padding-bottom: var(--odstep-s);
+      border-bottom: 0.15vw solid var(--kolor-ramka);
+    }
+
+    .zrodlo-wpis {
+      display: grid;
+      grid-template-columns: 2.5vw 1fr;
+      gap: 0 var(--odstep-m);
+      align-items: start;
+      padding: var(--odstep-m) 0;
+      border-bottom: 0.08vw solid rgba(255,255,255,0.05);
+      transition: background var(--czas-animacji);
+    }
+
+    .zrodlo-wpis:last-child {
+      border-bottom: none;
+    }
+
+    .zrodlo-wpis:hover {
+      background: rgba(255,255,255,0.02);
+      border-radius: var(--radius-s);
+    }
+
+    .zrodlo-numer {
+      font-size: var(--font-maly);
+      font-weight: 700;
+      color: var(--kolor-tekst-slaby);
+      padding-top: 0.2vw;
+      text-align: right;
+    }
+
+    .zrodlo-tresc {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35vw;
+    }
+
+    .zrodlo-tytul {
+      font-weight: 600;
+      color: var(--kolor-tekst);
+      font-size: var(--font-normalny);
+      line-height: 1.5;
+    }
+
+    .zrodlo-autor {
+      font-size: var(--font-maly);
+      color: var(--kolor-tekst-slaby);
+    }
+
+    .zrodlo-url {
+      font-size: var(--font-maly);
+      word-break: break-all;
+    }
+
+    .zrodlo-url a {
+      color: var(--kolor-link);
+      text-decoration: none;
+    }
+
+    .zrodlo-url a:hover {
+      text-decoration: underline;
+    }
+
+    .zrodlo-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5vw;
+      margin-top: 0.2vw;
+    }
+
+    /* Odznaka licencji */
+    .badge-licencja {
+      display: inline-block;
+      padding: 0.15vw 0.7vw;
+      border-radius: 10vw;
+      font-size: calc(var(--font-maly) * 0.82);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .lic-cc       { background: rgba(74,158,255,0.15);  color: #4a9eff; }
+    .lic-pd       { background: rgba(62,207,142,0.15);  color: #3ecf8e; }
+    .lic-edu      { background: rgba(247,201,72,0.15);  color: #f7c948; }
+    .lic-komercja { background: rgba(255,107,107,0.15); color: #ff6b6b; }
+    .lic-obl      { background: rgba(181,123,238,0.15); color: #b57bee; }
+
+    /* Odznaka kategorii zasobu */
+    .badge-typ {
+      display: inline-block;
+      padding: 0.15vw 0.7vw;
+      border-radius: 10vw;
+      font-size: calc(var(--font-maly) * 0.82);
+      font-weight: 600;
+      background: rgba(255,255,255,0.06);
+      color: var(--kolor-tekst-slaby);
+    }
+
+    /* Data dostępu */
+    .zrodlo-data {
+      font-size: calc(var(--font-maly) * 0.85);
+      color: var(--kolor-tekst-slaby);
+      font-style: italic;
+    }
+
+    /* Ramka informacyjna o licencjach */
+    .legenda-licencji {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1vw;
+      padding: var(--odstep-m);
+      background: var(--kolor-karta);
+      border-radius: var(--radius-m);
+      border: 0.1vw solid var(--kolor-ramka);
+      margin-bottom: var(--odstep-xl);
+    }
+
+    .legenda-pozycja {
+      display: flex;
+      align-items: center;
+      gap: 0.5vw;
+      font-size: var(--font-maly);
+      color: var(--kolor-tekst-slaby);
+    }
+
+    /* ============================================================
+       SCROLLBAR — nowa kolorystyka i cieńszy (akcent źródła)
+       ============================================================ */
+
+    /* Webkit (Chrome, Edge, Safari) */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--kolor-powierzchnia);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--akcent-zrodla);
+      border-radius: var(--radius-s);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--kolor-tekst-slaby);
+    }
+
+    /* Firefox */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--akcent-zrodla) var(--kolor-powierzchnia);
+    }
+
+    /* ============================================================
+       PRZYCISK POWRÓT NA GÓRĘ
+       ============================================================ */
+    .btn-powrot-gora {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+
+      background: var(--kolor-karta);
+      color: var(--kolor-tekst);
+      border: 1px solid var(--kolor-obramowanie);
+      border-radius: var(--radius-m);
+
+      padding: 0.6rem 1.1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+
+      transition: var(--przejscie);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+
+    .btn-powrot-gora:hover {
+      background: var(--akcent-zrodla);
+      color: #1a1d27;
+      border-color: var(--akcent-zrodla);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 18px rgba(160,174,192,0.25);
+    }
+
+    .btn-powrot-gora:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="strona-zrodla">
+
+  <!-- ============================================================
+       NAWIGACJA GÓRNA
+       ============================================================ -->
+  <nav class="nav-glowna" role="navigation" aria-label="Nawigacja główna">
+    <a href="../index.html" class="nav-logo">🎬 Multi<span>media</span></a>
+    <ul class="nav-linki">
+      <li><a href="../index.html">🏠 Strona główna</a></li>
+      <li><a href="wideo.html">🎥 Wideo</a></li>
+      <li><a href="audio.html">🎵 Audio</a></li>
+      <li><a href="grafika.html">🖼️ Grafika</a></li>
+      <li><a href="mapy.html">🗺️ Mapy</a></li>
+      <li><a href="bledy.html">⚠️ Błędy</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+       TREŚĆ GŁÓWNA
+       ============================================================ -->
+  <main class="kontener" role="main">
+
+    <h1 class="naglowek-strony">📚 Źródła i bibliografia</h1>
+
+    <!-- --------------------------------------------------------
+         WSTĘP
+         -------------------------------------------------------- -->
+    <!-- <section class="wstep" aria-labelledby="zrodla-wstep">
+      <h2 id="zrodla-wstep" style="font-size:var(--font-duzy);margin-bottom:var(--odstep-s);color:var(--akcent-zrodla);">O bibliografii projektu</h2>
+      <p>
+        Poniżej zestawiono wszystkie zasoby zewnętrzne wykorzystane
+        w projekcie — pliki wideo, audio, graficzne, mapy oraz źródła
+        informacyjne (artykuły, dokumentacje, standardy). Przy każdym
+        zasobie podano autora, tytuł, adres URL, licencję oraz datę
+        dostępu. Wszystkie zasoby zostały użyte zgodnie z warunkami
+        swoich licencji.
+      </p>
+      <p>
+        Projekt korzysta wyłącznie z zasobów dostępnych na licencjach
+        otwartych (Creative Commons, Public Domain, ODbL) lub
+        z zasobów udostępnionych do celów edukacyjnych przez ich właścicieli.
+      </p>
+    </section> -->
+
+    <!-- --------------------------------------------------------
+         LEGENDA LICENCJI
+         -------------------------------------------------------- -->
+    <!-- <div class="legenda-licencji" role="note" aria-label="Legenda oznaczeń licencji">
+      <strong style="color:var(--kolor-tekst);font-size:var(--font-maly);width:100%;margin-bottom:0.3vw;">
+        🏷️ Legenda licencji:
+      </strong>
+      <div class="legenda-pozycja">
+        <span class="badge-licencja lic-cc">CC</span>
+        Creative Commons (różne warianty)
+      </div>
+      <div class="legenda-pozycja">
+        <span class="badge-licencja lic-pd">PD</span>
+        Public Domain — domena publiczna
+      </div>
+      <div class="legenda-pozycja">
+        <span class="badge-licencja lic-edu">EDU</span>
+        Do celów edukacyjnych / demonstracyjnych
+      </div>
+      <div class="legenda-pozycja">
+        <span class="badge-licencja lic-obl">ODbL</span>
+        Open Database License
+      </div>
+      <div class="legenda-pozycja">
+        <span class="badge-licencja lic-komercja">©</span>
+        Prawa zastrzeżone — użycie zgodne z regulaminem serwisu
+      </div>
+    </div> -->
+
+    <!-- ========================================================
+         SEKCJA 1 — ŹRÓDŁA WIDEO
+         ======================================================== -->
+    <section class="zrodla-sekcja" aria-labelledby="zrodla-wideo">
+      <h2 id="zrodla-wideo" class="zrodla-naglowek">
+        🎥 Źródła wideo
+      </h2>
+
+      <!-- Wpis 1 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">1</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Big Buck Bunny — animowany film krótkometrażowy</div>
+          <div class="zrodlo-autor">Autor: Blender Foundation / Peach Open Movie Project</div>
+          <div class="zrodlo-url">
+            <a href="https://www.w3schools.com/html/mov_bbb.mp4" target="_blank" rel="noopener">
+              https://www.w3schools.com/html/mov_bbb.mp4
+            </a>
+            &nbsp;·&nbsp;
+            <a href="https://peach.blender.org" target="_blank" rel="noopener">
+              https://peach.blender.org
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-cc">CC BY 3.0</span>
+            <span class="badge-typ">🎥 MP4 / WebM</span>
+            <span class="badge-typ">📁 Plik z dysku / sieci</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Wideo — elementy 1, 2 (plik z dysku bez i z controls)
+            oraz element 5 (format WebM z fallbackiem).
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 2 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">2</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Elephant Dream — pierwszy otwarty film animowany Blender Foundation</div>
+          <div class="zrodlo-autor">Autor: Blender Foundation / Orange Open Movie Project (reż. Bassam Kurdali)</div>
+          <div class="zrodlo-url">
+            <a href="https://www.youtube.com/watch?v=vrj9BZIQtCg" target="_blank" rel="noopener">
+              https://www.youtube.com/watch?v=vrj9BZIQtCg
+            </a>
+            &nbsp;·&nbsp;
+            <a href="https://orange.blender.org" target="_blank" rel="noopener">
+              https://orange.blender.org
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-cc">CC BY 2.5</span>
+            <span class="badge-typ">🎥 YouTube embed</span>
+            <span class="badge-typ">🌐 Embed zewnętrzny</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Wideo — element 3 (YouTube embed).
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 3 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">3</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Big Buck Bunny — wersja dostępna w serwisie CDA.pl</div>
+          <div class="zrodlo-autor">Autor: Blender Foundation · Hostowanie: CDA.pl (Centrum Dystrybucji Audiowizualnej)</div>
+          <div class="zrodlo-url">
+            <a href="https://www.cda.pl/video/1498749c" target="_blank" rel="noopener">
+              https://www.cda.pl/video/1498749c
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-cc">CC BY 3.0</span>
+            <span class="badge-typ">🎥 CDA embed</span>
+            <span class="badge-typ">🌐 Embed zewnętrzny</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Wideo — element 4 (CDA.pl embed).
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================
+         SEKCJA 2 — ŹRÓDŁA AUDIO
+         ======================================================== -->
+    <section class="zrodla-sekcja" aria-labelledby="zrodla-audio">
+      <h2 id="zrodla-audio" class="zrodla-naglowek">
+        🎵 Źródła audio
+      </h2>
+
+      <!-- Wpis 4 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">4</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">horse.mp3 — przykładowy plik dźwiękowy</div>
+          <div class="zrodlo-autor">Źródło: W3Schools HTML Audio Tutorial</div>
+          <div class="zrodlo-url">
+            <a href="https://www.w3schools.com/html/horse.mp3" target="_blank" rel="noopener">
+              https://www.w3schools.com/html/horse.mp3
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-edu">EDU</span>
+            <span class="badge-typ">🎵 MP3</span>
+            <span class="badge-typ">📁 Plik z dysku / sieci</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Audio — elementy 1 i 2 (plik z dysku i plik z sieci).
+            Plik udostępniony przez W3Schools do celów edukacyjnych.
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 5 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">5</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Spotify — playlista „Classic Rock Mix"</div>
+          <div class="zrodlo-autor">Źródło: Spotify AB · Playlista redakcyjna Spotify</div>
+          <div class="zrodlo-url">
+            <a href="https://open.spotify.com/playlist/37i9dQZF1EIcVkEtbzdTRx" target="_blank" rel="noopener">
+              https://open.spotify.com/playlist/37i9dQZEVXbMDoHDwVN2tF
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-komercja">©</span>
+            <span class="badge-typ">🎵 Spotify embed</span>
+            <span class="badge-typ">🌐 Embed zewnętrzny</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Audio — element 3 (Spotify embed).
+            Osadzono zgodnie z regulaminem Spotify dla twórców stron
+            (<a href="https://developer.spotify.com/documentation/embeds" target="_blank" rel="noopener">Spotify Embeds</a>).
+            Prawa do nagrań należą do ich właścicieli.
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 6 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">6</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">SoundCloud — przykładowy utwór / podcast</div>
+          <div class="zrodlo-autor">Źródło: SoundCloud GmbH</div>
+          <div class="zrodlo-url">
+            <a href="https://soundcloud.com" target="_blank" rel="noopener">
+              https://soundcloud.com
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-komercja">©</span>
+            <span class="badge-typ">🎵 SoundCloud embed</span>
+            <span class="badge-typ">🌐 Embed zewnętrzny</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Audio — element 4 (SoundCloud embed).
+            Osadzono zgodnie z regulaminem SoundCloud
+            (<a href="https://developers.soundcloud.com/docs/api/html5-widget" target="_blank" rel="noopener">SoundCloud Widget API</a>).
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 7 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">7</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Deezer — przykładowa playlista</div>
+          <div class="zrodlo-autor">Źródło: Deezer SA</div>
+          <div class="zrodlo-url">
+            <a href="https://www.deezer.com" target="_blank" rel="noopener">
+              https://www.deezer.com
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-komercja">©</span>
+            <span class="badge-typ">🎵 Deezer embed</span>
+            <span class="badge-typ">🌐 Embed zewnętrzny</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Audio — element 5 (Deezer embed).
+            Osadzono zgodnie z regulaminem Deezer dla partnerów.
+            Prawa do nagrań należą do ich właścicieli.
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================
+         SEKCJA 3 — ŹRÓDŁA GRAFICZNE
+         ======================================================== -->
+    <section class="zrodla-sekcja" aria-labelledby="zrodla-grafika">
+      <h2 id="zrodla-grafika" class="zrodla-naglowek">
+        🖼️ Źródła graficzne
+      </h2>
+
+      <!-- Wpis 8 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">8</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Losowe zdjęcia demonstracyjne (JPG, WebP)</div>
+          <div class="zrodlo-autor">Źródło: Picsum Photos — serwis losowych zdjęć oparty na Unsplash</div>
+          <div class="zrodlo-url">
+            <a href="https://picsum.photos" target="_blank" rel="noopener">
+              https://picsum.photos
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-cc">Unsplash License</span>
+            <span class="badge-typ">🖼️ JPG / WebP</span>
+            <span class="badge-typ">🌐 Plik z sieci</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Grafika — element 1 (JPG) i element 6b (WebP fallback).
+            Licencja Unsplash zezwala na bezpłatne użycie komercyjne i niekomercyjne
+            bez konieczności podawania autora (choć jest to zalecane).
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 9 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">9</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Logo Wikimedia Commons — PNG z przezroczystym tłem</div>
+          <div class="zrodlo-autor">Autor: Wikimedia Foundation</div>
+          <div class="zrodlo-url">
+            <a href="https://commons.wikimedia.org/wiki/File:Commons-logo.svg" target="_blank" rel="noopener">
+              https://commons.wikimedia.org/wiki/File:Commons-logo.svg
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-pd">Public Domain</span>
+            <span class="badge-typ">🖼️ PNG (kanał alfa)</span>
+            <span class="badge-typ">🌐 Wikimedia Commons</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Grafika — element 2 (PNG z przezroczystością).
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 10 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">10</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Rotating Earth (large) — animowany GIF obracającej się Ziemi</div>
+          <div class="zrodlo-autor">Autor: Wikimedia Commons contributors</div>
+          <div class="zrodlo-url">
+            <a href="https://commons.wikimedia.org/wiki/File:Rotating_earth_(large).gif" target="_blank" rel="noopener">
+              https://commons.wikimedia.org/wiki/File:Rotating_earth_(large).gif
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-pd">Public Domain</span>
+            <span class="badge-typ">🖼️ GIF animowany</span>
+            <span class="badge-typ">🌐 Wikimedia Commons</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Grafika — element 3 (GIF animowany).
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 11 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">11</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Golden Gate Bridge — zdjęcie mostu w San Francisco</div>
+          <div class="zrodlo-autor">Autor: Rich Niewiroski Jr.</div>
+          <div class="zrodlo-url">
+            <a href="https://commons.wikimedia.org/wiki/File:GoldenGateBridge-001.jpg" target="_blank" rel="noopener">
+              https://commons.wikimedia.org/wiki/File:GoldenGateBridge-001.jpg
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-cc">CC BY 2.5</span>
+            <span class="badge-typ">🖼️ JPG</span>
+            <span class="badge-typ">🌐 Wikimedia Commons</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Grafika — element 4 (obraz z zewnętrznego serwisu).
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 12 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">12</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Przykładowa grafika SVG — wygenerowana inline</div>
+          <div class="zrodlo-autor">Autor: projekt edukacyjny (oryginalna grafika SVG)</div>
+          <div class="zrodlo-url">—</div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-pd">Oryginał projektu</span>
+            <span class="badge-typ">✏️ SVG inline</span>
+            <span class="zrodlo-data">Data utworzenia: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Grafika — element 5 (grafika wektorowa SVG).
+            Grafika wygenerowana oryginalnie na potrzeby projektu.
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 13 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">13</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Camponotus flavomarginatus ant — animowany GIF mrówki z przezroczystym tłem</div>
+          <div class="zrodlo-autor">Autor: Wikimedia Commons contributors</div>
+          <div class="zrodlo-url">
+            <a href="https://commons.wikimedia.org/wiki/File:Camponotus_flavomarginatus_ant.gif" target="_blank" rel="noopener">
+              https://commons.wikimedia.org/wiki/File:Camponotus_flavomarginatus_ant.gif
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-pd">Public Domain</span>
+            <span class="badge-typ">🖼️ GIF przezroczysty</span>
+            <span class="badge-typ">🌐 Wikimedia Commons</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Grafika — element 6a (GIF z przezroczystym tłem).
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 14 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">14</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Google WebP Gallery — przykładowe pliki WebP</div>
+          <div class="zrodlo-autor">Autor: Google LLC</div>
+          <div class="zrodlo-url">
+            <a href="https://www.gstatic.com/webp/gallery/1.webp" target="_blank" rel="noopener">
+              https://www.gstatic.com/webp/gallery/1.webp
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-edu">EDU / Demo</span>
+            <span class="badge-typ">🖼️ WebP</span>
+            <span class="badge-typ">🌐 Plik z sieci</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Grafika — element 6b (WebP z fallbackiem).
+            Pliki z galerii demonstracyjnej Google WebP udostępnione
+            do celów prezentacji formatu.
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================
+         SEKCJA 4 — ŹRÓDŁA MAPOWE
+         ======================================================== -->
+    <section class="zrodla-sekcja" aria-labelledby="zrodla-mapy">
+      <h2 id="zrodla-mapy" class="zrodla-naglowek">
+        🗺️ Źródła mapowe
+      </h2>
+
+      <!-- Wpis 15 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">15</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Google Maps — mapy drogowe, satelitarne, trasy i Street View</div>
+          <div class="zrodlo-autor">Autor: Google LLC</div>
+          <div class="zrodlo-url">
+            <a href="https://maps.google.com" target="_blank" rel="noopener">
+              https://maps.google.com
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-komercja">© Google</span>
+            <span class="badge-typ">🗺️ Google Maps embed</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Mapy — elementy 1, 2, 3, 4A, 5, 6B.
+            Mapy osadzone zgodnie z
+            <a href="https://developers.google.com/maps/documentation/embed/get-started" target="_blank" rel="noopener">
+              Google Maps Embed API Terms of Service
+            </a>.
+            Dane kartograficzne © Google, Maxar Technologies, OpenStreetMap contributors.
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 16 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">16</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">OpenStreetMap — otwarta mapa świata tworzona przez społeczność</div>
+          <div class="zrodlo-autor">Autor: OpenStreetMap contributors</div>
+          <div class="zrodlo-url">
+            <a href="https://www.openstreetmap.org" target="_blank" rel="noopener">
+              https://www.openstreetmap.org
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-obl">ODbL 1.0</span>
+            <span class="badge-typ">🗺️ OSM embed</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Mapy — element 6A.
+            Dane dostępne na licencji
+            <a href="https://opendatacommons.org/licenses/odbl/" target="_blank" rel="noopener">
+              Open Database License (ODbL) 1.0
+            </a>.
+            Wymagane podanie: „© OpenStreetMap contributors".
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 17 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">17</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Mapy.cz — czeski serwis kartograficzny</div>
+          <div class="zrodlo-autor">Autor: Seznam.cz, a.s.</div>
+          <div class="zrodlo-url">
+            <a href="https://mapy.cz" target="_blank" rel="noopener">
+              https://mapy.cz
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-komercja">© Seznam.cz</span>
+            <span class="badge-typ">🗺️ Mapy.cz embed</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Użycie: sekcja Mapy — element 4B.
+            Mapa osadzona zgodnie z warunkami serwisu Mapy.cz
+            (<a href="https://napoveda.seznam.cz/cz/mapy/" target="_blank" rel="noopener">
+              Nápověda Mapy.cz
+            </a>).
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================
+         SEKCJA 5 — ŹRÓDŁA INFORMACYJNE
+         ======================================================== -->
+    <section class="zrodla-sekcja" aria-labelledby="zrodla-info">
+      <h2 id="zrodla-info" class="zrodla-naglowek">
+        📖 Źródła informacyjne — dokumentacje i artykuły
+      </h2>
+
+      <!-- Wpis 18 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">18</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">MDN Web Docs — HTML: HyperText Markup Language</div>
+          <div class="zrodlo-autor">Autor: Mozilla Foundation i współtwórcy MDN</div>
+          <div class="zrodlo-url">
+            <a href="https://developer.mozilla.org/pl/docs/Web/HTML" target="_blank" rel="noopener">
+              https://developer.mozilla.org/pl/docs/Web/HTML
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-cc">CC BY-SA 2.5</span>
+            <span class="badge-typ">📖 Dokumentacja</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Główne źródło informacji o elementach HTML5:
+            <code class="inline">&lt;video&gt;</code>,
+            <code class="inline">&lt;audio&gt;</code>,
+            <code class="inline">&lt;img&gt;</code>,
+            <code class="inline">&lt;picture&gt;</code>,
+            <code class="inline">&lt;iframe&gt;</code>,
+            <code class="inline">&lt;svg&gt;</code>.
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 19 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">19</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">HTML Living Standard — oficjalna specyfikacja HTML</div>
+          <div class="zrodlo-autor">Autor: WHATWG (Web Hypertext Application Technology Working Group)</div>
+          <div class="zrodlo-url">
+            <a href="https://html.spec.whatwg.org/multipage/" target="_blank" rel="noopener">
+              https://html.spec.whatwg.org/multipage/
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-cc">CC BY 4.0</span>
+            <span class="badge-typ">📖 Standard</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Oficjalna specyfikacja elementów multimedialnych HTML5.
+            Sekcje: 4.8 (Embedded content), 4.8.9 (The video element),
+            4.8.10 (The audio element), 4.8.4 (The img element).
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 20 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">20</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">WCAG 2.1 — Web Content Accessibility Guidelines</div>
+          <div class="zrodlo-autor">Autor: W3C Web Accessibility Initiative (WAI)</div>
+          <div class="zrodlo-url">
+            <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">
+              https://www.w3.org/TR/WCAG21/
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-cc">W3C Document License</span>
+            <span class="badge-typ">📖 Standard dostępności</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Podstawa wymagań dostępności stosowanych w projekcie:
+            kryterium 1.1.1 (tekst alternatywny), 1.4.2 (kontrola audio),
+            2.1.1 (klawiatura), 4.1.2 (nazwa, rola, wartość).
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 21 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">21</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Wikipedia — artykuły o formatach multimedialnych</div>
+          <div class="zrodlo-autor">Autor: Wikipedia contributors (Wikimedia Foundation)</div>
+          <div class="zrodlo-url">
+            <a href="https://pl.wikipedia.org/wiki/Multimedia" target="_blank" rel="noopener">
+              https://pl.wikipedia.org/wiki/Multimedia
+            </a>
+            &nbsp;·&nbsp;
+            <a href="https://pl.wikipedia.org/wiki/MPEG-4" target="_blank" rel="noopener">MPEG-4</a>
+            &nbsp;·&nbsp;
+            <a href="https://pl.wikipedia.org/wiki/WebM" target="_blank" rel="noopener">WebM</a>
+            &nbsp;·&nbsp;
+            <a href="https://pl.wikipedia.org/wiki/MP3" target="_blank" rel="noopener">MP3</a>
+            &nbsp;·&nbsp;
+            <a href="https://pl.wikipedia.org/wiki/JPEG" target="_blank" rel="noopener">JPEG</a>
+            &nbsp;·&nbsp;
+            <a href="https://pl.wikipedia.org/wiki/Portable_Network_Graphics" target="_blank" rel="noopener">PNG</a>
+            &nbsp;·&nbsp;
+            <a href="https://pl.wikipedia.org/wiki/GIF" target="_blank" rel="noopener">GIF</a>
+            &nbsp;·&nbsp;
+            <a href="https://pl.wikipedia.org/wiki/WebP" target="_blank" rel="noopener">WebP</a>
+            &nbsp;·&nbsp;
+            <a href="https://pl.wikipedia.org/wiki/Scalable_Vector_Graphics" target="_blank" rel="noopener">SVG</a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-cc">CC BY-SA 4.0</span>
+            <span class="badge-typ">📖 Encyklopedia</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Źródło definicji i opisów formatów multimedialnych
+            użytych we wstępach sekcji Wideo, Audio i Grafika.
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 22 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">22</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">W3Schools — HTML Media Tutorial</div>
+          <div class="zrodlo-autor">Autor: Refsnes Data (W3Schools)</div>
+          <div class="zrodlo-url">
+            <a href="https://www.w3schools.com/html/html_media.asp" target="_blank" rel="noopener">
+              https://www.w3schools.com/html/html_media.asp
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-edu">EDU</span>
+            <span class="badge-typ">📖 Tutorial</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Źródło przykładowych plików demonstracyjnych (horse.mp3, mov_bbb.mp4)
+            oraz inspiracja dla przykładów kodu HTML.
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 23 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">23</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">Google Chrome Autoplay Policy — dokumentacja polityki autoodtwarzania</div>
+          <div class="zrodlo-autor">Autor: Google LLC (Chromium Blog)</div>
+          <div class="zrodlo-url">
+            <a href="https://developer.chrome.com/blog/autoplay/" target="_blank" rel="noopener">
+              https://developer.chrome.com/blog/autoplay/
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-cc">CC BY 4.0</span>
+            <span class="badge-typ">📖 Dokumentacja</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Źródło informacji o polityce autoodtwarzania przeglądarek
+            użytych w sekcji Błędy — błąd nr 5 (autoplay bez muted).
+          </div>
+        </div>
+      </div>
+
+      <!-- Wpis 24 -->
+      <div class="zrodlo-wpis">
+        <div class="zrodlo-numer">24</div>
+        <div class="zrodlo-tresc">
+          <div class="zrodlo-tytul">web.dev — Serve images in modern formats (WebP, AVIF)</div>
+          <div class="zrodlo-autor">Autor: Google LLC (web.dev)</div>
+          <div class="zrodlo-url">
+            <a href="https://web.dev/articles/uses-webp-images" target="_blank" rel="noopener">
+              https://web.dev/articles/uses-webp-images
+            </a>
+          </div>
+          <div class="zrodlo-meta">
+            <span class="badge-licencja lic-cc">CC BY 4.0</span>
+            <span class="badge-typ">📖 Artykuł techniczny</span>
+            <span class="zrodlo-data">Data dostępu: 26.03.2026</span>
+          </div>
+          <div class="zrodlo-autor" style="margin-top:0.3vw;">
+            Źródło danych o oszczędnościach rozmiaru pliku WebP vs JPG/PNG
+            (25–35% mniejsze pliki) użytych w opisie formatu WebP
+            w sekcji Grafika — element 6b.
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================
+         TABELA PODSUMOWUJĄCA
+         ======================================================== -->
+    <!-- <section aria-labelledby="zrodla-tabela">
+      <h2 id="zrodla-tabela" class="naglowek-sekcji">
+        📊 Zestawienie zbiorcze
+      </h2>
+
+      <div class="info-box">
+        <table class="tabela-formaty" aria-label="Zestawienie zbiorcze źródeł projektu">
+          <thead>
+            <tr>
+              <th scope="col">Kategoria</th>
+              <th scope="col">Liczba źródeł</th>
+              <th scope="col">Serwisy / Autorzy</th>
+              <th scope="col">Dominująca licencja</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>🎥 Wideo</td>
+              <td>3</td>
+              <td>Blender Foundation, YouTube, CDA.pl</td>
+              <td><span class="badge-licencja lic-cc">CC BY 2.5 / 3.0</span></td>
+            </tr>
+            <tr>
+              <td>🎵 Audio</td>
+              <td>4</td>
+              <td>W3Schools, Spotify, SoundCloud, Deezer</td>
+              <td><span class="badge-licencja lic-edu">EDU</span> / <span class="badge-licencja lic-komercja">©</span></td>
+            </tr>
+            <tr>
+              <td>🖼️ Grafika</td>
+              <td>7</td>
+              <td>Picsum, Wikimedia Commons, Google, oryginał</td>
+              <td><span class="badge-licencja lic-pd">Public Domain</span> / <span class="badge-licencja lic-cc">CC</span></td>
+            </tr>
+            <tr>
+              <td>🗺️ Mapy</td>
+              <td>3</td>
+              <td>Google Maps, OpenStreetMap, Mapy.cz</td>
+              <td><span class="badge-licencja lic-komercja">© Google</span> / <span class="badge-licencja lic-obl">ODbL</span></td>
+            </tr>
+            <tr>
+              <td>📖 Informacyjne</td>
+              <td>7</td>
+              <td>MDN, WHATWG, W3C, Wikipedia, W3Schools, Google</td>
+              <td><span class="badge-licencja lic-cc">CC BY / CC BY-SA</span></td>
+            </tr>
+            <tr style="font-weight:700;">
+              <td>Łącznie</td>
+              <td>24</td>
+              <td colspan="2">Wszystkie zasoby użyte zgodnie z warunkami licencji</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section> -->
+
+  </main>
+
+  <!-- ============================================================
+       STOPKA
+       ============================================================ -->
+  <footer class="stopka" role="contentinfo">
+    <p>
+      🎬 <strong>Multimedia</strong> — Krzysztof Januszewski 3F © 2026
+    </p>
+    <a href="../index.html">🏠 Strona główna</a>.
+  </footer>
+
+  <!-- ============================================================
+       PRZYCISK POWRÓT NA GÓRĘ
+       ============================================================ -->
+  <button
+    class="btn-powrot-gora"
+    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    aria-label="Powrót na górę strony"
+    title="Powrót na górę">
+    ↑ Powrót na górę
+  </button>
+
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <!-- ============================================================
+       MULTIMEDIA — Sekcja 2: Audio (audio.html)
+       ============================================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Audio cyfrowe w internecie – formaty MP3, OGG, WAV, FLAC, Spotify, SoundCloud, Deezer.">
+  <title>Audio — Multimedia</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/x-icon" href="../media/img/favicon.ico">
+
+  <style>
+    /* Odtwarzacze 1 i 2 - identyczny wygląd */
+    .audio-typ-ab {
+      width: 40vw;
+      height: 2.5vw;
+      display: block;
+      justify-content: center;
+      accent-color: var(--akcent-audio);
+    }
+
+    /* Odtwarzacze 3, 4 i 5 (Spotify / SoundCloud / Deezer)
+       - IDENTYCZNY wygląd: ten sam rozmiar, kształt, border-radius */
+    .audio-typ-cd {
+      width: 50vw;
+      height: 15vw;
+      min-height: 152px;
+      max-height: 200px;
+      border: none;
+      border-radius: 1vw;
+      justify-content: center;
+      display: block;
+    }
+
+    /* ============================================================
+       SCROLLBAR — nowa kolorystyka i cieńszy (akcent audio)
+       ============================================================ */
+
+    /* Webkit (Chrome, Edge, Safari) */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--kolor-powierzchnia);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--akcent-audio);
+      border-radius: var(--radius-s);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--kolor-tekst-slaby);
+    }
+
+    /* Firefox */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--akcent-audio) var(--kolor-powierzchnia);
+    }
+
+    /* ============================================================
+       PRZYCISK POWRÓT NA GÓRĘ
+       ============================================================ */
+    .btn-powrot-gora {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+
+      background: var(--kolor-karta);
+      color: var(--kolor-tekst);
+      border: 1px solid var(--kolor-obramowanie);
+      border-radius: var(--radius-m);
+
+      padding: 0.6rem 1.1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+
+      transition: var(--przejscie);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+
+    .btn-powrot-gora:hover {
+      background: var(--akcent-audio);
+      color: #1a1d27;
+      border-color: var(--akcent-audio);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 18px rgba(62,207,142,0.25);
+    }
+
+    .btn-powrot-gora:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="strona-audio">
+
+  <!-- ============================================================
+       NAWIGACJA GÓRNA
+       ============================================================ -->
+  <nav class="nav-glowna" role="navigation" aria-label="Nawigacja główna">
+    <a href="../index.html" class="nav-logo">🎬 Multi<span>media</span></a>
+    <ul class="nav-linki">
+      <li><a href="../index.html">🏠 Strona główna</a></li>
+      <li><a href="wideo.html">🎥 Wideo</a></li>
+      <li><a href="audio.html">🎵 Audio</a></li>
+      <li><a href="grafika.html">🖼️ Grafika</a></li>
+      <li><a href="mapy.html">🗺️ Mapy</a></li>
+      <li><a href="bledy.html">⚠️ Błędy</a></li>
+      <li><a href="zrodla.html">📚 Źródła</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+       TREŚĆ GŁÓWNA
+       ============================================================ -->
+  <main class="kontener" role="main">
+
+    <h1 class="naglowek-strony">🎵 Audio</h1>
+
+    <!-- --------------------------------------------------------
+         WSTĘP SEKCJI
+         -------------------------------------------------------- -->
+    <section class="wstep" aria-labelledby="audio-wstep">
+      <h2 id="audio-wstep" style="font-size:var(--font-duzy);margin-bottom:var(--odstep-s);color:var(--akcent-audio);">Audio cyfrowe w internecie</h2>
+      <p style="text-align:justify;">
+        Audio (<abbr title="Łacina, język łaciński">łac.</abbr> <em>audio</em> – słyszę)
+        – zapis dźwięku w postaci binarnej, uzyskany przez
+        próbkowanie sygnału analogowego z określoną częstotliwością (np. 44 100 <abbr title="Hertz – jednostka częstotliwości">Hz</abbr>
+        dla <abbr title="Compact Disc – cyfrowy nośnik optyczny">CD</abbr>) i kwantyzację amplitudy. W internecie pliki audio przesyłane są
+        strumieniowo lub pobierane progresywnie, a element <abbr title="HyperText Markup Language 5">HTML5</abbr>
+        <code class="inline">&lt;audio&gt;</code> umożliwia ich odtwarzanie
+        bez zewnętrznych wtyczek.
+      </p>
+      <p style="text-align:justify;">
+        Najpopularniejszym formatem jest
+        <a href="https://pl.wikipedia.org/wiki/MP3" target="_blank" rel="noopener"><strong><abbr title="MPEG-1 Audio Layer III">MP3</abbr></strong></a>
+        (<abbr title="Moving Picture Experts Group 1">MPEG</abbr>-1 Audio Layer III) – kompresja stratna, bardzo dobra kompatybilność,
+        pliki kilkakrotnie mniejsze od oryginału.
+        <a href="https://pl.wikipedia.org/wiki/Ogg" target="_blank" rel="noopener"><strong><abbr title="Ogg Vorbis – otwarty format audio">OGG</abbr> Vorbis</strong></a>
+        to otwarty format o podobnej jakości do MP3, wolny od patentów.
+        <a href="https://pl.wikipedia.org/wiki/WAV" target="_blank" rel="noopener"><strong><abbr title="Waveform Audio File Format">WAV</abbr></strong></a>
+        (Waveform Audio File Format) to format bezstratny, niemal bez kompresji –
+        doskonała jakość, ale ogromne rozmiary plików (nieodpowiedni do streamingu).
+        <a href="https://pl.wikipedia.org/wiki/FLAC" target="_blank" rel="noopener"><strong><abbr title="Free Lossless Audio Codec">FLAC</abbr></strong></a>
+        (Free Lossless Audio Codec) łączy bezstratną kompresję z rozsądnym
+        rozmiarem pliku – popularny wśród audiofili, coraz lepiej obsługiwany
+        przez przeglądarki.
+      </p>
+    </section>
+
+    <!-- ========================================================
+         ELEMENT 1 - PLIK Z DYSKU (MP3)
+         ======================================================== -->
+    <article class="blok-media" id="audio1" aria-labelledby="audio1-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="audio1-tytul">Plik audio z dysku (<abbr title="MPEG-1 Audio Layer III">MP3</abbr>)</h2>
+        <span class="badge badge-dysk">📁 Plik z dysku</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <strong>MP3</strong> (<abbr title="Język angielski">ang.</abbr> <em>MPEG-1 Audio Layer III</em>) to format
+          kompresji dźwięku opracowany przez Fraunhofer Society i <abbr title="Moving Picture Experts Group">MPEG</abbr>.
+          Stosuje kompresję <strong>stratną</strong> – usuwa składowe dźwięku
+          niesłyszalne dla ludzkiego ucha (psychoakustyka), osiągając
+          współczynnik kompresji 10:1 przy zachowaniu akceptowalnej jakości.
+          Typowy bitrate: 128–320 <abbr title="kilobits per second – kilobity na sekundę">kbps</abbr>. Format MP3 jest obsługiwany przez
+          wszystkie współczesne przeglądarki i urządzenia.
+        </p>
+      </div>
+
+      <!-- Element multimedialny -->
+      <div class="media-wrapper">
+        <audio
+          controls
+          class="audio-typ-ab"
+          aria-label="Odtwarzacz audio – plik MP3 z dysku">
+          <source src="../media/audio/horse.mp3" type="audio/mpeg">
+          Twoja przeglądarka nie obsługuje elementu audio.
+        </audio>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-audio1" onclick="toggleCode('kod-audio1')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-audio1" onclick="copyCode('kod-audio1')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-audio1">
+          <pre><code>&lt;!-- PLIK Z DYSKU --&gt;
+&lt;audio controls&gt;
+  &lt;source src="../media/audio/horse.mp3" type="audio/mpeg"&gt;
+  Twoja przeglądarka nie obsługuje elementu audio.
+&lt;/audio&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 2 - PLIK HOSTOWANY W SIECI (MP3, min. 3 min)
+         ======================================================== -->
+    <article class="blok-media" id="audio2" aria-labelledby="audio2-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="audio2-tytul">Plik audio hostowany w sieci (<abbr title="MPEG-1 Audio Layer III">MP3</abbr>)</h2>
+        <span class="badge badge-siec">🌐 Plik z sieci</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          Poniżej plik MP3 wskazany bezpośrednio przez <abbr title="Uniform Resource Locator – adres zasobu w sieci">URL</abbr> do zasobu
+          hostowanego w sieci – utwór <strong>„Gymnopedie No. 1"</strong>
+          Erika Satie (ok. 3 minuty) w wykonaniu Kevina MacLeoda,
+          dostępny publicznie w domenie publicznej za pośrednictwem
+          serwisu <strong>Internet Archive</strong>. Wygląd odtwarzacza
+          jest <strong>identyczny</strong> jak w elemencie 1 – ten sam
+          styl <abbr title="Cascading Style Sheets">CSS</abbr> (<code class="inline">audio-typ-ab</code>).
+        </p>
+        <p style="text-align:justify;">
+          <strong>Różnica między plikiem lokalnym a zdalnym:</strong>
+          plik lokalny (<code class="inline">src="audio/plik.mp3"</code>)
+          wczytywany jest z dysku serwera – szybko i bez zależności
+          zewnętrznych. Plik zdalny
+          (<code class="inline">src="https://..."</code>) pobierany jest
+          z zewnętrznego serwera – odciąża własny hosting, ale zależy
+          od dostępności zewnętrznego zasobu.
+        </p>
+      </div>
+
+      <!-- Element multimedialny - IDENTYCZNY STYL jak element 1 -->
+      <div class="media-wrapper">
+        <audio controls>
+          <source
+            src="https://upload.wikimedia.org/wikipedia/commons/transcoded/6/68/Kevin_MacLeod_-_Erik_Satie_Gymnopedie_No_1.ogg/Kevin_MacLeod_-_Erik_Satie_Gymnopedie_No_1.ogg.mp3"
+            type="audio/mpeg">
+          <source
+            src="https://upload.wikimedia.org/wikipedia/commons/6/68/Kevin_MacLeod_-_Erik_Satie_Gymnopedie_No_1.ogg"
+            type="audio/ogg">
+          Twoja przeglądarka nie obsługuje elementu audio.
+        </audio>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-audio2" onclick="toggleCode('kod-audio2')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-audio2" onclick="copyCode('kod-audio2')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-audio2">
+          <pre><code>&lt;!-- Plik audio hostowany w sieci (URL zewnętrzny)
+     Źródło: Internet Archive - domena publiczna --&gt;
+&lt;audio controls&gt;
+  &lt;source
+    src="https://archive.org/download/kevin-macleod-gymnopedie-no-1/Gymnopedie%20No%201.mp3"
+    type="audio/mpeg"&gt;
+  Twoja przeglądarka nie obsługuje elementu audio.
+&lt;/audio&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 3 - SPOTIFY EMBED
+         ======================================================== -->
+    <article class="blok-media" id="audio3" aria-labelledby="audio3-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="audio3-tytul">Spotify – embed playlisty</h2>
+        <span class="badge badge-embed">🌐 Embed zewnętrzny</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <img src="https://open.spotifycdn.com/cdn/images/favicon.0f31d2ea.ico"
+               alt="Logo Spotify"
+               style="height:1.1em; vertical-align:middle; margin-right:0.4em;">
+          <strong>Spotify</strong> – szwedzki serwis strumieniowania muzyki,
+          założony w 2006 roku, z ponad 600 milionami użytkowników miesięcznie
+          (2024). Oferuje dostęp do ponad 100 milionów utworów, podcastów
+          i audiobooków w modelu freemium (bezpłatny z reklamami lub płatna
+          subskrypcja Premium bez reklam).
+        </p>
+        <p style="text-align:justify;">
+          Spotify umożliwia osadzanie odtwarzacza na stronach przez
+          <code class="inline">&lt;iframe&gt;</code> z domeną
+          <code class="inline">open.spotify.com/embed/</code>.
+        </p>
+      </div>
+
+      <!-- Element multimedialny - IDENTYCZNY STYL jak 4 i 5 -->
+      <div class="media-wrapper">
+        <iframe
+          class="audio-typ-cd"
+          style="height: 4vw; margin: 0;"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1EIcVkEtbzdTRx?utm_source=generator&theme=0"
+          title="Spotify – Top 50 Global playlist"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-audio3" onclick="toggleCode('kod-audio3')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-audio3" onclick="copyCode('kod-audio3')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-audio3">
+          <pre><code>&lt;!-- Spotify embed - format URL:
+     https://open.spotify.com/embed/[typ]/[ID]
+     Typy: track, album, playlist, artist, episode --&gt;
+&lt;iframe
+  src="https://open.spotify.com/embed/playlist/37i9dQZF1EIcVkEtbzdTRx
+       ?utm_source=generator"
+  width="50vw"
+  height="152"
+  style="border:none; border-radius:1vw;"
+  allow="autoplay; clipboard-write; encrypted-media;
+         fullscreen; picture-in-picture"
+  loading="lazy"
+  title="Spotify – nazwa playlisty"&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 4 - SOUNDCLOUD EMBED
+         ======================================================== -->
+    <article class="blok-media" id="audio4" aria-labelledby="audio4-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="audio4-tytul">SoundCloud – embed utworu</h2>
+        <span class="badge badge-embed">🌐 Embed zewnętrzny</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <img src="https://a-v2.sndcdn.com/assets/images/sc-icons/favicon-2cadd14b.ico"
+               alt="Logo SoundCloud"
+               style="height:1.1em; vertical-align:middle; margin-right:0.4em;">
+          <strong>SoundCloud</strong> – platforma do udostępniania i odkrywania
+          muzyki, założona w 2007 roku w Berlinie. Jest szczególnie popularna
+          wśród niezależnych artystów i twórców – umożliwia bezpłatne wgrywanie
+          i udostępnianie własnych nagrań, co czyni ją ważnym narzędziem
+          promocji dla muzyków indie.
+        </p>
+        <p style="text-align:justify;">
+          SoundCloud oferuje widget do osadzania na stronach przez
+          <code class="inline">&lt;iframe&gt;</code> z domeną
+          <code class="inline">w.soundcloud.com/player/</code>.
+          Poniżej osadzono publicznie dostępny utwór.
+        </p>
+      </div>
+
+      <!-- Element multimedialny - IDENTYCZNY STYL jak 3 i 5 -->
+      <div class="media-wrapper">
+        <iframe
+          class="audio-typ-cd"
+          scrolling="no"
+          frameborder="no"
+          allow="autoplay"
+          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/scottbuckley/sets/creative-commons-music-library&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=true"
+          title="SoundCloud – utwór audio">
+        </iframe>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-audio4" onclick="toggleCode('kod-audio4')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-audio4" onclick="copyCode('kod-audio4')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-audio4">
+          <pre><code>&lt;!-- SoundCloud embed widget
+     Parametry URL:
+     url=         - zakodowany URL utworu/playlisty
+     color=       - kolor akcentu (hex bez #)
+     auto_play=   - automatyczne odtwarzanie (true/false)
+     show_user=   - pokaż nazwę użytkownika (true/false) --&gt;
+&lt;iframe
+  style="width:50vw; height:15vw; min-height:152px;
+         max-height:200px; border:none; border-radius:1vw;"
+  scrolling="no"
+  frameborder="no"
+  allow="autoplay"
+  title="SoundCloud – nazwa utworu"
+  src="https://w.soundcloud.com/player/
+       ?url=https%3A//api.soundcloud.com/tracks/ID_UTWORU
+       &amp;color=%233ecf8e
+       &amp;auto_play=false
+       &amp;show_user=true"&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 5 - DEEZER EMBED
+         ======================================================== -->
+    <article class="blok-media" id="audio5" aria-labelledby="audio5-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="audio5-tytul">
+          Deezer – embed playlisty
+        </h2>
+        <span class="badge badge-embed">🌐 Embed zewnętrzny</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <img src="https://www.deezer.com/favicon.ico"
+               alt="Logo Deezer"
+               style="height:1.1em; vertical-align:middle; margin-right:0.4em;">
+          <strong>Deezer</strong> – francuski serwis streamingowy muzyki,
+          założony w 2007 roku w Paryżu. Oferuje dostęp do ponad 90 milionów
+          utworów w modelu freemium, z wyróżniającą się funkcją
+          <strong>Flow</strong> – spersonalizowanym radiem opartym na
+          algorytmach uczenia maszynowego. Deezer jako jeden z pierwszych
+          serwisów wprowadził streaming w jakości lossless (<abbr title="Free Lossless Audio Codec">FLAC</abbr>).
+        </p>
+      </div>
+
+      <!-- Element multimedialny - IDENTYCZNY STYL jak 3 i 4 -->
+      <div class="media-wrapper">
+        <iframe
+          class="audio-typ-cd"
+          title="Deezer – playlista Top Charts"
+          src="https://widget.deezer.com/widget/dark/playlist/1479458365?tracklist=true&autoplay=false&radius=true"
+          allow="encrypted-media; clipboard-write">
+        </iframe>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-audio5" onclick="toggleCode('kod-audio5')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-audio5" onclick="copyCode('kod-audio5')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-audio5">
+          <pre><code>&lt;!-- Deezer Widget embed
+     Format URL: https://widget.deezer.com/widget/[motyw]/[typ]/[ID]
+     Motywy: dark, light, auto
+     Typy: track, album, playlist, artist, radio --&gt;
+&lt;iframe
+  style="width:50vw; height:15vw; min-height:152px;
+         max-height:200px; border:none; border-radius:1vw;"
+  title="Deezer – nazwa playlisty"
+  src="https://widget.deezer.com/widget/dark/playlist/ID_PLAYLISTY"
+  allow="encrypted-media; clipboard-write"&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         ELEMENT 6 - YOUTUBE JAKO NOŚNIK AUDIO
+         ======================================================== -->
+    <article class="blok-media" id="audio6" aria-labelledby="audio6-tytul">
+      <div class="blok-media-naglowek">
+        <h2 id="audio6-tytul">YouTube jako nośnik audio (nieruchomy obraz)</h2>
+        <span class="badge badge-embed">🌐 Embed zewnętrzny</span>
+      </div>
+
+      <div class="blok-media-opis">
+        <p style="text-align:justify;">
+          <img src="https://www.youtube.com/favicon.ico"
+               alt="Logo YouTube"
+               style="height:1.1em; vertical-align:middle; margin-right:0.4em;">
+          Serwisy wideo, takie jak YouTube, są często wykorzystywane jako
+          <strong>de facto platformy audio</strong>. Miliony filmów na YouTube
+          to nagrania muzyczne z nieruchomym obrazem (okładka albumu, zdjęcie
+          artysty lub statyczna grafika) – de facto pliki audio opakowane
+          w format wideo. Zjawisko to jest powszechne w przypadku muzyki
+          klasycznej, lo-fi, ambientowej oraz starszych nagrań nieposiadających
+          teledysku.
+        </p>
+      </div>
+
+      <!-- Element multimedialny - domyślne proporcje YT (16:9) -->
+      <div class="media-wrapper">
+        <iframe
+          width="854"
+          height="480"
+          style="width:60vw; height:33.75vw; border:none; border-radius:0.5vw;"
+          src="https://www.youtube.com/embed/OJAnFWpxv8o?start=0"
+          title="Kid Rock – 'Til You Can't – YouTube jako nośnik audio"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write;
+                 encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Blok kodu -->
+      <div class="kod-sekcja">
+        <div class="kod-przyciski">
+          <button class="btn btn-toggle" data-toggle="kod-audio6" onclick="toggleCode('kod-audio6')">👁️ Pokaż kod</button>
+          <button class="btn btn-kopiuj" data-copy="kod-audio6" onclick="copyCode('kod-audio6')">📋 Kopiuj kod</button>
+        </div>
+        <div class="kod-blok" id="kod-audio6">
+          <pre><code>&lt;!-- YouTube embed jako nośnik audio
+     (film z nieruchomym obrazem – okładka albumu)
+     Proporcje 16:9: width=854 height=480 --&gt;
+&lt;iframe
+  width="854"
+  height="480"
+  style="width:60vw; height:33.75vw; border:none; border-radius:0.5vw;"
+  src="https://www.youtube.com/embed/OJAnFWpxv8o"
+  title="Kid Rock – 'Til You Can't – YouTube jako nośnik audio"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write;
+         encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- ============================================================
+       STOPKA
+       ============================================================ -->
+  <footer class="stopka" role="contentinfo">
+    <p>
+      🎬 <strong>Multimedia</strong> – Krzysztof Januszewski 3F © 2026
+    </p>
+  </footer>
+
+  <!-- ============================================================
+       PRZYCISK POWRÓT NA GÓRĘ
+       ============================================================ -->
+  <button
+    class="btn-powrot-gora"
+    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    aria-label="Powrót na górę strony"
+    title="Powrót na górę">
+    ↑ Powrót na górę
+  </button>
+
+  <script src="../script.js"></script>
+</body>
+</html>
