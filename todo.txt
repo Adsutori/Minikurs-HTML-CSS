@@ -3,9 +3,8 @@
 - naprawic zeby bedac zalogowanym dalo sie dalej wbic na landing page
 
 - O PLATFORMIE:
-    - naprawic film zelenta
     - dodac screena do sprawdzianu praktycznego
-    - napisa opisy do projektow
+    - napisac opisy do projektow
 
 - napisac strone O MNIE - ma byc ona dostepna z LP i z dashboardu (z LP ofc bez zalogowania)
 
