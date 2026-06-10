@@ -4,8 +4,6 @@
 
 - napisac reszte strony LINKI, dopracowac
 
-- dodac tabele z kolorami
-
 
 - naprawic css wszedzie bo krzywy jest 
 

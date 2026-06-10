@@ -4,9 +4,517 @@
 {% block title %}Tabela kolorów | Minikurs HTML5 i CSS3{% endblock %}
 
 {% block content %}
-<center>
-  <div class="page-header">
-  Strona jest jeszcze nie skończona. <br> Spróbuj odwiedzić ją za jakiś czas...
+
+<!-- NAGŁÓWEK -->
+<div class="page-header">
+  <h1>
+    <i data-lucide="palette" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;"></i>
+    Tabela kolorów
+  </h1>
+  <p>Projekt szkolny — interaktywna tabela HTML z kolorami CSS, atrybutami colspan/rowspan i własnym color pickerem.</p>
+</div>
+
+<!-- BREADCRUMB -->
+<div style="display:flex;align-items:center;gap:8px;font-size:var(--text-xs);
+            color:var(--text-muted);margin-bottom:24px;">
+  <a href="{% url 'minikurs:glowna' %}" style="color:var(--text-muted);text-decoration:none;">O platformie</a>
+  <i data-lucide="chevron-right" style="width:12px;height:12px;"></i>
+  <span style="color:var(--accent-secondary);">Tabela kolorów</span>
+</div>
+
+<!-- KARTY INFO -->
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:16px;margin-bottom:28px;">
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="grid-3x3" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">13</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Kolorów CSS</div>
   </div>
-</center>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="merge" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">7</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Wierszy tabeli</div>
+  </div>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="layout" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">colspan</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">i rowspan</div>
+  </div>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="pipette" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xl);font-weight:800;" class="gradient-text">+1</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Color picker</div>
+  </div>
+  <div class="content-card" style="text-align:center;padding:20px;">
+    <i data-lucide="link" style="width:24px;height:24px;color:var(--accent-secondary);margin-bottom:8px;"></i>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);margin-top:4px;">Linki do</div>
+    <div style="font-size:var(--text-xs);color:var(--text-muted);">Wikipedii</div>
+  </div>
+</div>
+
+<!-- OPIS PROJEKTU -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:16px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="info" style="width:20px;height:20px;"></i>
+    O projekcie
+  </h2>
+  <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:16px;">
+    Projekt to interaktywna tabela HTML prezentująca
+    <strong style="color:var(--text-primary);">13 nazwanych kolorów CSS</strong> —
+    od klasycznych (Red, Blue, Green) po mniej oczywiste (Teal, Maroon, Fuchsia).
+    Każda komórka pokazuje kolor jako tło, jego angielską i polską nazwę,
+    kod <strong style="color:var(--text-primary);">HEX</strong> oraz wartości
+    <strong style="color:var(--text-primary);">RGB</strong> z linkiem do Wikipedii.
+  </p>
+  <p style="color:var(--text-secondary);line-height:1.8;">
+    Projekt demonstruje zaawansowane łączenie komórek tabelarycznych przez
+    <strong style="color:var(--text-primary);">colspan</strong> (scalanie kolumn) i
+    <strong style="color:var(--text-primary);">rowspan</strong> (scalanie wierszy),
+    a ostatnia komórka to w pełni interaktywny
+    <strong style="color:var(--text-primary);">color picker</strong> —
+    wybierasz kolor, a komórka zmienia tło i wyświetla jego HEX i RGB w czasie rzeczywistym.
+  </p>
+</div>
+
+<!-- WYMAGANIA -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:24px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="clipboard-check" style="width:20px;height:20px;"></i>
+    Wymagania — szczegółowa checklista
+  </h2>
+
+  <!-- PODSTAWOWE -->
+  <div style="margin-bottom:28px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;
+                padding-bottom:10px;border-bottom:1px solid rgba(124,58,237,0.15);">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--gradient-btn);
+                  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+                  font-weight:800;font-size:0.75rem;color:white;">P</div>
+      <h3 style="margin:0;color:var(--text-primary);font-size:var(--text-base);">Wymagania podstawowe</h3>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Tabela z kolorami tła</strong> —
+          min. 8 komórek, każda z innym <code>bgcolor</code> / <code>background-color</code>;
+          nazwa koloru po angielsku i polsku, kod HEX i RGB
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">colspan i rowspan</strong> —
+          komórki scalane poziomo i pionowo; tabela nie jest prostą siatką
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Linki do źródeł</strong> —
+          każda komórka zawiera link do angielskiej i polskiej Wikipedii;
+          otwierają się w nowej karcie (<code>target="_blank"</code>)
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Tytuł strony i nagłówek</strong> —
+          animowany gradient RGB na tytule; logo po obu stronach nagłówka
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Footer</strong> —
+          linki do źródeł (Wikipedia EN i PL), autor: Krzysztof Januszewski 3F © 2025
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Custom scrollbar</strong> —
+          fioletowy pasek przewijania (<code>::webkit-scrollbar-thumb</code>)
+          na kontenerze <code>.scroll-container</code>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="check-circle" style="width:15px;height:15px;color:#22c55e;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Favicona</strong> —
+          plik <code>images/favicon.ico</code> podlinkowany w <code>&lt;head&gt;</code>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DODATKOWE -->
+  <div style="margin-bottom:28px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;
+                padding-bottom:10px;border-bottom:1px solid rgba(124,58,237,0.15);">
+      <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#06b6d4);
+                  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+                  font-weight:800;font-size:0.75rem;color:white;">D</div>
+      <h3 style="margin:0;color:var(--text-primary);font-size:var(--text-base);">✨ Wymagania dodatkowe</h3>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="plus-circle" style="width:15px;height:15px;color:#3b82f6;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">13 kolorów</strong> —
+          zamiast wymaganych 8; tabela pokrywa pełne spektrum barw CSS Level 1
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="plus-circle" style="width:15px;height:15px;color:#3b82f6;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Interaktywny color picker</strong> —
+          ostatnia komórka tabeli zawiera <code>&lt;input type="color"&gt;</code>;
+          wybór koloru zmienia tło komórki i wyświetla HEX + RGB w czasie rzeczywistym przez JavaScript
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="plus-circle" style="width:15px;height:15px;color:#3b82f6;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Animowany tytuł RGB</strong> —
+          gradient tęczowy na tekście tytułu animowany przez
+          <code>@keyframes</code> i <code>background-position</code>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+                  background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);
+                  border-radius:var(--radius-sm);">
+        <i data-lucide="plus-circle" style="width:15px;height:15px;color:#3b82f6;flex-shrink:0;margin-top:2px;"></i>
+        <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+          <strong style="color:var(--text-primary);">Outlined text</strong> —
+          biały tekst z czarnym obrysem (<code>-webkit-text-stroke</code>)
+          zapewniający czytelność na każdym tle
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LEGENDA -->
+  <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;
+              padding:12px 16px;background:rgba(124,58,237,0.04);
+              border-radius:var(--radius-sm);border:1px solid rgba(124,58,237,0.1);">
+    <div style="display:flex;align-items:center;gap:8px;font-size:var(--text-sm);color:var(--text-secondary);">
+      <i data-lucide="check-circle" style="width:16px;height:16px;color:#22c55e;"></i>
+      Wymaganie obowiązkowe
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:var(--text-sm);color:var(--text-secondary);">
+      <i data-lucide="plus-circle" style="width:16px;height:16px;color:#3b82f6;"></i>
+      Wymaganie dodatkowe
+    </div>
+  </div>
+
+</div>
+
+<!-- STRUKTURA TABELI -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="table-2" style="width:20px;height:20px;"></i>
+    Struktura tabeli — colspan i rowspan
+  </h2>
+
+  <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:16px;">
+    Tabela ma <strong style="color:var(--text-primary);">6 kolumn bazowych</strong>.
+    Komórki są scalane nieregularnie — Red zajmuje 2×3 (colspan=2, rowspan=3),
+    Gold zajmuje 1×2 (rowspan=2), a Teal i Pink rozciągają się na całą szerokość.
+    Poniżej schemat układu:
+  </p>
+
+  <!-- Wizualny schemat tabeli -->
+  <div style="overflow-x:auto;margin-bottom:20px;">
+    <table style="border-collapse:collapse;font-size:0.72rem;font-family:'JetBrains Mono',monospace;
+                  color:var(--text-secondary);width:100%;min-width:500px;">
+      <tr>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(239,68,68,0.25);color:#fca5a5;" rowspan="3" colspan="2">
+          Red<br><span style="font-size:0.65rem;opacity:0.7;">colspan=2<br>rowspan=3</span>
+        </td>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(234,179,8,0.25);color:#fde047;">Yellow</td>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(59,130,246,0.25);color:#93c5fd;">Blue</td>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(34,197,94,0.25);color:#86efac;">Green</td>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(234,179,8,0.35);color:#fde047;" rowspan="2">
+          Gold<br><span style="font-size:0.65rem;opacity:0.7;">rowspan=2</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(192,192,192,0.2);color:#e2e8f0;">Silver</td>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(128,128,128,0.3);color:#e2e8f0;" colspan="2">
+          Grey<br><span style="font-size:0.65rem;opacity:0.7;">colspan=2</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(128,0,0,0.3);color:#fca5a5;">Maroon</td>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(128,0,128,0.3);color:#e879f9;" colspan="3" rowspan="2">
+          Purple<br><span style="font-size:0.65rem;opacity:0.7;">colspan=3, rowspan=2</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(255,0,255,0.2);color:#f0abfc;">Fuchsia</td>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(0,255,0,0.15);color:#86efac;">Lime</td>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(0,255,255,0.15);color:#67e8f9;">Cyan</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(0,128,128,0.3);color:#5eead4;" colspan="6">
+          Teal — colspan=6 (pełna szerokość)
+        </td>
+      </tr>
+      <tr>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(255,192,203,0.25);color:#fbcfe8;" colspan="3">
+          Pink — colspan=3
+        </td>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(128,128,0,0.3);color:#d9f99d;">Olive</td>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(255,165,0,0.25);color:#fed7aa;" colspan="2">
+          Orange — colspan=2
+        </td>
+      </tr>
+      <tr>
+        <td style="border:1px solid rgba(124,58,237,0.3);padding:8px 6px;text-align:center;
+                   background:rgba(124,58,237,0.15);color:var(--accent-secondary);" colspan="6">
+          🎨 Color Picker — interaktywna komórka (colspan=6)
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p style="font-size:var(--text-xs);color:var(--text-muted);">
+    Schemat odzwierciedla rzeczywisty układ komórek w projekcie.
+  </p>
+</div>
+
+<!-- KLUCZOWE TECHNIKI -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <h2 style="color:var(--accent-secondary);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+    <i data-lucide="code-2" style="width:20px;height:20px;"></i>
+    Kluczowe techniki — przykłady kodu
+  </h2>
+
+  <!-- colspan i rowspan -->
+  <div style="margin-bottom:24px;">
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">1</span>
+      Scalanie komórek — colspan i rowspan
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#64748b;">&lt;!-- Red zajmuje 2 kolumny i 3 wiersze --&gt;</span>
+<span style="color:#7c3aed;">&lt;td</span> <span style="color:#34d399;">bgcolor="Red"</span>
+     <span style="color:#34d399;">colspan="2"</span>
+     <span style="color:#34d399;">rowspan="3"</span>
+     <span style="color:#34d399;">height="200"</span> <span style="color:#34d399;">width="200"</span><span style="color:#7c3aed;">&gt;</span>
+  Red / czerwony / #FF0000
+<span style="color:#7c3aed;">&lt;/td&gt;</span>
+
+<span style="color:#64748b;">&lt;!-- Teal rozciąga się na całą szerokość (6 kolumn) --&gt;</span>
+<span style="color:#7c3aed;">&lt;td</span> <span style="color:#34d399;">bgcolor="Teal"</span>
+     <span style="color:#34d399;">colspan="6"</span>
+     <span style="color:#34d399;">height="200"</span><span style="color:#7c3aed;">&gt;</span>
+  Teal / morski / #008080
+<span style="color:#7c3aed;">&lt;/td&gt;</span></code></pre>
+  </div>
+
+  <!-- Color picker JS -->
+  <div style="margin-bottom:24px;">
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">2</span>
+      Interaktywny color picker — JavaScript
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#64748b;">&lt;!-- HTML: komórka z inputem --&gt;</span>
+<span style="color:#7c3aed;">&lt;td</span> <span style="color:#34d399;">id="customCell"</span> <span style="color:#34d399;">colspan="6"</span><span style="color:#7c3aed;">&gt;</span>
+  <span style="color:#a78bfa;">&lt;label</span> <span style="color:#34d399;">for="colorPicker"</span><span style="color:#a78bfa;">&gt;</span>Choose color<span style="color:#a78bfa;">&lt;/label&gt;</span>
+  <span style="color:#7c3aed;">&lt;input</span> <span style="color:#34d399;">type="color"</span> <span style="color:#34d399;">id="colorPicker"</span> <span style="color:#34d399;">value="#ffffff"</span><span style="color:#7c3aed;">&gt;</span>
+  <span style="color:#a78bfa;">&lt;span</span> <span style="color:#34d399;">id="hexValue"</span><span style="color:#a78bfa;">&gt;</span>#??????<span style="color:#a78bfa;">&lt;/span&gt;</span>
+  <span style="color:#a78bfa;">&lt;span</span> <span style="color:#34d399;">id="rgbValue"</span><span style="color:#a78bfa;">&gt;</span>RGB (???, ???, ???)<span style="color:#a78bfa;">&lt;/span&gt;</span>
+<span style="color:#7c3aed;">&lt;/td&gt;</span>
+
+<span style="color:#64748b;">// JavaScript — konwersja HEX → RGB i aktualizacja komórki</span>
+<span style="color:#7c3aed;">function</span> hexToRgb(hex) {
+  <span style="color:#7c3aed;">let</span> r = parseInt(hex.substr(<span style="color:#34d399;">1</span>, <span style="color:#34d399;">2</span>), <span style="color:#34d399;">16</span>);
+  <span style="color:#7c3aed;">let</span> g = parseInt(hex.substr(<span style="color:#34d399;">3</span>, <span style="color:#34d399;">2</span>), <span style="color:#34d399;">16</span>);
+  <span style="color:#7c3aed;">let</span> b = parseInt(hex.substr(<span style="color:#34d399;">5</span>, <span style="color:#34d399;">2</span>), <span style="color:#34d399;">16</span>);
+  <span style="color:#7c3aed;">return</span> <span style="color:#34d399;">`(${r}, ${g}, ${b})`</span>;
+}
+
+<span style="color:#a78bfa;">document</span>.getElementById(<span style="color:#34d399;">'colorPicker'</span>)
+  .addEventListener(<span style="color:#34d399;">'input'</span>, <span style="color:#7c3aed;">function</span>() {
+    <span style="color:#7c3aed;">const</span> hex = <span style="color:#7c3aed;">this</span>.value;
+    <span style="color:#a78bfa;">document</span>.getElementById(<span style="color:#34d399;">'customCell'</span>).style.backgroundColor = hex;
+    <span style="color:#a78bfa;">document</span>.getElementById(<span style="color:#34d399;">'hexValue'</span>).textContent = hex;
+    <span style="color:#a78bfa;">document</span>.getElementById(<span style="color:#34d399;">'rgbValue'</span>).textContent = <span style="color:#34d399;">"RGB "</span> + hexToRgb(hex);
+  });</code></pre>
+  </div>
+
+  <!-- Animowany gradient tekstu -->
+  <div>
+    <h3 style="color:var(--text-primary);font-size:var(--text-sm);margin-bottom:10px;
+               display:flex;align-items:center;gap:8px;">
+      <span style="background:rgba(124,58,237,0.15);color:var(--accent-secondary);
+                   padding:2px 10px;border-radius:20px;font-size:var(--text-xs);">3</span>
+      Animowany gradient RGB na tekście
+    </h3>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(124,58,237,0.2);
+                border-radius:var(--radius-md);padding:16px;overflow-x:auto;
+                font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+                color:#e2e8f0;line-height:1.6;margin:0;"><code><span style="color:#64748b;">/* Gradient tęczowy na tekście — kluczowe właściwości */</span>
+<span style="color:#a78bfa;">.rgb-title</span> {
+  <span style="color:#34d399;">background</span>: linear-gradient(
+    270deg, red, orange, yellow,
+    green, cyan, blue, violet, red
+  );
+  <span style="color:#34d399;">-webkit-background-clip</span>: text;
+  <span style="color:#34d399;">-webkit-text-fill-color</span>: transparent;
+  <span style="color:#34d399;">background-clip</span>:         text;
+  <span style="color:#34d399;">background-size</span>:         1000% 100%; <span style="color:#64748b;">/* duży, żeby animacja była płynna */</span>
+  <span style="color:#34d399;">animation</span>: rgbText 10s linear infinite;
+}
+
+<span style="color:#a78bfa;">@keyframes</span> rgbText {
+  <span style="color:#34d399;">0%</span>   { background-position: 0%   50%; }
+  <span style="color:#34d399;">100%</span> { background-position: 100% 50%; }
+}</code></pre>
+  </div>
+
+</div>
+
+<!-- PODGLĄD PROJEKTU -->
+<div class="content-card fade-in" style="margin-bottom:28px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;
+              flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+    <h2 style="color:var(--accent-secondary);margin:0;display:flex;align-items:center;gap:10px;">
+      <i data-lucide="monitor" style="width:20px;height:20px;"></i>
+      Podgląd projektu
+    </h2>
+    <a href="{% static 'projekty/tabela_kolorow/index.html' %}"
+       target="_blank"
+       class="btn btn-primary btn-sm">
+      <i data-lucide="external-link" style="width:14px;height:14px;"></i>
+      Otwórz w pełnym oknie
+    </a>
+  </div>
+
+  <p style="color:var(--text-muted);font-size:var(--text-sm);margin-bottom:16px;">
+    Użyj color pickera w ostatniej komórce — zmień kolor i obserwuj aktualizację HEX i RGB na żywo.
+  </p>
+
+  <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+    <button onclick="setIframeSize('360px','650px','Mobile 360px')" class="btn btn-outline btn-sm">
+      <i data-lucide="smartphone" style="width:12px;height:12px;"></i> Mobile
+    </button>
+    <button onclick="setIframeSize('768px','680px','Tablet 768px')" class="btn btn-outline btn-sm">
+      <i data-lucide="tablet" style="width:12px;height:12px;"></i> Tablet
+    </button>
+    <button onclick="setIframeSize('100%','720px','Desktop')" class="btn btn-outline btn-sm">
+      <i data-lucide="monitor" style="width:12px;height:12px;"></i> Desktop
+    </button>
+  </div>
+
+  <div style="overflow:hidden;border-radius:var(--radius-md);">
+    <div id="iframe-wrapper"
+         style="width:100%;height:600px;border-radius:var(--radius-md);overflow:hidden;
+                border:2px solid rgba(124,58,237,0.25);transition:all 0.3s ease;
+                background:#0f0f1a;margin:0 auto;">
+      <iframe id="project-iframe"
+              src="{% static 'projekty/tabela_kolorow/index.html' %}"
+              style="width:100%;height:100%;border:none;"
+              title="Projekt: Tabela z kolorami"
+              loading="lazy">
+        <p>Twoja przeglądarka nie obsługuje ramek.
+           <a href="{% static 'projekty/tabela_kolorow/index.html' %}" target="_blank">
+             Otwórz projekt bezpośrednio →
+           </a>
+        </p>
+      </iframe>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;
+              margin-top:10px;font-size:var(--text-xs);color:var(--text-muted);">
+    <span>💡 Ostatnia komórka to interaktywny color picker — wybierz kolor i obserwuj zmianę</span>
+    <span id="iframe-size-label">Desktop</span>
+  </div>
+</div>
+
+<!-- NAWIGACJA -->
+<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+  <a href="{% url 'minikurs:lista' %}"
+     class="btn btn-outline"
+     style="display:flex;align-items:center;gap:8px;">
+    <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+    Poprzedni: Lista
+  </a>
+  <a href="{% url 'minikurs:tabele_listy_lacza' %}"
+     class="btn btn-primary"
+     style="display:flex;align-items:center;gap:8px;">
+    Następny: Tabele, Listy, Łącza
+    <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+  </a>
+</div>
+
+<script>
+  function setIframeSize(width, height, label) {
+    const wrapper = document.getElementById('iframe-wrapper');
+    const lbl     = document.getElementById('iframe-size-label');
+    wrapper.style.width  = width;
+    wrapper.style.height = height;
+    lbl.textContent      = label;
+  }
+</script>
+
 {% endblock %}
