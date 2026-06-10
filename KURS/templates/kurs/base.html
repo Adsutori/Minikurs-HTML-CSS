@@ -52,6 +52,12 @@
           Dashboard
         </a>
 
+        <a href="{% url 'minikurs:certyfikaty_info' %}"
+          class="sidebar-link {% if request.resolver_match.url_name == 'certyfikaty_info' %}active{% endif %}">
+          <i data-lucide="award" style="width:16px;height:16px;"></i>
+          Certyfikaty
+        </a>
+
         <div class="sidebar-section-label">Kursy</div>
 
         <a href="{% url 'minikurs:kursy_lista' %}"

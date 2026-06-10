@@ -7,16 +7,15 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.utils import timezone
 import json
-from minikurs.models import Course, Lesson, Enrollment, LessonProgress
-from .models import Course, Lesson, Enrollment, LessonProgress
+from .models import Course, Lesson, Enrollment, LessonProgress, Certificate
 
 
 # ================================================================
 # LANDING — publiczna
 # ================================================================
 def landing(request):
-    if request.user.is_authenticated:
-        return redirect('minikurs:glowna')
+    # if request.user.is_authenticated:
+    #     return redirect('minikurs:glowna')
     return render(request, 'index.html')
 
 
@@ -235,6 +234,11 @@ def dashboard(request):
     # Globalny procent
     global_percent = round((total_done / total_all) * 100) if total_all else 0
 
+    # Certyfikaty
+    certificates = Certificate.objects.filter(
+        user=request.user
+    ).select_related('enrollment__course').order_by('-issued_at')
+
     return render(request, 'kurs/dashboard.html', {
         'enrollments_data':  enrollments_data,
         'recent_progress':   recent_progress,
@@ -242,7 +246,7 @@ def dashboard(request):
         'global_percent':    global_percent,
         'total_done':        total_done,
         'total_all':         total_all,
-        'certificates':      [],   # podłącz gdy będzie model Certificate
+        'certificates':      certificates,
     })
 
 
@@ -251,18 +255,39 @@ def dashboard(request):
 # ================================================================
 @login_required
 def certyfikat(request, cert_id):
-    # Jeśli masz model Certificate — zostaw
-    # Jeśli usunąłeś — zakomentuj ten widok i URL
-    try:
-        from .models import Certificate
-        cert = get_object_or_404(
-            Certificate,
-            certificate_id=cert_id,
-            enrollment__user=request.user
-        )
-        return render(request, 'kurs/certyfikat.html', {'cert': cert})
-    except ImportError:
-        return redirect('minikurs:dashboard')
+    cert = get_object_or_404(
+        Certificate,
+        certificate_id=cert_id,
+        enrollment__user=request.user
+    )
+    return render(request, 'kurs/certyfikat.html', {'cert': cert})
+
+
+@login_required
+def certyfikaty_info(request):
+    """Strona informacyjna — jak wygląda certyfikat i jak go zdobyć."""
+    my_certificates = Certificate.objects.filter(
+        user=request.user
+    ).select_related('enrollment__course')
+
+    courses_with_status = []
+    for course in Course.objects.all():
+        enrollment = Enrollment.objects.filter(
+            user=request.user, course=course, active=True
+        ).first()
+        cert = my_certificates.filter(enrollment__course=course).first()
+        courses_with_status.append({
+            'course':     course,
+            'enrollment': enrollment,
+            'completed':  enrollment.is_completed if enrollment else False,
+            'cert':       cert,
+        })
+
+    return render(request, 'kurs/certyfikaty_info.html', {
+        'courses_with_status': courses_with_status,
+        'my_certificates':     my_certificates,
+    })
+
 
 
 # ================================================================
@@ -387,6 +412,18 @@ def toggle_complete(request, course_slug, lesson_slug):
         lp.completed    = not lp.completed
         lp.completed_at = timezone.now() if lp.completed else None
         lp.save()
+
+        # ── Auto-certyfikat ──────────────────────────────────────
+        enrollment = Enrollment.objects.filter(
+            user=request.user, course=course, active=True
+        ).first()
+        if enrollment and enrollment.is_completed:
+            Certificate.objects.get_or_create(
+                user=request.user,
+                enrollment=enrollment,
+            )
+        # ────────────────────────────────────────────────────────
+
     return redirect('minikurs:lekcja', course_slug=course_slug, lesson_slug=lesson_slug)
 
 

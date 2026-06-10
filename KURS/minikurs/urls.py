@@ -29,8 +29,9 @@ urlpatterns = [
     path('linki/',                        views.linki,                      name='linki'),
     path('kontakt/',                      views.kontakt,                    name='kontakt'),
 
-    # ── Certyfikat ────────────────────────────────────────────
+    # ── Certyfikaty ────────────────────────────────────────────
     path('certyfikat/<uuid:cert_id>/',    views.certyfikat,                 name='certyfikat'),
+    path('certyfikaty/',                  views.certyfikaty_info, name='certyfikaty_info'),
 
     # ── Kurs — zapisy ─────────────────────────────────────────
     path('zapisz-sie/<str:course>/',      views.enroll,                     name='enroll'),

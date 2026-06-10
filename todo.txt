@@ -1,4 +1,4 @@
-- naprawic css wszedzie bo krzywy jest 
+
 
 - naprawic zeby bedac zalogowanym dalo sie dalej wbic na landing page
 
@@ -12,8 +12,15 @@
 
 - napisac reszte strony LINKI, dopracowac
 
+
+
+
+- naprawic css wszedzie bo krzywy jest 
+
 - podpiąć neon db
 
 - dodac sprawdzian
 
 - dodac tabele z kolorami
+
+- ogarnac certyfikat
