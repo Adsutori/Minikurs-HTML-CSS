@@ -4,17 +4,8 @@
 
 - O PLATFORMIE:
     - naprawic film zelenta
-    - dac screeny projektow
+    - dodac screena do sprawdzianu praktycznego
     - napisa opisy do projektow
-    - usunac link do poradnika html
-
-- w DASHBOARD zamienic emotki na ikonki lucide
-
-- usunac poradnik html i css (2 strony)
-
-- dodac sprawdzian
-
-- dodac tabele z kolorami
 
 - napisac strone O MNIE - ma byc ona dostepna z LP i z dashboardu (z LP ofc bez zalogowania)
 
@@ -23,3 +14,7 @@
 - napisac reszte strony LINKI, dopracowac
 
 - podpiąć neon db
+
+- dodac sprawdzian
+
+- dodac tabele z kolorami
