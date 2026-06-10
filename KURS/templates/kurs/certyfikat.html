@@ -310,7 +310,8 @@
       </div>
 
       <div class="cert-course-badge">
-        🎓 {{ cert.enrollment.get_course_display }}
+        <i data-lucide="graduation-cap" style="width:16px;height:16px;"></i>
+        {{ cert.enrollment.course.title }}
       </div>
 
       <p class="cert-text">

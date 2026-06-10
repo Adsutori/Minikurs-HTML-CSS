@@ -1,19 +1,15 @@
-- naprawic css wszedzie bo krzywy jest 
-
-- naprawic zeby bedac zalogowanym dalo sie dalej wbic na landing page
-
-- O PLATFORMIE:
-    - dodac screena do sprawdzianu praktycznego
-    - napisac opisy do projektow
-
 - napisac strone O MNIE - ma byc ona dostepna z LP i z dashboardu (z LP ofc bez zalogowania)
 
 - napisac strone KONTAKT - ma byc ona dostepna z LP i z dashboardu (z LP ofc bez zalogowania), przekierowac z mapy do multimediow
 
 - napisac reszte strony LINKI, dopracowac
 
+- dodac tabele z kolorami
+
+
+- naprawic css wszedzie bo krzywy jest 
+
 - podpiąć neon db
 
 - dodac sprawdzian
-
-- dodac tabele z kolorami
+- dodac screena do sprawdzianu praktycznego w O PLATFORMIE
