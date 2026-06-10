@@ -2,8 +2,6 @@
 
 - napisac strone KONTAKT - ma byc ona dostepna z LP i z dashboardu (z LP ofc bez zalogowania), przekierowac z mapy do multimediow
 
-- napisac reszte strony LINKI, dopracowac
-
 
 - naprawic css wszedzie bo krzywy jest 
 
