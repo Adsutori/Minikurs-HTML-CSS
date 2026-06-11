@@ -1,0 +1,1463 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$WCPo7pvJABH4R2XJXKKGwu$cTwUr96S0XctvlSHBKXJKLF3RRNXCOFQ+VZu0PyIkOU=",
+    "last_login": "2026-06-11T22:32:58.566Z",
+    "is_superuser": false,
+    "username": "adsutori",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-01T15:33:21.929Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9h467rwdewh0aj7hruzjkv3s5qphmf1d",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHDQ6a4dN9vIAMMUjU0Ke3K-O_apAvd3nPOfYlA21rD1nkJUxYXocTpd4uUHtx2kO_UbrNMc1uXKcpdkQftcpwzP6-H-3dQqddvTS5atGh8calQNAa0Yo-Q41nlkmxCYNQwoEen0Q3ERWFMVoNnMGDE-wPavDdC:1wXnoh:1JOgJvVQpmxee4fmmj1aTFXdJvLYvuHWjFfsvY6N0o8",
+    "expire_date": "2026-06-25T22:24:03.968Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "qreewxf1pi2c4s6ixvcsg0wpiasyctgf",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHDQ6a4dN9vIAMMUjU0Ke3K-O_apAvd3nPOfYlA21rD1nkJUxYXocTpd4uUHtx2kO_UbrNMc1uXKcpdkQftcpwzP6-H-3dQqddvTS5atGh8calQNAa0Yo-Q41nlkmxCYNQwoEen0Q3ERWFMVoNnMGDE-wPavDdC:1wXgNe:Dn-XsrujEuFzplLYjCkmAmsEIQqN6Q05mmEmYchsvak",
+    "expire_date": "2026-06-25T14:27:38.127Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "w16gytoc7bv9k6v4df5ag99u33j7yazw",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHDQ6a4dN9vIAMMUjU0Ke3K-O_apAvd3nPOfYlA21rD1nkJUxYXocTpd4uUHtx2kO_UbrNMc1uXKcpdkQftcpwzP6-H-3dQqddvTS5atGh8calQNAa0Yo-Q41nlkmxCYNQwoEen0Q3ERWFMVoNnMGDE-wPavDdC:1wXnxK:ZkfU6CWjb1tZaRqiwMoEoId8lxgrXtYchbs8MzfmmhI",
+    "expire_date": "2026-06-25T22:32:58.572Z"
+  }
+},
+{
+  "model": "minikurs.course",
+  "pk": 1,
+  "fields": {
+    "slug": "html",
+    "title": "Kurs HTML5",
+    "description": "Naucz się HTML5 od podstaw. Kurs prowadzi Cię przez strukturę dokumentów, znaczniki, formularze, multimedia i pierwsze projekty.",
+    "icon": "🌐",
+    "order": 1
+  }
+},
+{
+  "model": "minikurs.course",
+  "pk": 2,
+  "fields": {
+    "slug": "css",
+    "title": "Kurs CSS3",
+    "description": "Opanuj CSS3 — selektory, Box Model, Flexbox, Grid, animacje i responsywny design.",
+    "icon": "🎨",
+    "order": 2
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 1,
+  "fields": {
+    "course": 1,
+    "slug": "wstep",
+    "title": "Wstęp do HTML",
+    "description": "Czym jest HTML, krótka historia, jak działa przeglądarka",
+    "template": "kurs/lekcje/html/wstep.html",
+    "order": 1,
+    "published": true,
+    "duration": "10 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 2,
+  "fields": {
+    "course": 1,
+    "slug": "skladnia",
+    "title": "Składnia i struktura dokumentu",
+    "description": "DOCTYPE, html, head, body — omówienie każdego elementu",
+    "template": "kurs/lekcje/html/skladnia.html",
+    "order": 2,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 3,
+  "fields": {
+    "course": 1,
+    "slug": "znaczniki-podstawowe",
+    "title": "Znaczniki podstawowe",
+    "description": "Nagłówki, akapity, div, span, pre, code, cytaty",
+    "template": "kurs/lekcje/html/znaczniki-podstawowe.html",
+    "order": 3,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 4,
+  "fields": {
+    "course": 1,
+    "slug": "tekst",
+    "title": "Formatowanie tekstu",
+    "description": "strong, em, mark, sub, sup, ins, del i znaczniki semantyczne",
+    "template": "kurs/lekcje/html/tekst.html",
+    "order": 4,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 5,
+  "fields": {
+    "course": 1,
+    "slug": "znaki-specjalne",
+    "title": "Znaki specjalne",
+    "description": "Encje HTML — &amp;, &lt;, &gt;, &nbsp;, &copy; i inne",
+    "template": "kurs/lekcje/html/znaki-specjalne.html",
+    "order": 5,
+    "published": true,
+    "duration": "10 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 6,
+  "fields": {
+    "course": 1,
+    "slug": "kolory",
+    "title": "Kolory w HTML",
+    "description": "HEX, RGB, RGBA, HSL — wszystkie formaty kolorów",
+    "template": "kurs/lekcje/html/kolory.html",
+    "order": 6,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 7,
+  "fields": {
+    "course": 1,
+    "slug": "listy",
+    "title": "Listy",
+    "description": "ul, ol, dl — listy nieuporządkowane, uporządkowane i definicji",
+    "template": "kurs/lekcje/html/listy.html",
+    "order": 7,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 8,
+  "fields": {
+    "course": 1,
+    "slug": "tabele",
+    "title": "Tabele",
+    "description": "table, tr, td, th, colspan, rowspan — dane tabelaryczne",
+    "template": "kurs/lekcje/html/tabele.html",
+    "order": 8,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 9,
+  "fields": {
+    "course": 1,
+    "slug": "lacza",
+    "title": "Hiperłącza",
+    "description": "Łącza wewnętrzne, zewnętrzne, kotwice, mailto, tel",
+    "template": "kurs/lekcje/html/lacza.html",
+    "order": 9,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 10,
+  "fields": {
+    "course": 1,
+    "slug": "grafika",
+    "title": "Grafika",
+    "description": "img, picture, figure, figcaption — obrazy i responsywność",
+    "template": "kurs/lekcje/html/grafika.html",
+    "order": 10,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 11,
+  "fields": {
+    "course": 1,
+    "slug": "multimedia",
+    "title": "Multimedia",
+    "description": "video, audio, iframe — wideo, muzyka i osadzanie YouTube",
+    "template": "kurs/lekcje/html/multimedia.html",
+    "order": 11,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 12,
+  "fields": {
+    "course": 1,
+    "slug": "inputy",
+    "title": "Inputy",
+    "description": "Wszystkie typy input — text, email, date, color, file i inne",
+    "template": "kurs/lekcje/html/inputy.html",
+    "order": 12,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 13,
+  "fields": {
+    "course": 1,
+    "slug": "formularze",
+    "title": "Formularze",
+    "description": "form, label, select, textarea, fieldset — kompletne formularze",
+    "template": "kurs/lekcje/html/formularze.html",
+    "order": 13,
+    "published": true,
+    "duration": "25 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 14,
+  "fields": {
+    "course": 1,
+    "slug": "atrybuty",
+    "title": "Atrybuty globalne",
+    "description": "id, class, style, title, data-*, tabindex, contenteditable",
+    "template": "kurs/lekcje/html/atrybuty.html",
+    "order": 14,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 15,
+  "fields": {
+    "course": 1,
+    "slug": "semantyka",
+    "title": "Znaczniki semantyczne",
+    "description": "header, nav, main, article, section, aside, footer i inne",
+    "template": "kurs/lekcje/html/semantyka.html",
+    "order": 15,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 16,
+  "fields": {
+    "course": 1,
+    "slug": "meta-seo",
+    "title": "Meta tagi i SEO",
+    "description": "description, Open Graph, robots, canonical, favicon",
+    "template": "kurs/lekcje/html/meta-seo.html",
+    "order": 16,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 17,
+  "fields": {
+    "course": 1,
+    "slug": "head",
+    "title": "Sekcja head",
+    "description": "Wszystko co może znaleźć się w head — CSS, JS, czcionki",
+    "template": "kurs/lekcje/html/head.html",
+    "order": 17,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 18,
+  "fields": {
+    "course": 1,
+    "slug": "id-class",
+    "title": "ID i Class",
+    "description": "Różnice, zastosowania, selektory CSS i odwołania w JS",
+    "template": "kurs/lekcje/html/id-class.html",
+    "order": 18,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 19,
+  "fields": {
+    "course": 1,
+    "slug": "style-inline",
+    "title": "Style inline",
+    "description": "Kiedy używać, priorytety CSS, dobre i złe praktyki",
+    "template": "kurs/lekcje/html/style-inline.html",
+    "order": 19,
+    "published": true,
+    "duration": "10 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 20,
+  "fields": {
+    "course": 1,
+    "slug": "iframe",
+    "title": "Ramki iframe",
+    "description": "Osadzanie YouTube, Google Maps, sandbox i bezpieczeństwo",
+    "template": "kurs/lekcje/html/iframe.html",
+    "order": 20,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 21,
+  "fields": {
+    "course": 1,
+    "slug": "dom",
+    "title": "Czym jest DOM",
+    "description": "Document Object Model — drzewo dokumentu i inspektor przeglądarki",
+    "template": "kurs/lekcje/html/dom.html",
+    "order": 21,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 22,
+  "fields": {
+    "course": 1,
+    "slug": "dostepnosc",
+    "title": "Dostępność (Accessibility)",
+    "description": "ARIA, kontrast, nawigacja klawiaturą, narzędzia a11y",
+    "template": "kurs/lekcje/html/dostepnosc.html",
+    "order": 22,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 23,
+  "fields": {
+    "course": 1,
+    "slug": "walidacja",
+    "title": "Walidacja HTML",
+    "description": "Najczęstsze błędy, walidator W3C, narzędzia w VS Code",
+    "template": "kurs/lekcje/html/walidacja.html",
+    "order": 23,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 24,
+  "fields": {
+    "course": 1,
+    "slug": "projekt-cv",
+    "title": "Projekt: CV w HTML",
+    "description": "Zbuduj profesjonalne CV w czystym HTML5",
+    "template": "kurs/lekcje/html/projekt-cv.html",
+    "order": 24,
+    "published": true,
+    "duration": "40 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 25,
+  "fields": {
+    "course": 1,
+    "slug": "projekt-strona",
+    "title": "Projekt: Prosta strona WWW",
+    "description": "Zbuduj kompletną, wielostronicową witrynę w HTML",
+    "template": "kurs/lekcje/html/projekt-strona.html",
+    "order": 25,
+    "published": true,
+    "duration": "60 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 26,
+  "fields": {
+    "course": 2,
+    "slug": "wstep-css",
+    "title": "Wstęp do CSS",
+    "description": "Czym jest CSS, historia, sposoby dołączania do HTML, pierwsza reguła",
+    "template": "kurs/lekcje/css/wstep-css.html",
+    "order": 1,
+    "published": true,
+    "duration": "10 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 27,
+  "fields": {
+    "course": 2,
+    "slug": "selektory",
+    "title": "Selektory CSS",
+    "description": "Selektory elementu, klasy, ID, atrybutów, złożone i specyficzność",
+    "template": "kurs/lekcje/css/selektory.html",
+    "order": 2,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 28,
+  "fields": {
+    "course": 2,
+    "slug": "kolory-css",
+    "title": "Kolory w CSS",
+    "description": "HEX, RGB, HSL, oklch, currentColor, opacity i przezroczystość",
+    "template": "kurs/lekcje/css/kolory-css.html",
+    "order": 3,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 29,
+  "fields": {
+    "course": 2,
+    "slug": "box-model",
+    "title": "Box Model",
+    "description": "Content, padding, border, margin, box-sizing i scalanie marginesów",
+    "template": "kurs/lekcje/css/box-model.html",
+    "order": 4,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 30,
+  "fields": {
+    "course": 2,
+    "slug": "typografia",
+    "title": "Typografia w CSS",
+    "description": "font-family, size, weight, line-height, letter-spacing, gradient text",
+    "template": "kurs/lekcje/css/typografia.html",
+    "order": 5,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 31,
+  "fields": {
+    "course": 2,
+    "slug": "tlo-i-gradienty",
+    "title": "Tło i gradienty",
+    "description": "background-*, linear/radial/conic-gradient, wielowarstwowe tła",
+    "template": "kurs/lekcje/css/tlo-i-gradienty.html",
+    "order": 6,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 32,
+  "fields": {
+    "course": 2,
+    "slug": "display",
+    "title": "Właściwość display",
+    "description": "block, inline, inline-block, none, flex, grid i ich różnice",
+    "template": "kurs/lekcje/css/display.html",
+    "order": 7,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 33,
+  "fields": {
+    "course": 2,
+    "slug": "pozycjonowanie",
+    "title": "Pozycjonowanie",
+    "description": "static, relative, absolute, fixed, sticky i z-index",
+    "template": "kurs/lekcje/css/pozycjonowanie.html",
+    "order": 8,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 34,
+  "fields": {
+    "course": 2,
+    "slug": "flexbox",
+    "title": "Flexbox",
+    "description": "Oś główna, justify-content, align-items, flex-grow, gap i order",
+    "template": "kurs/lekcje/css/flexbox.html",
+    "order": 9,
+    "published": true,
+    "duration": "25 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 35,
+  "fields": {
+    "course": 2,
+    "slug": "responsywnosc",
+    "title": "Responsywność i Media Queries",
+    "description": "Breakpointy, mobile first, clamp(), container queries",
+    "template": "kurs/lekcje/css/responsywnosc.html",
+    "order": 10,
+    "published": true,
+    "duration": "25 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 36,
+  "fields": {
+    "course": 2,
+    "slug": "zmienne-css",
+    "title": "Zmienne CSS",
+    "description": "Custom Properties, zasięg, dark mode, integracja z JavaScript",
+    "template": "kurs/lekcje/css/zmienne-css.html",
+    "order": 11,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 37,
+  "fields": {
+    "course": 2,
+    "slug": "pseudoklasy",
+    "title": "Pseudoklasy i pseudoelementy",
+    "description": ":hover, :nth-child, :has(), ::before, ::after, ::selection",
+    "template": "kurs/lekcje/css/pseudoklasy.html",
+    "order": 12,
+    "published": true,
+    "duration": "25 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 38,
+  "fields": {
+    "course": 2,
+    "slug": "transformacje",
+    "title": "Transformacje CSS",
+    "description": "translate, rotate, scale, skew, transform-origin i 3D",
+    "template": "kurs/lekcje/css/transformacje.html",
+    "order": 13,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 39,
+  "fields": {
+    "course": 2,
+    "slug": "animacje",
+    "title": "Animacje CSS",
+    "description": "Transitions, @keyframes, fill-mode, scroll-driven animations",
+    "template": "kurs/lekcje/css/animacje.html",
+    "order": 14,
+    "published": true,
+    "duration": "25 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 40,
+  "fields": {
+    "course": 2,
+    "slug": "overflow-i-scroll",
+    "title": "Overflow i scroll",
+    "description": "overflow, text-overflow, scroll-snap, scrollbar styling",
+    "template": "kurs/lekcje/css/overflow-i-scroll.html",
+    "order": 15,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 41,
+  "fields": {
+    "course": 2,
+    "slug": "shadows",
+    "title": "Cienie w CSS",
+    "description": "box-shadow, text-shadow, drop-shadow, zestawy systemowe",
+    "template": "kurs/lekcje/css/shadows.html",
+    "order": 16,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 42,
+  "fields": {
+    "course": 2,
+    "slug": "filtry",
+    "title": "Filtry CSS",
+    "description": "filter, backdrop-filter, glassmorphism, animowanie filtrów",
+    "template": "kurs/lekcje/css/filtry.html",
+    "order": 17,
+    "published": true,
+    "duration": "15 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 43,
+  "fields": {
+    "course": 2,
+    "slug": "clip-path",
+    "title": "clip-path i kształty",
+    "description": "circle, polygon, inset, path(), shape-outside, animacje kształtów",
+    "template": "kurs/lekcje/css/clip-path.html",
+    "order": 18,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 44,
+  "fields": {
+    "course": 2,
+    "slug": "grid",
+    "title": "CSS Grid",
+    "description": "grid-template, fr, repeat, auto-fit, grid-areas, subgrid",
+    "template": "kurs/lekcje/css/grid.html",
+    "order": 19,
+    "published": true,
+    "duration": "25 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 45,
+  "fields": {
+    "course": 2,
+    "slug": "grid-zaawansowany",
+    "title": "Zaawansowany CSS Grid",
+    "description": "dense, implicit grid, nakładanie elementów, masonry, layout aplikacji",
+    "template": "kurs/lekcje/css/grid-zaawansowany.html",
+    "order": 20,
+    "published": true,
+    "duration": "25 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 46,
+  "fields": {
+    "course": 2,
+    "slug": "custom-properties-zaawansowane",
+    "title": "Zaawansowane techniki CSS",
+    "description": "calc, clamp, logiczne właściwości, @layer, Container Queries, @property",
+    "template": "kurs/lekcje/css/custom-properties-zaawansowane.html",
+    "order": 21,
+    "published": true,
+    "duration": "25 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 47,
+  "fields": {
+    "course": 2,
+    "slug": "transitions-zaawansowane",
+    "title": "Zaawansowane przejścia i mikro-animacje",
+    "description": "Krzywe Béziera, stany UI, View Transitions API, scroll-driven",
+    "template": "kurs/lekcje/css/transitions-zaawansowane.html",
+    "order": 22,
+    "published": true,
+    "duration": "25 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 48,
+  "fields": {
+    "course": 2,
+    "slug": "dostepnosc-css",
+    "title": "Dostępność w CSS",
+    "description": "focus-visible, kontrast WCAG, prefers-*, sr-only, rozmiary dotyku",
+    "template": "kurs/lekcje/css/dostepnosc-css.html",
+    "order": 23,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 49,
+  "fields": {
+    "course": 2,
+    "slug": "wydajnosc-css",
+    "title": "Wydajność CSS",
+    "description": "Reflow, will-change, content-visibility, critical CSS, coverage",
+    "template": "kurs/lekcje/css/wydajnosc-css.html",
+    "order": 24,
+    "published": true,
+    "duration": "20 min"
+  }
+},
+{
+  "model": "minikurs.lesson",
+  "pk": 50,
+  "fields": {
+    "course": 2,
+    "slug": "metodologie-css",
+    "title": "Metodologie CSS i projekt końcowy",
+    "description": "BEM, SMACSS, ITCSS, Utility-First, projekt karty profilu, podsumowanie",
+    "template": "kurs/lekcje/css/metodologie-css.html",
+    "order": 25,
+    "published": true,
+    "duration": "60 min"
+  }
+},
+{
+  "model": "minikurs.enrollment",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "course": 2,
+    "enrolled_at": "2026-06-01T15:34:06.995Z",
+    "active": true
+  }
+},
+{
+  "model": "minikurs.enrollment",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "course": 1,
+    "enrolled_at": "2026-06-01T15:38:30.345Z",
+    "active": true
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 13,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 11,
+    "completed": true,
+    "visited_at": "2026-06-10T19:14:35.898Z",
+    "completed_at": "2026-06-10T19:14:35.874Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 14,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 1,
+    "completed": true,
+    "visited_at": "2026-06-11T22:33:53.952Z",
+    "completed_at": "2026-06-10T19:14:08.226Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 15,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 2,
+    "completed": true,
+    "visited_at": "2026-06-11T13:55:16.248Z",
+    "completed_at": "2026-06-10T19:14:11.177Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 16,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 3,
+    "completed": true,
+    "visited_at": "2026-06-10T19:14:14.268Z",
+    "completed_at": "2026-06-10T19:14:14.246Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 17,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 4,
+    "completed": true,
+    "visited_at": "2026-06-10T19:14:16.665Z",
+    "completed_at": "2026-06-10T19:14:16.636Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 18,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 5,
+    "completed": true,
+    "visited_at": "2026-06-10T19:14:18.544Z",
+    "completed_at": "2026-06-10T19:14:18.518Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 19,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 6,
+    "completed": true,
+    "visited_at": "2026-06-10T19:14:22.574Z",
+    "completed_at": "2026-06-10T19:14:22.552Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 20,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 7,
+    "completed": true,
+    "visited_at": "2026-06-10T19:14:25.378Z",
+    "completed_at": "2026-06-10T19:14:25.354Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 21,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 8,
+    "completed": true,
+    "visited_at": "2026-06-10T19:14:28.183Z",
+    "completed_at": "2026-06-10T19:14:28.160Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 22,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 9,
+    "completed": true,
+    "visited_at": "2026-06-10T19:14:30.517Z",
+    "completed_at": "2026-06-10T19:14:30.493Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 23,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 10,
+    "completed": true,
+    "visited_at": "2026-06-10T19:14:33.621Z",
+    "completed_at": "2026-06-10T19:14:33.598Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 24,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 12,
+    "completed": true,
+    "visited_at": "2026-06-10T19:14:38.550Z",
+    "completed_at": "2026-06-10T19:14:38.526Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 25,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 13,
+    "completed": true,
+    "visited_at": "2026-06-10T19:14:41.751Z",
+    "completed_at": "2026-06-10T19:14:41.722Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 26,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 14,
+    "completed": true,
+    "visited_at": "2026-06-11T13:23:24.583Z",
+    "completed_at": "2026-06-10T19:14:45.539Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 27,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 15,
+    "completed": true,
+    "visited_at": "2026-06-11T13:54:14.718Z",
+    "completed_at": "2026-06-10T19:14:47.778Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 28,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 16,
+    "completed": true,
+    "visited_at": "2026-06-10T19:14:50.150Z",
+    "completed_at": "2026-06-10T19:14:50.125Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 29,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 17,
+    "completed": true,
+    "visited_at": "2026-06-10T19:14:55.031Z",
+    "completed_at": "2026-06-10T19:14:55.002Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 30,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 18,
+    "completed": true,
+    "visited_at": "2026-06-10T19:14:57.824Z",
+    "completed_at": "2026-06-10T19:14:57.800Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 31,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 19,
+    "completed": true,
+    "visited_at": "2026-06-11T13:22:13.889Z",
+    "completed_at": "2026-06-10T19:15:00.242Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 32,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 20,
+    "completed": true,
+    "visited_at": "2026-06-11T13:22:07.798Z",
+    "completed_at": "2026-06-10T19:15:03.084Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 33,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 21,
+    "completed": true,
+    "visited_at": "2026-06-10T19:15:06.204Z",
+    "completed_at": "2026-06-10T19:15:06.182Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 34,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 22,
+    "completed": true,
+    "visited_at": "2026-06-10T19:15:19.575Z",
+    "completed_at": "2026-06-10T19:15:19.550Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 35,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 23,
+    "completed": true,
+    "visited_at": "2026-06-10T19:15:22.003Z",
+    "completed_at": "2026-06-10T19:15:21.981Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 36,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 24,
+    "completed": true,
+    "visited_at": "2026-06-10T19:15:25.692Z",
+    "completed_at": "2026-06-10T19:15:25.670Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 37,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 25,
+    "completed": true,
+    "visited_at": "2026-06-11T13:27:52.503Z",
+    "completed_at": "2026-06-10T19:15:29.910Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 38,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 26,
+    "completed": true,
+    "visited_at": "2026-06-11T13:24:54.949Z",
+    "completed_at": "2026-06-11T13:24:54.922Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 39,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 27,
+    "completed": true,
+    "visited_at": "2026-06-11T13:24:57.213Z",
+    "completed_at": "2026-06-11T13:24:57.189Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 40,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 28,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:01.311Z",
+    "completed_at": "2026-06-11T13:25:01.281Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 41,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 29,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:03.075Z",
+    "completed_at": "2026-06-11T13:25:03.052Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 42,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 30,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:06.889Z",
+    "completed_at": "2026-06-11T13:25:06.866Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 43,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 31,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:09.028Z",
+    "completed_at": "2026-06-11T13:25:09.004Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 44,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 32,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:11.259Z",
+    "completed_at": "2026-06-11T13:25:11.227Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 45,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 33,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:13.045Z",
+    "completed_at": "2026-06-11T13:25:13.020Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 46,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 34,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:14.896Z",
+    "completed_at": "2026-06-11T13:25:14.867Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 47,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 35,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:16.596Z",
+    "completed_at": "2026-06-11T13:25:16.571Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 48,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 36,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:18.325Z",
+    "completed_at": "2026-06-11T13:25:18.297Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 49,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 37,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:20.201Z",
+    "completed_at": "2026-06-11T13:25:20.176Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 50,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 38,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:22.686Z",
+    "completed_at": "2026-06-11T13:25:22.662Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 51,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 39,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:25.355Z",
+    "completed_at": "2026-06-11T13:25:25.330Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 52,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 40,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:28.443Z",
+    "completed_at": "2026-06-11T13:25:28.417Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 53,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 41,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:30.246Z",
+    "completed_at": "2026-06-11T13:25:30.220Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 54,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 42,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:31.963Z",
+    "completed_at": "2026-06-11T13:25:31.936Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 55,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 43,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:34.788Z",
+    "completed_at": "2026-06-11T13:25:34.765Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 56,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 44,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:41.710Z",
+    "completed_at": "2026-06-11T13:25:41.682Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 57,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 45,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:43.452Z",
+    "completed_at": "2026-06-11T13:25:43.427Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 58,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 46,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:45.225Z",
+    "completed_at": "2026-06-11T13:25:45.200Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 59,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 47,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:47.060Z",
+    "completed_at": "2026-06-11T13:25:47.031Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 60,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 48,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:48.698Z",
+    "completed_at": "2026-06-11T13:25:48.670Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 61,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 49,
+    "completed": true,
+    "visited_at": "2026-06-11T13:25:51.957Z",
+    "completed_at": "2026-06-11T13:25:51.933Z"
+  }
+},
+{
+  "model": "minikurs.lessonprogress",
+  "pk": 62,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "lesson": 50,
+    "completed": true,
+    "visited_at": "2026-06-11T13:29:13.463Z",
+    "completed_at": "2026-06-11T13:25:54.755Z"
+  }
+},
+{
+  "model": "minikurs.certificate",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "enrollment": 2,
+    "certificate_id": "9e3bab28-7aac-448c-a5dd-dde88a44384c",
+    "issued_at": "2026-06-10T19:15:29.929Z"
+  }
+},
+{
+  "model": "minikurs.certificate",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "adsutori"
+    ],
+    "enrollment": 1,
+    "certificate_id": "7ece8ddf-4435-412d-be8b-aaacef0a2944",
+    "issued_at": "2026-06-11T13:25:54.770Z"
+  }
+}
+]
