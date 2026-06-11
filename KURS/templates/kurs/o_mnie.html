@@ -9,7 +9,7 @@
 <div class="page-header">
   <h1>
     <i data-lucide="user" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;"></i>
-    O mnie
+    O autorze
   </h1>
   <p>Poznaj autora kursu</p>
 </div>
@@ -26,7 +26,7 @@
 
       <img src="{% static 'media/img/o_mnie_zdjecie.jpg' %}"
            alt="Moje zdjęcie"
-           width="160" height="160"
+           width="130" height="130"
            style="border-radius:50%; object-fit:cover;
                   border: 3px solid var(--accent-primary);
                   box-shadow: var(--shadow-glow-sm);"
@@ -34,7 +34,7 @@
 
       <img src="{% static 'img/o_mnie_animacja.gif' %}"
            alt="Animacja — kodowanie"
-           width="160"
+           width="130"
            style="border-radius:var(--radius-md); border: 1px solid var(--border);"
            onerror="this.src='https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif'">
     </div>
@@ -122,7 +122,7 @@
           <th>Link</th>
           <th>Nazwa</th>
           <th>Kategoria</th>
-          <th>Ocena</th>
+          <th>Moja ocena</th>
         </tr>
       </thead>
       <tbody>
@@ -230,59 +230,110 @@
      4. ODTWARZACZE AUDIO W TABELI
      ============================================================ -->
 <div class="content-card fade-in" style="margin-bottom:32px;">
-  <h2 style="color:var(--accent-secondary); margin-bottom:16px; display:flex; align-items:center; gap:10px;">
+  <h2 style="color:var(--accent-secondary); margin-bottom:8px;
+             display:flex; align-items:center; gap:10px;">
     <i data-lucide="music" style="width:20px;height:20px;"></i>
     Ostatnio słuchane utwory
   </h2>
-  <p style="margin-bottom:16px; color:var(--text-secondary);">
+  <p style="margin-bottom:20px; color:var(--text-muted); font-size:var(--text-sm);">
     Muzyka, której słucham w ostatnim czasie.
   </p>
 
-  <div class="table-wrapper">
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Utwór</th>
-          <th>Wykonawca</th>
-          <th>Odtwarzacz</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--text-muted);">1</td>
-          <td style="color:var(--text-primary); font-weight:500;">Love of Humanity</td>
-          <td style="color:var(--text-secondary);">Panam Panic</td>
-          <td>
-            <audio controls style="height:32px; min-width:200px;">
-              <source src="{% static 'media/aud/Love-of-Humanity.mp3' %}" type="audio/mpeg">
-            </audio>
-          </td>
-        </tr>
-        <tr>
-          <td style="color:var(--text-muted);">2</td>
-          <td style="color:var(--text-primary); font-weight:500;">Time Machine</td>
-          <td style="color:var(--text-secondary);">Everything Yes</td>
-          <td>
-            <audio controls style="height:32px; min-width:200px;">
-              <source src="{% static 'media/aud/Time-Machine.mp3' %}" type="audio/mpeg">
-            </audio>
-          </td>
-        </tr>
-        <tr>
-          <td style="color:var(--text-muted);">3</td>
-          <td style="color:var(--text-primary); font-weight:500;">CHASING LIGHT</td>
-          <td style="color:var(--text-secondary);">Moses Yoofee Trio</td>
-          <td>
-            <audio controls style="height:32px; min-width:200px;">
-              <source src="{% static 'media/aud/CHASING-LIGHT.mp3' %}" type="audio/mpeg">
-            </audio>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div style="display:flex; flex-direction:column; gap:10px;">
+
+    <!-- UTWÓR 1 -->
+    <div class="audio-card" data-src="{% static 'media/aud/Love-of-Humanity.mp3' %}">
+      <audio preload="metadata">
+        <source src="{% static 'media/aud/Love-of-Humanity.mp3' %}" type="audio/mpeg">
+      </audio>
+      <div class="audio-index">1</div>
+      <div class="audio-info">
+        <span class="audio-title">Love of Humanity</span>
+        <span class="audio-artist">Panam Panic</span>
+      </div>
+      <div class="audio-controls">
+        <button class="audio-play-btn" aria-label="Play">
+          <i data-lucide="play" style="width:16px;height:16px;"></i>
+        </button>
+        <div class="audio-progress-wrap">
+          <div class="audio-progress-bar">
+            <div class="audio-progress-fill"></div>
+            <div class="audio-progress-thumb"></div>
+          </div>
+          <div class="audio-times">
+            <span class="audio-current">0:00</span>
+            <span class="audio-duration">–:––</span>
+          </div>
+        </div>
+        <button class="audio-vol-btn" aria-label="Wycisz">
+          <i data-lucide="volume-2" style="width:15px;height:15px;"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- UTWÓR 2 -->
+    <div class="audio-card" data-src="{% static 'media/aud/Time-Machine.mp3' %}">
+      <audio preload="metadata">
+        <source src="{% static 'media/aud/Time-Machine.mp3' %}" type="audio/mpeg">
+      </audio>
+      <div class="audio-index">2</div>
+      <div class="audio-info">
+        <span class="audio-title">Time Machine</span>
+        <span class="audio-artist">Everything Yes</span>
+      </div>
+      <div class="audio-controls">
+        <button class="audio-play-btn" aria-label="Play">
+          <i data-lucide="play" style="width:16px;height:16px;"></i>
+        </button>
+        <div class="audio-progress-wrap">
+          <div class="audio-progress-bar">
+            <div class="audio-progress-fill"></div>
+            <div class="audio-progress-thumb"></div>
+          </div>
+          <div class="audio-times">
+            <span class="audio-current">0:00</span>
+            <span class="audio-duration">–:––</span>
+          </div>
+        </div>
+        <button class="audio-vol-btn" aria-label="Wycisz">
+          <i data-lucide="volume-2" style="width:15px;height:15px;"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- UTWÓR 3 -->
+    <div class="audio-card" data-src="{% static 'media/aud/CHASING-LIGHT.mp3' %}">
+      <audio preload="metadata">
+        <source src="{% static 'media/aud/CHASING-LIGHT.mp3' %}" type="audio/mpeg">
+      </audio>
+      <div class="audio-index">3</div>
+      <div class="audio-info">
+        <span class="audio-title">CHASING LIGHT</span>
+        <span class="audio-artist">Moses Yoofee Trio</span>
+      </div>
+      <div class="audio-controls">
+        <button class="audio-play-btn" aria-label="Play">
+          <i data-lucide="play" style="width:16px;height:16px;"></i>
+        </button>
+        <div class="audio-progress-wrap">
+          <div class="audio-progress-bar">
+            <div class="audio-progress-fill"></div>
+            <div class="audio-progress-thumb"></div>
+          </div>
+          <div class="audio-times">
+            <span class="audio-current">0:00</span>
+            <span class="audio-duration">–:––</span>
+          </div>
+        </div>
+        <button class="audio-vol-btn" aria-label="Wycisz">
+          <i data-lucide="volume-2" style="width:15px;height:15px;"></i>
+        </button>
+      </div>
+    </div>
+
   </div>
 </div>
+
 
 <!-- ============================================================
      3. ODTWARZACZ WIDEO
@@ -296,17 +347,23 @@
     Poniżej znajduje się film z moim ulubionym wykonaniem zespołu Pink Floyd na żywo (Pink Floyd at Pompeii – MCMLXXII).
   </p>
 
-  <iframe
-    src="https://www.youtube.com/embed/dVau7xYA8rk"
-    width="100%"
-    height="340"
-    style="border-radius: var(--radius-lg); max-width:600px; display:block;
-          border: 1px solid var(--border); box-shadow: var(--shadow-glow-sm);"
-    title="Moje wideo"
-    allowfullscreen
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
+  <div style="position:relative; width:100%; max-width:720px;
+              margin:0 auto;                          /* ← centruje */
+              padding-top: calc(720px * 9/16);        /* ← proporcje 16:9 dla max-width */
+              border-radius:var(--radius-lg);
+              overflow:hidden;
+              border:1px solid var(--border);
+              box-shadow:var(--shadow-glow-sm);">
+    <iframe
+      src="https://www.youtube.com/embed/dVau7xYA8rk"
+      style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
+      title="Pink Floyd at Pompeii – MCMLXXII"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+
 
 </div>
 
@@ -353,26 +410,27 @@
 <div class="content-card fade-in">
   <h2 style="color:var(--accent-secondary); margin-bottom:16px; display:flex; align-items:center; gap:10px;">
     <i data-lucide="compass" style="width:20px;height:20px;"></i>
-    Nawigacja wewnętrzna
+    Ważne podstrony w kursie
   </h2>
 
   <div style="display:flex; gap:12px; flex-wrap:wrap;">
-    <a href="#tabela" class="btn btn-outline btn-sm"
+    <a href="/kurs/dashboard" class="btn btn-outline btn-sm"
        style="display:inline-flex;align-items:center;gap:6px;">
       <i data-lucide="bar-chart-2" style="width:13px;height:13px;"></i>
-      Przejdź do tabeli projektów
+      Dashboard
     </a>
     <a href="{% url 'minikurs:kontakt' %}" class="btn btn-outline btn-sm"
        style="display:inline-flex;align-items:center;gap:6px;">
       <i data-lucide="phone" style="width:13px;height:13px;"></i>
-      Przejdź do Kontaktu
+      Kontakt
     </a>
-    <a href="{% url 'minikurs:html' %}" class="btn btn-outline btn-sm"
+    <a href="/kurs/kursy/" class="btn btn-outline btn-sm"
        style="display:inline-flex;align-items:center;gap:6px;">
       <i data-lucide="book" style="width:13px;height:13px;"></i>
-      Poradnik HTML
+      Wszystkie kursy
     </a>
   </div>
 </div>
+
 
 {% endblock %}

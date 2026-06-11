@@ -124,7 +124,7 @@
         <a href="{% url 'minikurs:o_mnie' %}"
            class="sidebar-link {% if request.resolver_match.url_name == 'o_mnie' %}active{% endif %}">
           <i data-lucide="user" style="width:16px;height:16px;"></i>
-          O mnie
+          O autorze
         </a>
 
         <a href="{% url 'minikurs:linki' %}"
@@ -218,7 +218,100 @@
         sidebar.classList.toggle('open');
       });
     }
+
+    (function () {
+      const cards = document.querySelectorAll('.audio-card');
+      let currentCard = null;
+
+      // ── Helper: podmienia ikonę Lucide w przycisku ──────────────
+      function setIcon(btn, iconName) {
+        btn.innerHTML = '<i data-lucide="' + iconName + '" style="width:16px;height:16px;pointer-events:none;"></i>';
+        lucide.createIcons({ nodes: [btn] });
+      }
+
+      function setVolIcon(btn, muted) {
+        const name = muted ? 'volume-x' : 'volume-2';
+        btn.innerHTML = '<i data-lucide="' + name + '" style="width:15px;height:15px;pointer-events:none;"></i>';
+        lucide.createIcons({ nodes: [btn] });
+      }
+
+      function formatTime(s) {
+        if (isNaN(s) || s === Infinity) return '0:00';
+        const m   = Math.floor(s / 60);
+        const sec = Math.floor(s % 60);
+        return m + ':' + String(sec).padStart(2, '0');
+      }
+
+      cards.forEach(function (card) {
+        const audio   = card.querySelector('audio');
+        const playBtn = card.querySelector('.audio-play-btn');
+        const fill    = card.querySelector('.audio-progress-fill');
+        const thumb   = card.querySelector('.audio-progress-thumb');
+        const bar     = card.querySelector('.audio-progress-bar');
+        const current = card.querySelector('.audio-current');
+        const durEl   = card.querySelector('.audio-duration');
+        const volBtn  = card.querySelector('.audio-vol-btn');
+
+        audio.addEventListener('loadedmetadata', function () {
+          durEl.textContent = formatTime(audio.duration);
+        });
+
+        audio.addEventListener('timeupdate', function () {
+          const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+          fill.style.width = pct + '%';
+          thumb.style.left = pct + '%';
+          current.textContent = formatTime(audio.currentTime);
+        });
+
+        audio.addEventListener('ended', function () {
+          card.classList.remove('playing');
+          setIcon(playBtn, 'play');
+          currentCard = null;
+        });
+
+        // ── Play / Pause ─────────────────────────────────────────
+        playBtn.addEventListener('click', function () {
+          const isPlaying = !audio.paused;
+
+          // Zatrzymaj poprzedni odtwarzacz
+          if (currentCard && currentCard !== card) {
+            const prevAudio   = currentCard.querySelector('audio');
+            const prevPlayBtn = currentCard.querySelector('.audio-play-btn');
+            prevAudio.pause();
+            currentCard.classList.remove('playing');
+            setIcon(prevPlayBtn, 'play');
+          }
+
+          if (isPlaying) {
+            audio.pause();
+            card.classList.remove('playing');
+            setIcon(playBtn, 'play');       // ← pauza → play
+            currentCard = null;
+          } else {
+            audio.play();
+            card.classList.add('playing');
+            setIcon(playBtn, 'pause');      // ← play → pauza
+            currentCard = card;
+          }
+        });
+
+        // ── Klik w pasek ─────────────────────────────────────────
+        bar.addEventListener('click', function (e) {
+          const rect = bar.getBoundingClientRect();
+          const pct  = (e.clientX - rect.left) / rect.width;
+          if (audio.duration) audio.currentTime = pct * audio.duration;
+        });
+
+        // ── Wyciszenie ───────────────────────────────────────────
+        volBtn.addEventListener('click', function () {
+          audio.muted = !audio.muted;
+          setVolIcon(volBtn, audio.muted);
+        });
+      });
+    })();
+
   </script>
+
 
 </body>
 </html>

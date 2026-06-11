@@ -194,8 +194,9 @@ html, body, .kurs-body {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  /* USUNIĘTE: min-height: 100vh — to było źródłem problemu */
+  flex: 1;                  /* ← zajmuje całą pozostałą szerokość gridu */
 }
+
 
 .kurs-topbar {
   display: flex;
@@ -231,10 +232,13 @@ html, body, .kurs-body {
 
 .kurs-content {
   flex: 1;
-  padding: 32px 28px;
-  max-width: 1100px;
+  padding: 32px 40px;      
+  /* max-width: 960px;        */
   width: 100%;
+  margin: 0 auto;          
+  box-sizing: border-box;
 }
+
 
 /* ============================================================
    MESSAGES
@@ -425,5 +429,258 @@ html, body, .kurs-body {
 
   .kurs-content {
     padding: 20px 16px;
+    max-width: 100%;        /* ← na mobile pełna szerokość */
+  }
+}
+
+
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+.page-header {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-header h1 {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 8px;        /* ← odstęp między h1 a opisem */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-header p {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   HAMBURGER + OVERLAY (mobile)
+   ============================================================ */
+
+.sidebar-toggle {
+  display: none;             /* domyślnie ukryty na desktop */
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.sidebar-toggle:hover {
+  background: rgba(124,58,237,0.1);
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;                  /* top/right/bottom/left: 0 */
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  z-index: 99;               /* pod sidebarem (z-index: 100) */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .sidebar-toggle {
+    display: flex;            /* ← pojawia się na mobile */
+  }
+}
+
+/* ============================================================
+   CUSTOM AUDIO PLAYER
+   ============================================================ */
+.audio-card {
+  display: grid;
+  grid-template-columns: 28px 180px 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  background: rgba(124, 58, 237, 0.06);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.audio-card:hover {
+  background: rgba(124, 58, 237, 0.12);
+  border-color: rgba(124, 58, 237, 0.35);
+}
+
+.audio-card.playing {
+  background: rgba(124, 58, 237, 0.14);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 1px rgba(124,58,237,0.3);
+}
+
+.audio-card audio {
+  display: none; /* ukrywamy natywny element */
+}
+
+/* Numer */
+.audio-index {
+  color: var(--text-muted);
+  font-family: monospace;
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
+.audio-card.playing .audio-index {
+  color: var(--accent-secondary);
+  font-weight: 700;
+}
+
+/* Tytuł + wykonawca */
+.audio-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.audio-title {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.audio-artist {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+
+/* Kontrolki */
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* Przycisk play/pause */
+.audio-play-btn,
+.audio-vol-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 50%;
+  color: var(--accent-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.audio-play-btn {
+  width: 36px;
+  height: 36px;
+}
+
+.audio-vol-btn {
+  width: 30px;
+  height: 30px;
+}
+
+.audio-play-btn:hover,
+.audio-vol-btn:hover {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #fff;
+}
+
+/* Progress bar */
+.audio-progress-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.audio-progress-bar {
+  position: relative;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 99px;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.audio-progress-bar:hover .audio-progress-thumb {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+.audio-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  border-radius: 99px;
+  pointer-events: none;
+  transition: width 0.1s linear;
+}
+
+.audio-progress-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translateY(-50%) scale(0.6);
+  width: 12px;
+  height: 12px;
+  background: var(--accent-secondary);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none;
+  box-shadow: 0 0 6px rgba(167,139,250,0.6);
+}
+
+.audio-times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .audio-card {
+    grid-template-columns: 24px 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .audio-info {
+    grid-column: 2;
+  }
+
+  .audio-controls {
+    grid-column: 1 / -1;
   }
 }
