@@ -7,138 +7,190 @@
 <meta name="chapter" content="kontakt">
 
 <div class="page-header">
-  <h1>📞 Kontakt</h1>
-  {% comment %} <p>Dane kontaktowe autora kursu i mapa dojazdu.</p> {% endcomment %}
+  <h1>
+    <i data-lucide="phone" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;"></i>
+    Kontakt
+  </h1>
 </div>
 
-<!-- KARTA KONTAKTOWA -->
-<div class="content-card fade-in" style="max-width:600px; margin-bottom:32px;">
-  <h2 style="color:var(--accent-secondary); margin-bottom:24px;">👤 Dane kontaktowe</h2>
+<!-- GŁÓWNY GRID: lewa kolumna = kafelki, prawa = mapa -->
+<div class="contact-page-grid fade-in">
 
-  <div class="contact-row">
-    <span class="contact-icon">👤</span>
-    <div>
-      <div class="contact-label">Imię i nazwisko</div>
-      <!-- ZASTĄP własnymi danymi -->
-      <div class="contact-value">Krzysztof Januszewski</div>
+  <!-- ── LEWA: kafelki kontaktowe ─────────────────────────── -->
+  <div style="display:flex; flex-direction:column; gap:16px;">
+
+    <!-- Nagłówek sekcji -->
+    <div class="content-card" style="padding:20px 24px;">
+      <h2 style="color:var(--accent-secondary); margin:0;
+                 display:flex; align-items:center; gap:10px;">
+        <i data-lucide="contact" style="width:20px;height:20px;"></i>
+        Dane kontaktowe
+      </h2>
     </div>
-  </div>
 
-  <div class="contact-row">
-    <span class="contact-icon">🏫</span>
-    <div>
-      <div class="contact-label">Szkoła i klasa</div>
-      <!-- ZASTĄP własnymi danymi -->
-      <div class="contact-value">
-        Technikum Elektroniczne im. Marcina Kasprzaka w Warszawie,
-        klasa 3F
+    <!-- Kafelek: Imię i nazwisko -->
+    <div class="contact-tile">
+      <div class="contact-tile-icon">
+        <i data-lucide="user" style="width:22px;height:22px;"></i>
+      </div>
+      <div class="contact-tile-body">
+        <div class="contact-label">Imię i nazwisko</div>
+        <div class="contact-value">Krzysztof Januszewski</div>
       </div>
     </div>
-  </div>
 
-  <div class="contact-row">
-    <span class="contact-icon">📍</span>
-    <div>
-      <div class="contact-label">Adres</div>
-      <!-- WAŻNE: link do trasy rowerowej w multimedia.html -->
-      <div class="contact-value">
-      <a href="{% static 'projekty/multimedia/podstrony/mapy.html' %}#mapa3"
-        target="_blank"
-        rel="noopener"
-        style="color:var(--accent-secondary); text-decoration:underline; text-underline-offset:3px;"
-        title="Kliknij, aby zobaczyć trasę rowerową">
-        W. Bartniaka 9, Grodzisk Mazowiecki
-      </a>
-        <div style="font-size:var(--text-xs); color:var(--text-muted); margin-top:4px;">
-          ↗ Kliknięcie otwiera trasę rowerową w sekcji Multimedia
+    <!-- Kafelek: Szkoła -->
+    <div class="contact-tile">
+      <div class="contact-tile-icon">
+        <i data-lucide="school" style="width:22px;height:22px;"></i>
+      </div>
+      <div class="contact-tile-body">
+        <div class="contact-label">Szkoła i klasa</div>
+        <div class="contact-value">
+          Technikum Elektroniczne im. Marcina Kasprzaka w Warszawie, klasa 3F
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="contact-row">
-    <span class="contact-icon">📧</span>
-    <div>
-      <div class="contact-label">E-mail</div>
-      <!-- ZASTĄP własnymi danymi -->
-      <div class="contact-value">
-        <a href="mailto:kjrozne@outlook.com"
-           style="color:var(--accent-secondary);">
-          kjrozne@outlook.com
-        </a>
+    <!-- Kafelek: Adres -->
+    <div class="contact-tile">
+      <div class="contact-tile-icon">
+        <i data-lucide="map-pin" style="width:22px;height:22px;"></i>
+      </div>
+      <div class="contact-tile-body">
+        <div class="contact-label">Adres</div>
+        <div class="contact-value">
+          <a href="{% static 'projekty/multimedia/podstrony/mapy.html' %}#mapa3"
+             target="_blank" rel="noopener"
+             style="color:var(--accent-secondary);
+                    text-decoration:underline;
+                    text-underline-offset:3px;"
+             title="Kliknij, aby zobaczyć trasę rowerową">
+            W. Bartniaka 9, Grodzisk Mazowiecki
+          </a>
+          <div style="display:flex; align-items:center; gap:4px;
+                      font-size:var(--text-xs); color:var(--text-muted); margin-top:6px;">
+            <i data-lucide="arrow-up-right" style="width:11px;height:11px;"></i>
+            Kliknięcie otwiera trasę rowerową w sekcji Multimedia
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="contact-row" style="border-bottom:none; margin-bottom:0; padding-bottom:0;">
-    <span class="contact-icon">📱</span>
-    <div>
-      <div class="contact-label">Telefon</div>
-      <!-- ZASTĄP własnymi danymi -->
-      <div class="contact-value">
-        <a href="tel:+48000000000"
-           style="color:var(--accent-secondary);">
-          +48 123 456 789
-        </a>
+    <!-- Kafelek: E-mail -->
+    <div class="contact-tile">
+      <div class="contact-tile-icon">
+        <i data-lucide="mail" style="width:22px;height:22px;"></i>
+      </div>
+      <div class="contact-tile-body">
+        <div class="contact-label">E-mail</div>
+        <div class="contact-value">
+          <a href="mailto:kjrozne@outlook.com"
+             style="color:var(--accent-secondary);">
+            kjrozne@outlook.com
+          </a>
+        </div>
       </div>
     </div>
+
+    <!-- Kafelek: Telefon -->
+    <div class="contact-tile">
+      <div class="contact-tile-icon">
+        <i data-lucide="smartphone" style="width:22px;height:22px;"></i>
+      </div>
+      <div class="contact-tile-body">
+        <div class="contact-label">Telefon</div>
+        <div class="contact-value">
+          <a href="tel:+48000000000"
+             style="color:var(--accent-secondary);">
+            +48 123 456 789
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── PRAWA: mapa ───────────────────────────────────────── -->
+  <div class="content-card" style="display:flex; flex-direction:column; gap:16px;">
+
+    <h2 style="color:var(--accent-secondary); margin:0;
+               display:flex; align-items:center; gap:10px;">
+      <i data-lucide="map" style="width:20px;height:20px;"></i>
+      Technikum Elektroniczne <abbr title="Numer">nr</abbr>1 
+    </h2>
+
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.8203255395442!2d20.968053877373517!3d52.22848207198629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecb61f83e4b81%3A0x326f47958eb8ca46!2sTechnikum%20Elektroniczne%20nr%201!5e0!3m2!1sen!2spl!4v1775497797256!5m2!1sen!2spl"
+      width="100%"
+      height="100%"
+      style="border:0; border-radius:var(--radius-lg);
+             box-shadow:var(--shadow-card); display:block;
+             min-height:340px; flex:1;"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Technikum im. Kasprzaka — mapa">
+    </iframe>
+
+    <div style="text-align:center;">
+      <a href="{% static 'projekty/multimedia/podstrony/mapy.html' %}#mapa4"
+         target="_blank" rel="noopener"
+         class="btn btn-primary"
+         style="display:inline-flex; align-items:center; gap:8px;">
+        <i data-lucide="map" style="width:15px;height:15px;"></i>
+        Otwórz w pracy <strong>Multimedia</strong>
+      </a>
+    </div>
+
   </div>
 </div>
-
-<!-- MAPA GOOGLE MAPS -->
-<div class="content-card fade-in" style="margin-bottom:32px;">
-  <h2 style="color:var(--accent-secondary); margin-bottom:8px;">🗺️ Technikum Elektroniczne <abbr title="Numer">nr</abbr> 1 na mapie</h2>
-{% comment %} 
-  <p style="margin-bottom:16px;">
-    <a href="{% static 'projekty/multimedia/podstrony/mapy.html' %}#mapa4"
-       target="_blank"
-       rel="noopener"
-       style="color:var(--accent-secondary); font-weight:600;
-              text-decoration:underline; text-underline-offset:3px;">
-      Kliknij, aby zobaczyć porównanie serwisów mapowych →
-    </a>
-  </p> {% endcomment %}
-
-  <!-- Miniatura mapy (400px) -->
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.8203255395442!2d20.968053877373517!3d52.22848207198629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecb61f83e4b81%3A0x326f47958eb8ca46!2sTechnikum%20Elektroniczne%20nr%201!5e0!3m2!1sen!2spl!4v1775497797256!5m2!1sen!2spl"
-    width="100%"
-    height="400"
-    style="border:0; border-radius: var(--radius-lg);
-           box-shadow: var(--shadow-card); display:block;"
-    allowfullscreen
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"
-    title="Technikum im. Kasprzaka — miniatura mapy">
-  </iframe>
-
-  <div style="margin-top:20px; text-align:center;">
-    <a href="{% static 'projekty/multimedia/podstrony/mapy.html' %}#mapa4"
-       target="_blank"
-       rel="noopener"
-       class="btn btn-primary">
-      🗺️ Otwórz w pracy <strong>Multimedia</strong>
-    </a>
-  </div>
-</div>
-
 
 <style>
-.contact-row {
+/* ── Layout główny ──────────────────────────────────────────── */
+.contact-page-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ── Kafelki kontaktowe ─────────────────────────────────────── */
+.contact-tile {
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 0;
+  padding: 18px 20px;
+  background: var(--bg-card);
+  border: 1px solid rgba(124,58,237,0.15);
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
 }
-.contact-icon {
-  font-size: 1.5rem;
+
+.contact-tile:hover {
+  border-color: rgba(124,58,237,0.4);
+  background: rgba(124,58,237,0.06);
+  transform: translateX(4px);
+}
+
+.contact-tile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  width: 36px;
-  text-align: center;
-  margin-top: 2px;
+  width: 44px;
+  height: 44px;
+  background: rgba(124,58,237,0.12);
+  border: 1px solid rgba(124,58,237,0.25);
+  border-radius: var(--radius-md);
+  color: var(--accent-secondary);
 }
+
+.contact-tile-body {
+  flex: 1;
+  min-width: 0;
+}
+
 .contact-label {
   font-size: var(--text-xs);
   color: var(--text-muted);
@@ -147,10 +199,19 @@
   font-weight: 600;
   margin-bottom: 4px;
 }
+
 .contact-value {
   font-size: var(--text-base);
   color: var(--text-primary);
   font-weight: 500;
+  line-height: 1.5;
+}
+
+/* ── Responsywność ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .contact-page-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 {% endblock %}

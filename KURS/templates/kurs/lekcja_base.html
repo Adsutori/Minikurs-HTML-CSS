@@ -42,16 +42,17 @@
 </div>
 
 <!-- TREŚĆ LEKCJI — tu wstrzykujesz content z pliku lekcji -->
-<div class="content-card lesson-content" style="margin-bottom:32px;">
+<div class="content-card lesson-content" style="margin-bottom:32px; max-width:100%; width:100%;">
   {% block lekcja_content %}{% endblock %}
 </div>
 
 <!-- Nawigacja prev/next -->
-<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:8px;">
   {% if prev_lesson %}
   <a href="{% url 'minikurs:lekcja' course.slug prev_lesson.slug %}"
-     class="btn btn-outline" style="flex:1;max-width:280px;">
-    <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+     class="btn btn-outline btn-sm"
+     style="display:inline-flex;align-items:center;gap:8px;">
+    <i data-lucide="arrow-left" style="width:14px;height:14px;"></i>
     {{ prev_lesson.title }}
   </a>
   {% else %}
@@ -60,17 +61,20 @@
 
   {% if next_lesson %}
   <a href="{% url 'minikurs:lekcja' course.slug next_lesson.slug %}"
-     class="btn btn-primary" style="flex:1;max-width:280px;justify-content:flex-end;">
+     class="btn btn-primary btn-sm"
+     style="display:inline-flex;align-items:center;gap:8px;">
     {{ next_lesson.title }}
-    <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+    <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
   </a>
   {% else %}
   <a href="{% url 'minikurs:kurs_detail' course.slug %}"
-     class="btn btn-primary" style="flex:1;max-width:280px;justify-content:flex-end;">
-    <i data-lucide="flag" style="width:16px;height:16px;"></i>
+     class="btn btn-primary btn-sm"
+     style="display:inline-flex;align-items:center;gap:8px;">
+    <i data-lucide="flag" style="width:14px;height:14px;"></i>
     Koniec kursu!
   </a>
   {% endif %}
 </div>
+
 
 {% endblock %}

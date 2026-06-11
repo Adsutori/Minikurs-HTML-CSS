@@ -55,7 +55,24 @@
 
     <!-- Treść podglądu -->
     <div style="text-align:center; position:relative; z-index:1;">
-      <div style="font-size:3rem; margin-bottom:8px;">🏆</div>
+
+      <!-- 🏆 → ikona trophy -->
+      <div style="display:flex;justify-content:center;margin-bottom:8px;">
+        <i data-lucide="trophy"
+           style="width:48px;height:48px;
+                  color:transparent;
+                  stroke:url(#trophyGrad);"></i>
+        <svg width="0" height="0">
+          <defs>
+            <linearGradient id="trophyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%"   stop-color="#f1f5f9"/>
+              <stop offset="50%"  stop-color="#a855f7"/>
+              <stop offset="100%" stop-color="#7c3aed"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
       <div style="font-size:1.6rem; font-weight:900;
                   background:linear-gradient(135deg,#f1f5f9,#a855f7,#7c3aed);
                   -webkit-background-clip:text; -webkit-text-fill-color:transparent;
@@ -78,12 +95,16 @@
                   background-clip:text; margin-bottom:12px;">
         {{ user.get_full_name|default:user.username }}
       </div>
-      <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 18px;
+
+      <!-- 🎓 → ikona graduation-cap -->
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 18px;
                   background:rgba(124,58,237,0.2);border:1px solid rgba(124,58,237,0.4);
                   border-radius:999px;font-size:0.85rem;font-weight:700;
                   color:var(--accent-secondary);margin-bottom:12px;">
-        🎓 HTML5 i CSS3
+        <i data-lucide="graduation-cap" style="width:15px;height:15px;"></i>
+        HTML5 i CSS3
       </div>
+
       <p style="font-size:0.8rem; color:var(--text-muted); max-width:420px; margin:0 auto;">
         ukończył(a) z sukcesem kurs obejmujący HTML5, CSS3, Flexbox, Grid,
         animacje, formularze, multimedia oraz projekty webowe.
@@ -121,20 +142,40 @@
               {% endif %}">
 
     <div style="display:flex; align-items:center; gap:14px;">
-      <span style="font-size:1.6rem;">{{ item.course.icon }}</span>
+
+      <!-- Ikona kursu zamiast {{ item.course.icon }} (emoji) -->
+      <div style="width:40px;height:40px;border-radius:var(--radius-md);
+                  background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.25);
+                  display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <i data-lucide="book-open" style="width:18px;height:18px;color:var(--accent-secondary);"></i>
+      </div>
+
       <div>
         <div style="font-weight:700; color:var(--text-primary); font-size:var(--text-sm);">
           {{ item.course.title }}
         </div>
-        <div style="font-size:var(--text-xs); color:var(--text-muted); margin-top:2px;">
+        <div style="font-size:var(--text-xs); color:var(--text-muted); margin-top:4px;
+                    display:flex; align-items:center; gap:6px;">
           {% if item.cert %}
-            ✅ Certyfikat wystawiony: {{ item.cert.issued_at|date:"d.m.Y" }}
+            <!-- ✅ → circle-check -->
+            <i data-lucide="circle-check"
+               style="width:13px;height:13px;color:#22c55e;flex-shrink:0;"></i>
+            <span>Certyfikat wystawiony: {{ item.cert.issued_at|date:"d.m.Y" }}</span>
           {% elif item.completed %}
-            🎯 Kurs ukończony — certyfikat zostanie wystawiony automatycznie
+            <!-- 🎯 → target -->
+            <i data-lucide="target"
+               style="width:13px;height:13px;color:var(--accent-secondary);flex-shrink:0;"></i>
+            <span>Kurs ukończony — certyfikat zostanie wystawiony automatycznie</span>
           {% elif item.enrollment %}
-            📖 W trakcie — ukończ wszystkie lekcje, aby zdobyć certyfikat
+            <!-- 📖 → book -->
+            <i data-lucide="book"
+               style="width:13px;height:13px;color:var(--accent-secondary);flex-shrink:0;"></i>
+            <span>W trakcie — ukończ wszystkie lekcje, aby zdobyć certyfikat</span>
           {% else %}
-            🔒 Nie jesteś zapisany na ten kurs
+            <!-- 🔒 → lock -->
+            <i data-lucide="lock"
+               style="width:13px;height:13px;color:var(--text-muted);flex-shrink:0;"></i>
+            <span>Nie jesteś zapisany na ten kurs</span>
           {% endif %}
         </div>
       </div>
@@ -150,13 +191,17 @@
         </a>
       {% elif item.enrollment %}
         <a href="{% url 'minikurs:kurs_detail' item.course.slug %}"
-           class="btn btn-outline btn-sm">
-          Kontynuuj kurs →
+           class="btn btn-outline btn-sm"
+           style="display:inline-flex;align-items:center;gap:6px;">
+          <i data-lucide="play-circle" style="width:14px;height:14px;"></i>
+          Kontynuuj kurs
         </a>
       {% else %}
         <a href="{% url 'minikurs:enroll' item.course.slug %}"
-           class="btn btn-outline btn-sm">
-          Zapisz się →
+           class="btn btn-outline btn-sm"
+           style="display:inline-flex;align-items:center;gap:6px;">
+          <i data-lucide="plus-circle" style="width:14px;height:14px;"></i>
+          Zapisz się
         </a>
       {% endif %}
     </div>
@@ -179,31 +224,43 @@
 
   <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px;">
 
+    <!-- 📚 → library -->
     <div style="text-align:center; padding:20px; background:rgba(124,58,237,0.06);
                 border:1px solid rgba(124,58,237,0.15); border-radius:var(--radius-md);">
-      <div style="font-size:1.8rem; margin-bottom:8px;">📚</div>
+      <div style="display:flex;justify-content:center;margin-bottom:12px;">
+        <i data-lucide="library" style="width:32px;height:32px;color:var(--accent-secondary);"></i>
+      </div>
       <div style="font-weight:700; color:var(--text-primary); margin-bottom:4px;">Krok 1</div>
       <div style="font-size:var(--text-sm); color:var(--text-muted);">Zapisz się na kurs</div>
     </div>
 
+    <!-- 🎯 → target -->
     <div style="text-align:center; padding:20px; background:rgba(124,58,237,0.06);
                 border:1px solid rgba(124,58,237,0.15); border-radius:var(--radius-md);">
-      <div style="font-size:1.8rem; margin-bottom:8px;">🎯</div>
+      <div style="display:flex;justify-content:center;margin-bottom:12px;">
+        <i data-lucide="target" style="width:32px;height:32px;color:var(--accent-secondary);"></i>
+      </div>
       <div style="font-weight:700; color:var(--text-primary); margin-bottom:4px;">Krok 2</div>
       <div style="font-size:var(--text-sm); color:var(--text-muted);">Przerabiaj lekcje</div>
     </div>
 
+    <!-- ✅ → circle-check -->
     <div style="text-align:center; padding:20px; background:rgba(124,58,237,0.06);
                 border:1px solid rgba(124,58,237,0.15); border-radius:var(--radius-md);">
-      <div style="font-size:1.8rem; margin-bottom:8px;">✅</div>
+      <div style="display:flex;justify-content:center;margin-bottom:12px;">
+        <i data-lucide="circle-check" style="width:32px;height:32px;color:var(--accent-secondary);"></i>
+      </div>
       <div style="font-weight:700; color:var(--text-primary); margin-bottom:4px;">Krok 3</div>
       <div style="font-size:var(--text-sm); color:var(--text-muted);">Oznacz każdą lekcję jako ukończoną</div>
     </div>
 
+    <!-- 🏆 → trophy -->
     <div style="text-align:center; padding:20px;
                 background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(168,85,247,0.08));
                 border:1px solid rgba(124,58,237,0.3); border-radius:var(--radius-md);">
-      <div style="font-size:1.8rem; margin-bottom:8px;">🏆</div>
+      <div style="display:flex;justify-content:center;margin-bottom:12px;">
+        <i data-lucide="trophy" style="width:32px;height:32px;color:var(--accent-secondary);"></i>
+      </div>
       <div style="font-weight:700; color:var(--accent-secondary); margin-bottom:4px;">Krok 4</div>
       <div style="font-size:var(--text-sm); color:var(--text-muted);">Certyfikat wystawiony automatycznie!</div>
     </div>
