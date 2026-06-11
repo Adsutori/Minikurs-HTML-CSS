@@ -44,108 +44,151 @@
   setTimeout(type, delay);
 })();
 
-/* ============================================================
-   CANVAS PARTICLES — pływające cząsteczki w tle hero
-   ============================================================ */
-(function initParticles() {
+// ============================================================
+//  HERO PARTICLES — Neon-style animated grid + orbs
+// ============================================================
+(function () {
   const canvas = document.getElementById('particles-canvas');
   if (!canvas) return;
-
   const ctx = canvas.getContext('2d');
-  let   W, H, particles;
 
-  // Kolory cząsteczek
-  const COLORS = [
-    'rgba(124, 58, 237, 0.6)',
-    'rgba(168, 85, 247, 0.4)',
-    'rgba(109, 40, 217, 0.5)',
-    'rgba(196, 181, 253, 0.3)',
-  ];
+  let W, H, particles = [], lines = [], mouse = { x: -9999, y: -9999 };
+  const PARTICLE_COUNT = 80;
+  const ACCENT = '124, 58, 237';
+  const ACCENT2 = '168, 85, 247';
 
   function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
+    const parent = canvas.parentElement;
+    W = canvas.width  = parent.offsetWidth;
+    H = canvas.height = parent.offsetHeight || window.innerHeight;
   }
 
-  function createParticle() {
-    return {
-      x:      Math.random() * W,
-      y:      Math.random() * H,
-      r:      Math.random() * 2.5 + 0.5,
-      dx:     (Math.random() - 0.5) * 0.4,
-      dy:     (Math.random() - 0.5) * 0.4,
-      color:  COLORS[Math.floor(Math.random() * COLORS.length)],
-      alpha:  Math.random() * 0.7 + 0.2,
-      pulse:  Math.random() * Math.PI * 2,
-      pulseSpeed: Math.random() * 0.02 + 0.005,
-    };
+  window.addEventListener('resize', () => { resize(); init(); });
+
+  // Śledzenie myszy
+  canvas.closest('.hero')?.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  canvas.closest('.hero')?.addEventListener('mouseleave', () => {
+    mouse.x = -9999; mouse.y = -9999;
+  });
+
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(initial = false) {
+      this.x  = Math.random() * W;
+      this.y  = initial ? Math.random() * H : H + 10;
+      this.vx = (Math.random() - 0.5) * 0.3;
+      this.vy = -(Math.random() * 0.4 + 0.1);
+      this.size   = Math.random() * 1.5 + 0.5;
+      this.alpha  = Math.random() * 0.5 + 0.1;
+      this.color  = Math.random() > 0.5 ? ACCENT : ACCENT2;
+      this.pulse  = Math.random() * Math.PI * 2;
+      this.pulseSpeed = Math.random() * 0.02 + 0.01;
+    }
+    update() {
+      // Przyciąganie do myszy
+      const dx = mouse.x - this.x;
+      const dy = mouse.y - this.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120) {
+        this.vx += dx / dist * 0.015;
+        this.vy += dy / dist * 0.015;
+      }
+      this.vx *= 0.99;
+      this.vy *= 0.99;
+      this.x += this.vx;
+      this.y += this.vy;
+      this.pulse += this.pulseSpeed;
+      if (this.y < -10) this.reset();
+    }
+    draw() {
+      const a = this.alpha * (0.7 + 0.3 * Math.sin(this.pulse));
+      // Glow
+      const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 6);
+      g.addColorStop(0, `rgba(${this.color}, ${a})`);
+      g.addColorStop(1, `rgba(${this.color}, 0)`);
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * 6, 0, Math.PI * 2);
+      ctx.fillStyle = g;
+      ctx.fill();
+      // Core
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${this.color}, ${Math.min(a * 2, 1)})`;
+      ctx.fill();
+    }
   }
 
-  function initParticleArray() {
-    const count = Math.min(Math.floor((W * H) / 12000), 120);
-    particles   = Array.from({ length: count }, createParticle);
-  }
-
-  function drawParticle(p) {
-    p.pulse += p.pulseSpeed;
-    const currentAlpha = p.alpha * (0.7 + 0.3 * Math.sin(p.pulse));
-
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = p.color.replace(/[\d.]+\)$/, currentAlpha + ')');
-    ctx.fill();
+  // Poziome linie skanujące (jak u Neon)
+  class ScanLine {
+    constructor() { this.reset(); }
+    reset() {
+      this.y     = Math.random() * H;
+      this.speed = Math.random() * 0.3 + 0.1;
+      this.alpha = Math.random() * 0.04 + 0.01;
+      this.width = Math.random() * 200 + 100;
+      this.x     = Math.random() * W;
+    }
+    update() {
+      this.y -= this.speed;
+      if (this.y < -2) { this.y = H + 2; this.x = Math.random() * W; }
+    }
+    draw() {
+      const g = ctx.createLinearGradient(this.x - this.width / 2, 0, this.x + this.width / 2, 0);
+      g.addColorStop(0,   `rgba(${ACCENT}, 0)`);
+      g.addColorStop(0.5, `rgba(${ACCENT}, ${this.alpha})`);
+      g.addColorStop(1,   `rgba(${ACCENT}, 0)`);
+      ctx.beginPath();
+      ctx.moveTo(this.x - this.width / 2, this.y);
+      ctx.lineTo(this.x + this.width / 2, this.y);
+      ctx.strokeStyle = g;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
   }
 
   function connectParticles() {
-    const maxDist = 120;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
-        const dx   = particles[i].x - particles[j].x;
-        const dy   = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < maxDist) {
-          const opacity = (1 - dist / maxDist) * 0.15;
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const d  = Math.sqrt(dx * dx + dy * dy);
+        if (d < 100) {
+          const a = (1 - d / 100) * 0.12;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(124, 58, 237, ${opacity})`;
-          ctx.lineWidth   = 0.5;
+          ctx.strokeStyle = `rgba(${ACCENT}, ${a})`;
+          ctx.lineWidth = 0.5;
           ctx.stroke();
         }
       }
     }
   }
 
-  function animate() {
-    ctx.clearRect(0, 0, W, H);
-
-    particles.forEach(function (p) {
-      p.x += p.dx;
-      p.y += p.dy;
-
-      // Odbicie od krawędzi
-      if (p.x < -10) p.x = W + 10;
-      if (p.x > W + 10) p.x = -10;
-      if (p.y < -10) p.y = H + 10;
-      if (p.y > H + 10) p.y = -10;
-
-      drawParticle(p);
-    });
-
-    connectParticles();
-    requestAnimationFrame(animate);
+  function init() {
+    particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle());
+    lines     = Array.from({ length: 8 }, () => new ScanLine());
   }
 
-  resize();
-  initParticleArray();
-  animate();
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    lines.forEach(l => { l.update(); l.draw(); });
+    connectParticles();
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(loop);
+  }
 
-  window.addEventListener('resize', function () {
+  requestAnimationFrame(() => {
     resize();
-    initParticleArray();
-  }, { passive: true });
+    init();
+    loop();
+  });
 })();
+
 
 /* ============================================================
    ANIMOWANE LICZNIKI (counter przy scroll)

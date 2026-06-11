@@ -97,7 +97,7 @@
             <span class="auth-hint">Min. 3 znaki, tylko litery, cyfry i _</span>
           </div>
 
-          <div class="auth-field">
+          {% comment %} <div class="auth-field">
             <label for="reg-email">
               <i data-lucide="mail" style="width:13px;height:13px;"></i>
               E-mail <span class="auth-optional">(opcjonalnie)</span>
@@ -110,7 +110,7 @@
               autocomplete="email"
               value="{{ request.POST.email|default:'' }}"
             >
-          </div>
+          </div> {% endcomment %}
 
           <div class="auth-field">
             <label for="reg-pass1">

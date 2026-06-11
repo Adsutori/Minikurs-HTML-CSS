@@ -3,8 +3,25 @@
    Minikurs HTML5 i CSS3
    ============================================================ */
 
-/* --- Google Fonts Import --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+/* ============================================================
+   GEIST FONT — lokalnie, bez Google Fonts
+   ============================================================ */
+@font-face {
+  font-family: 'Geist';
+  src: url('../fonts/Geist[wght].woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('../fonts/GeistMono[wght].woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 
 /* ============================================================
    CSS CUSTOM PROPERTIES (Design System)
@@ -58,6 +75,9 @@
   --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
   --shadow-glow: 0 0 20px rgba(124, 58, 237, 0.4), 0 0 40px rgba(124, 58, 237, 0.2);
   --shadow-glow-sm: 0 0 12px rgba(124, 58, 237, 0.3);
+
+  --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
 }
 
 /* ============================================================
