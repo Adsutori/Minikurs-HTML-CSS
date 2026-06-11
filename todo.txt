@@ -1,8 +1,3 @@
-- napisac strone O MNIE - ma byc ona dostepna z LP i z dashboardu (z LP ofc bez zalogowania)
-
-- napisac strone KONTAKT - ma byc ona dostepna z LP i z dashboardu (z LP ofc bez zalogowania), przekierowac z mapy do multimediow
-
-
 - naprawic css wszedzie bo krzywy jest 
 
 - podpiąć neon db

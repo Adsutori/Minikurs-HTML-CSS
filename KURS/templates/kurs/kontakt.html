@@ -8,7 +8,7 @@
 
 <div class="page-header">
   <h1>📞 Kontakt</h1>
-  <p>Dane kontaktowe autora kursu i mapa dojazdu.</p>
+  {% comment %} <p>Dane kontaktowe autora kursu i mapa dojazdu.</p> {% endcomment %}
 </div>
 
 <!-- KARTA KONTAKTOWA -->
@@ -31,7 +31,7 @@
       <!-- ZASTĄP własnymi danymi -->
       <div class="contact-value">
         Technikum Elektroniczne im. Marcina Kasprzaka w Warszawie,
-        klasa <strong style="color:var(--accent-secondary)">3F</strong>
+        klasa 3F
       </div>
     </div>
   </div>
@@ -42,13 +42,13 @@
       <div class="contact-label">Adres</div>
       <!-- WAŻNE: link do trasy rowerowej w multimedia.html -->
       <div class="contact-value">
-        <!-- ZASTĄP własnymi danymi -->
-        <a href="/kurs/multimedia/#trasa-rowerowa"
-           style="color:var(--accent-secondary); text-decoration:underline; text-underline-offset:3px;"
-           title="Kliknij, aby zobaczyć trasę rowerową">
-          <!-- ZASTĄP własnymi danymi -->
-          M. Kasprzaka 19/21, Warszawa 🚴
-        </a>
+      <a href="{% static 'projekty/multimedia/podstrony/mapy.html' %}#mapa3"
+        target="_blank"
+        rel="noopener"
+        style="color:var(--accent-secondary); text-decoration:underline; text-underline-offset:3px;"
+        title="Kliknij, aby zobaczyć trasę rowerową">
+        W. Bartniaka 9, Grodzisk Mazowiecki
+      </a>
         <div style="font-size:var(--text-xs); color:var(--text-muted); margin-top:4px;">
           ↗ Kliknięcie otwiera trasę rowerową w sekcji Multimedia
         </div>
@@ -87,19 +87,21 @@
 
 <!-- MAPA GOOGLE MAPS -->
 <div class="content-card fade-in" style="margin-bottom:32px;">
-  <h2 style="color:var(--accent-secondary); margin-bottom:8px;">🗺️ Znajdź na mapie</h2>
-
+  <h2 style="color:var(--accent-secondary); margin-bottom:8px;">🗺️ Technikum Elektroniczne <abbr title="Numer">nr</abbr> 1 na mapie</h2>
+{% comment %} 
   <p style="margin-bottom:16px;">
-    <a href="/kurs/multimedia/#mapa-kasprzaka"
+    <a href="{% static 'projekty/multimedia/podstrony/mapy.html' %}#mapa4"
+       target="_blank"
+       rel="noopener"
        style="color:var(--accent-secondary); font-weight:600;
               text-decoration:underline; text-underline-offset:3px;">
-      Kliknij, aby zobaczyć mapę w pełnym widoku →
+      Kliknij, aby zobaczyć porównanie serwisów mapowych →
     </a>
-  </p>
+  </p> {% endcomment %}
 
   <!-- Miniatura mapy (400px) -->
   <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2444.0!2d20.9897!3d52.2297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc8c92692e49%3A0xc2e97552b8af7e8b!2sTechnikum%20Elektryczne%20im.%20Kasprzaka!5e0!3m2!1spl!2spl!4v1"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.8203255395442!2d20.968053877373517!3d52.22848207198629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecb61f83e4b81%3A0x326f47958eb8ca46!2sTechnikum%20Elektroniczne%20nr%201!5e0!3m2!1sen!2spl!4v1775497797256!5m2!1sen!2spl"
     width="100%"
     height="400"
     style="border:0; border-radius: var(--radius-lg);
@@ -111,11 +113,15 @@
   </iframe>
 
   <div style="margin-top:20px; text-align:center;">
-    <a href="/kurs/multimedia/#mapa-kasprzaka" class="btn btn-primary">
-      🗺️ Otwórz pełną mapę w sekcji Multimedia
+    <a href="{% static 'projekty/multimedia/podstrony/mapy.html' %}#mapa4"
+       target="_blank"
+       rel="noopener"
+       class="btn btn-primary">
+      🗺️ Otwórz w pracy <strong>Multimedia</strong>
     </a>
   </div>
 </div>
+
 
 <style>
 .contact-row {

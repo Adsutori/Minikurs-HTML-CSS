@@ -280,6 +280,7 @@
     <!-- ========================================================
          MAPA 3 — TRASA ROWEROWA DO KASPRZAKA
          ======================================================== -->
+    
     <article class="blok-media" id="mapa3" aria-labelledby="mapa3-tytul">
       <div class="blok-media-naglowek">
         <h2 id="mapa3-tytul">
@@ -823,6 +824,26 @@
     title="Powrót na górę">
     ↑ Powrót na górę
   </button> 
+
+  <script>
+    window.addEventListener('load', function () {
+      const hash = window.location.hash;
+      if (!hash) return;
+      const target = document.querySelector(hash);
+      if (!target) return;
+
+      setTimeout(function () {
+        const navHeight = document.querySelector('.nav-glowna')
+          ? document.querySelector('.nav-glowna').offsetHeight
+          : 0;
+        const top = target.getBoundingClientRect().top
+                  + window.scrollY
+                  - navHeight
+                  - 16;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }, 500);  /* ← było 300, teraz 500 — mapa4 ma 3 iframe'y */
+    });
+  </script>
 
   <script src="../script.js"></script>
 </body>
