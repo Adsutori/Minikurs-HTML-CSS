@@ -1,6 +1,6 @@
 from pathlib import Path
 import dj_database_url
-from decouple import config
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -53,9 +53,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kurs.wsgi.application'
 
+
 DATABASES = {
     'default': dj_database_url.parse(
-        config('DATABASE_URL'),
+        os.environ.get('DATABASE_URL'),
         conn_max_age=600,
         conn_health_checks=True,
     )
