@@ -1,4 +1,3 @@
-- naprawic css wszedzie bo krzywy jest 
 
 - podpiąć neon db
 
