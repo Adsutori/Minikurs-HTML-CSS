@@ -1,0 +1,142 @@
+================================================================
+  MINIKURS HTMLCSS — INSTRUKCJA INSTALACJI I URUCHOMIENIA
+================================================================
+
+WYMAGANIA
+---------
+- Windows 10 lub 11
+- Połączenie z internetem (tylko przy pierwszej instalacji)
+
+Jeśli nie chcesz nic robić ręcznie — uruchom plik URUCHOM.bat
+i postępuj zgodnie z instrukcjami na ekranie.
+
+
+================================================================
+INSTALACJA RĘCZNA (krok po kroku)
+================================================================
+
+KROK 1 — Zainstaluj Python
+---------------------------
+1. Wejdź na httpswww.python.orgdownloads
+2. Pobierz Python 3.12 (lub nowszy)
+3. Uruchom instalator
+4. WAŻNE Zaznacz opcję Add Python to PATH przed kliknięciem Install
+5. Kliknij Install Now
+6. Po instalacji zamknij instalator
+
+Sprawdź czy działa — otwórz cmd i wpisz
+  python --version
+Powinno pokazać np. Python 3.12.x
+
+
+KROK 2 — Rozpakuj projekt
+---------------------------
+Rozpakuj plik .zip w dowolne miejsce, np.
+  CMinikurs
+
+
+KROK 3 — Otwórz terminal w folderze projektu
+---------------------------------------------
+Wejdź do folderu KURS (tam gdzie jest plik manage.py), np.
+  CMinikursKURS
+
+Kliknij prawym przyciskiem myszy w pustym miejscu folderu
+i wybierz Otwórz w terminalu lub Open in Terminal.
+
+Albo otwórz cmd i wpisz
+  cd CMinikursKURS
+
+
+KROK 4 — Utwórz wirtualne środowisko (venv)
+--------------------------------------------
+Wpisz w terminalu
+  python -m venv .venv
+
+Poczekaj chwilę — zostanie utworzony folder .venv
+
+
+KROK 5 — Aktywuj wirtualne środowisko
+--------------------------------------
+Wpisz
+  .venvScriptsactivate
+
+Na początku linii pojawi się (.venv) — to znaczy że działa.
+
+
+KROK 6 — Zainstaluj wymagane biblioteki
+----------------------------------------
+Wpisz
+  pip install -r requirements.txt
+
+Poczekaj aż wszystko się pobierze i zainstaluje.
+
+
+KROK 7 — Utwórz plik .env
+--------------------------
+W folderze KURS utwórz plik o nazwie .env (bez żadnego rozszerzenia)
+i wpisz do niego
+  SECRET_KEY=lokalny-klucz-testowy-12345
+  DEBUG=True
+
+Możesz to zrobić w Notatniku — zapisz jako Wszystkie pliki i nazwij .env
+
+
+KROK 8 — Wykonaj migracje bazy danych
+--------------------------------------
+Wpisz
+  python manage.py migrate
+
+Powinno pojawić się kilka linii z OK.
+
+
+KROK 9 — Załaduj dane (kursy, lekcje)
+--------------------------------------
+Wpisz
+  python manage.py loaddata minikursfixturesdane.json
+
+
+KROK 10 — Utwórz konto administratora (opcjonalnie)
+----------------------------------------------------
+Wpisz
+  python manage.py createsuperuser
+Podaj nazwę użytkownika, email i hasło.
+Panel admina dostępny pod http127.0.0.18000admin
+
+
+KROK 11 — Uruchom serwer
+-------------------------
+Wpisz
+  python manage.py runserver
+
+Otwórz przeglądarkę i wejdź na
+  http127.0.0.18000
+
+
+================================================================
+ZATRZYMANIE SERWERA
+================================================================
+W terminalu naciśnij Ctrl + C
+
+
+================================================================
+KOLEJNE URUCHOMIENIA (po pierwszej instalacji)
+================================================================
+1. Otwórz terminal w folderze KURS
+2. Aktywuj venv       .venvScriptsactivate
+3. Uruchom serwer     python manage.py runserver
+4. Wejdź na           http127.0.0.18000
+
+
+================================================================
+PROBLEMY
+================================================================
+- python nie jest rozpoznawany → Python nie jest w PATH,
+  zainstaluj ponownie z zaznaczoną opcją Add Python to PATH
+
+- No module named django → venv nie jest aktywny,
+  uruchom .venvScriptsactivate
+
+- Pusta strona z kursami → pomiń krok 9 i wgraj dane ręcznie
+  przez panel admina http127.0.0.18000admin
+
+================================================================

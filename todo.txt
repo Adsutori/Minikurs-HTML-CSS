@@ -1,5 +1,0 @@
-
-- podpiąć neon db
-
-- dodac sprawdzian
-- dodac screena do sprawdzianu praktycznego w O PLATFORMIE
